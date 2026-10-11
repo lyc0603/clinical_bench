@@ -1,0 +1,81 @@
+{
+  "study_root": "${CLINICAL_BENCH_STUDY_ROOT}",
+  "input_allowlist": [
+    "Input",
+    "SAP.pdf",
+    "define.xml",
+    "work/SAP.txt",
+    "work/define.txt"
+  ],
+  "expected_datasets": [
+    "ADAE",
+    "ADCM",
+    "ADDS",
+    "ADEX",
+    "ADLBC",
+    "ADLBH",
+    "ADLBHY",
+    "ADQSADAS",
+    "ADQSCIBC",
+    "ADQSNPIX",
+    "ADSL",
+    "ADTTE",
+    "ADVS"
+  ],
+  "models": [
+    {
+      "id": "model_a",
+      "model": "openai/REPLACE_WITH_MODEL",
+      "key_env": [
+        "OPENAI_API_KEY"
+      ]
+    },
+    {
+      "id": "model_b",
+      "model": "anthropic/REPLACE_WITH_MODEL",
+      "key_env": [
+        "ANTHROPIC_API_KEY"
+      ]
+    },
+    {
+      "id": "model_c",
+      "model": "google/REPLACE_WITH_MODEL",
+      "key_env": [
+        "GOOGLE_GENERATIVE_AI_API_KEY"
+      ]
+    }
+  ],
+  "repetitions": 3,
+  "repair_iterations": 3,
+  "seed": 20261011,
+  "rebuild_timeout_seconds": 1800,
+  "agent": {
+    "image": "adam-experiment:1",
+    "command": [
+      "opencode",
+      "run",
+      "--model",
+      "{model}",
+      "--format",
+      "json",
+      "{prompt}"
+    ],
+    "timeout_seconds": 1800,
+    "cpus": 4,
+    "memory": "8g"
+  },
+  "p21": {
+    "java": "${P21_JAVA}",
+    "cache": "${P21_CACHE}",
+    "ct": "2026-03-27",
+    "support_domains": [
+      "AE",
+      "DM",
+      "EX"
+    ],
+    "allowed_qualifications": [
+      "MedDRA not configured"
+    ],
+    "timeout_seconds": 900
+  }
+}

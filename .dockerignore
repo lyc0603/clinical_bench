@@ -1,0 +1,14 @@
+.git
+.env*
+**/config.local.json
+**/config.pilot.local.json
+private
+runs
+results
+Input
+output
+frozen_inputs
+*.xpt
+*.xlsx
+*.pdf
+**/__pycache__
