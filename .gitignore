@@ -218,3 +218,22 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Private experiment configuration, credentials, study files and raw evidence
+.env.*
+!.env.example
+**/config.local.json
+**/config.pilot.local.json
+private/
+runs/
+results/
+Input/
+output/
+frozen_inputs/
+*.xpt
+*.sas7bdat
+*.xlsx
+*.pdf
+agent.jsonl
+trajectory.json
+.DS_Store
