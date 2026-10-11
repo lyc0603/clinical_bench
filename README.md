@@ -83,7 +83,32 @@ materials or vendor software.
 ## Tests
 
 ```sh
+python3 -m pip install -r experiment/requirements-evaluator.txt
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s experiment -p 'test_*.py' -v
 ```
 
 CLI reference: [OpenCode](https://opencode.ai/docs/cli/).
+
+## Freeze the main study
+
+The main-study protocol uses three models, three independent generations each,
+and one repair per branch (27 calls). See [the frozen design](docs/main-study-protocol.md).
+
+```sh
+python3 experiment/freeze_protocol.py --config /absolute/path/to/main.config.json \
+  --out /absolute/private/path/to/main-study-v2
+python3 experiment/experiment.py plan --config /absolute/private/path/to/main-study-v2/config.json \
+  --out /absolute/private/path/to/main-study-v2/run
+```
+
+Freezing pins the actual image, runtime and source hashes without inference or
+P21 validation. Existing provider credentials and model availability still need
+preflight before launch. The sealed config enables independent derivation checks
+on the host, requiring pandas, numpy and pyreadstat. Their exact host versions
+are frozen too. For a new Python 3.10+ environment, install
+`experiment/requirements-evaluator.txt` before freezing; do not upgrade an
+already frozen evaluator environment. Changes require a new version, not edits to the sealed bundle.
+
+Conformance stays in `results.csv` / `paired_results.json`. Independent checks
+are in `derivation_results.csv` / `derivation_paired_results.json`; no combined
+score is produced. These are selected checks, not full SAP correctness certification.

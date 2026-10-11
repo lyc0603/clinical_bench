@@ -9,8 +9,8 @@ self-review, and how does this effect differ across provider models?
 
 Pilot: one provider model, one independent generation, one repair iteration in
 each branch. This is an infrastructure and usability check, not a model ranking.
-Main experiment: three models, three independent generations each, three repair
-iterations per branch. This requires 63 agent calls, plus rebuilds and validations.
+Main experiment: three models, three independent generations each, one repair
+iteration per branch. This requires 27 agent calls, plus rebuilds and validations.
 Do not claim statistical power from this sample size. A second study would be
 needed for stronger generalization evidence.
 
@@ -78,3 +78,10 @@ The evaluator does not certify analysis-value preservation or SAP correctness.
 If model defaults, timeouts or reproduction criteria need adjustment, do so using
 pilot evidence and freeze a new protocol before the main experiment. Never mix
 pilot runs with the final study results.
+
+## Frozen main-study protocol
+
+The main study uses [protocol v2](main-study-protocol.md) and separate
+[P21/derivation scoring rules](scoring-rules.json). The private sealed bundle
+pins exact models, prompts, inputs, runtimes and budgets. A changed pin requires
+a new protocol version. Pilot findings are not pooled with main-study estimates.

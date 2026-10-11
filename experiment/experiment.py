@@ -15,6 +15,7 @@ import random
 import shutil
 import subprocess
 import time
+import tempfile
 import uuid
 import zipfile
 import xml.etree.ElementTree as ET
@@ -362,12 +363,40 @@ class Experiment:
         result["reproduced"] = rebuild["exit_code"] == 0 and manifest(replay / "output/adam/datasets") == before
         result["reproducibility_definition"] = "Exact dataset and Define-XML byte hashes; timestamp differences also fail."
         result.update(self.p21(workspace, directory))
+        if self.cfg.get("derivation_checks"):
+            from derivation import score
+            save(directory / "derivation.json", score(self.source, dataset))
         result["dataset_manifest"] = before
         return result
 
     def p21(self, workspace, directory):
+        cache = Path(self.cfg["p21"]["cache"])
+        if not self.cfg.get("protocol_lock"):
+            return self._p21(workspace, directory, cache)
+        # P21 writes engine bookkeeping during validation. Give each call a
+        # disposable cache so canonical pinned binaries/rules remain unchanged.
+        with tempfile.TemporaryDirectory(prefix=".p21-runtime-", dir=directory) as temp:
+            isolated = Path(temp) / "cache"
+            shutil.copytree(cache, isolated)
+            before = {"jar": digest(isolated / "lib/p21-client-1.0.9.jar"),
+                      "configs": manifest(isolated / "configs"),
+                      "engines": manifest(isolated / "lib/engines")}
+            result = self._p21(workspace, directory, isolated)
+            after = {"jar": digest(isolated / "lib/p21-client-1.0.9.jar"),
+                     "configs": manifest(isolated / "configs"),
+                     "engines": manifest(isolated / "lib/engines")}
+            bookkeeping_changed = before["engines"].get("app.data") != after["engines"].get("app.data")
+            # Only the engine index state is writable; binaries and rules must match.
+            before["engines"].pop("app.data", None)
+            after["engines"].pop("app.data", None)
+            result["p21_runtime_unchanged"] = before == after
+            result["p21_bookkeeping_changed"] = bookkeeping_changed
+            if before != after:
+                result.update(status="invalid_runtime", reason="P21 binaries/rules changed during validation")
+            return result
+
+    def _p21(self, workspace, directory, cache):
         p = self.cfg["p21"]
-        cache = Path(p["cache"])
         data = workspace / "output/adam/datasets"
         report = directory / "p21_adam.xlsx"
         if report.exists():
@@ -400,6 +429,15 @@ class Experiment:
         if stage.exists():
             # Never retry a partially executed trial silently.
             raise RuntimeError(f"Interrupted stage retained at {stage}; adjudicate it before retrying")
+        if self.cfg.get("protocol_lock"):
+            from protocol_lock import verify, verify_environment
+            locked = verify(self.cfg)
+            cache = Path(self.cfg["p21"]["cache"])
+            current = {"image_id": self.image, "p21_runtime": {
+                "jar": digest(cache / "lib/p21-client-1.0.9.jar"),
+                "configs": manifest(cache / "configs"), "engines": manifest(cache / "lib/engines")},
+                "java_sha256": digest(Path(self.cfg["p21"]["java"]))}
+            verify_environment(locked, current)
         stage.mkdir(parents=True)
         workspace = stage / "workspace"
         self.workspace(workspace, previous)
@@ -496,6 +534,29 @@ class Experiment:
         lines += ["", "Positive advantage means fewer final dataset-rule pairs in the P21-feedback branch.",
                   "Ineligible attempts remain in results.csv; do not treat eligible-only averages as overall success rates.",
                   "Record-count changes and new findings are retained in paired_results.json for review."]
+        if self.cfg.get("derivation_checks"):
+            derivation_rows = []
+            for file in sorted((self.root / "runs").glob("*/*/*/iteration_*/result.json")):
+                model, rep, branch, iteration = file.relative_to(self.root / "runs").parts[:4]
+                evidence = file.parent / "derivation.json"
+                checks = json.loads(evidence.read_text())["checks"] if evidence.exists() else [
+                    {"check": "evaluation", "status": "unavailable", "assessed": None,
+                     "errors": None, "reason": "No independent derivation result"}]
+                for c in checks:
+                    derivation_rows.append(dict(model=model, run=rep, branch=branch,
+                        iteration=iteration, check=c["check"], status=c["status"],
+                        assessed=c.get("assessed"), errors=c.get("errors"),
+                        qualification=c.get("qualification", c.get("reason", ""))))
+            if derivation_rows:
+                with (self.root / "derivation_results.csv").open("w", newline="") as f:
+                    writer = csv.DictWriter(f, fieldnames=list(derivation_rows[0]))
+                    writer.writeheader()
+                    writer.writerows(derivation_rows)
+            if self.cfg.get("protocol_lock"):
+                from derivation import paired_results
+                save(self.root / "derivation_paired_results.json", paired_results(self.cfg, self.root))
+            lines += ["", "Independent derivation results are reported separately in derivation_results.csv.",
+                      "No combined conformance/correctness score. Unavailable checks are not zero-error results."]
         (self.root / "summary.md").write_text("\n".join(lines) + "\n")
 
 
@@ -581,6 +642,8 @@ def main():
     root = args.out.resolve()
     if root == HERE.parent or HERE.parent in root.parents:
         parser.error("Keep raw runs outside the repository: use a private output directory")
+    from protocol_lock import verify, verify_environment
+    frozen_protocol = verify(config)
     exp = Experiment(config, root)
     if args.action == "plan":
         calls = len(config["models"]) * config["repetitions"] * (1 + 2 * config["repair_iterations"])
@@ -611,6 +674,7 @@ def main():
         prior_environment = json.loads((root / "environment.json").read_text()) if (root / "environment.json").exists() else None
         exp.preflight()
         current_environment = json.loads((root / "environment.json").read_text())
+        verify_environment(frozen_protocol, current_environment)
         if prior_environment and prior_environment != current_environment:
             save(root / "environment.json", prior_environment)
             raise ValueError("Runtime changed: use a new output directory")
