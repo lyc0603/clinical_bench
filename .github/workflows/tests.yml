@@ -13,7 +13,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - run: python -m pip install -r experiment/requirements-evaluator.txt
+      - run: python -m pip install -r main_experiment/requirements.txt
       - run: python -m unittest discover -s experiment -p 'test_*.py' -v
         env:
           PYTHONDONTWRITEBYTECODE: '1'
+      - run: python -m unittest discover -s main_experiment -p 'test_*.py' -v
+      - run: python -m main_experiment plan --config main_experiment/config.example.json

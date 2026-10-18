@@ -1,3 +1,6 @@
+> Historical pilot protocol. For the revised main experiment, use
+> [the independent-session workflow](main-experiment-workflow.md).
+
 # Pilot protocol
 
 ## Question

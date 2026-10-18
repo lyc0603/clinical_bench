@@ -1,0 +1,25 @@
+{
+  "inputs": "/absolute/private/prepared-inputs",
+  "image": "adam-experiment:main",
+  "seed": 20261018,
+  "repetitions": 3,
+  "phase_seconds": 1800,
+  "cpus": 4,
+  "memory": "8g",
+  "models": [
+    {"id": "openai", "model": "openai/gpt-6.1-sol", "key_env": "OPENAI_API_KEY"},
+    {"id": "anthropic", "model": "anthropic/claude-sonnet-4-6", "key_env": "ANTHROPIC_API_KEY"},
+    {"id": "google", "model": "google/gemini-3.1-pro-preview", "key_env": "GOOGLE_GENERATIVE_AI_API_KEY"}
+  ],
+  "expected_datasets": ["ADAE", "ADCM", "ADDS", "ADEX", "ADLBC", "ADLBH", "ADLBHY", "ADQSADAS", "ADQSCIBC", "ADQSNPIX", "ADSL", "ADTTE", "ADVS"],
+  "rebuild_timeout_seconds": 1800,
+  "p21": {
+    "java": "/absolute/path/to/java",
+    "cache": "/absolute/private/p21-cache",
+    "ct": "2026-03-27",
+    "support_domains": ["AE", "DM", "EX"],
+    "timeout_seconds": 900,
+    "meddra_manifest": "/absolute/private/p21-cache/meddra-manifest.json",
+    "meddra_directory": "/absolute/private/p21-cache/configs/data/MedDRA/8.0/en"
+  }
+}
