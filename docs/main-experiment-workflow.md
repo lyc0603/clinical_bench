@@ -169,7 +169,8 @@ A crash retains `.running`; inspect the private evidence and stopped container
 before removing this controller guard. Do not delete attempt folders to obtain
 a better result. Administrative decisions belong in the private study log.
 
-Every workflow receives the same one-repair, same-session, 30-minute opportunity.
+Every workflow receives the same one-repair, same-session opportunity without an agent execution
+time limit, including the report-unavailable self-review fallback.
 Missing datasets do not cancel feedback-group repair. `report_usable` checks fresh
 parseable validation, pinned versions, no installation problems and agreement
 between reported domains and a nonempty subset of actual produced domains.

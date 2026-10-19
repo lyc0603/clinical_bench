@@ -76,6 +76,15 @@ class ProtocolTests(unittest.TestCase):
         self.assertIn('2.0.0', prompts()['generate'])
         self.assertNotIn('initial_p21.xlsx', prompts()['self_review'])
 
+    def test_all_agent_paths_have_no_execution_time_cap(self):
+        self.assertIsNone(cfg()['phase_seconds'])
+        rules=json.loads((HERE/'scoring-rules.json').read_text())
+        self.assertIn('no agent execution time limit',rules['repair_policy'])
+        for key in ('generate','self_review','p21_feedback','feedback_unavailable'):
+            with self.subTest(prompt=key):
+                self.assertIn('no agent execution time limit',' '.join(prompts()[key].split()))
+                self.assertNotRegex(prompts()[key],r'30[- ](?:additional |minute|minutes)|1800')
+
     def test_history_requires_unique_ids(self):
         for value in ({}, {'messages': []}, {'messages': [{'info': {'id': 'a'}}, {'info': {'id': 'a'}}]}):
             with self.assertRaises(ValueError):

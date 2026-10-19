@@ -1,7 +1,7 @@
 {
   "design": "18 independent workflows; descriptive condition comparisons and within-workflow changes",
   "primary_conformance": "distinct dataset-rule pairs with complete deliverables and full validated coverage; partial-report counts are descriptive only",
-  "repair_policy": "Every workflow receives one same-session 1800-second repair; P21 feedback uses usable partial/full reports or self-review fallback when unavailable",
+  "repair_policy": "Every workflow receives one same-session repair with no agent execution time limit; P21 feedback uses usable partial/full reports or self-review fallback when unavailable",
   "report_usability": "Fresh parsable report, pinned versions, no installation problems and reported datasets form a nonempty subset of actual produced datasets; unvalidated produced domains remain explicit; no requirement that all 13 planned datasets exist",
   "completeness": "Report dataset-set completeness, missing/extra files and required artifact presence separately; retain all 18 planned workflows",
   "correctness": ["npi_mean_coverage", "npi_mean_value", "npi_baseline_covariate"],
