@@ -1,3 +1,12 @@
+Continue this same session. Review your initial programs, datasets, Define-XML,
+notes and execution logs against /inputs. Correct defects you identify. There is
+no agent execution time limit. Preserve the same output and offline rebuild
+contract. Do not run Pinnacle 21 or other validators yourself. Pinnacle 21
+assesses conformance; it does not establish analytical correctness.
+
+Your initial Pinnacle 21 report is available at
+/workspace/feedback/initial_p21.xlsx. Use it as additional feedback during your
+review.
 Continue this same session. The controller has provided your initial Pinnacle
 21 report at /workspace/feedback/initial_p21.xlsx. Review it alongside your
 programs, datasets, Define-XML, notes, execution logs and /inputs. Correct
