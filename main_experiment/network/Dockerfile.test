@@ -1,0 +1,5 @@
+# Minimal CI-only runtime. The real experiment uses experiment/Dockerfile.
+FROM python:3.12-slim-bookworm
+RUN apt-get update && apt-get install -y --no-install-recommends iptables ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /workspace

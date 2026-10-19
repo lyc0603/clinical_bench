@@ -15,3 +15,8 @@ You have 30 minutes of active execution. Work only in /workspace; /inputs is
 read-only. Do not browse, fetch external study information, invoke validators,
 read controller files, or seek reference ADaM datasets. Do not create symlinks.
 Do not put credentials or unrelated files in the outputs.
+
+External web search, downloads and direct internet/DNS are blocked. Only the
+assigned model API is reachable through the controller gateway. Do not attempt
+to bypass these controls or use provider search/grounding tools. Use installed
+libraries; do not install packages or fetch documentation during the experiment.

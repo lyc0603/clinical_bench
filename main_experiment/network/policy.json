@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "mode": "provider-only-connect-and-namespace-firewall",
+  "port": 8080,
+  "providers": {
+    "openai": ["api.openai.com"],
+    "anthropic": ["api.anthropic.com"],
+    "google": ["generativelanguage.googleapis.com"]
+  }
+}

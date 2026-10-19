@@ -6,6 +6,7 @@ import subprocess
 import uuid
 
 from experiment.experiment import command, save
+from .egress import Egress
 
 
 def capture(argv, timeout=60):
@@ -65,20 +66,23 @@ class DockerSession:
         self.c, self.model, self.directory, self.image = c, model, Path(directory), image
         self.name = 'cb-' + uuid.uuid4().hex
         self.workspace = self.directory / 'live'
+        self.egress = Egress(self, capture)
 
     def start(self):
         self.workspace.mkdir()
+        self.egress.start()
         # State is a private named volume, never mounted into controller evaluation.
         self.volume = self.name + '-state'
         capture(['docker', 'volume', 'create', self.volume])
-        argv = ['docker', 'run', '-d', '--name', self.name, '--cpus', str(self.c['cpus']),
+        argv = ['docker', 'run', '-d', '--name', self.name, '--network', 'bridge',
+                '--dns', '127.0.0.1', '--cpus', str(self.c['cpus']),
                 '--memory', self.c['memory'], '--memory-swap', self.c['memory'],
                 '--pids-limit', '256', '--user', f'{os.getuid()}:{os.getgid()}',
                 '--cap-drop', 'ALL', '--security-opt', 'no-new-privileges',
                 '-e', 'HOME=/state', '-e', 'XDG_DATA_HOME=/state/data',
                 '-e', 'XDG_CONFIG_HOME=/state/config',
                 '-e', 'OPENCODE_CONFIG_CONTENT=' + json.dumps({'permission': {
-                    '*': 'allow', 'webfetch': 'deny', 'websearch': 'deny', 'task': 'deny'}}),
+                    '*': 'allow', 'webfetch': 'deny', 'websearch': 'deny', 'task': 'deny'}, 'enabled_providers': [self.model['model'].split('/')[0]]}),
                 '-v', str(Path(self.c['inputs']).resolve()) + ':/inputs:ro',
                 '-v', str(self.workspace.resolve()) + ':/workspace',
                 '-v', self.volume + ':/state', '-w', '/workspace',
@@ -86,7 +90,10 @@ class DockerSession:
         # Match persistent state ownership to the invoking host UID.
         capture(['docker', 'run', '--rm', '--network', 'none', '-v', self.volume + ':/state',
                  self.image, 'chown', f'{os.getuid()}:{os.getgid()}', '/state'])
+        for key, value in self.egress.environment().items():
+            argv[3:3] = ['-e', key+'='+value]
         capture(argv)
+        self.egress.restrict()
         save(self.directory / 'container.json', {'container': self.name, 'state_volume': self.volume})
 
     def phase(self, text, path, session=None):
@@ -129,4 +136,5 @@ class DockerSession:
                        stderr=subprocess.DEVNULL, timeout=30)
         subprocess.run(['docker', 'stop', '--time', '1', self.name],
                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=30)
-        # Retain stopped container and volume for audit, never automatically retry.
+        self.egress.stop()
+        # Retain stopped container, gateway and volume for audit; never retry.

@@ -56,6 +56,7 @@ The persistent state volume holds OpenCode history; it is absent from evaluation
 | [core.py](../main_experiment/core.py) | Design guards, input preparation, schedule and fingerprints |
 | [prompts](../main_experiment/prompts/) | Identical generation and condition-specific repair instructions |
 | [backend.py](../main_experiment/backend.py) | Docker boundaries, timeouts, sessions and raw telemetry |
+| [egress.py](../main_experiment/egress.py), [network/](../main_experiment/network/) | Mandatory provider-only gateway, namespace rules and bypass probes |
 | [runner.py](../main_experiment/runner.py) | Checkpoints, feedback delivery, failures and reporting |
 | [evaluate.py](../main_experiment/evaluate.py) | Offline rebuild, semantic/byte reproduction and P21 isolation |
 | [derivation.py](../main_experiment/derivation.py) | Selected source-derived correctness checks |
@@ -219,10 +220,52 @@ analysis plan; the controller exports the underlying endpoints.
 Agent containers mount only their live workspace, read-only prepared inputs and
 their own persistent state. Controller code, hidden scores, references, P21 cache
 and the repository are absent. Rebuild containers have no network. Agent containers
-need provider connectivity: browsing tools are denied and the prompt prohibits
-external lookup, but arbitrary shell networking is **not a certified firewall**.
-If strict network enforcement is required, qualify a provider-only gateway before
-freeze. Do not describe this implementation as verified network-closed execution.
+use a provider-only CONNECT gateway plus IPv4/IPv6 OUTPUT rules in the agent's
+own network namespace. Shell commands cannot bypass these rules by clearing proxy
+variables, using a numeric IP, alternate DNS or UDP/QUIC. Only gateway TCP 8080
+and TCP localhost for the local OpenCode server are allowed. Browsing tools,
+default plugins, model-catalog refreshes, auto updates and LSP downloads are
+also disabled. Package installation during a run is unavailable; install all
+required dependencies in the reviewed image before qualification.
+
+The gateway permits HTTPS 443 only for the assigned provider: `api.openai.com`,
+`api.anthropic.com` or `generativelanguage.googleapis.com`. It checks exact host
+names, matching TLS SNI and public upstream DNS addresses. There are no wildcard
+domains, OAuth/login hosts, search engines, GitHub or package registries on the
+allowlist. Redirects to other hosts fail. The gateway has no study mounts or keys.
+It retains connection decisions without recording TLS payloads, headers or keys.
+
+A short-lived NET_ADMIN helper installs rules **only in the agent container's
+network namespace**; the agent has no capabilities and cannot change those rules.
+No host networking, Docker socket or host firewall modification is used. Failure
+to install IPv4/IPv6 rules or pass bypass probes stops the workflow before any
+model invocation. The same policy is mandatory for both conditions and all
+repetitions. Gateway, helper code and policy are covered by the freeze fingerprint;
+rebuild the image and repeat qualification after this change. Old smoke receipts
+and locks cannot be reused.
+
+Each workflow records `egress-policy.json`, `egress-rules.json`,
+`egress-probes.json` and `egress-gateway.jsonl` outside the agent workspace.
+A separate no-key Docker integration check tests denied direct HTTP/HTTPS and DNS,
+denied non-provider CONNECT and mismatched SNI, plus successful provider TLS
+handshakes. It sends no HTTP API request, credentials, prompts or study inputs:
+
+```sh
+python -m main_experiment.network_check --image adam-experiment:main \
+  --out /private/study/network-check
+```
+
+GitHub CI runs this check with a minimal Python/iptables image and retains its
+synthetic evidence. Local provider smoke tests must still validate the actual
+pinned OpenCode image, proxy compatibility and API access. There is no fallback
+to unrestricted networking if the model runtime needs an unapproved endpoint.
+
+This is an outbound host restriction, not TLS interception: allowed API traffic
+stays encrypted, so the gateway does not inspect model prompts, API paths or
+provider-native search/grounding arguments. The prescribed OpenCode run has no
+browsing tools, and the prompt prohibits requesting provider-native search.
+Do not claim this eliminates model training-data memorization, controls the
+provider's internal infrastructure or protects against a compromised Docker host.
 
 Before approving a main launch, collaborators should comment on:
 
@@ -242,3 +285,6 @@ Runtime references: [OpenCode CLI](https://opencode.ai/docs/cli/) documents expl
 session continuation and export; [P21 Community CLI](https://help.pinnacle21.certara.net/en/articles/9737181-validate-with-p21-community-cli)
 documents ADaM validation and the MedDRA version argument. Those upstream pages
 are references; the local smoke qualifies the pinned installation.
+
+Network references: [OpenCode proxy support](https://opencode.ai/docs/network/) and
+[Docker container networking/capabilities](https://docs.docker.com/engine/containers/run/).

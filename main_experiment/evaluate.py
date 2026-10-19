@@ -64,7 +64,8 @@ def runtime(c):
     cache = Path(c['p21']['cache'])
     engines = manifest(cache / 'lib/engines')
     engines.pop('app.data', None)
-    return {'image': capture(['docker', 'image', 'inspect', '--format', '{{.Id}}', c['image']]),
+    from .egress import policy
+    return {'egress_policy': policy(), 'image': capture(['docker', 'image', 'inspect', '--format', '{{.Id}}', c['image']]),
             'opencode': capture(['docker', 'run', '--rm', '--network', 'none', c['image'], 'opencode', '--version']),
             'java': digest(Path(c['p21']['java'])),
             'client': digest(cache / 'lib/p21-client-1.0.9.jar'),

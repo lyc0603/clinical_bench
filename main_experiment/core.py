@@ -55,6 +55,7 @@ def prompts():
 def code_manifest():
     root = HERE.parent
     paths = list(HERE.rglob('*.py')) + list((HERE / 'prompts').glob('*.txt'))
+    paths += list((HERE / 'network').glob('*.json'))
     paths += [HERE / 'config.example.json', HERE / 'requirements.txt',
               root / 'experiment/experiment.py', root / 'experiment/Dockerfile',
               root / 'experiment/requirements-evaluator.txt', HERE / 'scoring-rules.json']
