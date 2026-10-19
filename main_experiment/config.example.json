@@ -3,7 +3,7 @@
   "image": "adam-experiment:main",
   "seed": 20261018,
   "repetitions": 3,
-  "phase_seconds": 1800,
+  "phase_seconds": null,
   "cpus": 4,
   "memory": "8g",
   "models": [

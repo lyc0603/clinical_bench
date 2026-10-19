@@ -14,10 +14,12 @@ freezing or starting the main study. A passing CI job is not that qualification.
 There are **18 independent workflows**: three exact provider/model IDs × two
 conditions × three repetitions. Each workflow has its own initial generation;
 there is no shared initial output between conditions. A deterministic shuffled
-schedule is saved in the freeze manifest. Each workflow gets 30 active minutes
-for generation and 30 for one repair, with 4 CPUs and 8 GB memory. External
-scoring time is outside those budgets. The maximum is 36 agent phase invocations
-and 18 active agent hours. An agent phase can make many provider requests.
+schedule is saved in the freeze manifest. Each workflow gets one generation
+and one repair, with 4 CPUs and 8 GB memory and no agent execution time cap (`phase_seconds: null`). The maximum
+is 36 agent phase invocations; total agent runtime and API cost have no fixed
+upper bound. An agent phase can make many provider requests. External rebuild
+and P21 validation retain their separate timeouts. Agents run until they finish,
+fail, or are manually interrupted.
 
 | Condition | Initial prompt | Repair history | Repair feedback |
 |---|---|---|---|
@@ -78,8 +80,9 @@ cp .env.example .env.local
 ```
 
 Edit `config.local.json` to set absolute input, Java, P21-cache and dictionary
-paths. Set the three provider keys in `.env.local` using literal `KEY=value`
-entries. Never commit or paste keys into review comments. The controller passes
+paths. Set `phase_seconds` to `null` in existing local configurations. Previous
+smoke receipts and freeze locks must be regenerated after this protocol change.
+Set the three provider keys in `.env.local` using literal `KEY=value` entries. Never commit or paste keys into review comments. The controller passes
 only the selected provider's credential into each agent phase.
 
 Build with an explicitly reviewed OpenCode release, then record it in your

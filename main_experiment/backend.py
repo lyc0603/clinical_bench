@@ -107,8 +107,8 @@ class DockerSession:
             argv += ['--session', session]
         argv.append(text)
         result = command(argv, self.directory, path / 'agent.jsonl', self.c['phase_seconds'])
-        # A host timeout alone would leave docker exec running. Stop the whole
-        # workflow immediately so the active-time budget cannot be exceeded.
+        # Agent phases run without a time cap (timeout=None). Retain defensive
+        # cleanup if the command runner nevertheless reports a timeout.
         if result['timed_out']:
             capture(['docker', 'stop', '--time', '1', self.name])
         result.update(telemetry(path / 'agent.jsonl'))

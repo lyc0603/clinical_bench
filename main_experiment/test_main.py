@@ -62,7 +62,7 @@ class ProtocolTests(unittest.TestCase):
             self.assertEqual(9, sum(r['condition'] == condition for r in rows))
 
     def test_reject_drift(self):
-        for key, value in [('phase_seconds', 1801), ('repetitions', 4), ('cpus', 8)]:
+        for key, value in [('phase_seconds', 1800), ('phase_seconds', 1801), ('repetitions', 4), ('cpus', 8)]:
             c = cfg(); c[key] = value
             with self.assertRaises(ValueError):
                 assert_protocol(c)
