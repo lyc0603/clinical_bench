@@ -30,6 +30,7 @@ class BoundaryTests(unittest.TestCase):
             agent = DockerSession(cfg(), cfg()['models'][0], root, 'sha256:image')
             argv_seen = []
             def command(argv, cwd, log, timeout):
+                self.assertIsNone(timeout)
                 argv_seen.extend(argv)
                 log.write_text(json.dumps({'type':'step_finish','sessionID':'same',
                     'part':{'id':'step','reason':'stop'}})+'\n')

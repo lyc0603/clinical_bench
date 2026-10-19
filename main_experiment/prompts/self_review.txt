@@ -1,4 +1,4 @@
 Continue this same session. Review your initial programs, datasets, Define-XML,
-notes and execution logs against /inputs. Correct defects you identify. You
-have 30 additional minutes. Preserve the same output and offline rebuild
+notes and execution logs against /inputs. Correct defects you identify. There is
+no agent execution time limit. Preserve the same output and offline rebuild
 contract. No external validation feedback is available for this review.

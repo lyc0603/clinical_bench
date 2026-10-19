@@ -30,7 +30,7 @@ def assert_protocol(c):
         raise ValueError('Model IDs must be unique')
     if any(not m['id'].isalnum() or not m['key_env'].isidentifier() for m in c['models']):
         raise ValueError('Unsafe model alias or credential environment name')
-    for key, expected in [('repetitions', 3), ('phase_seconds', 1800), ('cpus', 4),
+    for key, expected in [('repetitions', 3), ('phase_seconds', None), ('cpus', 4),
                           ('memory', '8g'), ('rebuild_timeout_seconds', 1800)]:
         if c[key] != expected:
             raise ValueError(f'{key} must equal {expected!r}')

@@ -31,7 +31,7 @@ def main():
     c = config(a.config)
     if a.action == 'plan':
         print(json.dumps({'workflows': schedule(c), 'planned_workflows': 18,
-              'maximum_phase_invocations': 36, 'maximum_active_agent_hours': 18,
+              'maximum_phase_invocations': 36, 'maximum_active_agent_hours': None,
               'provider_request_count': 'variable; not equivalent to phase invocations'}, indent=2))
         return
     load_env(a.env_file)
