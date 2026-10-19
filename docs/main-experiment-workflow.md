@@ -37,7 +37,7 @@ flowchart TD
   G --> H[Controller: offline rebuild, P21, selected correctness]
   H --> I{Assigned condition}
   I -->|Self review| J[Resume same session without scores]
-  I -->|Feedback| K[Copy only initial P21 report; resume same session]
+  I -->|Feedback| K[Provide usable full or partial report; otherwise self-review fallback]
   J --> L[Seal final checkpoint and evaluate externally]
   K --> L
   L --> M[Retain separate endpoints and all planned denominators]
@@ -161,16 +161,36 @@ use a separately named smoke output directory for a deliberately adjudicated
 replacement and document why. Never silently replace an attempt.
 
 Main output is bound to the full freeze lock. The controller skips only completed
-and sealed workflows, or a recorded terminal `feedback_unavailable` workflow.
+and sealed workflows. An old `feedback_unavailable` attempt is not treated as completed
+under this revised protocol; no historical skipped repair is silently rerun.
 A failed, interrupted or uncertain agent invocation stops scheduling. There are
 no automatic retries, extra repairs, shortened inference budgets or model swaps.
 A crash retains `.running`; inspect the private evidence and stopped container
 before removing this controller guard. Do not delete attempt folders to obtain
 a better result. Administrative decisions belong in the private study log.
 
-If initial P21 feedback is unavailable, the feedback repair is not invoked; this
-workflow stays in the planned denominator and scheduling proceeds. In the self
-review condition, conformance failure does not prevent the allotted self review.
+Every workflow receives the same one-repair, same-session, 30-minute opportunity.
+Missing datasets do not cancel feedback-group repair. `report_usable` checks fresh
+parseable validation, pinned versions, no installation problems and agreement
+between reported domains and a nonempty subset of actual produced domains.
+Produced but unvalidated domains remain explicit coverage gaps. It does not require all
+13 planned domains. A usable subset report has `status=valid_partial` and is
+provided with a reminder that unreported required datasets still need completion.
+
+If no usable report exists, the feedback group receives only the standard message
+that the validation report is unavailable and continues self review. No invalid
+report, installation details or independent correctness results are supplied.
+`state.json` records `p21_report` versus `self_review_fallback`; both finish as
+completed workflows when both agent phases complete. Self-review controls never
+receive validator information. Infrastructure/ambiguous agent failures retain the
+same stop-and-adjudicate policy in both conditions; no extra attempt is added.
+
+This updates the intervention to a policy of offering usable feedback when
+available. The primary analysis retains all 18 allocations, including fallback
+workflows, rather than selecting only successful report recipients. Qualification
+smokes still require complete assessable endpoints; smoke qualification is separate
+from the repair opportunity rule within every smoke/main workflow. Code and prompt
+changes invalidate previous freeze locks and smoke receipts.
 
 ## Evidence and metrics
 
@@ -185,8 +205,11 @@ Stopped containers and state volumes are retained for audit; remove them manuall
 only after retention requirements are met. They may contain sensitive data.
 
 * **Conformance:** completed P21 dataset-rule pairs, severity details and record
-  counts. A report with findings is a usable report; missing/invalid reports are
-  unavailable, never zero findings. P21 client 1.0.9, FDA engine 2508.1, ADaMIG 1.3,
+  counts. Fresh reports with findings can be usable even with partial dataset
+  coverage. Missing/invalid reports are unavailable, never zero findings.
+  `dataset_set_complete`, `deliverables_complete`, missing/extra files and validated
+  domains are separate endpoints. Invalid report counts are retained as diagnostics
+  under `observed_*`, while scoring fields are null. P21 client 1.0.9, FDA engine 2508.1, ADaMIG 1.3,
   Model 2.1 and CT 2026-03-27 are the planned qualification targets. CLI and rules
   are hashed; confirm all reported versions during smoke.
 * **Correctness:** selected source checks are separate from conformance. NPI uses
@@ -212,7 +235,12 @@ only after retention requirements are met. They may contain sensitive data.
 
 `results.json` retains all 18 scheduled workflows and both checkpoints, including
 unavailable endpoints. `summary.md` shows completion status. Within-workflow
-initial-to-final reductions are reported only for usable reports. Condition
+initial-to-final reductions are reported only when both checkpoints have complete
+deliverables and full usable validation coverage. A decrease caused by missing
+datasets cannot become a finding reduction. Partial-report counts remain descriptive.
+`condition_summary` retains nine planned workflows per condition and reports
+completion, final complete deliverables, report availability and fallback counts;
+not-yet-observed deliverables stay explicitly unavailable. Condition
 comparisons must treat initial generations as independent; do not reuse the
 pilot's paired-branch analysis or combine correctness and conformance into a
 single score. Group-level statistical analysis is left to the prespecified

@@ -86,13 +86,14 @@ class BoundaryTests(unittest.TestCase):
                 (inputs/(name+'.xpt')).write_text('synthetic')
             c=cfg();c['inputs']=str(inputs.parent);c['p21']['cache']=str(cache)
             out=root/'evaluation';out.mkdir();argv_seen=[]
+            (root/'workspace/output/adam/datasets').mkdir(parents=True)
             def command(argv,cwd,log,timeout):
                 argv_seen.extend(argv)
                 report=Path(next(x.split('=',1)[1] for x in argv if x.startswith('--report=')))
                 report.write_bytes(b'synthetic')
                 return {'exit_code':5,'timed_out':False,'seconds':1.}
             with patch('main_experiment.evaluate.command',side_effect=command), \
-                    patch('main_experiment.evaluate.report_metrics',return_value={'status':'valid'}):
+                    patch('main_experiment.evaluate.conformance_metrics',return_value={'status':'valid','report_usable':True}):
                 result=Evaluator(c,'image').p21(root/'workspace',out)
             self.assertEqual('valid',result['status'])
             self.assertIn('--meddra.version=8.0',argv_seen)
