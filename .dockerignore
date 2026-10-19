@@ -12,3 +12,9 @@ frozen_inputs
 *.xlsx
 *.pdf
 **/__pycache__
+
+FinalizedInput
+prepared-inputs
+*.docx
+*.provenance.json
+*.receipt.json

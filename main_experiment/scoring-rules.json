@@ -1,0 +1,14 @@
+{
+  "design": "18 independent workflows; descriptive condition comparisons and within-workflow changes",
+  "primary_conformance": "distinct dataset-rule pairs from completed qualified P21 reports",
+  "correctness": ["npi_mean_coverage", "npi_mean_value", "npi_baseline_covariate"],
+  "conditional_correctness": ["tte_subject_coverage", "tte_source_link", "tte_event_date", "tte_event_status"],
+  "exploratory": ["tte_start_date", "tte_duration_arithmetic", "tte_censor_convention"],
+  "numeric_rtol": 1e-10,
+  "numeric_atol": 1e-8,
+  "semantic_reproduction": "exact values, row order, labels, types, storage widths; XML C14N excluding only root CreationDateTime",
+  "byte_reproduction": "exact SHA256 manifests, reported separately",
+  "unavailable": null,
+  "denominator": "all 18 scheduled workflows; missing/extra/duplicates and failures retained separately",
+  "qualifications": ["TTE medical query and treatment-emergent flags conditional on generated ADAE", "TTE duration +1 and DM.RFENDTC censor conventions", "MedDRA 8.0 HLT/HLGT masked-source provenance not independently confirmed"]
+}

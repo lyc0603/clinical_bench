@@ -1,3 +1,17 @@
+# Main experiment automation
+
+For the revised **18 independent workflows with one same-session repair**, start
+with [the main-experiment workflow and collaborator review guide](docs/main-experiment-workflow.md).
+Run `python -m main_experiment plan --config main_experiment/config.example.json`
+for a no-cost schedule preview. Main agents use a mandatory provider-only gateway
+and container firewall; web tools and direct internet/DNS access are blocked.
+Three excluded provider smoke tests are required
+before freezing and running the main study.
+
+The existing `experiment/` commands below remain the **legacy pilot** workflow.
+
+---
+
 # clinical_bench
 
 A pilot benchmark of **LLM-generated ADaM conformance and Pinnacle 21-guided

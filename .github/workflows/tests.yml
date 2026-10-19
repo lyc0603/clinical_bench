@@ -13,7 +13,25 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - run: python -m pip install -r experiment/requirements-evaluator.txt
+      - run: python -m pip install -r main_experiment/requirements.txt
       - run: python -m unittest discover -s experiment -p 'test_*.py' -v
         env:
           PYTHONDONTWRITEBYTECODE: '1'
+      - run: python -m unittest discover -s main_experiment -p 'test_*.py' -v
+      - run: python -m main_experiment plan --config main_experiment/config.example.json
+  egress-boundary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build minimal network test image (no model SDK)
+        run: docker build -t clinical-bench-network-test -f main_experiment/network/Dockerfile.test .
+      - name: Verify real Docker firewall, denied routes and provider TLS (no keys or inference)
+        run: python -m main_experiment.network_check --image clinical-bench-network-test --out "$RUNNER_TEMP/egress-check"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: egress-boundary-evidence
+          path: ${{ runner.temp }}/egress-check

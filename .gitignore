@@ -237,3 +237,10 @@ frozen_inputs/
 agent.jsonl
 trajectory.json
 .DS_Store
+
+# Frozen clinical packages and persistent agent histories
+FinalizedInput/
+prepared-inputs/
+*.docx
+*.provenance.json
+*.receipt.json
