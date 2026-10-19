@@ -45,7 +45,8 @@ class FakeSession:
 
 def evaluation(work, out):
     (out / 'p21_adam.xlsx').write_bytes(b'synthetic report, not a real workbook')
-    value = {'conformance': {'status': 'valid', 'dataset_rule_pairs': 3},
+    value = {'deliverables_complete': True, 'conformance': {'status': 'valid', 'dataset_rule_pairs': 3,
+             'report_usable': True, 'validation_coverage_complete': True},
              'correctness': {'complete': True}, 'semantic_reproduced': True}
     save(out / 'evaluation.json', value)
     return value
@@ -91,6 +92,14 @@ class ProtocolTests(unittest.TestCase):
         self.assertEqual(
             'No external validation feedback is available during your review.\n',
             review_condition)
+    def test_all_agent_paths_have_no_execution_time_cap(self):
+        self.assertIsNone(cfg()['phase_seconds'])
+        rules=json.loads((HERE/'scoring-rules.json').read_text())
+        self.assertIn('no agent execution time limit',rules['repair_policy'])
+        for key in ('generate','self_review','p21_feedback','feedback_unavailable'):
+            with self.subTest(prompt=key):
+                self.assertIn('no agent execution time limit',' '.join(prompts()[key].split()))
+                self.assertNotRegex(prompts()[key],r'30[- ](?:additional |minute|minutes)|1800')
 
     def test_history_requires_unique_ids(self):
         for value in ({}, {'messages': []}, {'messages': [{'info': {'id': 'a'}}, {'info': {'id': 'a'}}]}):
@@ -128,14 +137,50 @@ class ProtocolTests(unittest.TestCase):
                 with self.assertRaises(RuntimeError):
                     workflow(cfg(), item, root, 'image', FakeSession, evaluation)
 
-    def test_feedback_failure_blocks_repair(self):
+    def test_unavailable_report_still_repairs_both_conditions(self):
+        for condition in ('self_review','p21_feedback'):
+            with tempfile.TemporaryDirectory() as t:
+                FakeSession.calls = []
+                item = dict(model='openai', condition=condition, repetition=1, workflow='w01')
+                root = Path(t)/'run'
+                workflow(cfg(), item, root, 'image', FakeSession,
+                         lambda *args: {'conformance': {'status': 'unavailable', 'report_usable': False}})
+                self.assertEqual([None,'session-1'], FakeSession.calls)
+                self.assertEqual('completed', json.loads((root/'state.json').read_text())['status'])
+                self.assertFalse((root/'final/workspace/feedback').exists())
+                if condition == 'p21_feedback':
+                    prompt=(root/'final/prompt.txt').read_text()
+                    self.assertIn('report is unavailable',prompt)
+                    self.assertNotIn('reason',prompt)
+
+    def test_partial_report_still_delivered_and_repaired(self):
         with tempfile.TemporaryDirectory() as t:
-            FakeSession.calls = []
-            item = dict(model='openai', condition='p21_feedback', repetition=1, workflow='w01')
-            workflow(cfg(), item, Path(t)/'run', 'image', FakeSession,
-                     lambda *args: {'conformance': {'status': 'unavailable'}})
-            self.assertEqual([None], FakeSession.calls)
-            self.assertEqual('feedback_unavailable', json.loads((Path(t)/'run/state.json').read_text())['status'])
+            FakeSession.calls=[]
+            def partial(work,out):
+                result=evaluation(work,out)
+                result.update(deliverables_complete=False)
+                result['conformance'].update(status='valid_partial',validation_coverage_complete=False)
+                save(out/'evaluation.json',result)
+                return result
+            root=Path(t)/'run'
+            workflow(cfg(),dict(model='openai',condition='p21_feedback'),root,'image',FakeSession,partial)
+            self.assertEqual([None,'session-1'],FakeSession.calls)
+            self.assertTrue((root/'final/workspace/feedback/initial_p21.xlsx').exists())
+            self.assertEqual('p21_report',json.loads((root/'state.json').read_text())['feedback']['mode'])
+
+    def test_partial_coverage_does_not_become_finding_reduction(self):
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t)
+            item=schedule(cfg())[0]
+            for phase,count in [('initial',10),('final',1)]:
+                value={'deliverables_complete':phase=='initial', 'conformance':{
+                    'report_usable':True,'validation_coverage_complete':phase=='initial',
+                    'dataset_rule_pairs':count}}
+                save(root/item['workflow']/phase/'evaluation.json',value)
+            rows=report(cfg(),root)
+            self.assertEqual(18,len(rows))
+            self.assertIsNone(rows[0]['within_workflow_pair_reduction'])
+
 
     def test_history_fork_blocks_success(self):
         class Fork(FakeSession):
@@ -154,6 +199,9 @@ class ProtocolTests(unittest.TestCase):
             self.assertEqual(18, len(rows))
             self.assertTrue(all(r['initial'] is None and r['final'] is None for r in rows))
             self.assertTrue(all(r['within_workflow_pair_reduction'] is None for r in rows))
+            summary=json.loads((Path(t)/'results.json').read_text())['condition_summary']
+            self.assertEqual([9,9],[g['planned_denominator'] for g in summary.values()])
+            self.assertEqual([9,9],[g['final_deliverables_unavailable'] for g in summary.values()])
 
     def test_symlinks_rejected(self):
         with tempfile.TemporaryDirectory() as t:

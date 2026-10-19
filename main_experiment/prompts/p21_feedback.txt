@@ -7,3 +7,13 @@ assesses conformance; it does not establish analytical correctness.
 Your initial Pinnacle 21 report is available at
 /workspace/feedback/initial_p21.xlsx. Use it as additional feedback during your
 review.
+Continue this same session. The controller has provided your initial Pinnacle
+21 report at /workspace/feedback/initial_p21.xlsx. Review it alongside your
+programs, datasets, Define-XML, notes, execution logs and /inputs. Correct
+defects you identify. There is no agent execution time limit. Preserve the same output
+and offline rebuild contract. This report assesses conformance; it does not
+establish analytical correctness. Do not run Pinnacle 21 yourself.
+
+The report may cover only a subset of required datasets. Absence from the
+report does not establish that a missing dataset conforms. Check all required
+deliverables against /inputs as part of this repair.

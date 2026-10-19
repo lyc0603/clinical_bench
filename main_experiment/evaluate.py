@@ -8,6 +8,33 @@ from experiment.experiment import Experiment, command, digest, manifest, report_
 from .derivation import score
 
 
+def conformance_metrics(path, expected, actual, pins):
+    """Report usability concerns observed validation, not planned completeness."""
+    expected, actual = set(expected), set(actual)
+    result = report_metrics(path, sorted(actual), pins)
+    validated = set(result['datasets'])
+    usable = (bool(validated) and validated <= actual and
+              not result.get('missing_configuration_tokens') and
+              not result.get('qualification_problems') and
+              not result.get('installation_warning'))
+    result.update(report_usable=usable, expected_datasets=sorted(expected),
+                  actual_datasets=sorted(actual), validated_datasets=sorted(result['datasets']),
+                  missing_datasets=sorted(expected-actual), extra_datasets=sorted(actual-expected),
+                  produced_not_validated=sorted(actual-validated),
+                  required_not_validated=sorted(expected-validated),
+                  unexpected_report_datasets=sorted(validated-actual),
+                  validation_coverage_complete=usable and validated == actual == expected)
+    if usable:
+        result['status'] = 'valid' if validated == actual == expected else 'valid_partial'
+    else:
+        result['status'] = 'invalid_validation'
+        # Invalid reports retain diagnostic counts without presenting them as scores.
+        for field in ('dataset_rule_pairs', 'finding_instances', 'distinct_rules'):
+            result['observed_'+field] = result[field]
+            result[field] = None
+    return result
+
+
 def semantic(left, right):
     """Conservative equality: row order, types, widths and labels all matter."""
     import pyreadstat
@@ -107,7 +134,8 @@ class Evaluator:
                 raise RuntimeError('P21 runtime drift during validation')
             if execution['timed_out'] or not report.exists():
                 raise RuntimeError('P21 did not produce a fresh completed report')
-            result = report_metrics(report, self.c['expected_datasets'],
+            actual = {f.stem.upper() for f in data.iterdir() if f.suffix.lower() == '.xpt'}
+            result = conformance_metrics(report, self.c['expected_datasets'], actual,
                                    ['FDA 2508.1', '1.0.9', p['ct'], 'ADaM-IG 1.3', '2.1', 'MedDRA', '8.0'])
             result['execution'] = execution
             return result
@@ -121,6 +149,8 @@ class Evaluator:
         result['required_artifacts'] = {p: (workspace / p).is_file() for p in
             ('output/adam/programs/rebuild.py', 'output/adam/manifest.json', 'output/adam/notes.md')}
         result['missing_files'], result['extra_files'] = sorted(expected-actual), sorted(actual-expected)
+        result['dataset_set_complete'] = {s.lower()+'.xpt' for s in self.c['expected_datasets']} == {p for p in actual if p.endswith('.xpt')}
+        result['deliverables_complete'] = not result['missing_files'] and not result['extra_files'] and all(result['required_artifacts'].values())
         # Each endpoint records its own failure; never turn unavailable into zero.
         for name, task in [('correctness', lambda: score(Path(self.c['inputs']), data)),
                            ('conformance', lambda: self.p21(workspace, directory))]:
@@ -128,6 +158,10 @@ class Evaluator:
                 result[name] = task()
             except Exception as exc:
                 result[name] = {'status': 'unavailable', 'reason': str(exc)}
+                if name == 'conformance':
+                    result[name].update(report_usable=False, dataset_rule_pairs=None,
+                                        finding_instances=None, distinct_rules=None,
+                                        validated_datasets=None, validation_coverage_complete=False)
         try:
             replay = directory / 'replay'
             programs = workspace / 'output/adam/programs'

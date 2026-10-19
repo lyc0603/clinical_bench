@@ -92,7 +92,7 @@ def main():
             if state['status'] != 'completed':
                 raise RuntimeError('Smoke incomplete; qualification receipt not issued')
             evaluations = [json.loads((directory / phase / 'evaluation.json').read_text()) for phase in ('initial', 'final')]
-            qualified = all(e['conformance'].get('status') in ('valid', 'valid_qualified') and
+            qualified = all(e['conformance'].get('report_usable') is True and e.get('deliverables_complete') is True and
                             e['semantic_reproduced'] is True and e['correctness'].get('complete') is True
                             for e in evaluations)
             # Ensure no runtime/config/input drift across the qualification.
@@ -120,12 +120,10 @@ def main():
                 directory = out / item['workflow']
                 if directory.exists():
                     state = json.loads((directory / 'state.json').read_text())
-                    if state['status'] not in ('completed', 'feedback_unavailable'):
+                    if state['status'] != 'completed':
                         raise RuntimeError('Failed/interrupted workflow requires adjudication: '+item['workflow'])
                     for phase in ('initial', 'final'):
                         checkpoint = directory / phase
-                        if phase == 'final' and state['status'] == 'feedback_unavailable':
-                            continue
                         recorded = json.loads((checkpoint / 'checkpoint-manifest.json').read_text())
                         actual = manifest(checkpoint)
                         actual.pop('checkpoint-manifest.json', None)

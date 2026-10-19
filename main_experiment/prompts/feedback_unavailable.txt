@@ -1,0 +1,5 @@
+Continue this same session. The initial validation report is unavailable.
+Review your programs, datasets, Define-XML, notes and execution logs against
+/inputs and correct defects you identify. There is no agent execution time limit.
+Preserve the same output and offline rebuild contract. No independent scores
+are provided. Do not run Pinnacle 21 yourself.

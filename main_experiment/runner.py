@@ -22,10 +22,6 @@ def verify(c, lock):
         raise RuntimeError('Freeze manifest integrity mismatch')
 
 
-class FeedbackUnavailable(RuntimeError):
-    pass
-
-
 def workflow(c, item, directory, image, backend=DockerSession, evaluator=None):
     directory = Path(directory)
     if directory.exists():
@@ -42,7 +38,10 @@ def workflow(c, item, directory, image, backend=DockerSession, evaluator=None):
         for phase in ('initial', 'final'):
             checkpoint = directory / phase
             checkpoint.mkdir()
-            text = prompts()['generate' if phase == 'initial' else item['condition']]
+            prompt_key = 'generate' if phase == 'initial' else item['condition']
+            if phase == 'final' and item['condition'] == 'p21_feedback' and not state['feedback']['report_usable']:
+                prompt_key = 'feedback_unavailable'
+            text = prompts()[prompt_key]
             (checkpoint / 'prompt.txt').write_text(text)
             if phase == 'final':
                 agent.resume()
@@ -65,16 +64,19 @@ def workflow(c, item, directory, image, backend=DockerSession, evaluator=None):
                 raise RuntimeError('Evaluator altered checkpoint')
             save(checkpoint / 'checkpoint-manifest.json', manifest(checkpoint))
             if phase == 'initial' and item['condition'] == 'p21_feedback':
-                if result['conformance'].get('status') not in ('valid', 'valid_qualified'):
-                    raise FeedbackUnavailable('Initial P21 feedback unavailable; repair not invoked')
+                conformance = result.get('conformance') or {}
+                usable = conformance.get('report_usable', False)
+                state['feedback'] = {'report_usable': usable,
+                    'mode': 'p21_report' if usable else 'self_review_fallback'}
+                save(directory / 'state.json', state)
+                if not usable:
+                    continue
                 feedback = agent.workspace / 'feedback'
                 if feedback.exists():
                     raise RuntimeError('Unexpected pre-existing feedback directory')
                 feedback.mkdir()
                 shutil.copy2(checkpoint / 'p21_adam.xlsx', feedback / 'initial_p21.xlsx')
         state.update(status='completed', session_id=sid)
-    except FeedbackUnavailable as exc:
-        state.update(status='feedback_unavailable', reason=str(exc), session_id=sid)
     except Exception as exc:
         state.update(status='failed', reason=str(exc))
         raise
@@ -93,21 +95,36 @@ def report(c, root):
     for item in schedule(c):
         path = root / item['workflow']
         state = json.loads((path / 'state.json').read_text()) if (path / 'state.json').exists() else {'status': 'not_started'}
-        row = dict(item, status=state['status'], reason=state.get('reason'))
+        row = dict(item, status=state['status'], reason=state.get('reason'), feedback=state.get('feedback'))
         for phase in ('initial', 'final'):
             evidence = path / phase / 'evaluation.json'
             row[phase] = json.loads(evidence.read_text()) if evidence.exists() else None
         # Independent runs: only initial-to-final differences WITHIN each run.
         initial, final = [row[p] for p in ('initial', 'final')]
-        good = lambda x: x and x.get('conformance', {}).get('status') in ('valid', 'valid_qualified')
+        def good(x):
+            c = (x or {}).get('conformance') or {}
+            return bool(x and x.get('deliverables_complete') and c.get('report_usable') and
+                        c.get('validation_coverage_complete') and c.get('dataset_rule_pairs') is not None)
         row['within_workflow_pair_reduction'] = (initial['conformance']['dataset_rule_pairs'] -
             final['conformance']['dataset_rule_pairs']) if good(initial) and good(final) else None
         rows.append(row)
-    save(root / 'results.json', {'planned_denominator': 18, 'workflows': rows})
+    groups = {}
+    for condition in ('self_review', 'p21_feedback'):
+        group = [r for r in rows if r['condition'] == condition]
+        finals = [r['final'] for r in group]
+        groups[condition] = {
+            'planned_denominator': len(group),
+            'completed_workflows': sum(r['status'] == 'completed' for r in group),
+            'final_deliverables_complete': sum(bool(f and f.get('deliverables_complete')) for f in finals),
+            'final_deliverables_unavailable': sum(f is None or 'deliverables_complete' not in f for f in finals),
+            'final_report_usable': sum(bool(f and (f.get('conformance') or {}).get('report_usable')) for f in finals),
+            'self_review_fallbacks': sum((r.get('feedback') or {}).get('mode') == 'self_review_fallback' for r in group)}
+    save(root / 'results.json', {'planned_denominator': 18, 'condition_summary': groups, 'workflows': rows})
     lines = ['# Main experiment status', '', 'All 18 planned workflows are retained. NA means unavailable.', '',
              '| Workflow | Model | Condition | Repeat | Status |', '|---|---|---|---:|---|']
     lines += [f"| {r['workflow']} | {r['model']} | {r['condition']} | {r['repetition']} | {r['status']} |" for r in rows]
     lines += ['', 'See results.json for separate conformance, correctness, coverage and reproduction endpoints.',
-              'Condition groups have independent initial generations; do not perform paired condition tests.']
+              'Condition groups have independent initial generations; do not perform paired condition tests.',
+              'Finding reductions require complete deliverables and full validation coverage at both checkpoints; partial reports are feedback, not evidence of improvement.']
     (root / 'summary.md').write_text('\n'.join(lines)+'\n')
     return rows
