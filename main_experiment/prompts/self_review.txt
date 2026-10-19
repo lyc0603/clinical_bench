@@ -1,4 +1,7 @@
 Continue this same session. Review your initial programs, datasets, Define-XML,
 notes and execution logs against /inputs. Correct defects you identify. There is
 no agent execution time limit. Preserve the same output and offline rebuild
-contract. No external validation feedback is available for this review.
+contract. Do not run Pinnacle 21 or other validators yourself. Pinnacle 21
+assesses conformance; it does not establish analytical correctness.
+
+No external validation feedback is available during your review.

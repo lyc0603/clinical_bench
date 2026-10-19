@@ -75,6 +75,23 @@ class ProtocolTests(unittest.TestCase):
         self.assertIn('2.0.0', prompts()['generate'])
         self.assertNotIn('initial_p21.xlsx', prompts()['self_review'])
 
+    def test_repair_prompts_only_differ_in_feedback_availability(self):
+        repair = prompts()
+        feedback_shared, feedback_condition = repair['p21_feedback'].split('\n\n')
+        review_shared, review_condition = repair['self_review'].split('\n\n')
+        self.assertEqual(feedback_shared, review_shared)
+        self.assertIn('Continue this same session.', feedback_shared)
+        self.assertIn('no agent execution time limit.', feedback_shared)
+        self.assertIn('Do not run Pinnacle 21 or other validators yourself.', feedback_shared)
+        self.assertIn('it does not establish analytical correctness.', feedback_shared)
+        self.assertEqual(
+            'Your initial Pinnacle 21 report is available at\n'
+            '/workspace/feedback/initial_p21.xlsx. Use it as additional feedback during your\n'
+            'review.\n', feedback_condition)
+        self.assertEqual(
+            'No external validation feedback is available during your review.\n',
+            review_condition)
+
     def test_history_requires_unique_ids(self):
         for value in ({}, {'messages': []}, {'messages': [{'info': {'id': 'a'}}, {'info': {'id': 'a'}}]}):
             with self.assertRaises(ValueError):
