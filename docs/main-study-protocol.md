@@ -1,54 +1,107 @@
-> Historical pilot protocol. For the revised main experiment, use
-> [the independent-session workflow](main-experiment-workflow.md).
+# Current main-study protocol
 
-# Main-study protocol v2
+This is the current scientific protocol. [The workflow guide](main-experiment-workflow.md)
+contains setup, qualification, freeze, execution and recovery commands.
+Use **`python -m main_experiment`** for every current main-study operation.
+Historical paired designs and their freeze script are archived and must not be
+used to freeze this experiment.
 
-## Question and scope
+## Design and allocation
 
-Does one round of P21-guided repair improve ADaM conformance beyond one round of self-review, and do selected independent derivation checks show different effects?
+Three prespecified models × two conditions × three repetitions give **18
+independent workflows**. Each workflow has its own generation, followed by one
+repair in the **same persistent OpenCode session**: at most 36 agent phase
+invocations, not a fixed number of provider API requests. There are no shared
+initial generations and no paired comparison between conditions. Both groups
+use the same initial prompt; the condition is disclosed only after checkpointing.
 
-Three explicit provider/model IDs, three independent generations per model, one repair per branch: 9 paired trials and 27 agent calls. The pilot is excluded from main-study estimates. This is an exploratory single-study experiment, not a powered model ranking or a certification of submission readiness.
+The default schedule seed is **20261018**, as recorded in
+[the configuration](../main_experiment/config.example.json). It shuffles workflow
+order; it is not a provider sampling seed. The actual config and schedule are
+sealed before execution. Any intentional seed change requires a new freeze.
 
-## Frozen models and inputs
+Agent execution has **no time cap** (`phase_seconds: null`), in generation or in
+any repair path. Each agent has 4 CPUs and 8 GB memory. Rebuilds retain a separate
+1,800-second limit; P21 retains a 900-second limit. There is no fixed maximum
+agent runtime, token consumption or API cost. No silent retries, model swaps,
+additional repairs or score-driven early stopping are allowed.
 
-Use the exact API IDs in the sealed config, never CLI defaults, latest aliases or automatic substitutions. The planned selection is openai/gpt-6.1-sol (retained from pilot), anthropic/claude-sonnet-4-6 and google/gemini-3.1-pro-preview. These are explicit study choices rather than a claim about all three native CLIs' defaults. [Anthropic model versioning](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions) and [Google model documentation](https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview) document the latter two IDs. Preview backends can change despite an unchanged ID; retain requested/reported IDs and dates, and do not claim immutable model weights.
+## Inputs and derivation conventions
 
-Allowlisted frozen SDTM, SAP and legacy Define metadata are identical for all models. The study intentionally supplies legacy ADaM metadata. No reference ADaM, pilot agent code, repaired output or independent evaluator is supplied to agents. Required datasets are the 13 domains in config.json. Hash every input file and the exact three rendered prompts before the first main-study call.
+Frozen inputs are the canonical 22 source XPT files, SAP.pdf and exported
+specifications.json. TS uses Windows-1252. Input preparation records the original
+workbook hash and explicit ADVS.TRTA predecessor correction. The workbook is not
+silently modified; proposals and alternate Dataset-JSON copies are excluded.
+Agents receive no reference ADaM or independent evaluator/results.
 
-## Execution and budget
+NPI randomization uses a unique distinct complete **SV VISITNUM=3** date, with
+**no DM.RFSTDTC fallback**. Baseline selection uses **WDAY <= 1**; ties use distance
+to target, earlier date, then QSSEQ. The selected source checks, tolerances and
+qualifications are defined in
+[the current scoring contract](../main_experiment/scoring-rules.json) and
+[the evaluator](../main_experiment/derivation.py).
 
-Use the pinned Docker image ID, OpenCode version, image library versions, host evaluator Python/library versions, Java binary, P21 client/engine/configuration/CT hashes. The seal also covers runner, independent checker, scoring rules, protocol text, prompts and randomized trial schedule. Changes require a new version and separate output directory. Each P21 call uses a disposable copy of the pinned cache. Writable engine-index bookkeeping is excluded from the after-call binary/rule comparison; any other runtime/rule drift invalidates that validation. The canonical shared cache stays unchanged.
+P21 pins are client 1.0.9, FDA engine 2508.1, ADaMIG 1.3, Model 2.1 and CT
+2026-03-27. **English MedDRA 8.0 is mandatory**, with hashed PT/SOC/LLT/HLT/HLGT
+files. Missing dictionary configuration is not an allowed report qualification.
+Masked HLT/HLGT provenance remains an explicit study limitation.
 
-Per call: 1,800 seconds, 4 CPUs and 8 GiB configured Docker memory; 13.5 maximum agent hours across 27 calls. Each branch receives exactly one fresh repair session. Tokens, tools and cost are recorded when available; there is no hard token/cost/tool cap. Equal wall-time limits do not guarantee equal tokens or compute. Sampling and reasoning settings use provider defaults with no explicit overrides; these defaults and remote backend state are uncontrolled limitations. The schedule seed is 20261011, not a model-generation seed.
+## Equal repair opportunity and separate outcomes
 
-Both branches copy identical initial artifacts. Self-review receives no P21 or independent-check feedback. P21 feedback receives only the preceding P21 report and its metrics. Independent checks remain evaluator-only. Rebuilds have 1,800-second limits and P21 calls 900-second limits. No score-driven early stopping, extra repair calls, silent retries or replacement models. Interrupted attempts remain recorded and require explicit adjudication before any new run.
+Both conditions receive one repair opportunity regardless of initial delivery
+completeness. Self review sees only its own artifacts and supplied inputs.
+P21 feedback receives only a usable initial P21 report, including a partial
+report. If no usable report exists, it receives a standard report-unavailable
+message and continues self review. Its original group assignment is retained.
+No independent correctness result or installation diagnostic reaches the agent.
 
-## Outcome A: P21 conformance
+Report usability requires a fresh parseable report, pinned versions, no
+installation problems and a nonempty validated subset of actual produced domains.
+It does not require all 13 planned datasets. Delivery completeness and validation
+coverage are separate endpoints. Missing/invalid results are unavailable, never
+zero findings. Reduced dataset coverage cannot count as conformance improvement.
 
-Primary conformance outcome: number of dataset-rule pairs with findings. Within-trial reduction = initial minus final. Paired feedback advantage = final self-review minus final P21-feedback count. Positive values favor P21 feedback. Record finding instances, distinct rules, newly appearing rules, record counts, package completion, byte reproducibility, elapsed time and reported usage separately.
+Retain all **18 planned workflows**, nine per condition, including failures,
+fallbacks and unavailable endpoints. Report completion, dataset coverage,
+complete deliverables, reconstruction and selected correctness separately.
+Within-workflow finding reductions require complete deliverables and full usable
+validation at both checkpoints. Partial-report counts are descriptive only.
+No composite conformance/correctness score or paired condition analysis is used.
+Semantic reconstruction and byte equality are separate endpoints; only ODM
+CreationDateTime is normalized in Define XML.
 
-Pins: client 1.0.9, FDA 2508.1, ADaMIG 1.3, ADaM Model 2.1, ADaM/SDTM CT 2026-03-27; AE/DM/EX support. ADaM validation uses Define metadata; it is not standalone Define-XML certification. MedDRA not configured is the sole allowed qualification. MedDRA-dependent checks are outside scope.
+## Isolation, qualification and freeze
 
-Conformance paired eligibility requires completed initial and both repairs, all required domains and Define, fresh qualified P21 reports, identical qualification status and byte-identical independent rebuilds. Missing/invalid reports and failed runs never count as zero findings. Report all 9 planned trial denominators, completed counts and eligible counts alongside eligible-pair summaries.
+Web tools are denied. Agent IPv4/IPv6 egress is restricted to the assigned
+provider gateway and TCP localhost; direct web, downloads and DNS are blocked.
+Gateway policy/rules/probes and connection decisions are retained. TLS payloads
+are not inspected, so provider-native search arguments are governed by the tool
+settings and prompt rather than payload filtering. Provider smoke qualification
+must verify the actual pinned OpenCode image. No unrestricted-network fallback
+is permitted.
 
-## Outcome B: selected independent derivation correctness
+Require three excluded provider qualification smokes before
+**`python -m main_experiment freeze`**. The lock covers canonical inputs and
+provenance, current protocol/workflow documents, code, prompts, scoring rules,
+schedule, config, image and validation runtime/dictionaries. Changing a pin
+requires fresh qualification and a new lock. The current runner verifies this
+lock before scheduling; historical paired-protocol locks are incompatible.
 
-Report errors and assessable denominators separately by each frozen check in scoring-rules.json; never combine these with P21 into one score. No overall clinical accuracy percentage is defined. Primary independent checks cover NPI available Week4–24 means and baseline covariates, and exact TTE predecessor links. Coverage checks identify missing, extra or duplicate subjects. TTE event-status/date checks are conditional on exported treatment-emergent/query flags. Duration and censor checks test implemented conventions and are exploratory.
+## Failure recovery
 
-The host checker reads exported XPT and raw frozen SDTM and never executes generated analysis programs. NPI independently selects nonmissing source NPTOT within SAP windows (Week4 22–35, then 14-day increments through Week24 162–175), closest target, earlier-date tie; averages available selected values. Baseline uses elapsed day <1, closest to target day1. Randomization anchor is earliest complete SV VISITNUM=3, with DM.RFSTDTC fallback; same-date sequence ties use QSSEQ. These source/tie conventions require clinical confirmation; population filtering and ANCOVA are outside scope.
+`.running` is an exclusive **controller concurrency guard**, not the record of
+whether an attempt may be retried. A normal return, Python exception, SystemExit
+or KeyboardInterrupt that unwinds `finally` removes this guard. SIGKILL,
+`os._exit`, power loss or another termination that bypasses `finally` can leave it
+behind. Before removing a leftover guard, verify no controller is still active.
 
-Representation contract from supplied study metadata: NPI summary PARAMCD=NPTOTMN and AVISITN=98; dermatologic TTE PARAMCD=TTDE, declared SRCDOM=ADAE, SRCVAR=ASTDT; SRCSEQ must identify final ADAE ASEQ and the selected AESEQ. The checker must distinguish different events on the same date. Unsupported representations/missing fields are unavailable, not automatically incorrect or successful. The main-study code can use other sponsor-specific field names elsewhere.
+Workflow `state.json`, sealed checkpoints and the bound freeze lock independently
+prevent silent retries. A failed, started or interrupted workflow requires human
+adjudication even if `.running` was cleaned up. Removing `.running` alone never
+authorizes retrying an agent phase. Completed workflows are skipped only after
+their checkpoint manifests are verified.
 
-Correctness-check comparability is separate from P21 eligibility: require the check to be scored in all three stages, its relevant coverage checks to pass, and assessed denominators to agree. Retain unavailable/failing coverage outcomes in reports. Report initial, self-review and feedback errors per check and descriptive paired differences only for comparable checks. Do not cherry-pick stages or exclude failures from completion denominators. The checker does not independently medically adjudicate the dermatologic PT list, establish censoring/day-count conventions, or certify every ADaM derivation.
-
-## Analysis and reporting
-
-For each model report all planned/completed/eligible trials, initial and final conformance counts, paired differences and individual trial trajectories. With only three generations per model, present descriptive means/medians and ranges; do not claim statistical power, definitive model rankings or generalization across studies. Independent derivation errors/denominators and missing coverage appear in a separate results file and table. Report the unchanged-ID preview-backend limitation and any observed provider failures or drift.
-
-## Launch gate and amendments
-
-Freeze is not a paid experiment launch. Run the no-inference preflight using the sealed config, verify provider keys and exact model catalog entries, then assess account access at launch. Never paste keys into config, protocol or Git. If an ID is unavailable, budgets change, or any frozen file/runtime drifts, create protocol v2 before main-study calls. Do not overwrite this protocol or mix versions.
-
-## Pre-launch amendment
-
-Version 2 supersedes the locally sealed v1 before any main-study calls. The only design amendment isolates P21 cache bookkeeping and detects binary/rule drift during validation. Models, prompts, inputs, budgets and independent scoring rules remain the same. Version 1 is retained as a superseded record and must not be launched.
+Historical materials: [paired protocol](archive/legacy-paired-protocol.md),
+[paired scoring rules](archive/legacy-paired-scoring-rules.json),
+[pilot commands](archive/legacy-pilot-readme.md). These document superseded designs,
+not alternatives for the current main study.

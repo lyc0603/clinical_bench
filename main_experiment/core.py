@@ -58,7 +58,8 @@ def code_manifest():
     paths += list((HERE / 'network').glob('*.json'))
     paths += [HERE / 'config.example.json', HERE / 'requirements.txt',
               root / 'experiment/experiment.py', root / 'experiment/Dockerfile',
-              root / 'experiment/requirements-evaluator.txt', HERE / 'scoring-rules.json']
+              root / 'experiment/requirements-evaluator.txt', HERE / 'scoring-rules.json',
+              root / 'docs/main-study-protocol.md', root / 'docs/main-experiment-workflow.md']
     return {str(p.relative_to(root)): digest(p) for p in sorted(paths)}
 
 

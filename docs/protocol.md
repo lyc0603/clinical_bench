@@ -82,9 +82,11 @@ If model defaults, timeouts or reproduction criteria need adjustment, do so usin
 pilot evidence and freeze a new protocol before the main experiment. Never mix
 pilot runs with the final study results.
 
-## Frozen main-study protocol
+## Current main study (separate from this pilot)
 
-The main study uses [protocol v2](main-study-protocol.md) and separate
-[P21/derivation scoring rules](scoring-rules.json). The private sealed bundle
-pins exact models, prompts, inputs, runtimes and budgets. A changed pin requires
-a new protocol version. Pilot findings are not pooled with main-study estimates.
+The current main study uses [the current protocol](main-study-protocol.md),
+[the independent-workflow guide](main-experiment-workflow.md) and
+[the current scoring contract](../main_experiment/scoring-rules.json).
+Use `python -m main_experiment freeze`; this pilot's paired design and freezer
+must not be used for the current study. The superseded paired main-study
+proposal is retained only in [the archive](archive/legacy-paired-protocol.md).

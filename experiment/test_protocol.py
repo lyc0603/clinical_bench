@@ -100,7 +100,7 @@ class DerivationTests(unittest.TestCase):
         self.assertIsNone(c['npi_mean_value']['errors'])
 
     def test_missing_trials_remain_in_paired_report(self):
-        rules=HERE.parent/'docs/scoring-rules.json'
+        rules=HERE.parent/'docs/archive/legacy-paired-scoring-rules.json'
         save(self.root/'scoring-rules.json',json.loads(rules.read_text()))
         c={'protocol_lock':str(self.root/'protocol.lock.json'),'models':[{'id':'m'}], 'repetitions':3,'repair_iterations':1}
         rows=paired_results(c,self.root/'runsroot')

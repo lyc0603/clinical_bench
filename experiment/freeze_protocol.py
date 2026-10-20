@@ -1,4 +1,4 @@
-"""Seal a private main-study bundle; performs no inference or P21 validation."""
+"""Historical paired-design freezer; current main study uses python -m main_experiment freeze."""
 import argparse
 from datetime import datetime, timezone
 import importlib.metadata
@@ -61,8 +61,8 @@ def freeze(config, out):
         path.parent.mkdir(exist_ok=True)
         path.write_text(prompt(config, stage, branch))
         prompts[branch] = str(path)
-    shutil.copy2(HERE.parent / 'docs/main-study-protocol.md', out / 'PROTOCOL.md')
-    shutil.copy2(HERE.parent / 'docs/scoring-rules.json', out / 'scoring-rules.json')
+    shutil.copy2(HERE.parent / 'docs/archive/legacy-paired-protocol.md', out / 'PROTOCOL.md')
+    shutil.copy2(HERE.parent / 'docs/archive/legacy-paired-scoring-rules.json', out / 'scoring-rules.json')
     save(out / 'config.json', config)
     schedule = [[m['id'], r] for m in config['models'] for r in range(1,4)]
     random.Random(config['seed']).shuffle(schedule)
@@ -89,10 +89,14 @@ def freeze(config, out):
 if __name__ == '__main__':
     from experiment import load_config, load_env
     p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--legacy-paired',action='store_true',
+        help='Explicitly select the superseded 9-pair/27-invocation design; not the current main study')
     p.add_argument('--config',type=Path,required=True)
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--env-file',type=Path,default=HERE.parent / '.env.local')
     a=p.parse_args()
+    if not a.legacy_paired:
+        p.error('Historical paired freezer disabled by default. Use python -m main_experiment freeze for the current main study; --legacy-paired is for historical reproduction only.')
     load_env(a.env_file)
     lock=freeze(load_config(a.config),a.out)
     print(json.dumps({'protocol':str(a.out.resolve()),'models':[m['model'] for m in lock['config']['models']],

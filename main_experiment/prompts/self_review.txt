@@ -3,5 +3,8 @@ notes and execution logs against /inputs. Correct defects you identify. There is
 no agent execution time limit. Preserve the same output and offline rebuild
 contract. Do not run Pinnacle 21 or other validators yourself. Pinnacle 21
 assesses conformance; it does not establish analytical correctness.
+Check all required deliverables against /inputs. A report, if provided, may
+cover a subset of datasets; absence from a report does not establish
+conformance of a missing dataset.
 
 No external validation feedback is available during your review.

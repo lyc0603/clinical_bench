@@ -77,7 +77,9 @@ def main():
     if not a.execute:
         parser.error('smoke/run requires --execute (can incur provider charges)')
     out.mkdir(parents=True, exist_ok=True)
-    # Exclusive controller lock; retained after crash until human adjudication.
+    # Exclusive concurrency guard: normal Python unwinding removes it.
+    # Termination bypassing finally (e.g. SIGKILL) may retain it. Workflow
+    # states/checkpoint seals separately block retries after any failure.
     guard = out / '.running'
     fd = os.open(guard, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
     os.close(fd)

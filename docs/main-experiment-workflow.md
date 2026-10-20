@@ -1,6 +1,6 @@
 # Main experiment: independent generation and one same-session repair
 
-This is the entry point for collaborator review of the main experiment. The
+This is the operational guide for [the current scientific protocol](main-study-protocol.md). The
 `experiment/` runner and its protocol documents describe the earlier pilot.
 Use `python -m main_experiment` for the revised main study.
 
@@ -155,7 +155,7 @@ semantic reproduction and assessable selected correctness checks at both smoke
 checkpoints; correctness error counts need not be zero. It is deliberately strict
 about unavailable checks. Inspect raw histories, session continuity, feedback
 isolation, P21 dictionary recognition and runtime versions as part of local
-qualification. Changing code, prompts, config, inputs, image, Java, dictionaries
+qualification. Changing code, prompts, config, inputs, protocol/workflow documents, image, Java, dictionaries
 or P21 rules invalidates the receipts and lock. A failed smoke is retained;
 use a separately named smoke output directory for a deliberately adjudicated
 replacement and document why. Never silently replace an attempt.
@@ -165,9 +165,14 @@ and sealed workflows. An old `feedback_unavailable` attempt is not treated as co
 under this revised protocol; no historical skipped repair is silently rerun.
 A failed, interrupted or uncertain agent invocation stops scheduling. There are
 no automatic retries, extra repairs, shortened inference budgets or model swaps.
-A crash retains `.running`; inspect the private evidence and stopped container
-before removing this controller guard. Do not delete attempt folders to obtain
-a better result. Administrative decisions belong in the private study log.
+`.running` is a concurrency guard: normal completion, caught/uncaught Python
+exceptions, SystemExit and KeyboardInterrupt that unwind `finally` remove it.
+An abrupt termination that bypasses `finally` (SIGKILL, `os._exit`, power loss)
+can leave it behind. Confirm no controller remains active before removing it.
+Failed/started/interrupted workflow states still require adjudication even when
+the guard was cleaned up; removing `.running` does not authorize retrying a phase.
+Do not delete attempt folders to obtain a better result. Record administrative
+decisions in the private study log.
 
 Every workflow receives the same one-repair, same-session opportunity without an agent execution
 time limit, including the report-unavailable self-review fallback.

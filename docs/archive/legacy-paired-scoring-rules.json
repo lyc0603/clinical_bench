@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "combine_conformance_and_correctness": false,
+  "p21_primary": "dataset_rule_pairs",
+  "p21_feedback_advantage": "final_self_review - final_p21_feedback",
+  "derivation_primary": ["npi_mean_value", "npi_baseline_covariate", "tte_source_link"],
+  "derivation_coverage": ["npi_mean_coverage", "tte_subject_coverage"],
+  "derivation_conditional": ["tte_event_status", "tte_event_date"],
+  "derivation_exploratory": ["tte_duration_arithmetic", "tte_censor_convention"],
+  "coverage_dependencies": {
+    "npi_mean_value": "npi_mean_coverage",
+    "npi_baseline_covariate": "npi_mean_coverage",
+    "tte_source_link": "tte_subject_coverage",
+    "tte_event_status": "tte_subject_coverage",
+    "tte_event_date": "tte_subject_coverage",
+    "tte_duration_arithmetic": "tte_subject_coverage",
+    "tte_censor_convention": "tte_subject_coverage"
+  },
+  "missing_or_unsupported": "unavailable, never zero errors",
+  "paired_derivation_eligibility": "scored at all three stages, coverage dependency passes at all three stages, and assessed denominators agree",
+  "numeric_tolerance": {"relative": 1e-10, "absolute": 1e-8},
+  "full_sap_correctness_certified": false,
+  "analysis": "Descriptive paired differences; all planned/completed/eligible denominators retained; no combined score or definitive ranking"
+}
