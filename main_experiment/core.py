@@ -5,7 +5,7 @@ from pathlib import Path
 import random
 import shutil
 
-from experiment.experiment import digest, manifest, save
+from main_experiment.support import digest, manifest, save
 
 HERE = Path(__file__).resolve().parent
 CONDITIONS = ('self_review', 'p21_feedback')
@@ -57,8 +57,8 @@ def code_manifest():
     paths = list(HERE.rglob('*.py')) + list((HERE / 'prompts').glob('*.txt'))
     paths += list((HERE / 'network').glob('*.json'))
     paths += [HERE / 'config.example.json', HERE / 'requirements.txt', HERE / 'completion-policy.json',
-              root / 'experiment/experiment.py', root / 'experiment/Dockerfile',
-              root / 'experiment/requirements-evaluator.txt', HERE / 'scoring-rules.json',
+              HERE / 'Dockerfile',
+              HERE / 'requirements-evaluator.txt', HERE / 'scoring-rules.json',
               root / 'docs/main-study-protocol.md', root / 'docs/main-experiment-workflow.md']
     return {str(p.relative_to(root)): digest(p) for p in sorted(paths)}
 

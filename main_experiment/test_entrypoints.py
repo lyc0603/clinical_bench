@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from experiment.experiment import digest, save
+from main_experiment.support import digest, save
 from main_experiment.__main__ import main
 from main_experiment.core import HERE, code_manifest, fingerprint
 from main_experiment.test_main import cfg

@@ -92,7 +92,7 @@ no automatic upgrade or model substitution occurs.
 
 ```sh
 docker build --build-arg OPENCODE_VERSION=1.19.0 \
-  -t adam-experiment:main -f experiment/Dockerfile .
+  -t adam-experiment:main -f main_experiment/Dockerfile .
 ```
 
 The release above is a candidate pin, **not a claim of qualified provider access**.
@@ -375,3 +375,15 @@ are references; the local smoke qualifies the pinned installation.
 
 Network references: [OpenCode proxy support](https://opencode.ai/docs/network/) and
 [Docker container networking/capabilities](https://docs.docker.com/engine/containers/run/).
+
+## Main-study runtime ownership
+
+The main runner uses its own `support.py` (evidence utilities and P21 report
+parsing), `rebuild.py` (offline Docker reconstruction), Dockerfile and pinned
+evaluator requirements under `main_experiment/`. It does not import the pilot
+runner. The main seal covers these files, not `experiment/experiment.py` or the
+pilot build/dependency files. Pilot-only edits therefore do not invalidate a
+main-study seal. Main runtime edits still require fresh qualification and freeze.
+After this extraction, rebuild using the main Dockerfile and regenerate smoke
+receipts and the freeze lock before launch. Historical pilot files remain archived
+for their own workflow and are not synchronized with the main runtime.

@@ -4,7 +4,7 @@ from pathlib import Path
 import shutil
 import time
 
-from experiment.experiment import manifest, save
+from main_experiment.support import manifest, save
 from .backend import DockerSession, message_ids
 from .core import code_manifest, fingerprint, prompts, schedule, validate_inputs
 from .evaluate import Evaluator, runtime

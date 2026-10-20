@@ -5,7 +5,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from experiment.experiment import save
+from main_experiment.support import save
 from main_experiment.backend import message_ids, telemetry
 from main_experiment.core import HERE, assert_protocol, manifest, prompts, schedule
 from main_experiment.runner import report, workflow

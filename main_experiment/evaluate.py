@@ -4,8 +4,9 @@ from pathlib import Path
 import shutil
 import tempfile
 
-from experiment.experiment import Experiment, command, digest, manifest, report_metrics, save
+from main_experiment.support import command, digest, manifest, report_metrics, save
 from .derivation import score
+from .rebuild import RebuildRuntime
 
 
 def conformance_metrics(path, expected, actual, pins):
@@ -103,10 +104,7 @@ def runtime(c):
 class Evaluator:
     def __init__(self, c, image):
         self.c = c
-        adapter = dict(c, study_root=c['inputs'], agent={'image': image, 'cpus': 4, 'memory': '8g'})
-        self.legacy = Experiment(adapter, Path(c['inputs']).parent)
-        self.legacy.source = Path(c['inputs'])
-        self.legacy.image = image
+        self.rebuild_runtime = RebuildRuntime(c, image)
 
     def p21(self, workspace, directory):
         p = self.c['p21']
@@ -166,7 +164,7 @@ class Evaluator:
             replay = directory / 'replay'
             programs = workspace / 'output/adam/programs'
             shutil.copytree(programs, replay / 'output/adam/programs')
-            execution = self.legacy.docker(replay, ['python', 'output/adam/programs/rebuild.py'],
+            execution = self.rebuild_runtime.rebuild(replay, ['python', 'output/adam/programs/rebuild.py'],
                                           directory / 'rebuild.log', self.c['rebuild_timeout_seconds'])
             result['rebuild'] = execution
             rebuilt = replay / 'output/adam/datasets'

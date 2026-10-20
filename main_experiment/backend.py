@@ -5,7 +5,7 @@ from pathlib import Path
 import subprocess
 import uuid
 
-from experiment.experiment import command, save
+from main_experiment.support import command, save
 from .egress import Egress
 from .completion import assess
 

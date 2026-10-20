@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 import subprocess
 
-from experiment.experiment import save
+from main_experiment.support import save
 
 HERE = Path(__file__).resolve().parent / 'network'
 

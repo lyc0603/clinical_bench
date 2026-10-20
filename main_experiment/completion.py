@@ -3,7 +3,7 @@ import json
 import math
 from pathlib import Path
 
-from experiment.experiment import digest
+from main_experiment.support import digest
 
 POLICY=Path(__file__).with_name('completion-policy.json')
 

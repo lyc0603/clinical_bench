@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import os
 
-from experiment.experiment import load_env, manifest, save
+from main_experiment.support import load_env, manifest, save
 from .backend import capture
 from .completion import smoke_evidence, validate_smoke_evidence
 from .core import config, fingerprint, prepare, private_path, schedule
