@@ -21,6 +21,33 @@ class BoundaryTests(unittest.TestCase):
         self.assertEqual('',capture(command))
         self.assertEqual('--session --format',capture(command,include_stderr=True))
 
+    def test_large_export_uses_file_and_preserves_raw_bytes(self):
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t);agent=DockerSession(cfg(),cfg()['models'][0],root,'image')
+            h=history();h['messages'][-1]['parts'].append({'type':'text','text':'x'*300000})
+            payload=json.dumps(h).encode();calls=[]
+            def capture(argv):
+                calls.append(argv)
+                if argv[:2] == ['docker','cp']:Path(argv[-1]).write_bytes(payload)
+                return ''
+            with patch('main_experiment.backend.capture',side_effect=capture):
+                self.assertEqual(h,agent.export_history('session',root/'history.json'))
+            self.assertEqual(payload,(root/'history.raw.json').read_bytes())
+            self.assertIn('opencode export "$1" > "$2"',calls[0])
+            self.assertEqual('session',calls[0][-2])
+            self.assertEqual('cp',calls[1][1])
+
+    def test_invalid_file_export_stays_unavailable_and_raw_is_retained(self):
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t);agent=DockerSession(cfg(),cfg()['models'][0],root,'image')
+            def capture(argv):
+                if argv[:2] == ['docker','cp']:Path(argv[-1]).write_bytes(b'{"messages":')
+                return ''
+            with patch('main_experiment.backend.capture',side_effect=capture):
+                with self.assertRaises(json.JSONDecodeError):agent.export_history('session',root/'history.json')
+            self.assertTrue((root/'history.raw.json').exists())
+            self.assertFalse((root/'history.json').exists())
+
     def test_freeze_detects_drift_and_integrity(self):
         value = {'code': 'original'}
         lock = {'seal': value, 'sha256': fingerprint(value)}
@@ -52,7 +79,7 @@ class BoundaryTests(unittest.TestCase):
             for message in baseline['messages']:message['info']['sessionID']='same'
             with patch.dict('os.environ', {'OPENAI_API_KEY':'private-value'}), \
                     patch('main_experiment.backend.command', side_effect=command), \
-                    patch('main_experiment.backend.capture', side_effect=[json.dumps(baseline),json.dumps(exported)]):
+                    patch.object(agent, 'export_history', side_effect=[baseline,exported]):
                 sid, _ = agent.phase('repair',root,'same')
             self.assertEqual('same',sid)
             self.assertEqual('same',argv_seen[argv_seen.index('--session')+1])
@@ -68,7 +95,7 @@ class BoundaryTests(unittest.TestCase):
                 return {'exit_code':0,'timed_out':False,'seconds':1.}
             with patch.dict('os.environ',{'OPENAI_API_KEY':'value'}), \
                     patch('main_experiment.backend.command',side_effect=command) as called, \
-                    patch('main_experiment.backend.capture',return_value=json.dumps(history())):
+                    patch.object(agent,'export_history',return_value=history()):
                 sid,_=agent.phase('generate',root)
             self.assertEqual('session',sid)
             called.assert_called_once()
@@ -99,7 +126,7 @@ class BoundaryTests(unittest.TestCase):
                 return {'exit_code':0,'timed_out':False,'seconds':1.}
             with patch.dict('os.environ',{'OPENAI_API_KEY':'value'}), \
                     patch('main_experiment.backend.command',side_effect=command), \
-                    patch('main_experiment.backend.capture',return_value=json.dumps(history())):
+                    patch.object(agent,'export_history',return_value=history()):
                 with self.assertRaises(RuntimeError):
                     agent.phase('repair',root,'expected')
             self.assertTrue((root/'agent.json').exists())

@@ -101,6 +101,21 @@ class DockerSession:
         self.egress.restrict()
         save(self.directory / 'container.json', {'container': self.name, 'state_volume': self.volume})
 
+    def export_history(self, session, destination):
+        """Export to a regular file: large OpenCode stdout pipes can truncate."""
+        destination = Path(destination)
+        raw = destination.with_suffix('.raw.json')
+        remote = '/state/export-' + uuid.uuid4().hex + '.json'
+        # Session and file are positional shell arguments, never interpolated code.
+        capture(['docker', 'exec', self.name, 'sh', '-c',
+                 'opencode export "$1" > "$2"', 'export', session, remote])
+        capture(['docker', 'cp', self.name + ':' + remote, str(raw.resolve())])
+        capture(['docker', 'exec', self.name, 'rm', '--', remote])
+        history = json.loads(raw.read_text())  # Keep raw bytes even on parse failure.
+        message_ids(history)
+        save(destination, history)
+        return history
+
     def phase(self, text, path, session=None):
         # Secret VALUE goes only to Docker's environment, never argv/log/config.
         key = self.model['key_env']
@@ -113,8 +128,7 @@ class DockerSession:
         argv.append(text)
         before_ids=[]
         if session:
-            baseline=json.loads(capture(['docker','exec',self.name,'opencode','export',session]))
-            save(path/'history-before.json',baseline)
+            baseline=self.export_history(session,path/'history-before.json')
             before_ids=message_ids(baseline)
         result = command(argv, self.directory, path / 'agent.jsonl', self.c['phase_seconds'])
         # Agent phases run without a time cap (timeout=None). Retain defensive
@@ -129,9 +143,7 @@ class DockerSession:
         if len(result['session_ids']) != 1 or (session and result['session_ids'] != [session]):
             raise RuntimeError('Session identity mismatch; refusing to fork or continue another session')
         sid = result['session_ids'][0]
-        raw = capture(['docker', 'exec', self.name, 'opencode', 'export', sid])
-        history = json.loads(raw)
-        save(path / 'history.json', history)
+        history = self.export_history(sid, path / 'history.json')
         message_ids(history)
         completion=assess(history,before_ids,sid,self.model['model'].split('/')[0],result)
         result.update(completion=completion,terminal=completion['normal'])

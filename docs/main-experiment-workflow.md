@@ -412,3 +412,13 @@ already present at both checkpoints. TTE conditional consistency is not treated
 as an independent correctness oracle. No detected regression is not full ADaM
 correctness or submission readiness. Changes require fresh smoke qualification
 and freeze; old evaluations lacking profiles cannot receive guarded success.
+
+### Large session export transport
+
+Local OpenCode 1.19.0 qualification exposed truncated JSON when a large session
+was exported through a stdout pipe. The controller now redirects each initial,
+final and pre-repair export to a unique regular file in the private state volume,
+copies it to the host and retains raw bytes alongside parsed history. Invalid
+JSON still fails completion; no model retry or relaxed completion rule is used.
+The diagnostic failed smoke remains preserved and does not qualify. This code
+change requires new smoke receipts and freeze.
