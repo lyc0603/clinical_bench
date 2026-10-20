@@ -87,6 +87,20 @@ schedule, config, image and validation runtime/dictionaries. Changing a pin
 requires fresh qualification and a new lock. The current runner verifies this
 lock before scheduling; historical paired-protocol locks are incompatible.
 
+## Agent completion qualification
+
+Completion requires successful process/session evidence and an exported, completed
+**new** assistant turn with a normal finish under the provider-specific
+[completion policy](../main_experiment/completion-policy.json). A missing final
+stdout `step_finish` can be reconciled against stored session evidence; unknown,
+conflicting, truncated or unfinished turns are not silently accepted. Repair must
+extend the pre-invocation history. Outputs are still scored independently.
+
+Both smoke phases must record raw/normalized finish reasons and the current
+policy hash. Freeze rejects receipts lacking that provider-specific proof.
+No synthetic test is a substitute for qualifying the actual pinned OpenCode/API
+combination. See the workflow guide for the exact evidence and failure checks.
+
 ## Failure recovery
 
 `.running` is an exclusive **controller concurrency guard**, not the record of

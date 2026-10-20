@@ -10,6 +10,7 @@ from main_experiment.core import fingerprint
 from main_experiment.evaluate import Evaluator, meddra
 from main_experiment.runner import verify
 from main_experiment.test_main import cfg
+from main_experiment.test_completion import history
 
 
 class BoundaryTests(unittest.TestCase):
@@ -35,15 +36,38 @@ class BoundaryTests(unittest.TestCase):
                 log.write_text(json.dumps({'type':'step_finish','sessionID':'same',
                     'part':{'id':'step','reason':'stop'}})+'\n')
                 return {'exit_code':0,'timed_out':False,'seconds':1.}
-            exported = json.dumps({'messages':[{'info':{'id':'message'}}]})
+            baseline=history();baseline['messages'][0]['info']['id']='old-user'
+            baseline['messages'][1]['info'].update(id='old-assistant',parentID='old-user')
+            exported=history();exported['info']['id']='same'
+            for message in exported['messages']:message['info']['sessionID']='same'
+            exported['messages']=baseline['messages']+exported['messages']
+            baseline['info']['id']='same'
+            for message in baseline['messages']:message['info']['sessionID']='same'
             with patch.dict('os.environ', {'OPENAI_API_KEY':'private-value'}), \
                     patch('main_experiment.backend.command', side_effect=command), \
-                    patch('main_experiment.backend.capture', return_value=exported):
+                    patch('main_experiment.backend.capture', side_effect=[json.dumps(baseline),json.dumps(exported)]):
                 sid, _ = agent.phase('repair',root,'same')
             self.assertEqual('same',sid)
             self.assertEqual('same',argv_seen[argv_seen.index('--session')+1])
             self.assertIn('OPENAI_API_KEY',argv_seen)
             self.assertNotIn('private-value',argv_seen)
+
+    def test_phase_exports_completed_turn_when_stdout_has_no_finish(self):
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t);agent=DockerSession(cfg(),cfg()['models'][0],root,'image')
+            def command(argv,cwd,log,timeout):
+                log.write_text(json.dumps({'type':'text','sessionID':'session',
+                    'part':{'messageID':'assistant','text':'done'}}))
+                return {'exit_code':0,'timed_out':False,'seconds':1.}
+            with patch.dict('os.environ',{'OPENAI_API_KEY':'value'}), \
+                    patch('main_experiment.backend.command',side_effect=command) as called, \
+                    patch('main_experiment.backend.capture',return_value=json.dumps(history())):
+                sid,_=agent.phase('generate',root)
+            self.assertEqual('session',sid)
+            called.assert_called_once()
+            decision=json.loads((root/'completion.json').read_text())
+            self.assertTrue(decision['normal'])
+            self.assertTrue(decision['stdout_finish_missing'])
 
     def test_timeout_stops_container_and_preserves_failure(self):
         with tempfile.TemporaryDirectory() as t:
@@ -67,7 +91,8 @@ class BoundaryTests(unittest.TestCase):
                     'part':{'id':'p','reason':'stop'}}))
                 return {'exit_code':0,'timed_out':False,'seconds':1.}
             with patch.dict('os.environ',{'OPENAI_API_KEY':'value'}), \
-                    patch('main_experiment.backend.command',side_effect=command):
+                    patch('main_experiment.backend.command',side_effect=command), \
+                    patch('main_experiment.backend.capture',return_value=json.dumps(history())):
                 with self.assertRaises(RuntimeError):
                     agent.phase('repair',root,'expected')
             self.assertTrue((root/'agent.json').exists())

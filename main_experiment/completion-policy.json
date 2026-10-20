@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "normalization": "strip whitespace, lowercase, replace underscore with hyphen",
+  "normal_reasons": {
+    "openai": ["stop"],
+    "anthropic": ["stop", "end-turn", "stop-sequence"],
+    "google": ["stop"]
+  },
+  "unknown_reason": "reject; inspect excluded smoke and review policy before freezing",
+  "required_evidence": "zero exit, no timeout/provider error, same session, new user and completed assistant messages, exported normal finish, no pending tools"
+}

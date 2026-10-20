@@ -6,6 +6,7 @@ import os
 
 from experiment.experiment import load_env, manifest, save
 from .backend import capture
+from .completion import smoke_evidence, validate_smoke_evidence
 from .core import config, fingerprint, prepare, private_path, schedule
 from .runner import report, seal, verify, workflow
 
@@ -67,6 +68,7 @@ def main():
             receipt = json.loads((a.smokes / (model['id']+'.receipt.json')).read_text())
             if receipt['seal_sha256'] != fingerprint(current) or not receipt['qualified']:
                 raise RuntimeError('Smoke missing, unqualified or stale: '+model['id'])
+            validate_smoke_evidence(receipt.get('completion_evidence',{}),model)
             receipts.append(receipt)
         lock = private_path(a.lock)
         if lock.exists():
@@ -101,7 +103,8 @@ def main():
             if seal(c) != current:
                 raise RuntimeError('Seal changed during smoke')
             save(out / (a.model+'.receipt.json'), {'model': a.model, 'excluded_from_main': True,
-                 'seal_sha256': fingerprint(current), 'qualified': qualified})
+                 'seal_sha256': fingerprint(current), 'qualified': qualified,
+                 'completion_evidence': smoke_evidence(directory,next(m for m in c['models'] if m['id']==a.model))})
             if not qualified:
                 raise RuntimeError('Smoke executed but qualification failed; inspect endpoint evidence')
         else:

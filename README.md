@@ -27,6 +27,8 @@ Edit private paths and provider credentials locally. Follow the workflow guide
 for the reviewed image build, canonical input preparation, no-key network check,
 local preflight and **three excluded provider smoke workflows**. Model IDs and
 provider access require qualification; CI alone does not establish launch readiness.
+Smokes must also verify both phases' exported completion evidence and actual
+provider finish reasons before a freeze can be created.
 Smokes and main runs incur API charges; planning and freezing invoke no model.
 
 ## Freeze the current main study

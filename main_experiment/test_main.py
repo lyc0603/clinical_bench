@@ -112,7 +112,7 @@ class ProtocolTests(unittest.TestCase):
             event = {'type': 'step_finish', 'sessionID': 's', 'part': {'id': 'p', 'reason': 'stop', 'tokens': {'input': 7}}}
             p.write_text('diagnostic\n'+json.dumps(event)+'\n'+json.dumps(event)+'\n')
             result = telemetry(p)
-            self.assertTrue(result['terminal'])
+            self.assertTrue(result['event_terminal_hint'])
             self.assertEqual(1, len(result['steps']))
             self.assertEqual(['s'], result['session_ids'])
             self.assertIsNone(result['tool_calls'])
@@ -120,7 +120,7 @@ class ProtocolTests(unittest.TestCase):
     def test_error_is_not_completion(self):
         with tempfile.TemporaryDirectory() as t:
             p = Path(t) / 'events'; p.write_text(json.dumps({'type': 'error', 'error': {'name': 'APIError'}}))
-            self.assertFalse(telemetry(p)['terminal'])
+            self.assertFalse(telemetry(p)['event_terminal_hint'])
 
     def test_both_conditions_use_same_session(self):
         for condition in ('self_review', 'p21_feedback'):

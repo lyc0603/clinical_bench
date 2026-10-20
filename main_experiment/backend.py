@@ -7,6 +7,7 @@ import uuid
 
 from experiment.experiment import command, save
 from .egress import Egress
+from .completion import assess
 
 
 def capture(argv, timeout=60):
@@ -18,7 +19,9 @@ def events(path):
     result = []
     for line in Path(path).read_text(errors='replace').splitlines():
         try:
-            result.append(json.loads(line))
+            value=json.loads(line)
+            if isinstance(value,dict):
+                result.append(value)
         except json.JSONDecodeError:
             continue  # Native diagnostics remain in the raw log.
     return result
@@ -26,29 +29,29 @@ def events(path):
 
 def telemetry(log):
     rows = events(log)
-    sessions = {e.get('sessionID') or e.get('part', {}).get('sessionID') for e in rows}
-    sessions.discard(None)
+    sessions = {sid for e in rows for sid in
+                (e.get('sessionID'),(e.get('part') or {}).get('sessionID')) if sid}
     steps = {}
     tools = {}
     errors = []
-    for e in rows:
-        part = e.get('part', {})
+    for index,e in enumerate(rows):
+        part = e.get('part') or {}
         if e.get('type') == 'error':
             errors.append(e.get('error', e))
         if e.get('type') == 'step_finish':
             # Part IDs avoid summing re-emitted provider events twice.
             identity = part.get('id')
-            if identity:
-                steps[identity] = part
+            steps[identity or ('unidentified',index)] = (index,part)
         if e.get('type') == 'tool_use' and part.get('id'):
             tools[part['id']] = part
-    finishes = [s.get('reason') for s in steps.values()]
+    ordered_steps=[part for _,part in sorted(steps.values(),key=lambda item:item[0])]
+    finishes = [s.get('reason') for s in ordered_steps]
     # Unknown telemetry is null, never an invented zero.
     return {'session_ids': sorted(sessions), 'provider_errors': errors,
-            'finish_reasons': finishes, 'steps': list(steps.values()),
+            'finish_reasons': finishes, 'steps': ordered_steps,
             'tool_calls': len(tools) if tools else None,
             'tool_failures': sum(p.get('state', {}).get('status') == 'error' for p in tools.values()) if tools else None,
-            'terminal': bool(finishes and finishes[-1] in ('stop', 'end_turn')) and not errors}
+            'event_terminal_hint': bool(finishes and finishes[-1] in ('stop', 'end_turn')) and not errors}
 
 
 def message_ids(export):
@@ -106,23 +109,34 @@ class DockerSession:
         if session:
             argv += ['--session', session]
         argv.append(text)
+        before_ids=[]
+        if session:
+            baseline=json.loads(capture(['docker','exec',self.name,'opencode','export',session]))
+            save(path/'history-before.json',baseline)
+            before_ids=message_ids(baseline)
         result = command(argv, self.directory, path / 'agent.jsonl', self.c['phase_seconds'])
         # Agent phases run without a time cap (timeout=None). Retain defensive
         # cleanup if the command runner nevertheless reports a timeout.
         if result['timed_out']:
             capture(['docker', 'stop', '--time', '1', self.name])
         result.update(telemetry(path / 'agent.jsonl'))
+        result['terminal']=False  # Only exported current-turn evidence can set True.
         save(path / 'agent.json', result)
-        if result['exit_code'] != 0 or result['timed_out'] or not result['terminal']:
-            raise RuntimeError('Agent phase failed, timed out, or lacks a recognized terminal event; inspect private log')
+        if result['exit_code'] != 0 or result['timed_out'] or result['provider_errors']:
+            raise RuntimeError('Agent process/provider failure; inspect private log')
         if len(result['session_ids']) != 1 or (session and result['session_ids'] != [session]):
             raise RuntimeError('Session identity mismatch; refusing to fork or continue another session')
         sid = result['session_ids'][0]
         raw = capture(['docker', 'exec', self.name, 'opencode', 'export', sid])
         history = json.loads(raw)
-        message_ids(history)
         save(path / 'history.json', history)
+        message_ids(history)
+        completion=assess(history,before_ids,sid,self.model['model'].split('/')[0],result)
+        result.update(completion=completion,terminal=completion['normal'])
+        save(path/'completion.json',completion)
         save(path / 'agent.json', result)
+        if not completion['normal']:
+            raise RuntimeError('Agent completion not established: '+completion['reason'])
         return sid, history
 
     def pause(self):

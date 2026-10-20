@@ -58,6 +58,7 @@ The persistent state volume holds OpenCode history; it is absent from evaluation
 | [core.py](../main_experiment/core.py) | Design guards, input preparation, schedule and fingerprints |
 | [prompts](../main_experiment/prompts/) | Identical generation and condition-specific repair instructions |
 | [backend.py](../main_experiment/backend.py) | Docker boundaries, timeouts, sessions and raw telemetry |
+| [completion.py](../main_experiment/completion.py), [completion-policy.json](../main_experiment/completion-policy.json) | Current-turn completion proof and provider-specific reason policy |
 | [egress.py](../main_experiment/egress.py), [network/](../main_experiment/network/) | Mandatory provider-only gateway, namespace rules and bypass probes |
 | [runner.py](../main_experiment/runner.py) | Checkpoints, feedback delivery, failures and reporting |
 | [evaluate.py](../main_experiment/evaluate.py) | Offline rebuild, semantic/byte reproduction and P21 isolation |
@@ -197,6 +198,55 @@ workflows, rather than selecting only successful report recipients. Qualificatio
 smokes still require complete assessable endpoints; smoke qualification is separate
 from the repair opportunity rule within every smoke/main workflow. Code and prompt
 changes invalidate previous freeze locks and smoke receipts.
+
+## Agent completion and provider smoke evidence
+
+A successful process exit or a final text message alone does not establish a
+completed agent turn. The controller no longer requires the last stdout
+`step_finish` string to be `stop`/`end_turn`. Instead it exports the actual session
+and requires all of the following:
+
+- Exit code zero, no timeout and no explicit provider error event.
+- One matching session ID, preserved message history, and a newly added user turn
+  followed by a completed assistant message bound to that user.
+- A positive assistant completion timestamp and a known normal exported finish
+  reason from message metadata and/or its final stored step-finish part.
+- No exported message error or pending/unrecognized tool state in the new turn.
+  Tool execution errors that were handled by the agent remain separate telemetry.
+
+For repair, a pre-invocation export establishes the message-ID baseline. A stale
+initial completion cannot satisfy the repair check. JSONL step events are linked
+to the final exported assistant/part when possible. Earlier tool-call steps do
+not override a completed later turn. If the final stdout event is missing but
+the exported current turn proves completion, the phase can finish normally:
+this performs no additional agent invocation or inference retry. Conflicting
+current-part evidence, unknown terminal reasons, truncation, filter/error/tool-only
+finishes or insufficient export metadata still stop for adjudication.
+
+[The versioned policy](../main_experiment/completion-policy.json) normalizes case,
+whitespace and underscores, with provider-specific normal reason allowlists.
+It does not automatically learn arbitrary successful-looking strings. Schema or
+reason changes require explicit policy review, fresh qualification and a new freeze.
+A historical [OpenCode issue](https://github.com/anomalyco/opencode/issues/26855)
+reported missing final JSONL events in an earlier release; it is not evidence that
+the currently pinned image has that bug. Actual pinned-provider compatibility must
+be established by the excluded smokes.
+
+Each completed phase saves `completion.json`, raw `agent.jsonl`, `history.json`,
+and completion details in `agent.json`; repair also saves `history-before.json`.
+Evidence includes raw event/export reasons, normalized reason, current user and
+assistant IDs, completion timestamp, missing-stdout flag and policy hash. Exported
+usage is retained separately from stream usage; do not add the two sources together.
+The event-only `event_terminal_hint` is diagnostic, never the workflow acceptance
+criterion. Completion says that an agent turn ended normally, not that its ADaM
+outputs are complete or correct; external scoring remains independent.
+
+Every provider's smoke receipt must include normal completion evidence for both
+initial and repair phases. `freeze` rejects receipts missing these fields, with
+another provider's identity or with a stale policy hash. Synthetic tests cover the
+parser/gates only; they do not substitute for real API qualification. Existing
+receipts and locks must be regenerated after this change. No paid provider smoke
+or main run is launched by these tests.
 
 ## Evidence and metrics
 

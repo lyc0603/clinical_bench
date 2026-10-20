@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 from experiment.experiment import digest, save
 from main_experiment.__main__ import main
-from main_experiment.core import HERE, code_manifest
+from main_experiment.core import HERE, code_manifest, fingerprint
 from main_experiment.test_main import cfg
 
 ROOT=HERE.parent
@@ -98,6 +98,19 @@ with patch('main_experiment.__main__.config',return_value=cfg()), \\
             self.assertIn('python -m main_experiment freeze',result.stderr)
             self.assertIn('--legacy-paired',result.stderr)
             self.assertFalse(out.exists())
+
+    def test_freeze_rejects_receipts_without_provider_completion_proof(self):
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t);smokes=root/'smokes';smokes.mkdir();lock=root/'lock.json'
+            seal={'synthetic':'current'}
+            save(smokes/'openai.receipt.json',{'qualified':True,'seal_sha256':fingerprint(seal)})
+            argv=['main_experiment','freeze','--out',str(root/'run'),
+                  '--smokes',str(smokes),'--lock',str(lock)]
+            with patch('sys.argv',argv), patch('main_experiment.__main__.config',return_value=cfg()), \
+                    patch('main_experiment.__main__.load_env'), \
+                    patch('main_experiment.__main__.seal',return_value=seal):
+                with self.assertRaisesRegex(ValueError,'completion evidence'):main()
+            self.assertFalse(lock.exists())
 
     def test_current_protocol_documents_are_sealed(self):
         files=code_manifest()
