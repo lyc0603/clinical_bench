@@ -8,7 +8,7 @@
   "memory": "8g",
   "models": [
     {"id": "openai", "model": "openai/gpt-6.1-sol", "key_env": "OPENAI_API_KEY"},
-    {"id": "anthropic", "model": "anthropic/claude-sonnet-4-6", "key_env": "ANTHROPIC_API_KEY"},
+    {"id": "anthropic", "model": "anthropic/claude-sonnet-5-5", "key_env": "ANTHROPIC_API_KEY"},
     {"id": "google", "model": "google/gemini-3.1-pro-preview", "key_env": "GOOGLE_GENERATIVE_AI_API_KEY"}
   ],
   "expected_datasets": ["ADAE", "ADCM", "ADDS", "ADEX", "ADLBC", "ADLBH", "ADLBHY", "ADQSADAS", "ADQSCIBC", "ADQSNPIX", "ADSL", "ADTTE", "ADVS"],

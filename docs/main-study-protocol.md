@@ -26,6 +26,22 @@ any repair path. Each agent has 4 CPUs and 8 GB memory. Rebuilds retain a separa
 agent runtime, token consumption or API cost. No silent retries, model swaps,
 additional repairs or score-driven early stopping are allowed.
 
+## Prespecified model selection
+
+The planned models are `openai/gpt-6.1-sol`,
+`anthropic/claude-sonnet-5-5` and `google/gemini-3.1-pro-preview`.
+Sonnet 5.5 replaces Sonnet 4.6 in the current configuration at the investigators’
+request before main-study execution. It represents the current Sonnet generation
+at this selection date (2026-10-19), rather than an application default or a claim
+of equal capability or compute across providers. See the
+[official Sonnet 5.5 documentation](https://platform.claude.com/docs/en/models/sonnet-5-5/overview).
+The actual API/model availability and tool compatibility must pass the excluded
+provider qualification; this configuration update alone does not establish them.
+All previous smoke receipts and freeze locks must be regenerated before launch.
+Retain requested/reported model IDs, parameters and execution dates; the preview
+backend does not imply immutable weights. Do not mix model versions within the
+main study or substitute models automatically.
+
 ## Inputs and derivation conventions
 
 Frozen inputs are the canonical 22 source XPT files, SAP.pdf and exported

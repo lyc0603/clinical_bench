@@ -9,7 +9,7 @@ from experiment.experiment import digest, manifest, save
 
 HERE = Path(__file__).resolve().parent
 CONDITIONS = ('self_review', 'p21_feedback')
-MODELS = {'openai/gpt-6.1-sol', 'anthropic/claude-sonnet-4-6',
+MODELS = {'openai/gpt-6.1-sol', 'anthropic/claude-sonnet-5-5',
           'google/gemini-3.1-pro-preview'}
 
 
