@@ -24,8 +24,9 @@ def invocation(out,lock):
 class EntryPointTests(unittest.TestCase):
     def test_preflight_catalog_passes_only_selected_credential_name(self):
         c=cfg()
-        def capture(argv):
+        def capture(argv, **kwargs):
             if argv[-1] == '--help':
+                self.assertTrue(kwargs.get('include_stderr'))
                 return '--session --format'
             provider=argv[-1]
             model=next(m for m in c['models'] if m['model'].split('/')[0] == provider)

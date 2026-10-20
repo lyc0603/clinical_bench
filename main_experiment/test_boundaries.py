@@ -14,6 +14,13 @@ from main_experiment.test_completion import history
 
 
 class BoundaryTests(unittest.TestCase):
+    def test_capture_help_combines_stderr_but_json_default_does_not(self):
+        import sys
+        from main_experiment.backend import capture
+        command=[sys.executable,'-c',"import sys; print('--session --format',file=sys.stderr)"]
+        self.assertEqual('',capture(command))
+        self.assertEqual('--session --format',capture(command,include_stderr=True))
+
     def test_freeze_detects_drift_and_integrity(self):
         value = {'code': 'original'}
         lock = {'seal': value, 'sha256': fingerprint(value)}

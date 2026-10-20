@@ -39,7 +39,7 @@ def main():
     if a.action == 'preflight':
         current = seal(c)
         capabilities = capture(['docker', 'run', '--rm', '--network', 'none',
-                                current['runtime']['image'], 'opencode', 'run', '--help'])
+                                current['runtime']['image'], 'opencode', 'run', '--help'], include_stderr=True)
         if '--session' not in capabilities or '--format' not in capabilities:
             raise RuntimeError('Pinned OpenCode lacks required session/JSON capabilities')
         for model in c['models']:

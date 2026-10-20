@@ -10,9 +10,11 @@ from .egress import Egress
 from .completion import assess
 
 
-def capture(argv, timeout=60):
-    return subprocess.run(argv, check=True, capture_output=True, text=True,
-                          timeout=timeout).stdout.strip()
+def capture(argv, timeout=60, include_stderr=False):
+    # Help text may use stderr; keep JSON/session exports stdout-only by default.
+    return subprocess.run(argv, check=True, stdout=subprocess.PIPE,
+                          stderr=subprocess.STDOUT if include_stderr else subprocess.PIPE,
+                          text=True, timeout=timeout).stdout.strip()
 
 
 def events(path):
