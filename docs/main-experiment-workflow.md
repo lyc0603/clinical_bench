@@ -266,8 +266,9 @@ only after retention requirements are met. They may contain sensitive data.
   `dataset_set_complete`, `deliverables_complete`, missing/extra files and validated
   domains are separate endpoints. Invalid report counts are retained as diagnostics
   under `observed_*`, while scoring fields are null. P21 client 1.0.9, FDA engine 2508.1, ADaMIG 1.3,
-  Model 2.1 and CT 2026-03-27 are the planned qualification targets. CLI and rules
-  are hashed; confirm all reported versions during smoke.
+  and CT 2026-03-27 are the runtime qualification targets. Model 2.1 is a
+  specification target, not independently reported by P21. CLI and rules are
+  hashed; confirm all reported versions during smoke.
 * **Correctness:** selected source checks are separate from conformance. NPI uses
   randomized DM arms and a unique distinct complete SV VISITNUM=3 date, with no DM
   fallback. Baseline includes WDAY <=1; ties use distance, date, QSSEQ. TTE coverage
@@ -422,3 +423,10 @@ copies it to the host and retains raw bytes alongside parsed history. Invalid
 JSON still fails completion; no model retry or relaxed completion rule is used.
 The diagnostic failed smoke remains preserved and does not qualify. This code
 change requires new smoke receipts and freeze.
+
+P21 report qualification uses reported version evidence and the pinned
+`ADaM-IG 1.3 (FDA).xml` configuration. The seal verifies that configuration's
+standard metadata and hash. Base ADaM Model 2.1 is a specification target; the
+local P21 summary does not independently report it. Requiring the literal `2.1`
+in that summary was a false qualification failure and has been removed.
+All other report usability and complete-delivery requirements remain in force.

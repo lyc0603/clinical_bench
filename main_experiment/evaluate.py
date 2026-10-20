@@ -88,13 +88,27 @@ def meddra(c):
     return m
 
 
+def standard_configuration(c):
+    """Verify the actual pinned P21 standard artifact, not unreported model text."""
+    from lxml import etree
+    path = Path(c['p21']['cache']) / 'configs/2508.1/ADaM-IG 1.3 (FDA).xml'
+    root = etree.parse(str(path), etree.XMLParser(resolve_entities=False, no_network=True))
+    versions = root.findall('.//{http://www.cdisc.org/ns/odm/v1.3}MetaDataVersion')
+    ns = '{http://www.cdisc.org/ns/def/v2.0}'
+    if not any(v.get(ns+'StandardName') == 'ADaM-IG' and v.get(ns+'StandardVersion') == '1.3'
+               for v in versions):
+        raise ValueError('P21 configuration does not declare ADaM-IG 1.3')
+    return {'file': str(path), 'sha256': digest(path), 'standard': 'ADaM-IG',
+            'version': '1.3', 'base_model_version': 'not independently reported by P21'}
+
+
 def runtime(c):
     from .backend import capture
     cache = Path(c['p21']['cache'])
     engines = manifest(cache / 'lib/engines')
     engines.pop('app.data', None)
     from .egress import policy
-    return {'egress_policy': policy(), 'image': capture(['docker', 'image', 'inspect', '--format', '{{.Id}}', c['image']]),
+    return {'standard_configuration': standard_configuration(c), 'egress_policy': policy(), 'image': capture(['docker', 'image', 'inspect', '--format', '{{.Id}}', c['image']]),
             'opencode': capture(['docker', 'run', '--rm', '--network', 'none', c['image'], 'opencode', '--version']),
             'java': digest(Path(c['p21']['java'])),
             'client': digest(cache / 'lib/p21-client-1.0.9.jar'),
@@ -135,7 +149,7 @@ class Evaluator:
                 raise RuntimeError('P21 did not produce a fresh completed report')
             actual = {f.stem.upper() for f in data.iterdir() if f.suffix.lower() == '.xpt'}
             result = conformance_metrics(report, self.c['expected_datasets'], actual,
-                                   ['FDA 2508.1', '1.0.9', p['ct'], 'ADaM-IG 1.3', '2.1', 'MedDRA', '8.0'])
+                                   ['FDA 2508.1', '1.0.9', p['ct'], 'ADaM-IG 1.3 (FDA).xml', 'MedDRA', '8.0'])
             result['execution'] = execution
             return result
 

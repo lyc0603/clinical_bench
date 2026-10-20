@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 from main_experiment.backend import DockerSession
 from main_experiment.core import fingerprint
-from main_experiment.evaluate import Evaluator, meddra
+from main_experiment.evaluate import Evaluator, meddra, standard_configuration
 from main_experiment.runner import verify
 from main_experiment.test_main import cfg
 from main_experiment.test_completion import history
@@ -130,6 +130,17 @@ class BoundaryTests(unittest.TestCase):
                 with self.assertRaises(RuntimeError):
                     agent.phase('repair',root,'expected')
             self.assertTrue((root/'agent.json').exists())
+
+    def test_p21_standard_artifact_version_is_independently_verified(self):
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t);p=root/'configs/2508.1/ADaM-IG 1.3 (FDA).xml'
+            p.parent.mkdir(parents=True)
+            xml='<ODM xmlns="http://www.cdisc.org/ns/odm/v1.3" xmlns:def="http://www.cdisc.org/ns/def/v2.0"><Study><MetaDataVersion def:StandardName="ADaM-IG" def:StandardVersion="1.3"/></Study></ODM>'
+            p.write_text(xml)
+            c={'p21':{'cache':str(root)}}
+            self.assertEqual('1.3',standard_configuration(c)['version'])
+            p.write_text(xml.replace('StandardVersion="1.3"','StandardVersion="1.2"'))
+            with self.assertRaises(ValueError):standard_configuration(c)
 
     def test_dictionary_wrong_version_rejected(self):
         with tempfile.TemporaryDirectory() as t:

@@ -57,7 +57,7 @@ qualifications are defined in
 [the current scoring contract](../main_experiment/scoring-rules.json) and
 [the evaluator](../main_experiment/derivation.py).
 
-P21 pins are client 1.0.9, FDA engine 2508.1, ADaMIG 1.3, Model 2.1 and CT
+P21 pins are client 1.0.9, FDA engine 2508.1, ADaMIG 1.3 and CT
 2026-03-27. **English MedDRA 8.0 is mandatory**, with hashed PT/SOC/LLT/HLT/HLGT
 files. Missing dictionary configuration is not an allowed report qualification.
 Masked HLT/HLGT provenance remains an explicit study limitation.
@@ -160,3 +160,12 @@ already present at both checkpoints. TTE conditional consistency is not treated
 as an independent correctness oracle. No detected regression is not full ADaM
 correctness or submission readiness. Changes require fresh smoke qualification
 and freeze; old evaluations lacking profiles cannot receive guarded success.
+
+## P21 version evidence
+
+The ADaM Model 2.1 target is a specification convention, not an independently
+reported P21 runtime version. Qualification checks the report's actual FDA engine,
+client, CT, MedDRA and exact ADaM-IG 1.3 configuration filename. The seal also
+parses and hashes the installed configuration declaring ADaM-IG version 1.3.
+Do not require or claim a base-model version string absent from this report.
+This corrects a false report-rejection rule, not any clinical finding.
