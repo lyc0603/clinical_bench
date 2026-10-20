@@ -8,6 +8,7 @@ from main_experiment.support import manifest, save
 from .backend import DockerSession, message_ids
 from .core import code_manifest, fingerprint, prompts, schedule, validate_inputs
 from .evaluate import Evaluator, runtime
+from .coverage import compare
 
 
 def seal(c):
@@ -107,6 +108,12 @@ def report(c, root):
                         c.get('validation_coverage_complete') and c.get('dataset_rule_pairs') is not None)
         row['within_workflow_pair_reduction'] = (initial['conformance']['dataset_rule_pairs'] -
             final['conformance']['dataset_rule_pairs']) if good(initial) and good(final) else None
+        row['content_guard'] = compare(initial, final)
+        reduction = row['within_workflow_pair_reduction']
+        row['guarded_pair_reduction'] = (reduction if row['content_guard']['status'] ==
+                                        'no_detected_regression' else None)
+        row['improved_without_detected_regression'] = (reduction > 0 if reduction is not None and
+            row['content_guard']['status'] == 'no_detected_regression' else None)
         rows.append(row)
     groups = {}
     for condition in ('self_review', 'p21_feedback'):
@@ -114,6 +121,9 @@ def report(c, root):
         finals = [r['final'] for r in group]
         groups[condition] = {
             'planned_denominator': len(group),
+            'content_review_required': sum(r['content_guard']['status'] == 'review_required' for r in group),
+            'content_guard_unavailable': sum(bool(r['content_guard']['unavailable']) for r in group),
+            'improved_without_detected_regression': sum(r['improved_without_detected_regression'] is True for r in group),
             'completed_workflows': sum(r['status'] == 'completed' for r in group),
             'final_deliverables_complete': sum(bool(f and f.get('deliverables_complete')) for f in finals),
             'final_deliverables_unavailable': sum(f is None or 'deliverables_complete' not in f for f in finals),
@@ -125,6 +135,7 @@ def report(c, root):
     lines += [f"| {r['workflow']} | {r['model']} | {r['condition']} | {r['repetition']} | {r['status']} |" for r in rows]
     lines += ['', 'See results.json for separate conformance, correctness, coverage and reproduction endpoints.',
               'Condition groups have independent initial generations; do not perform paired condition tests.',
+              'Guarded reductions additionally require available content screening and no detected coverage or independent-check regression. Flags require review; raw reductions alone are not effective improvement.',
               'Finding reductions require complete deliverables and full validation coverage at both checkpoints; partial reports are feedback, not evidence of improvement.']
     (root / 'summary.md').write_text('\n'.join(lines)+'\n')
     return rows

@@ -6,6 +6,7 @@ import tempfile
 
 from main_experiment.support import command, digest, manifest, report_metrics, save
 from .derivation import score
+from .coverage import profile
 from .rebuild import RebuildRuntime
 
 
@@ -149,6 +150,7 @@ class Evaluator:
         result['missing_files'], result['extra_files'] = sorted(expected-actual), sorted(actual-expected)
         result['dataset_set_complete'] = {s.lower()+'.xpt' for s in self.c['expected_datasets']} == {p for p in actual if p.endswith('.xpt')}
         result['deliverables_complete'] = not result['missing_files'] and not result['extra_files'] and all(result['required_artifacts'].values())
+        result['content_profile'] = profile(data, self.c['expected_datasets'])
         # Each endpoint records its own failure; never turn unavailable into zero.
         for name, task in [('correctness', lambda: score(Path(self.c['inputs']), data)),
                            ('conformance', lambda: self.p21(workspace, directory))]:

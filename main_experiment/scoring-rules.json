@@ -4,14 +4,32 @@
   "repair_policy": "Every workflow receives one same-session repair with no agent execution time limit; P21 feedback uses usable partial/full reports or self-review fallback when unavailable",
   "report_usability": "Fresh parsable report, pinned versions, no installation problems and reported datasets form a nonempty subset of actual produced datasets; unvalidated produced domains remain explicit; no requirement that all 13 planned datasets exist",
   "completeness": "Report dataset-set completeness, missing/extra files and required artifact presence separately; retain all 18 planned workflows",
-  "correctness": ["npi_mean_coverage", "npi_mean_value", "npi_baseline_covariate"],
-  "conditional_correctness": ["tte_subject_coverage", "tte_source_link", "tte_event_date", "tte_event_status"],
-  "exploratory": ["tte_start_date", "tte_duration_arithmetic", "tte_censor_convention"],
+  "correctness": [
+    "npi_mean_coverage",
+    "npi_mean_value",
+    "npi_baseline_covariate"
+  ],
+  "conditional_correctness": [
+    "tte_subject_coverage",
+    "tte_source_link",
+    "tte_event_date",
+    "tte_event_status"
+  ],
+  "exploratory": [
+    "tte_start_date",
+    "tte_duration_arithmetic",
+    "tte_censor_convention"
+  ],
   "numeric_rtol": 1e-10,
-  "numeric_atol": 1e-8,
+  "numeric_atol": 1e-08,
   "semantic_reproduction": "exact values, row order, labels, types, storage widths; XML C14N excluding only root CreationDateTime",
   "byte_reproduction": "exact SHA256 manifests, reported separately",
   "unavailable": null,
   "denominator": "all 18 scheduled workflows; missing/extra/duplicates and failures retained separately",
-  "qualifications": ["TTE medical query and treatment-emergent flags conditional on generated ADAE", "TTE duration +1 and DM.RFENDTC censor conventions", "MedDRA 8.0 HLT/HLGT masked-source provenance not independently confirmed"]
+  "qualifications": [
+    "TTE medical query and treatment-emergent flags conditional on generated ADAE",
+    "TTE duration +1 and DM.RFENDTC censor conventions",
+    "MedDRA 8.0 HLT/HLGT masked-source provenance not independently confirmed"
+  ],
+  "content_guard": "Host-only before/after screening of all planned datasets: row counts, removed columns, nonmissing counts, subject and subject/PARAMCD identities and record counts. Any loss or independent NPI error increase/assessed-count decrease requires review. Missing evidence is unavailable. Raw complete-coverage P21 reductions remain descriptive; guarded improvement additionally requires no detected regression and all guard evidence available. No automatic waivers; not full correctness certification."
 }

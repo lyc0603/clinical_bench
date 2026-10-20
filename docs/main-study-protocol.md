@@ -135,3 +135,28 @@ Historical materials: [paired protocol](archive/legacy-paired-protocol.md),
 [paired scoring rules](archive/legacy-paired-scoring-rules.json),
 [pilot commands](archive/legacy-pilot-readme.md). These document superseded designs,
 not alternatives for the current main study.
+
+## Content-loss safeguards
+
+Each checkpoint retains a host-only content profile for every planned dataset:
+row counts, columns, nonmissing counts, hashed subject identities and hashed
+subject/PARAMCD identities with record counts. Blank strings count as missing.
+The agent receives neither these profiles nor guard findings. Repair opportunity
+and group assignment are unchanged.
+
+Reports retain raw complete-delivery/full-validation P21 pair reductions, but
+`guarded_pair_reduction` and `improved_without_detected_regression` are unavailable
+when screening detects an empty dataset, row/column/value/subject/parameter
+coverage loss, increased independent NPI errors, reduced assessed NPI coverage,
+or missing screening evidence. Flags remain in the original allocation and all
+planned denominators; no automatic waiver or extra repair is authorized.
+Legitimate duplicate removal can trigger a conservative review flag. Such flags
+are not proof of misconduct or incorrect derivation and cannot silently be
+reclassified as successful improvement. Report raw conformance, guard flags and
+unavailable counts separately.
+
+This screening detects selected losses, not arbitrary value corruption or errors
+already present at both checkpoints. TTE conditional consistency is not treated
+as an independent correctness oracle. No detected regression is not full ADaM
+correctness or submission readiness. Changes require fresh smoke qualification
+and freeze; old evaluations lacking profiles cannot receive guarded success.
