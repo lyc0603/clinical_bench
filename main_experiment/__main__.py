@@ -46,6 +46,9 @@ def main():
             if not os.environ.get(model['key_env']):
                 raise RuntimeError('Missing credential: '+model['key_env'])
             catalog = capture(['docker', 'run', '--rm', '--network', 'none',
+                               '-e', model['key_env'],
+                               '-e', 'OPENCODE_DISABLE_MODELS_FETCH=true',
+                               '-e', 'OPENCODE_DISABLE_DEFAULT_PLUGINS=true',
                                current['runtime']['image'], 'opencode', 'models', model['model'].split('/')[0]])
             if model['model'] not in catalog.splitlines():
                 raise RuntimeError('Exact configured model absent from pinned runtime catalog: '+model['model'])

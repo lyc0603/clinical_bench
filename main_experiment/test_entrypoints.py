@@ -22,6 +22,28 @@ def invocation(out,lock):
 
 
 class EntryPointTests(unittest.TestCase):
+    def test_preflight_catalog_passes_only_selected_credential_name(self):
+        c=cfg()
+        def capture(argv):
+            if argv[-1] == '--help':
+                return '--session --format'
+            provider=argv[-1]
+            model=next(m for m in c['models'] if m['model'].split('/')[0] == provider)
+            self.assertIn(model['key_env'],argv)
+            self.assertNotIn('secret-value',argv)
+            self.assertIn('OPENCODE_DISABLE_MODELS_FETCH=true',argv)
+            for other in c['models']:
+                if other is not model:self.assertNotIn(other['key_env'],argv)
+            self.assertEqual('none',argv[argv.index('--network')+1])
+            return model['model']
+        with patch('sys.argv',['main_experiment','preflight']), \
+             patch('main_experiment.__main__.config',return_value=c), \
+             patch('main_experiment.__main__.load_env'), \
+             patch('main_experiment.__main__.seal',return_value={'runtime':{'image':'synthetic'}}), \
+             patch.dict('os.environ',{m['key_env']:'secret-value' for m in c['models']}), \
+             patch('main_experiment.__main__.capture',side_effect=capture):
+            main()
+
     def prepare(self,root):
         out=root/'run';lock=root/'freeze.json'
         item={'workflow':'w01','model':'openai','condition':'self_review','repetition':1}
