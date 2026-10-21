@@ -1,0 +1,150 @@
+{
+  "diagnostic_only": true,
+  "original_scores_changed": false,
+  "checkpoints": [
+    {
+      "model": "openai",
+      "condition": "p21_feedback",
+      "phase": "initial",
+      "p21_status": "valid",
+      "callback_errors": 0,
+      "no_such_element_exceptions": 0,
+      "completion_markers": 1,
+      "execution_exit_code": 5,
+      "reason": null,
+      "source_log_sha256": "a08666120e60c02ffaa480abf031ece55c23784c118e9cc8b2e4bc0d08c3ec3d"
+    },
+    {
+      "model": "openai",
+      "condition": "p21_feedback",
+      "phase": "final",
+      "p21_status": "valid",
+      "callback_errors": 0,
+      "no_such_element_exceptions": 0,
+      "completion_markers": 1,
+      "execution_exit_code": 5,
+      "reason": null,
+      "source_log_sha256": "5f742109593551387c6545fea3793b9200e43aba0cc750f062e154a598fec420"
+    },
+    {
+      "model": "openai",
+      "condition": "self_review",
+      "phase": "initial",
+      "p21_status": "unavailable",
+      "callback_errors": 3,
+      "no_such_element_exceptions": 3,
+      "completion_markers": 1,
+      "execution_exit_code": null,
+      "reason": "P21 runtime drift during validation",
+      "source_log_sha256": "891f3cfc47ff7ce60085923b5d6445911a9433bd98ac5f3695adead82e1c37bb"
+    },
+    {
+      "model": "openai",
+      "condition": "self_review",
+      "phase": "final",
+      "p21_status": "valid",
+      "callback_errors": 0,
+      "no_such_element_exceptions": 0,
+      "completion_markers": 1,
+      "execution_exit_code": 5,
+      "reason": null,
+      "source_log_sha256": "a1edee9886f04019e45962835caa44481d42974f8fd6431a71b303c806a4f635"
+    },
+    {
+      "model": "anthropic",
+      "condition": "p21_feedback",
+      "phase": "initial",
+      "p21_status": "valid",
+      "callback_errors": 0,
+      "no_such_element_exceptions": 0,
+      "completion_markers": 1,
+      "execution_exit_code": 5,
+      "reason": null,
+      "source_log_sha256": "7667a784b91dd141a1ec2660308b685500ffc20caa94844d670419f9c3ee56bf"
+    },
+    {
+      "model": "anthropic",
+      "condition": "p21_feedback",
+      "phase": "final",
+      "p21_status": "valid",
+      "callback_errors": 0,
+      "no_such_element_exceptions": 0,
+      "completion_markers": 1,
+      "execution_exit_code": 5,
+      "reason": null,
+      "source_log_sha256": "d36cf6f4ab16d15b32231ae477e62c6768fccc98494a3345e086e865186cfc7b"
+    },
+    {
+      "model": "anthropic",
+      "condition": "self_review",
+      "phase": "initial",
+      "p21_status": "unavailable",
+      "callback_errors": 2,
+      "no_such_element_exceptions": 2,
+      "completion_markers": 1,
+      "execution_exit_code": null,
+      "reason": "P21 runtime drift during validation",
+      "source_log_sha256": "0e3b9b8967cc159f5fb77e044fcc2d83e8f5eca8cd6d299d5fe6a4adf4302af9"
+    },
+    {
+      "model": "anthropic",
+      "condition": "self_review",
+      "phase": "final",
+      "p21_status": "valid",
+      "callback_errors": 0,
+      "no_such_element_exceptions": 0,
+      "completion_markers": 1,
+      "execution_exit_code": 5,
+      "reason": null,
+      "source_log_sha256": "96d08180b9e98571ae3cf3807b111fe0d2468a37e711a9531d97090d9762322b"
+    },
+    {
+      "model": "google",
+      "condition": "p21_feedback",
+      "phase": "initial",
+      "p21_status": "valid",
+      "callback_errors": 0,
+      "no_such_element_exceptions": 0,
+      "completion_markers": 1,
+      "execution_exit_code": 5,
+      "reason": null,
+      "source_log_sha256": "82ffa3727b5b893ced6333553c8f849dc1286b2819565ac23977ad838991c05d"
+    },
+    {
+      "model": "google",
+      "condition": "p21_feedback",
+      "phase": "final",
+      "p21_status": "valid",
+      "callback_errors": 0,
+      "no_such_element_exceptions": 0,
+      "completion_markers": 1,
+      "execution_exit_code": 5,
+      "reason": null,
+      "source_log_sha256": "207a91bbfded23aab78c3b30300a2fded0164fcb63b2e59f3c2a8c7647f0bd1d"
+    },
+    {
+      "model": "google",
+      "condition": "self_review",
+      "phase": "initial",
+      "p21_status": "unavailable",
+      "callback_errors": 6,
+      "no_such_element_exceptions": 6,
+      "completion_markers": 1,
+      "execution_exit_code": null,
+      "reason": "P21 runtime drift during validation",
+      "source_log_sha256": "d9252b1689cd656af7283db3a6c16fc2f96c983ce7cac2ed0cb54b3fdef81e54"
+    },
+    {
+      "model": "google",
+      "condition": "self_review",
+      "phase": "final",
+      "p21_status": "unavailable",
+      "callback_errors": 4,
+      "no_such_element_exceptions": 4,
+      "completion_markers": 1,
+      "execution_exit_code": null,
+      "reason": "P21 runtime drift during validation",
+      "source_log_sha256": "7ab2d9ecc9519da23300a1295c13714175fb79274830ecd46483f332542ba6f3"
+    }
+  ]
+}

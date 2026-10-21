@@ -38,3 +38,5 @@ independent review of the scientific design.
 ## Completed exploratory results
 
 The [six-example report and 16-metric comparison](results/2026-10-21/README.md) include Excel, CSV, JSON and an evidence audit. P21 runtime-integrity rejections affect several self-review checkpoints; review this issue before formal main-study launch.
+
+The [offline P21 follow-up](results/2026-10-21/p21-runtime-followup.md) separates callback exceptions from cache drift and proposes an amendment for review. The diagnostic CLI retains temporary caches; use private output directories and obtain authorization before any network-enabled P21 execution.
