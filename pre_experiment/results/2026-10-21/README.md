@@ -10,7 +10,7 @@ All six delivered 13 readable datasets. Final packages reproduced semantically i
 
 P21-feedback had initial/final dataset-rule pair counts of 26→24 (OpenAI), 26→24 (Anthropic), and 49→15 (Google). Content guards flagged OpenAI and Google, so their reductions are not accepted as guarded improvements. Anthropic had no detected regression, although its selected NPI coverage check retained 20 extra records.
 
-Self-review final qualified counts were 26 pairs for OpenAI and 26 for Anthropic. Their initial P21 evaluations were unavailable, so qualified reductions cannot be computed. Both Google self-review P21 evaluations were unavailable. Saved reports contain unqualified observations shown separately in row 4; these are not substituted scores. In particular, the table cannot establish a treatment effect or rank models reliably.
+Self-review final qualified counts were 26 pairs for OpenAI and 26 for Anthropic. Their initial P21 evaluations were unavailable, so qualified reductions cannot be computed. Both Google self-review P21 evaluations were unavailable. Row 4 now prominently displays all three initial saved-report counts (pairs, instances and distinct rules) for each self-review model as unqualified observations. The qualified initial scores remain unavailable; these observations are not substituted scores. In particular, the table cannot establish a treatment effect or rank models reliably.
 
 The three new self-review workflows cost an estimated $2.4424 (OpenAI), $7.0374 (Anthropic), and $1.4284 (Google), totaling approximately $10.91. These are telemetry estimates, not reconciled invoices. Runtime and token measurements are descriptive; provider accounting conventions differ.
 

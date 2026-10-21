@@ -107,9 +107,12 @@ def collect(directory, model, condition):
             severity[issue['severity']].add((issue['dataset'], issue['rule']))
         values[5] = ('; '.join(f'{name}: {len(pairs)} pairs' for name, pairs in sorted(severity.items())) or 'No recorded pairs') if c.get('report_usable') else 'Unavailable; no usable report'
     values[3] = '; '.join(f'{phase}: pairs {metric_value(e, "dataset_rule_pairs")}, instances {metric_value(e, "finding_instances")}, distinct rules {metric_value(e, "distinct_rules")}' for phase, e in zip(('Initial', 'Final'), es))
+    observed_lines = []
     for item in observed:
         if 'dataset_rule_pairs' in item:
-            values[3] += f'\nUnqualified observed {item["phase"]}: {item["dataset_rule_pairs"]} pairs, {item["finding_instances"]} instances (not scored)'
+            observed_lines.append(f'Unqualified observed {item["phase"]}: {item["dataset_rule_pairs"]:,} pairs, {item["finding_instances"]:,} instances, {item["distinct_rules"]:,} distinct rules (not scored)')
+    if observed_lines:
+        values[3] = '\n'.join(observed_lines + [values[3]])
     guard = compare(*es)
     values[4] = f'Raw Unavailable; guarded Unavailable; {guard["status"]}; {len(guard["flags"])} flags'
     complete = all(e and e.get('deliverables_complete') and (e.get('conformance') or {}).get('validation_coverage_complete') and (e.get('conformance') or {}).get('dataset_rule_pairs') is not None for e in es)

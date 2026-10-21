@@ -55,7 +55,8 @@ class MissingEvidenceTests(unittest.TestCase):
         self.assertIsNone(result['numeric']['final']['dataset_rule_pairs'])
         self.assertIsNone(result['numeric']['pair_reduction'])
         self.assertEqual(result['values'][5], 'Unavailable; no usable report')
-        self.assertIn('Unqualified observed final: 77 pairs', result['values'][3])
+        self.assertIn('Unqualified observed final: 77 pairs, 1,000 instances, 8 distinct rules (not scored)', result['values'][3])
+        self.assertTrue(result['values'][3].startswith('Unqualified observed final:'))
 
 
 if __name__ == '__main__':
