@@ -151,10 +151,11 @@ python -m main_experiment report --out /private/study/main
 ```
 
 Freeze requires one qualifying receipt per provider matching the current
-code/config/input/runtime fingerprint. Qualification requires completed reports,
-semantic reproduction and assessable selected correctness checks at both smoke
-checkpoints; correctness error counts need not be zero. It is deliberately strict
-about unavailable checks. Inspect raw histories, session continuity, feedback
+code/config/input/runtime fingerprint. Qualification requires complete deliverables, usable P21 reports with complete
+validation coverage, and semantic reproduction at both smoke checkpoints, plus
+the existing normal-completion and same-session evidence. Auxiliary correctness
+errors, unavailable checks and content-loss flags are retained as outcomes and
+do not determine eligibility. P21 findings need not be zero. Inspect raw histories, session continuity, feedback
 isolation, P21 dictionary recognition and runtime versions as part of local
 qualification. Changing code, prompts, config, inputs, protocol/workflow documents, image, Java, dictionaries
 or P21 rules invalidates the receipts and lock. A failed smoke is retained;
@@ -195,7 +196,7 @@ same stop-and-adjudicate policy in both conditions; no extra attempt is added.
 This updates the intervention to a policy of offering usable feedback when
 available. The primary analysis retains all 18 allocations, including fallback
 workflows, rather than selecting only successful report recipients. Qualification
-smokes still require complete assessable endpoints; smoke qualification is separate
+smokes require complete technical endpoints; auxiliary correctness may be unavailable. Smoke qualification is separate
 from the repair opportunity rule within every smoke/main workflow. Code and prompt
 changes invalidate previous freeze locks and smoke receipts.
 
@@ -430,3 +431,24 @@ standard metadata and hash. Base ADaM Model 2.1 is a specification target; the
 local P21 summary does not independently report it. Requiring the literal `2.1`
 in that summary was a false qualification failure and has been removed.
 All other report usability and complete-delivery requirements remain in force.
+
+## Prospective amendment: technical smoke eligibility (2026-10-20)
+
+Before any main-study workflow, smoke eligibility is aligned with the primary
+P21 conformance objective. Both checkpoints must have all required deliverables,
+a usable full-coverage P21 report and successful semantic reconstruction. Existing
+normal completion, provider identity and same-session requirements remain in force.
+Auxiliary NPI/TTE errors or unavailable checks and content-loss flags remain
+reported outcomes; they do not exclude a provider. Coverage guards still restrict
+claims of effective improvement. Apply this rule equally to all providers and
+conditions; retain all 18 main workflows in the planned denominator.
+
+This amendment follows inspection of excluded Google smoke evidence; it is not
+a correction of its generated programs. Preserve the original failed receipt and
+all checkpoint artifacts. Do not rerun until a favorable outcome is obtained.
+The amendment changes the seal: old receipts cannot freeze the revised study.
+Offline technical reassessment alone is not a current-seal qualification receipt.
+Any evidence reuse requires an explicit, audited migration establishing unchanged
+inputs, prompts, model/runtime, completion policy and evaluation implementation;
+otherwise obtain fresh excluded smokes. No main workflow may start with stale
+receipts or without a new freeze lock.

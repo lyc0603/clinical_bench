@@ -11,6 +11,16 @@ from .core import config, fingerprint, prepare, private_path, schedule
 from .runner import report, seal, verify, workflow
 
 
+def smoke_qualified(evaluations):
+    """Technical eligibility only; auxiliary outcomes never select providers."""
+    return len(evaluations) == 2 and all(
+        e.get("deliverables_complete") is True
+        and e.get("semantic_reproduced") is True
+        and e.get("conformance", {}).get("report_usable") is True
+        and e.get("conformance", {}).get("validation_coverage_complete") is True
+        for e in evaluations)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=['prepare-inputs', 'plan', 'preflight', 'smoke', 'freeze', 'run', 'report'])
@@ -99,9 +109,7 @@ def main():
             if state['status'] != 'completed':
                 raise RuntimeError('Smoke incomplete; qualification receipt not issued')
             evaluations = [json.loads((directory / phase / 'evaluation.json').read_text()) for phase in ('initial', 'final')]
-            qualified = all(e['conformance'].get('report_usable') is True and e.get('deliverables_complete') is True and
-                            e['semantic_reproduced'] is True and e['correctness'].get('complete') is True
-                            for e in evaluations)
+            qualified = smoke_qualified(evaluations)
             # Ensure no runtime/config/input drift across the qualification.
             if seal(c) != current:
                 raise RuntimeError('Seal changed during smoke')

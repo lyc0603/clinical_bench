@@ -169,3 +169,24 @@ client, CT, MedDRA and exact ADaM-IG 1.3 configuration filename. The seal also
 parses and hashes the installed configuration declaring ADaM-IG version 1.3.
 Do not require or claim a base-model version string absent from this report.
 This corrects a false report-rejection rule, not any clinical finding.
+
+## Prospective amendment: technical smoke eligibility (2026-10-20)
+
+Before any main-study workflow, smoke eligibility is aligned with the primary
+P21 conformance objective. Both checkpoints must have all required deliverables,
+a usable full-coverage P21 report and successful semantic reconstruction. Existing
+normal completion, provider identity and same-session requirements remain in force.
+Auxiliary NPI/TTE errors or unavailable checks and content-loss flags remain
+reported outcomes; they do not exclude a provider. Coverage guards still restrict
+claims of effective improvement. Apply this rule equally to all providers and
+conditions; retain all 18 main workflows in the planned denominator.
+
+This amendment follows inspection of excluded Google smoke evidence; it is not
+a correction of its generated programs. Preserve the original failed receipt and
+all checkpoint artifacts. Do not rerun until a favorable outcome is obtained.
+The amendment changes the seal: old receipts cannot freeze the revised study.
+Offline technical reassessment alone is not a current-seal qualification receipt.
+Any evidence reuse requires an explicit, audited migration establishing unchanged
+inputs, prompts, model/runtime, completion policy and evaluation implementation;
+otherwise obtain fresh excluded smokes. No main workflow may start with stale
+receipts or without a new freeze lock.

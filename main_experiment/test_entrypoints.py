@@ -9,7 +9,7 @@ import unittest
 from unittest.mock import patch
 
 from main_experiment.support import digest, save
-from main_experiment.__main__ import main
+from main_experiment.__main__ import main, smoke_qualified
 from main_experiment.core import HERE, code_manifest, fingerprint
 from main_experiment.test_main import cfg
 
@@ -22,6 +22,18 @@ def invocation(out,lock):
 
 
 class EntryPointTests(unittest.TestCase):
+    def test_smoke_technical_eligibility_keeps_bad_auxiliary_outcomes(self):
+        e = dict(deliverables_complete=True, semantic_reproduced=True,
+                 conformance=dict(report_usable=True, validation_coverage_complete=True),
+                 correctness=dict(complete=False, errors=254), content_guard="review_required")
+        self.assertTrue(smoke_qualified([e, e]))
+        self.assertFalse(smoke_qualified([e]))
+        for key in ("deliverables_complete", "semantic_reproduced"):
+            self.assertFalse(smoke_qualified([e, dict(e, **{key: False})]))
+        for key in ("report_usable", "validation_coverage_complete"):
+            bad = dict(e, conformance=dict(e["conformance"], **{key: False}))
+            self.assertFalse(smoke_qualified([e, bad]))
+
     def test_preflight_catalog_passes_only_selected_credential_name(self):
         c=cfg()
         def capture(argv, **kwargs):
@@ -91,7 +103,7 @@ class EntryPointTests(unittest.TestCase):
 import os,sys
 from pathlib import Path
 from unittest.mock import patch
-from main_experiment.__main__ import main
+from main_experiment.__main__ import main, smoke_qualified
 from main_experiment.test_main import cfg
 out,lock=sys.argv[1:]
 sys.argv=['main_experiment','run','--config','unused','--out',out,'--lock',lock,'--execute']
