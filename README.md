@@ -87,3 +87,7 @@ license covers repository code, not separately licensed study/vendor materials.
 ## Excluded exploratory pre-experiment
 
 See the [six-workflow, 16-metric comparison](pre_experiment/results/2026-10-21/README.md). These examples are excluded from the main study. P21 runtime-integrity rejections require review before formal launch; prior freeze/preflight completion does not resolve this issue.
+
+### P21 amendment: new qualification and freeze required
+
+The [evaluator amendment](docs/p21-evaluator-amendment.md) now distinguishes client errors from immutable runtime changes and retains diagnostics. Existing pilot scores remain unchanged. The old main-study freeze does not authorize this changed evaluator: formal execution must wait for review, qualification and a new versioned freeze.

@@ -452,3 +452,7 @@ Any evidence reuse requires an explicit, audited migration establishing unchange
 inputs, prompts, model/runtime, completion policy and evaluation implementation;
 otherwise obtain fresh excluded smokes. No main workflow may start with stale
 receipts or without a new freeze lock.
+
+## P21 evaluator amendment pending qualification
+
+The [P21 diagnostic and integrity amendment](p21-evaluator-amendment.md) separates mutable client logs from immutable runtime changes, independently rejects client runtime errors, and retains failed validation evidence. This implementation changes the main-study seal. Previously frozen locks/receipts must not be used with it; preserve historical results and complete review, qualification, preflight and a new versioned freeze before formal execution.

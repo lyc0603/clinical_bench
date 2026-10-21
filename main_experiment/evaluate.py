@@ -1,5 +1,6 @@
 """Host-only scoring; no scores or evaluator code enter the agent container."""
 import json
+import re
 from pathlib import Path
 import shutil
 import tempfile
@@ -116,6 +117,12 @@ def runtime(c):
             'meddra': meddra(c)}
 
 
+class P21ValidationError(RuntimeError):
+    def __init__(self, code, message):
+        super().__init__(message)
+        self.code = code
+
+
 class Evaluator:
     def __init__(self, c, image):
         self.c = c
@@ -123,6 +130,8 @@ class Evaluator:
 
     def p21(self, workspace, directory):
         p = self.c['p21']
+        if (directory / 'p21_adam.xlsx').exists() or (directory / 'p21-diagnostics.json').exists():
+            raise ValueError('P21 evaluation requires a fresh output directory')
         with tempfile.TemporaryDirectory(prefix='p21-', dir=directory) as temp:
             cache = Path(temp) / 'cache'
             shutil.copytree(p['cache'], cache)
@@ -139,19 +148,60 @@ class Evaluator:
                     '--source.define='+str(data / 'define.xml'), '--source.adam='+str(data),
                     '--source.sdtm='+str(support), '--cdisc.ct.adam.version='+p['ct'],
                     '--cdisc.ct.sdtm.version='+p['ct'], '--meddra.version=8.0', '--report='+str(report)]
-            execution = command(argv, cache, directory / 'p21.log', p['timeout_seconds'])
-            after = manifest(cache)
-            for m in (before, after):
-                m.pop('lib/engines/app.data', None)
-            if before != after:
-                raise RuntimeError('P21 runtime drift during validation')
-            if execution['timed_out'] or not report.exists():
-                raise RuntimeError('P21 did not produce a fresh completed report')
-            actual = {f.stem.upper() for f in data.iterdir() if f.suffix.lower() == '.xpt'}
-            result = conformance_metrics(report, self.c['expected_datasets'], actual,
-                                   ['FDA 2508.1', '1.0.9', p['ct'], 'ADaM-IG 1.3 (FDA).xml', 'MedDRA', '8.0'])
-            result['execution'] = execution
-            return result
+            execution = None
+            result = None
+            failure = None
+            evidence = {'policy': 'p21-diagnostics-v1', 'execution': None}
+            client_log = cache / 'lib/p21-client-1.0.9.log'
+            previous_log = client_log.read_bytes() if client_log.exists() else b''
+            try:
+                execution = command(argv, cache, directory / 'p21.log', p['timeout_seconds'])
+                after = manifest(cache)
+                changes = {name: {'before': before.get(name), 'after': after.get(name)}
+                           for name in sorted(before.keys() | after.keys())
+                           if before.get(name) != after.get(name)}
+                mutable = {'lib/engines/app.data', 'lib/p21-client-1.0.9.log'}
+                immutable = sorted(set(changes) - mutable)
+                log_bytes = client_log.read_bytes() if client_log.exists() else b''
+                new_log = log_bytes[len(previous_log):] if log_bytes.startswith(previous_log) else log_bytes
+                stdout = directory / 'p21.log'
+                texts = [new_log.decode(errors='replace'), stdout.read_text(errors='replace') if stdout.exists() else '']
+                pattern = r'(?m)(?:\bERROR\b|Exception in thread|^\s*(?:java|net)\.[\w.$]*(?:Exception|Error)(?::|$))'
+                error_counts = [len(re.findall(pattern, text)) for text in texts]
+                evidence.update(runtime_changes=changes, immutable_changed_paths=immutable,
+                                mutable_changed_paths=sorted(set(changes) & mutable),
+                                client_error_markers=error_counts[0], stdout_error_markers=error_counts[1])
+                if immutable:
+                    raise P21ValidationError('runtime_integrity', 'P21 immutable runtime or configuration changed')
+                if execution['timed_out']:
+                    raise P21ValidationError('timeout', 'P21 validation timed out')
+                if any(error_counts):
+                    raise P21ValidationError('client_runtime_error', 'P21 client logged runtime errors; report is unqualified')
+                if not report.exists():
+                    raise P21ValidationError('missing_report', 'P21 did not produce a fresh completed report')
+                actual = {f.stem.upper() for f in data.iterdir() if f.suffix.lower() == '.xpt'}
+                result = conformance_metrics(report, self.c['expected_datasets'], actual,
+                                       ['FDA 2508.1', '1.0.9', p['ct'], 'ADaM-IG 1.3 (FDA).xml', 'MedDRA', '8.0'])
+                result['execution'] = execution
+                result['diagnostics'] = 'p21-diagnostics.json'
+                return result
+            except Exception as exc:
+                failure = exc
+                raise
+            finally:
+                # Preserve raw manifests, logs and execution metadata even when a gate fails.
+                save(directory / 'p21-runtime-before.json', before)
+                save(directory / 'p21-runtime-after.json', manifest(cache))
+                if client_log.exists():
+                    shutil.copy2(client_log, directory / 'p21-client.log')
+                retain = failure is not None or not (result or {}).get('report_usable')
+                evidence.update(execution=execution, cache_retained=retain,
+                                failure_code=getattr(failure, 'code', 'evaluation_error') if failure else None,
+                                failure_reason=str(failure) if failure else None,
+                                report_usable=(result or {}).get('report_usable', False))
+                if retain:
+                    shutil.move(str(cache), str(directory / 'p21-failed-runtime'))
+                save(directory / 'p21-diagnostics.json', evidence)
 
     def __call__(self, workspace, directory):
         data = workspace / 'output/adam/datasets'
@@ -172,6 +222,9 @@ class Evaluator:
                 result[name] = task()
             except Exception as exc:
                 result[name] = {'status': 'unavailable', 'reason': str(exc)}
+                if name == 'conformance':
+                    result[name]['failure_code'] = getattr(exc, 'code', 'evaluation_error')
+                    result[name]['diagnostics'] = 'p21-diagnostics.json'
                 if name == 'conformance':
                     result[name].update(report_usable=False, dataset_rule_pairs=None,
                                         finding_instances=None, distinct_rules=None,

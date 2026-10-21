@@ -59,7 +59,8 @@ def code_manifest():
     paths += [HERE / 'config.example.json', HERE / 'requirements.txt', HERE / 'completion-policy.json',
               HERE / 'Dockerfile',
               HERE / 'requirements-evaluator.txt', HERE / 'scoring-rules.json',
-              root / 'docs/main-study-protocol.md', root / 'docs/main-experiment-workflow.md']
+              root / 'docs/main-study-protocol.md', root / 'docs/main-experiment-workflow.md',
+              root / 'docs/p21-evaluator-amendment.md']
     return {str(p.relative_to(root)): digest(p) for p in sorted(paths)}
 
 

@@ -1,4 +1,4 @@
-"""Retain diagnostics from the unchanged frozen P21 evaluator; never rescore a run."""
+"""Retain diagnostics from the installed P21 evaluator; never rescore a run."""
 import argparse
 from collections import Counter
 import json
@@ -50,7 +50,9 @@ def main():
                 evaluator.p21(workspace, out)
         except Exception as exc:
             error = str(exc)
-        copied_cache = next(out.glob('p21-*/cache'))
+        copied_cache = out / 'p21-failed-runtime'
+        if not copied_cache.exists():
+            copied_cache = next(out.glob('p21-*/cache'))
         changes = differences(cache_before, manifest(copied_cache))
         log = copied_cache / 'lib/p21-client-1.0.9.log'
         text = log.read_text(errors='replace') if log.exists() else ''
