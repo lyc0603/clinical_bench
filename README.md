@@ -83,3 +83,7 @@ current main experiment. The historical freezer requires an explicit
 
 No clinical data, credentials or P21 runtime are distributed here. The MIT
 license covers repository code, not separately licensed study/vendor materials.
+
+## Excluded exploratory pre-experiment
+
+See the [six-workflow, 16-metric comparison](pre_experiment/results/2026-10-21/README.md). These examples are excluded from the main study. P21 runtime-integrity rejections require review before formal launch; prior freeze/preflight completion does not resolve this issue.

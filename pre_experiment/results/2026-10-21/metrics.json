@@ -1,0 +1,2033 @@
+{
+  "scope": "Excluded nonconcurrent pre-experiment; one workflow per model and condition; no main-study observations",
+  "mapping": "18 original reporting rows combined into 16: completion with dataset delivery; initial with final pair counts",
+  "metrics": [
+    "Workflow completion and complete dataset packages",
+    "Reproducible final packages",
+    "Valid final P21 evaluations",
+    "Initial and final dataset-rule pairs",
+    "Reduction from initial to final",
+    "Final findings by severity",
+    "Newly introduced dataset-rule pairs",
+    "NPI summary errors / assessed records",
+    "NPI baseline errors / assessed records",
+    "TTE linkage errors / assessed records",
+    "Missing extra and duplicate expected records",
+    "Assessable checks / planned checks",
+    "Workflow API cost estimate in USD",
+    "Input and output tokens",
+    "End-to-end elapsed time in minutes",
+    "Tool calls and failed tool calls"
+  ],
+  "records": [
+    {
+      "model": "openai",
+      "condition": "p21_feedback",
+      "status": "completed",
+      "values": [
+        "Status completed; completed 1/1; final 13 readable datasets 1/1; file set 1/1; required deliverables 1/1",
+        "Semantic 1/1; exact bytes 1/1",
+        "Usable 1/1; full coverage True; validated 13/13",
+        "Initial: pairs 26, instances 4802, distinct rules 10; Final: pairs 24, instances 3940, distinct rules 9",
+        "Raw 2; guarded Unavailable; review_required; 6 flags",
+        "Unassigned: 24 pairs",
+        "New 0; resolved 2; persistent 24",
+        "Initial: 0/234 errors/assessed; Final: 0/234 errors/assessed",
+        "Initial: 0/234 errors/assessed; Final: 0/234 errors/assessed",
+        "Initial: 0/152 errors/assessed; Final: 0/152 errors/assessed",
+        "Initial NPI: missing 0, extra 0, duplicates 0; Initial TTE: missing 0, extra 0, duplicates 0; Final NPI: missing 0, extra 0, duplicates 0; Final TTE: missing 0, extra 0, duplicates 0",
+        "Initial: 10/10 planned checks; Final: 10/10 planned checks; applicable denominator not adjudicated",
+        "Generation $0.6930; repair $0.8180; total $1.5110 (estimate, not invoice)",
+        "Generation: input 1,645,091; output 26,510; uncached 63; cache read 1,535,345; cache write 109,683; text output 23,767; reasoning 2,743\nRepair: input 4,093,970; output 23,165; uncached 75; cache read 4,020,222; cache write 73,673; text output 16,626; reasoning 6,539\nTotal: input 5,739,061; output 49,675; uncached 138; cache read 5,555,567; cache write 183,356; text output 40,393; reasoning 9,282",
+        "End to end 56.15 min; agent total 47.91; generation 23.56; repair 24.35 min",
+        "Generation: 27 calls, 0 failed; Repair: 26 calls, 0 failed; total 53 calls, 0 failed"
+      ],
+      "source_sha256": {
+        "state.json": "4f33b4963c8543cb327f08eb9bac31dbd3d8266974a8c02d39d076dcd56096f8",
+        "initial/evaluation.json": "28e6bed2df33c5a7a6dff6537803535521a393e56f2c2a545a3e66c97aff3eaa",
+        "initial/agent.json": "44b3e9e9037a58da8169565b502f2c989505723de286416146bed16291b31220",
+        "initial/checkpoint-manifest.json": "b1997a51670467e4136cdad498d4f8729aa7e709fc8b8bdc6ebe890ffeb3558f",
+        "final/evaluation.json": "80c3f064f6a6a9dd0cdb806feb5be6e6a7173041cd7b272f6431f51607836f07",
+        "final/agent.json": "db36841aa2d01fc94a722d20653cf8c4d8a460c1ee0d419b3d941f540007a0af",
+        "final/checkpoint-manifest.json": "827781df4e92c7d1f20edc9e9100e9be8030c763511acb22fdc5a48c5056d005"
+      },
+      "auxiliary_checks": [
+        {
+          "phase": "initial",
+          "check": "npi_mean_coverage",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 0,
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "initial",
+          "check": "npi_mean_value",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "npi_baseline_covariate",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_subject_coverage",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "initial",
+          "check": "tte_start_date",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_event_status",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_source_link",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_event_date",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_duration_arithmetic",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_censor_convention",
+          "status": "scored",
+          "assessed": 102,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "npi_mean_coverage",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 0,
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "final",
+          "check": "npi_mean_value",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "npi_baseline_covariate",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_subject_coverage",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "final",
+          "check": "tte_start_date",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_event_status",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_source_link",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_event_date",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_duration_arithmetic",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_censor_convention",
+          "status": "scored",
+          "assessed": 102,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        }
+      ],
+      "numeric": {
+        "initial": {
+          "dataset_set_complete": true,
+          "readable_dataset_package": true,
+          "deliverables_complete": true,
+          "semantic_reproduced": true,
+          "byte_reproduced": true,
+          "report_usable": true,
+          "validation_coverage_complete": true,
+          "dataset_rule_pairs": 26,
+          "finding_instances": 4802,
+          "distinct_rules": 10,
+          "severity_pairs": {
+            "Unassigned": 26
+          },
+          "cost_estimate_usd": 0.692968,
+          "tokens": {
+            "input": 63,
+            "output": 23767,
+            "reasoning": 2743,
+            "cache_read": 1535345,
+            "cache_write": 109683,
+            "normalized_input": 1645091,
+            "normalized_output": 26510
+          },
+          "agent_seconds": 1413.8336556249997,
+          "tool_calls": 27,
+          "tool_failures": 0
+        },
+        "final": {
+          "dataset_set_complete": true,
+          "readable_dataset_package": true,
+          "deliverables_complete": true,
+          "semantic_reproduced": true,
+          "byte_reproduced": true,
+          "report_usable": true,
+          "validation_coverage_complete": true,
+          "dataset_rule_pairs": 24,
+          "finding_instances": 3940,
+          "distinct_rules": 9,
+          "severity_pairs": {
+            "Unassigned": 24
+          },
+          "cost_estimate_usd": 0.8180047,
+          "tokens": {
+            "input": 75,
+            "output": 16626,
+            "reasoning": 6539,
+            "cache_read": 4020222,
+            "cache_write": 73673,
+            "normalized_input": 4093970,
+            "normalized_output": 23165
+          },
+          "agent_seconds": 1460.9629394169897,
+          "tool_calls": 26,
+          "tool_failures": 0
+        },
+        "workflow_seconds": 3369.0335190296173,
+        "content_guard_status": "review_required",
+        "content_guard_flags": 6,
+        "pair_reduction": 2,
+        "guarded_pair_reduction": null,
+        "new_pairs": [],
+        "resolved_pairs": [
+          [
+            "ADLBC",
+            "SD1231"
+          ],
+          [
+            "ADQSNPIX",
+            "SD1231"
+          ]
+        ]
+      },
+      "unqualified_report_observations": []
+    },
+    {
+      "model": "openai",
+      "condition": "self_review",
+      "status": "completed",
+      "values": [
+        "Status completed; completed 1/1; final 13 readable datasets 1/1; file set 1/1; required deliverables 1/1",
+        "Semantic 1/1; exact bytes 1/1",
+        "Usable 1/1; full coverage True; validated 13/13",
+        "Initial: pairs Unavailable, instances Unavailable, distinct rules Unavailable; Final: pairs 26, instances 4708, distinct rules 10\nUnqualified observed initial: 39 pairs, 458163 instances (not scored)",
+        "Raw Unavailable; guarded Unavailable; review_required; 4 flags",
+        "Unassigned: 26 pairs",
+        "Unavailable",
+        "Initial: 0/234 errors/assessed; Final: 0/234 errors/assessed",
+        "Initial: 0/234 errors/assessed; Final: 0/234 errors/assessed",
+        "Initial: 0/152 errors/assessed; Final: 0/152 errors/assessed",
+        "Initial NPI: missing 0, extra 0, duplicates 0; Initial TTE: missing 0, extra 0, duplicates 0; Final NPI: missing 0, extra 0, duplicates 0; Final TTE: missing 0, extra 0, duplicates 0",
+        "Initial: 10/10 planned checks; Final: 10/10 planned checks; applicable denominator not adjudicated",
+        "Generation $0.8982; repair $1.5442; total $2.4424 (estimate, not invoice)",
+        "Generation: input 2,520,278; output 38,043; uncached 96; cache read 2,409,533; cache write 110,649; text output 30,366; reasoning 7,677\nRepair: input 5,353,330; output 34,461; uncached 84; cache read 5,237,914; cache write 115,332; text output 19,865; reasoning 14,596\nTotal: input 7,873,608; output 72,504; uncached 180; cache read 7,647,447; cache write 225,981; text output 50,231; reasoning 22,273",
+        "End to end 37.29 min; agent total 32.02; generation 14.84; repair 17.18 min",
+        "Generation: 37 calls, 0 failed; Repair: 32 calls, 0 failed; total 69 calls, 0 failed"
+      ],
+      "source_sha256": {
+        "state.json": "cdf9cd2170219efa9e56b7210931138a9257d3289575fee89b6d964049e894c6",
+        "initial/evaluation.json": "1932d50c0031b1b69dbe53c3beb1d5a2c198d181a60cd144ce5449a4f3a44b33",
+        "initial/agent.json": "75c8452035287e73660fa139f13f8cdc2f870399a8568ce6762c4e9624e60516",
+        "initial/checkpoint-manifest.json": "53999ca65d5e243238bd866947c41c2fa7c9e7d9308c345331e130ac15a7c8b9",
+        "final/evaluation.json": "e577deedf6e8351c3271e877adcabb3bcb10df61bddd868d7faa4472b3efa853",
+        "final/agent.json": "4091684cbb441a46399a2017e22261085897e5aad51a2870376afd98720e7f23",
+        "final/checkpoint-manifest.json": "33945564b76f17f931fbd1681f5a40eb8a8ebbee7b1ace94cc739519c6a0cdf7"
+      },
+      "auxiliary_checks": [
+        {
+          "phase": "initial",
+          "check": "npi_mean_coverage",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 0,
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "initial",
+          "check": "npi_mean_value",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "npi_baseline_covariate",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_subject_coverage",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "initial",
+          "check": "tte_start_date",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_event_status",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_source_link",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_event_date",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_duration_arithmetic",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_censor_convention",
+          "status": "scored",
+          "assessed": 102,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "npi_mean_coverage",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 0,
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "final",
+          "check": "npi_mean_value",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "npi_baseline_covariate",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_subject_coverage",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "final",
+          "check": "tte_start_date",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_event_status",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_source_link",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_event_date",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_duration_arithmetic",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_censor_convention",
+          "status": "scored",
+          "assessed": 102,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        }
+      ],
+      "numeric": {
+        "initial": {
+          "dataset_set_complete": true,
+          "readable_dataset_package": true,
+          "deliverables_complete": true,
+          "semantic_reproduced": true,
+          "byte_reproduced": true,
+          "report_usable": false,
+          "validation_coverage_complete": false,
+          "dataset_rule_pairs": null,
+          "finding_instances": null,
+          "distinct_rules": null,
+          "severity_pairs": null,
+          "cost_estimate_usd": 0.8981978,
+          "tokens": {
+            "input": 96,
+            "output": 30366,
+            "reasoning": 7677,
+            "cache_read": 2409533,
+            "cache_write": 110649,
+            "normalized_input": 2520278,
+            "normalized_output": 38043
+          },
+          "agent_seconds": 890.3638786670053,
+          "tool_calls": 37,
+          "tool_failures": 0
+        },
+        "final": {
+          "dataset_set_complete": true,
+          "readable_dataset_package": true,
+          "deliverables_complete": true,
+          "semantic_reproduced": true,
+          "byte_reproduced": true,
+          "report_usable": true,
+          "validation_coverage_complete": true,
+          "dataset_rule_pairs": 26,
+          "finding_instances": 4708,
+          "distinct_rules": 10,
+          "severity_pairs": {
+            "Unassigned": 26
+          },
+          "cost_estimate_usd": 1.5442011,
+          "tokens": {
+            "input": 84,
+            "output": 19865,
+            "reasoning": 14596,
+            "cache_read": 5237914,
+            "cache_write": 115332,
+            "normalized_input": 5353330,
+            "normalized_output": 34461
+          },
+          "agent_seconds": 1031.0138082499907,
+          "tool_calls": 32,
+          "tool_failures": 0
+        },
+        "workflow_seconds": 2237.11909031868,
+        "content_guard_status": "review_required",
+        "content_guard_flags": 4,
+        "pair_reduction": null,
+        "guarded_pair_reduction": null,
+        "new_pairs": null,
+        "resolved_pairs": null
+      },
+      "unqualified_report_observations": [
+        {
+          "phase": "initial",
+          "qualification": "Unqualified observed report only; original runtime-integrity failure unchanged",
+          "dataset_rule_pairs": 39,
+          "finding_instances": 458163,
+          "distinct_rules": 12,
+          "report_sha256": "1d4419ce17b9262d05d2959b6c05663288d783007a1800e1dd639ff37afda53e"
+        }
+      ]
+    },
+    {
+      "model": "anthropic",
+      "condition": "p21_feedback",
+      "status": "completed",
+      "values": [
+        "Status completed; completed 1/1; final 13 readable datasets 1/1; file set 1/1; required deliverables 1/1",
+        "Semantic 1/1; exact bytes 1/1",
+        "Usable 1/1; full coverage True; validated 13/13",
+        "Initial: pairs 26, instances 4822, distinct rules 10; Final: pairs 24, instances 4074, distinct rules 9",
+        "Raw 2; guarded 2; no_detected_regression; 0 flags",
+        "Unassigned: 24 pairs",
+        "New 0; resolved 2; persistent 24",
+        "Initial: 0/254 errors/assessed; Final: 0/254 errors/assessed",
+        "Initial: 0/254 errors/assessed; Final: 0/254 errors/assessed",
+        "Initial: 0/152 errors/assessed; Final: 0/152 errors/assessed",
+        "Initial NPI: missing 0, extra 20, duplicates 0; Initial TTE: missing 0, extra 0, duplicates 0; Final NPI: missing 0, extra 20, duplicates 0; Final TTE: missing 0, extra 0, duplicates 0",
+        "Initial: 10/10 planned checks; Final: 10/10 planned checks; applicable denominator not adjudicated",
+        "Generation $5.2397; repair $1.0276; total $6.2673 (estimate, not invoice)",
+        "Generation: input 21,151,663; output 205,496; uncached 174; cache read 20,705,983; cache write 445,506; text output 112,884; reasoning 92,612\nRepair: input 6,612,394; output 25,429; uncached 30; cache read 6,565,676; cache write 46,688; text output 8,756; reasoning 16,673\nTotal: input 27,764,057; output 230,925; uncached 204; cache read 27,271,659; cache write 492,194; text output 121,640; reasoning 109,285",
+        "End to end 38.52 min; agent total 34.08; generation 29.30; repair 4.78 min",
+        "Generation: 86 calls, 0 failed; Repair: 13 calls, 0 failed; total 99 calls, 0 failed"
+      ],
+      "source_sha256": {
+        "state.json": "6e52fa02fa847038ec89812be6b761ff5d5c561d6b43d1e6a089c45bb7b6b0d8",
+        "initial/evaluation.json": "cf48b38fe25f62aded01f7e0a0c98e683d516ad045d4b4b048c76ec98269b8f2",
+        "initial/agent.json": "92a4da9266205e5bf3341137287cbccaedbfcc8f6c80ba67033cfb965e69ef6b",
+        "initial/checkpoint-manifest.json": "5ebde2524dea541e770c979d82a1ef9edf23562105e625c4942a46ca42d92555",
+        "final/evaluation.json": "dd2416f8522ab4f8553e63ec1a3ed7c81b877e58b57fda0c0f1f8370e36a379c",
+        "final/agent.json": "b080fa2124bea7df039923673fa60e8a79b5cd834a3cca858870c3f67aae38a8",
+        "final/checkpoint-manifest.json": "36a3ce72a944f021de86d59bfe350aaba5bc3015e74597f0799dfe249d244ded"
+      },
+      "auxiliary_checks": [
+        {
+          "phase": "initial",
+          "check": "npi_mean_coverage",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 20,
+          "missing": 0,
+          "extra": 20,
+          "duplicates": 0
+        },
+        {
+          "phase": "initial",
+          "check": "npi_mean_value",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "npi_baseline_covariate",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_subject_coverage",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "initial",
+          "check": "tte_start_date",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_event_status",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_source_link",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_event_date",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_duration_arithmetic",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_censor_convention",
+          "status": "scored",
+          "assessed": 102,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "npi_mean_coverage",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 20,
+          "missing": 0,
+          "extra": 20,
+          "duplicates": 0
+        },
+        {
+          "phase": "final",
+          "check": "npi_mean_value",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "npi_baseline_covariate",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_subject_coverage",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "final",
+          "check": "tte_start_date",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_event_status",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_source_link",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_event_date",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_duration_arithmetic",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_censor_convention",
+          "status": "scored",
+          "assessed": 102,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        }
+      ],
+      "numeric": {
+        "initial": {
+          "dataset_set_complete": true,
+          "readable_dataset_package": true,
+          "deliverables_complete": true,
+          "semantic_reproduced": true,
+          "byte_reproduced": true,
+          "report_usable": true,
+          "validation_coverage_complete": true,
+          "dataset_rule_pairs": 26,
+          "finding_instances": 4822,
+          "distinct_rules": 10,
+          "severity_pairs": {
+            "Unassigned": 26
+          },
+          "cost_estimate_usd": 5.2396713,
+          "tokens": {
+            "input": 174,
+            "output": 112884,
+            "reasoning": 92612,
+            "cache_read": 20705983,
+            "cache_write": 445506,
+            "normalized_input": 21151663,
+            "normalized_output": 205496
+          },
+          "agent_seconds": 1757.874597875023,
+          "tool_calls": 86,
+          "tool_failures": 0
+        },
+        "final": {
+          "dataset_set_complete": true,
+          "readable_dataset_package": true,
+          "deliverables_complete": true,
+          "semantic_reproduced": true,
+          "byte_reproduced": true,
+          "report_usable": true,
+          "validation_coverage_complete": true,
+          "dataset_rule_pairs": 24,
+          "finding_instances": 4074,
+          "distinct_rules": 9,
+          "severity_pairs": {
+            "Unassigned": 24
+          },
+          "cost_estimate_usd": 1.0276376,
+          "tokens": {
+            "input": 30,
+            "output": 8756,
+            "reasoning": 16673,
+            "cache_read": 6565676,
+            "cache_write": 46688,
+            "normalized_input": 6612394,
+            "normalized_output": 25429
+          },
+          "agent_seconds": 286.8812591250171,
+          "tool_calls": 13,
+          "tool_failures": 0
+        },
+        "workflow_seconds": 2311.1861860752106,
+        "content_guard_status": "no_detected_regression",
+        "content_guard_flags": 0,
+        "pair_reduction": 2,
+        "guarded_pair_reduction": 2,
+        "new_pairs": [],
+        "resolved_pairs": [
+          [
+            "ADLBC",
+            "SD1231"
+          ],
+          [
+            "ADQSNPIX",
+            "SD1231"
+          ]
+        ]
+      },
+      "unqualified_report_observations": []
+    },
+    {
+      "model": "anthropic",
+      "condition": "self_review",
+      "status": "completed",
+      "values": [
+        "Status completed; completed 1/1; final 13 readable datasets 1/1; file set 1/1; required deliverables 1/1",
+        "Semantic 1/1; exact bytes 1/1",
+        "Usable 1/1; full coverage True; validated 13/13",
+        "Initial: pairs Unavailable, instances Unavailable, distinct rules Unavailable; Final: pairs 26, instances 4822, distinct rules 10\nUnqualified observed initial: 26 pairs, 4822 instances (not scored)",
+        "Raw Unavailable; guarded Unavailable; no_detected_regression; 0 flags",
+        "Unassigned: 26 pairs",
+        "Unavailable",
+        "Initial: 0/254 errors/assessed; Final: 0/254 errors/assessed",
+        "Initial: 0/254 errors/assessed; Final: 0/254 errors/assessed",
+        "Initial: 0/152 errors/assessed; Final: 0/152 errors/assessed",
+        "Initial NPI: missing 0, extra 20, duplicates 0; Initial TTE: missing 0, extra 0, duplicates 0; Final NPI: missing 0, extra 20, duplicates 0; Final TTE: missing 0, extra 0, duplicates 0",
+        "Initial: 10/10 planned checks; Final: 10/10 planned checks; applicable denominator not adjudicated",
+        "Generation $6.1569; repair $0.8805; total $7.0374 (estimate, not invoice)",
+        "Generation: input 28,230,807; output 215,193; uncached 194; cache read 27,738,328; cache write 492,285; text output 112,209; reasoning 102,984\nRepair: input 6,600,795; output 16,213; uncached 28; cache read 6,576,487; cache write 24,280; text output 6,602; reasoning 9,611\nTotal: input 34,831,602; output 231,406; uncached 222; cache read 34,314,815; cache write 516,565; text output 118,811; reasoning 112,595",
+        "End to end 45.08 min; agent total 40.74; generation 35.23; repair 5.51 min",
+        "Generation: 95 calls, 0 failed; Repair: 12 calls, 0 failed; total 107 calls, 0 failed"
+      ],
+      "source_sha256": {
+        "state.json": "228095564165bf8adeab51890a32ad02191089534782efb2526cd0745869ca68",
+        "initial/evaluation.json": "78ebc8f22e3da529f2123fa3ce1e73bf72f3e3c0d8ede30fe50266f7695f7076",
+        "initial/agent.json": "7de82a28258d2106ef4be89eecc04a67ecc48ec9a46af274d28f7db973fe9b74",
+        "initial/checkpoint-manifest.json": "9f176e791c84f5fc2316f365e5ab36c6e4badc42e4c7002f8e906d5cb9aa07ad",
+        "final/evaluation.json": "426dfafdc0b7df2e07391515c191d55d5eb93849012f2c7e792f3ae2f5dc5d9e",
+        "final/agent.json": "5b863694b918df160b64c10740308dc40ec513a498e4e73c927415088e9fd41c",
+        "final/checkpoint-manifest.json": "3fd75dacf84f1ecb5e00634a61856b008233a7746e41c05191dce57101d00d89"
+      },
+      "auxiliary_checks": [
+        {
+          "phase": "initial",
+          "check": "npi_mean_coverage",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 20,
+          "missing": 0,
+          "extra": 20,
+          "duplicates": 0
+        },
+        {
+          "phase": "initial",
+          "check": "npi_mean_value",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "npi_baseline_covariate",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_subject_coverage",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "initial",
+          "check": "tte_start_date",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_event_status",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_source_link",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_event_date",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_duration_arithmetic",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_censor_convention",
+          "status": "scored",
+          "assessed": 102,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "npi_mean_coverage",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 20,
+          "missing": 0,
+          "extra": 20,
+          "duplicates": 0
+        },
+        {
+          "phase": "final",
+          "check": "npi_mean_value",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "npi_baseline_covariate",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_subject_coverage",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "final",
+          "check": "tte_start_date",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_event_status",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_source_link",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_event_date",
+          "status": "scored",
+          "assessed": 152,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_duration_arithmetic",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_censor_convention",
+          "status": "scored",
+          "assessed": 102,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        }
+      ],
+      "numeric": {
+        "initial": {
+          "dataset_set_complete": true,
+          "readable_dataset_package": true,
+          "deliverables_complete": true,
+          "semantic_reproduced": true,
+          "byte_reproduced": true,
+          "report_usable": false,
+          "validation_coverage_complete": false,
+          "dataset_rule_pairs": null,
+          "finding_instances": null,
+          "distinct_rules": null,
+          "severity_pairs": null,
+          "cost_estimate_usd": 6.1568633,
+          "tokens": {
+            "input": 194,
+            "output": 112209,
+            "reasoning": 102984,
+            "cache_read": 27738328,
+            "cache_write": 492285,
+            "normalized_input": 28230807,
+            "normalized_output": 215193
+          },
+          "agent_seconds": 2113.5678296670085,
+          "tool_calls": 95,
+          "tool_failures": 0
+        },
+        "final": {
+          "dataset_set_complete": true,
+          "readable_dataset_package": true,
+          "deliverables_complete": true,
+          "semantic_reproduced": true,
+          "byte_reproduced": true,
+          "report_usable": true,
+          "validation_coverage_complete": true,
+          "dataset_rule_pairs": 26,
+          "finding_instances": 4822,
+          "distinct_rules": 10,
+          "severity_pairs": {
+            "Unassigned": 26
+          },
+          "cost_estimate_usd": 0.8805347,
+          "tokens": {
+            "input": 28,
+            "output": 6602,
+            "reasoning": 9611,
+            "cache_read": 6576487,
+            "cache_write": 24280,
+            "normalized_input": 6600795,
+            "normalized_output": 16213
+          },
+          "agent_seconds": 330.782871125004,
+          "tool_calls": 12,
+          "tool_failures": 0
+        },
+        "workflow_seconds": 2704.8521389961243,
+        "content_guard_status": "no_detected_regression",
+        "content_guard_flags": 0,
+        "pair_reduction": null,
+        "guarded_pair_reduction": null,
+        "new_pairs": null,
+        "resolved_pairs": null
+      },
+      "unqualified_report_observations": [
+        {
+          "phase": "initial",
+          "qualification": "Unqualified observed report only; original runtime-integrity failure unchanged",
+          "dataset_rule_pairs": 26,
+          "finding_instances": 4822,
+          "distinct_rules": 10,
+          "report_sha256": "92fd5b5f9db9d05492bbf98a8e1101a16ea039135dab8b075f66e5c10d57d24b"
+        }
+      ]
+    },
+    {
+      "model": "google",
+      "condition": "p21_feedback",
+      "status": "completed",
+      "values": [
+        "Status completed; completed 1/1; final 13 readable datasets 1/1; file set 1/1; required deliverables 1/1",
+        "Semantic 1/1; exact bytes 0/1",
+        "Usable 1/1; full coverage True; validated 13/13",
+        "Initial: pairs 49, instances 1541131, distinct rules 7; Final: pairs 15, instances 35, distinct rules 4",
+        "Raw 34; guarded Unavailable; review_required; 77 flags",
+        "Unassigned: 15 pairs",
+        "New 0; resolved 34; persistent 15",
+        "Initial: Unavailable (assessed 0); Final: Unavailable (assessed 0)",
+        "Initial: Unavailable (assessed 0); Final: Unavailable (assessed 0)",
+        "Initial: Unavailable (assessed 0); Final: Unavailable (assessed 0)",
+        "Initial NPI: missing 234, extra 0, duplicates 0; Initial TTE: missing 254, extra 0, duplicates 0; Final NPI: missing 234, extra 0, duplicates 0; Final TTE: missing 0, extra 0, duplicates 0",
+        "Initial: 2/10 planned checks; Final: 6/10 planned checks; applicable denominator not adjudicated",
+        "Generation $0.9010; repair $1.9698; total $2.8708 (estimate, not invoice)",
+        "Generation: input 1,658,043; output 15,194; uncached 215,040; cache read 1,443,003; cache write 0; text output 8,764; reasoning 6,430\nRepair: input 6,062,350; output 20,713; uncached 282,657; cache read 5,779,693; cache write 0; text output 13,244; reasoning 7,469\nTotal: input 7,720,393; output 35,907; uncached 497,697; cache read 7,222,696; cache write 0; text output 22,008; reasoning 13,899",
+        "End to end 39.49 min; agent total 36.36; generation 21.71; repair 14.65 min",
+        "Generation: 57 calls, 0 failed; Repair: 90 calls, 1 failed; total 147 calls, 1 failed"
+      ],
+      "source_sha256": {
+        "state.json": "ee9551bcbbd1c8dd96fc30d027266a42e61607afda1db894958a9eacecf26bf9",
+        "initial/evaluation.json": "4610d5451d979887917f4f4b12118fe8c8b9fa16320d9f5dcca04611ece32c8b",
+        "initial/agent.json": "62fb854a0b86cc115a053667afa19c8a3eb271139ef2992b4bb82dfbbd428569",
+        "initial/checkpoint-manifest.json": "3c719a63e94e12d7cab4f603e5deb6cb7eb1df5cedff70def9fa515c168de676",
+        "final/evaluation.json": "982f771d509f9fa70be710bea829b198f1a8d10a61fa84ad8e3e1f6cecaea21b",
+        "final/agent.json": "5928f8823b0a2ca89434c88b3b704c75097cc1395b23ccbf4f660faf8e686cbd",
+        "final/checkpoint-manifest.json": "57d923eb5ffad35ac5f2ee9832d9ff00985e293709bbde7c2bdb1afb93781973"
+      },
+      "auxiliary_checks": [
+        {
+          "phase": "initial",
+          "check": "npi_mean_coverage",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 234,
+          "missing": 234,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "initial",
+          "check": "npi_mean_value",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "npi_baseline_covariate",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_subject_coverage",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 254,
+          "missing": 254,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "initial",
+          "check": "tte_start_date",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_event_status",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_source_link",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_event_date",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_duration_arithmetic",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_censor_convention",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "npi_mean_coverage",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 234,
+          "missing": 234,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "final",
+          "check": "npi_mean_value",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "npi_baseline_covariate",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_subject_coverage",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "final",
+          "check": "tte_start_date",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_event_status",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_source_link",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_event_date",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_duration_arithmetic",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_censor_convention",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 254,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        }
+      ],
+      "numeric": {
+        "initial": {
+          "dataset_set_complete": true,
+          "readable_dataset_package": true,
+          "deliverables_complete": true,
+          "semantic_reproduced": true,
+          "byte_reproduced": false,
+          "report_usable": true,
+          "validation_coverage_complete": true,
+          "dataset_rule_pairs": 49,
+          "finding_instances": 1541131,
+          "distinct_rules": 7,
+          "severity_pairs": {
+            "Unassigned": 49
+          },
+          "cost_estimate_usd": 0.9010086,
+          "tokens": {
+            "input": 215040,
+            "output": 8764,
+            "reasoning": 6430,
+            "cache_read": 1443003,
+            "cache_write": 0,
+            "normalized_input": 1658043,
+            "normalized_output": 15194
+          },
+          "agent_seconds": 1302.6540113340016,
+          "tool_calls": 57,
+          "tool_failures": 0
+        },
+        "final": {
+          "dataset_set_complete": true,
+          "readable_dataset_package": true,
+          "deliverables_complete": true,
+          "semantic_reproduced": true,
+          "byte_reproduced": false,
+          "report_usable": true,
+          "validation_coverage_complete": true,
+          "dataset_rule_pairs": 15,
+          "finding_instances": 35,
+          "distinct_rules": 4,
+          "severity_pairs": {
+            "Unassigned": 15
+          },
+          "cost_estimate_usd": 1.9698086,
+          "tokens": {
+            "input": 282657,
+            "output": 13244,
+            "reasoning": 7469,
+            "cache_read": 5779693,
+            "cache_write": 0,
+            "normalized_input": 6062350,
+            "normalized_output": 20713
+          },
+          "agent_seconds": 878.9509883330029,
+          "tool_calls": 90,
+          "tool_failures": 1
+        },
+        "workflow_seconds": 2369.4272570610046,
+        "content_guard_status": "review_required",
+        "content_guard_flags": 77,
+        "pair_reduction": 34,
+        "guarded_pair_reduction": null,
+        "new_pairs": [],
+        "resolved_pairs": [
+          [
+            "ADAE",
+            "AD0041A"
+          ],
+          [
+            "ADAE",
+            "AD0376"
+          ],
+          [
+            "ADCM",
+            "AD0041A"
+          ],
+          [
+            "ADCM",
+            "AD0376"
+          ],
+          [
+            "ADDS",
+            "AD0041A"
+          ],
+          [
+            "ADDS",
+            "AD0376"
+          ],
+          [
+            "ADEX",
+            "AD0041A"
+          ],
+          [
+            "ADEX",
+            "AD0376"
+          ],
+          [
+            "ADLBC",
+            "AD0041A"
+          ],
+          [
+            "ADLBC",
+            "AD0196"
+          ],
+          [
+            "ADLBC",
+            "AD0376"
+          ],
+          [
+            "ADLBH",
+            "AD0041A"
+          ],
+          [
+            "ADLBH",
+            "AD0196"
+          ],
+          [
+            "ADLBH",
+            "AD0376"
+          ],
+          [
+            "ADLBHY",
+            "AD0041A"
+          ],
+          [
+            "ADLBHY",
+            "AD0196"
+          ],
+          [
+            "ADLBHY",
+            "AD0376"
+          ],
+          [
+            "ADQSADAS",
+            "AD0041A"
+          ],
+          [
+            "ADQSADAS",
+            "AD0196"
+          ],
+          [
+            "ADQSADAS",
+            "AD0376"
+          ],
+          [
+            "ADQSCIBC",
+            "AD0041A"
+          ],
+          [
+            "ADQSCIBC",
+            "AD0196"
+          ],
+          [
+            "ADQSCIBC",
+            "AD0376"
+          ],
+          [
+            "ADQSNPIX",
+            "AD0041A"
+          ],
+          [
+            "ADQSNPIX",
+            "AD0196"
+          ],
+          [
+            "ADQSNPIX",
+            "AD0376"
+          ],
+          [
+            "ADSL",
+            "AD0041A"
+          ],
+          [
+            "ADSL",
+            "AD0376"
+          ],
+          [
+            "ADTTE",
+            "AD0041A"
+          ],
+          [
+            "ADTTE",
+            "AD0196"
+          ],
+          [
+            "ADTTE",
+            "AD0376"
+          ],
+          [
+            "ADVS",
+            "AD0041A"
+          ],
+          [
+            "ADVS",
+            "AD0196"
+          ],
+          [
+            "ADVS",
+            "AD0376"
+          ]
+        ]
+      },
+      "unqualified_report_observations": []
+    },
+    {
+      "model": "google",
+      "condition": "self_review",
+      "status": "completed",
+      "values": [
+        "Status completed; completed 1/1; final 13 readable datasets 1/1; file set 1/1; required deliverables 1/1",
+        "Semantic 0/1; exact bytes 0/1",
+        "Usable 0/1; full coverage False; validated Unavailable; reason: P21 runtime drift during validation",
+        "Initial: pairs Unavailable, instances Unavailable, distinct rules Unavailable; Final: pairs Unavailable, instances Unavailable, distinct rules Unavailable\nUnqualified observed initial: 77 pairs, 945842 instances (not scored)\nUnqualified observed final: 63 pairs, 694458 instances (not scored)",
+        "Raw Unavailable; guarded Unavailable; review_required; 9 flags",
+        "Unavailable; no usable report",
+        "Unavailable",
+        "Initial: Unavailable (assessed 0); Final: Unavailable (assessed 0)",
+        "Initial: Unavailable (assessed 0); Final: Unavailable (assessed 0)",
+        "Initial: Unavailable (assessed None); Final: 224/224 errors/assessed",
+        "Initial NPI: missing 234, extra 0, duplicates 0; Initial TTE: missing 254, extra 0, duplicates 0; Final NPI: missing 234, extra 0, duplicates 0; Final TTE: missing 0, extra 0, duplicates 0",
+        "Initial: 2/10 planned checks; Final: 8/10 planned checks; applicable denominator not adjudicated",
+        "Generation $0.6205; repair $0.8079; total $1.4284 (estimate, not invoice)",
+        "Generation: input 1,013,701; output 17,821; uncached 113,264; cache read 900,437; cache write 0; text output 11,112; reasoning 6,709\nRepair: input 1,927,285; output 14,842; uncached 135,742; cache read 1,791,543; cache write 0; text output 8,915; reasoning 5,927\nTotal: input 2,940,986; output 32,663; uncached 249,006; cache read 2,691,980; cache write 0; text output 20,027; reasoning 12,636",
+        "End to end 29.08 min; agent total 26.59; generation 19.10; repair 7.49 min",
+        "Generation: 37 calls, 0 failed; Repair: 27 calls, 0 failed; total 64 calls, 0 failed"
+      ],
+      "source_sha256": {
+        "state.json": "a50b54676a63a4ebdc8f62506f735c38d977a116febc119bfe3d4938c84e6f4c",
+        "initial/evaluation.json": "6e49ac81abf54a4d7127f71f5d8e14c593afc7263abd18c69bd3d30fd01a7bc7",
+        "initial/agent.json": "20554d58cbfd385e8222d95e08f995836dd501c6e5a95bb4b7f0dce58ecbb6c1",
+        "initial/checkpoint-manifest.json": "b863b5d1576a2644b285abd162a6c463b9257261be7d0d7b8ff4418bc9f48919",
+        "final/evaluation.json": "bd6edcac7ceeec28b0787be0b1df3291c84cf0730c5b473a0c15b45a9d29e090",
+        "final/agent.json": "18ad2328accb625e2e0f8b5bca2508b8bdf15726fe144749d280267a7a4b282e",
+        "final/checkpoint-manifest.json": "a899bb209a6636269f444b1651af81267d149cc569981970bfbaaa15243f2e9c"
+      },
+      "auxiliary_checks": [
+        {
+          "phase": "initial",
+          "check": "npi_mean_coverage",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 234,
+          "missing": 234,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "initial",
+          "check": "npi_mean_value",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "npi_baseline_covariate",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_subject_coverage",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 254,
+          "missing": 254,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "initial",
+          "check": "tte_start_date",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_event_status",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_source_link",
+          "status": "unavailable",
+          "assessed": null,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_event_date",
+          "status": "unavailable",
+          "assessed": null,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_duration_arithmetic",
+          "status": "unavailable",
+          "assessed": null,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "initial",
+          "check": "tte_censor_convention",
+          "status": "unavailable",
+          "assessed": null,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "npi_mean_coverage",
+          "status": "scored",
+          "assessed": 234,
+          "errors": 234,
+          "missing": 234,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "final",
+          "check": "npi_mean_value",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "npi_baseline_covariate",
+          "status": "unavailable",
+          "assessed": 0,
+          "errors": null,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_subject_coverage",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": 0,
+          "extra": 0,
+          "duplicates": 0
+        },
+        {
+          "phase": "final",
+          "check": "tte_start_date",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 0,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_event_status",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 224,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_source_link",
+          "status": "scored",
+          "assessed": 224,
+          "errors": 224,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_event_date",
+          "status": "scored",
+          "assessed": 224,
+          "errors": 224,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_duration_arithmetic",
+          "status": "scored",
+          "assessed": 254,
+          "errors": 4,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        },
+        {
+          "phase": "final",
+          "check": "tte_censor_convention",
+          "status": "scored",
+          "assessed": 30,
+          "errors": 30,
+          "missing": null,
+          "extra": null,
+          "duplicates": null
+        }
+      ],
+      "numeric": {
+        "initial": {
+          "dataset_set_complete": true,
+          "readable_dataset_package": true,
+          "deliverables_complete": true,
+          "semantic_reproduced": false,
+          "byte_reproduced": false,
+          "report_usable": false,
+          "validation_coverage_complete": false,
+          "dataset_rule_pairs": null,
+          "finding_instances": null,
+          "distinct_rules": null,
+          "severity_pairs": null,
+          "cost_estimate_usd": 0.6204674,
+          "tokens": {
+            "input": 113264,
+            "output": 11112,
+            "reasoning": 6709,
+            "cache_read": 900437,
+            "cache_write": 0,
+            "normalized_input": 1013701,
+            "normalized_output": 17821
+          },
+          "agent_seconds": 1146.0729226669937,
+          "tool_calls": 37,
+          "tool_failures": 0
+        },
+        "final": {
+          "dataset_set_complete": true,
+          "readable_dataset_package": true,
+          "deliverables_complete": true,
+          "semantic_reproduced": false,
+          "byte_reproduced": false,
+          "report_usable": false,
+          "validation_coverage_complete": false,
+          "dataset_rule_pairs": null,
+          "finding_instances": null,
+          "distinct_rules": null,
+          "severity_pairs": null,
+          "cost_estimate_usd": 0.8078966,
+          "tokens": {
+            "input": 135742,
+            "output": 8915,
+            "reasoning": 5927,
+            "cache_read": 1791543,
+            "cache_write": 0,
+            "normalized_input": 1927285,
+            "normalized_output": 14842
+          },
+          "agent_seconds": 449.32965958397835,
+          "tool_calls": 27,
+          "tool_failures": 0
+        },
+        "workflow_seconds": 1745.0062370300293,
+        "content_guard_status": "review_required",
+        "content_guard_flags": 9,
+        "pair_reduction": null,
+        "guarded_pair_reduction": null,
+        "new_pairs": null,
+        "resolved_pairs": null
+      },
+      "unqualified_report_observations": [
+        {
+          "phase": "initial",
+          "qualification": "Unqualified observed report only; original runtime-integrity failure unchanged",
+          "dataset_rule_pairs": 77,
+          "finding_instances": 945842,
+          "distinct_rules": 10,
+          "report_sha256": "e98e36e1a3d066b941197ddfb2f0f603928bbe3a7b19ed40f6509d91dc16f280"
+        },
+        {
+          "phase": "final",
+          "qualification": "Unqualified observed report only; original runtime-integrity failure unchanged",
+          "dataset_rule_pairs": 63,
+          "finding_instances": 694458,
+          "distinct_rules": 9,
+          "report_sha256": "b18cda6783bd4334fa82a397d97562a1e06e9755dfcd82463add1fa7b2fc9e91"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Descriptive only; baseline smokes were already observed before self-review runs.",
+    "All workflows use the same OpenCode framework; ReAct is not a separate condition.",
+    "Costs are normalized telemetry estimates, not actual invoices or total historical qualification expenditure.",
+    "Input includes cached read/write; output includes reasoning. Provider billing semantics are not independently reconciled.",
+    "Applicable check denominator is not adjudicated; report planned-check coverage.",
+    "Content guards and selected derivation checks do not establish full clinical correctness.",
+    "Self-review P21 outcomes affected by the runtime-integrity rule remain unavailable. Saved-report observations are explicitly unqualified diagnostic counts, not substituted scores or evidence of effective improvement.",
+    "A host-only P21 diagnostic overlapped Google review. After Google completed, scheduling paused; the original seal was verified before remaining providers resumed. Timing is descriptive and may include host-load effects."
+  ],
+  "technical_adjudication": {
+    "status": "reviewed; original seal verified; scheduling resumed",
+    "original_initial_p21": "unavailable; unchanged",
+    "diagnostic_only": true,
+    "diagnostic_changed_paths": [
+      "lib/engines/app.data",
+      "lib/p21-client-1.0.9.log"
+    ],
+    "diagnostic_parser": "parseable full-dataset report, but client callback exceptions present; not substituted for frozen results",
+    "original_temporary_cache_diff": "not retained by original evaluator; exact original changed paths cannot be reconstructed",
+    "main_rule_changes": false,
+    "agent_retries": 0,
+    "decision": "After Google completes, verify original seal and retain original scores; then resume remaining independent providers under unchanged rules. Any future scoring fix requires separate amendment and consistent retrospective rescoring, never a silent replacement.",
+    "timing_qualification": "Host-only P21 diagnostic overlapped Google review; timing is descriptive and may include host-load effects.",
+    "resumed_unix": 1792606526.21929,
+    "main_seal_verified": true
+  }
+}

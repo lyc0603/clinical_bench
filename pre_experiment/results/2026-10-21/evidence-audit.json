@@ -1,0 +1,134 @@
+{
+  "excluded_from_main": true,
+  "main_seal_unchanged": true,
+  "source_seal_sha256": "9f6b9a396d92e29825cfdb3135da94d5d2982ee9c3ac664503275a8278f751db",
+  "main_started": false,
+  "checks": [
+    {
+      "model": "openai",
+      "condition": "p21_feedback",
+      "checkpoint_integrity": "passed",
+      "completion_and_session_continuity": "passed",
+      "model_identity": "passed",
+      "prompt_match": "passed",
+      "source_evaluation_sha256": {
+        "initial": "28e6bed2df33c5a7a6dff6537803535521a393e56f2c2a545a3e66c97aff3eaa",
+        "final": "80c3f064f6a6a9dd0cdb806feb5be6e6a7173041cd7b272f6431f51607836f07"
+      }
+    },
+    {
+      "model": "openai",
+      "condition": "self_review",
+      "checkpoint_integrity": "passed",
+      "completion_and_session_continuity": "passed",
+      "model_identity": "passed",
+      "prompt_match": "passed",
+      "source_evaluation_sha256": {
+        "initial": "1932d50c0031b1b69dbe53c3beb1d5a2c198d181a60cd144ce5449a4f3a44b33",
+        "final": "e577deedf6e8351c3271e877adcabb3bcb10df61bddd868d7faa4472b3efa853"
+      }
+    },
+    {
+      "model": "anthropic",
+      "condition": "p21_feedback",
+      "checkpoint_integrity": "passed",
+      "completion_and_session_continuity": "passed",
+      "model_identity": "passed",
+      "prompt_match": "passed",
+      "source_evaluation_sha256": {
+        "initial": "cf48b38fe25f62aded01f7e0a0c98e683d516ad045d4b4b048c76ec98269b8f2",
+        "final": "dd2416f8522ab4f8553e63ec1a3ed7c81b877e58b57fda0c0f1f8370e36a379c"
+      }
+    },
+    {
+      "model": "anthropic",
+      "condition": "self_review",
+      "checkpoint_integrity": "passed",
+      "completion_and_session_continuity": "passed",
+      "model_identity": "passed",
+      "prompt_match": "passed",
+      "source_evaluation_sha256": {
+        "initial": "78ebc8f22e3da529f2123fa3ce1e73bf72f3e3c0d8ede30fe50266f7695f7076",
+        "final": "426dfafdc0b7df2e07391515c191d55d5eb93849012f2c7e792f3ae2f5dc5d9e"
+      }
+    },
+    {
+      "model": "google",
+      "condition": "p21_feedback",
+      "checkpoint_integrity": "passed",
+      "completion_and_session_continuity": "passed",
+      "model_identity": "passed",
+      "prompt_match": "passed",
+      "source_evaluation_sha256": {
+        "initial": "4610d5451d979887917f4f4b12118fe8c8b9fa16320d9f5dcca04611ece32c8b",
+        "final": "982f771d509f9fa70be710bea829b198f1a8d10a61fa84ad8e3e1f6cecaea21b"
+      }
+    },
+    {
+      "model": "google",
+      "condition": "self_review",
+      "checkpoint_integrity": "passed",
+      "completion_and_session_continuity": "passed",
+      "model_identity": "passed",
+      "prompt_match": "passed",
+      "source_evaluation_sha256": {
+        "initial": "6e49ac81abf54a4d7127f71f5d8e14c593afc7263abd18c69bd3d30fd01a7bc7",
+        "final": "bd6edcac7ceeec28b0787be0b1df3291c84cf0730c5b473a0c15b45a9d29e090"
+      }
+    }
+  ],
+  "finder_metadata_exclusions": [
+    {
+      "location": "anthropic/p21_feedback/final",
+      "path": ".DS_Store",
+      "sha256": "d9dbb6f2362e233cca86955c4c21a676acd1812e745ec0d72fe0872daaeed03c"
+    },
+    {
+      "location": "anthropic/p21_feedback/final",
+      "path": "replay/.DS_Store",
+      "sha256": "d363a6825944cc3e87dfba64cdf9aaf12ed7a98843e51a664e5bdbc9364fefb3"
+    },
+    {
+      "location": "anthropic/p21_feedback/final",
+      "path": "replay/output/.DS_Store",
+      "sha256": "541eb088a70531edec2687cb168dbe8e5bf7fc815e9d0e864fffa7f9cf35d3fa"
+    },
+    {
+      "location": "anthropic/p21_feedback/final",
+      "path": "replay/output/adam/.DS_Store",
+      "sha256": "fa4512f5a76a4a29cc3d78ec924f9bbc6858cecaa1200027ddb8540a55dcfce7"
+    },
+    {
+      "location": "anthropic/p21_feedback/final",
+      "path": "replay/output 2/.DS_Store",
+      "sha256": "541eb088a70531edec2687cb168dbe8e5bf7fc815e9d0e864fffa7f9cf35d3fa"
+    },
+    {
+      "location": "anthropic/p21_feedback/final",
+      "path": "replay/output 2/adam/.DS_Store",
+      "sha256": "274f522cf7cf2341af45da8c6832ff8a5b05d76d6d512208e29e63ea9af2de73"
+    },
+    {
+      "location": "anthropic/p21_feedback/final",
+      "path": "workspace/.DS_Store",
+      "sha256": "fd473ccf4c284c1525979c4c7fa770813f14738942d086ad30bbe9e7face4862"
+    },
+    {
+      "location": "anthropic/p21_feedback/final",
+      "path": "workspace/output/.DS_Store",
+      "sha256": "541eb088a70531edec2687cb168dbe8e5bf7fc815e9d0e864fffa7f9cf35d3fa"
+    },
+    {
+      "location": "anthropic/p21_feedback/final/workspace",
+      "path": ".DS_Store",
+      "sha256": "fd473ccf4c284c1525979c4c7fa770813f14738942d086ad30bbe9e7face4862"
+    },
+    {
+      "location": "anthropic/p21_feedback/final/workspace",
+      "path": "output/.DS_Store",
+      "sha256": "541eb088a70531edec2687cb168dbe8e5bf7fc815e9d0e864fffa7f9cf35d3fa"
+    }
+  ],
+  "metadata_policy": "Only .DS_Store Finder metadata ignored for comparison; files retained and hashes recorded. No evidence files changed.",
+  "limitation": "Consistency with retained local manifests; not external signed attestation."
+}

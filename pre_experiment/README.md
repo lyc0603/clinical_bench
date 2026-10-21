@@ -34,3 +34,7 @@ values, guard flags, conditional correctness, timing, normalized token buckets
 and estimated costs explicitly. Never publish credentials, patient-level source
 data or dictionary files. Results do not authorize main-study launch before
 independent review of the scientific design.
+
+## Completed exploratory results
+
+The [six-example report and 16-metric comparison](results/2026-10-21/README.md) include Excel, CSV, JSON and an evidence audit. P21 runtime-integrity rejections affect several self-review checkpoints; review this issue before formal main-study launch.
