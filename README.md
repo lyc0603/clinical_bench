@@ -86,10 +86,12 @@ license covers repository code, not separately licensed study/vendor materials.
 
 ## Excluded exploratory pre-experiment
 
-See the [six-workflow, 16-metric comparison](pre_experiment/results/2026-10-21/README.md). These examples are excluded from the main study. P21 runtime-integrity rejections require review before formal launch; prior freeze/preflight completion does not resolve this issue.
+See the latest [paired pilot: 16 metrics across nine endpoints](pre_experiment/results/paired-2026-10-21/README.md), with Excel, CSV, JSON and an evidence audit. It combines three new paired initial-only/self-review sessions with historical P21-feedback controls. OpenAI's original validator failure and Google's final reproduction failure are retained. These exploratory results are excluded from the formal main study, which has not started.
+
+The [earlier six-workflow comparison](pre_experiment/results/2026-10-21/README.md) remains archived with its original runtime-integrity rejections and follow-up.
 
 ### P21 amendment: new qualification and freeze required
 
 The [evaluator amendment](docs/p21-evaluator-amendment.md) now distinguishes client errors from immutable runtime changes and retains diagnostics. Existing pilot scores remain unchanged. The old main-study freeze does not authorize this changed evaluator: formal execution must wait for review, qualification and a new versioned freeze.
 
-For a new initial-only/self-review pre-experiment, follow the [paired pilot workflow](pre_experiment/PAIRED-PILOT.md). It requires current P21 qualification and its own lock; no new paid run has started.
+The [paired pilot workflow](pre_experiment/PAIRED-PILOT.md) and [validator continuation](pre_experiment/RECOVERY.md) document the qualified, separately frozen execution. The completed results describe the technical amendment and limits. Formal main-study launch requires its own current freeze and independent design review.

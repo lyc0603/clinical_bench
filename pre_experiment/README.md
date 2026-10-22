@@ -1,4 +1,8 @@
-# Excluded self review pre experiment
+# Excluded pre-experiments
+
+Latest: [paired initial-only/self-review results and historical controls](results/paired-2026-10-21/README.md), with 16 metrics across nine endpoints, Excel and an evidence audit. This completed batch retains the original OpenAI validator failure and Google final reproduction failure. It is excluded from the formal main study.
+
+## Earlier independent self-review pilot
 
 Before any main-study execution, add one fresh self-review workflow per provider
 to the three already observed P21-feedback qualification smokes. Both conditions

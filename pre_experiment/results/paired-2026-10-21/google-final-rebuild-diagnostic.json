@@ -1,0 +1,110 @@
+{
+  "rebuild_exit_code": 0,
+  "dataset_comparisons": [
+    {
+      "dataset": "adae",
+      "original_rows": 1191,
+      "rebuilt_rows": 1191,
+      "dataframe_equal": true,
+      "column_order_equal": true,
+      "metadata_differing_fields": []
+    },
+    {
+      "dataset": "adcm",
+      "original_rows": 7510,
+      "rebuilt_rows": 7510,
+      "dataframe_equal": true,
+      "column_order_equal": true,
+      "metadata_differing_fields": []
+    },
+    {
+      "dataset": "adds",
+      "original_rows": 544,
+      "rebuilt_rows": 544,
+      "dataframe_equal": true,
+      "column_order_equal": true,
+      "metadata_differing_fields": []
+    },
+    {
+      "dataset": "adex",
+      "original_rows": 591,
+      "rebuilt_rows": 591,
+      "dataframe_equal": true,
+      "column_order_equal": true,
+      "metadata_differing_fields": []
+    },
+    {
+      "dataset": "adlbc",
+      "original_rows": 32740,
+      "rebuilt_rows": 32740,
+      "dataframe_equal": true,
+      "column_order_equal": true,
+      "metadata_differing_fields": []
+    },
+    {
+      "dataset": "adlbh",
+      "original_rows": 21919,
+      "rebuilt_rows": 21919,
+      "dataframe_equal": true,
+      "column_order_equal": true,
+      "metadata_differing_fields": []
+    },
+    {
+      "dataset": "adlbhy",
+      "original_rows": 32740,
+      "rebuilt_rows": 32740,
+      "dataframe_equal": true,
+      "column_order_equal": true,
+      "metadata_differing_fields": []
+    },
+    {
+      "dataset": "adqsadas",
+      "original_rows": 12241,
+      "rebuilt_rows": 12241,
+      "dataframe_equal": true,
+      "column_order_equal": true,
+      "metadata_differing_fields": []
+    },
+    {
+      "dataset": "adqscibc",
+      "original_rows": 562,
+      "rebuilt_rows": 562,
+      "dataframe_equal": true,
+      "column_order_equal": true,
+      "metadata_differing_fields": []
+    },
+    {
+      "dataset": "adqsnpix",
+      "original_rows": 61450,
+      "rebuilt_rows": 71200,
+      "dataframe_equal": false,
+      "column_order_equal": true,
+      "metadata_differing_fields": []
+    },
+    {
+      "dataset": "adsl",
+      "original_rows": 254,
+      "rebuilt_rows": 254,
+      "dataframe_equal": true,
+      "column_order_equal": true,
+      "metadata_differing_fields": []
+    },
+    {
+      "dataset": "adtte",
+      "original_rows": 1191,
+      "rebuilt_rows": 1191,
+      "dataframe_equal": true,
+      "column_order_equal": true,
+      "metadata_differing_fields": []
+    },
+    {
+      "dataset": "advs",
+      "original_rows": 29643,
+      "rebuilt_rows": 29643,
+      "dataframe_equal": true,
+      "column_order_equal": true,
+      "metadata_differing_fields": []
+    }
+  ],
+  "policy": "Read-only post-run diagnosis; conservative frozen reproduction score unchanged."
+}

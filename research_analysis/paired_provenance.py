@@ -41,7 +41,9 @@ def main():
     d['analysis_provenance']={'script_sha256':digest(Path(__file__)),
        'policy':'Only expose original versus current validation status; counts, costs, controller status and source files unchanged.'}
     note='Metric 3 shows original and current validator status separately. A successful reassessment does not erase an original technical failure; elapsed time and cost refer to original model workflows and exclude post-hoc host revalidation.'
-    if note not in d['limitations']:d['limitations'].append(note)
+    extra=[note, 'Auxiliary checks cover selected conditional derivations, not comprehensive clinical correctness. Planned-check coverage is not an adjudicated applicable-check denominator.', 'API costs are telemetry estimates, not invoices. Token totals retain provider cache/reasoning buckets; cross-provider billing semantics are not independently reconciled.']
+    for item in extra:
+        if item not in d['limitations']:d['limitations'].append(item)
     a.report.write_text(json.dumps(d,indent=2)+'\n')
     headers=['No.','Metric']+[r['model']+' / '+r['condition'] for r in d['records']]
     rows=[[i+1,m]+[r['values'][i] for r in d['records']] for i,m in enumerate(d['metrics'])]
@@ -51,6 +53,12 @@ def main():
     lines+=['| '+' | '.join(str(v).replace('\n','<br>').replace('|','/') for v in row)+' |' for row in rows]
     lines+=['','## Qualifications','']+['- '+x for x in d['limitations']]
     a.report.with_suffix('.md').write_text('\n'.join(lines)+'\n')
+    with (a.report.parent/'auxiliary-checks.csv').open('w',newline='') as f:
+        writer=csv.DictWriter(f,fieldnames=['model','condition','phase','check','status','assessed','errors','missing','extra','duplicates'],lineterminator='\n')
+        writer.writeheader()
+        for r in d['records']:
+            for check in r['auxiliary_checks']:
+                writer.writerow({'model':r['model'],'condition':r['condition'],**check})
     print('Original failures exposed alongside current scores; no measurements replaced.')
 
 
