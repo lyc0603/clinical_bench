@@ -52,7 +52,10 @@ After execution, build a separate nine-endpoint table without touching the old s
 python -m pre_experiment.report_paired \
   --paired-root /private/study/paired-pilot-new \
   --baseline-root /private/study/main-study-current \
+  --qualification-root /private/study/p21-qualification-new \
   --out /private/study/paired-pilot-report
 ```
 
-This exports 16 rows to Markdown, CSV and JSON with model/condition columns. Initial-only terminal scores and costs come only from the initial checkpoint. Repair outcomes are not applicable. Historical P21 scores remain explicitly historical; compare the retained current qualification diagnostics with their original scores before interpretation. Missing or failed attempts remain visible. Do not label an empty planned table as completed results.
+This exports 16 rows to Markdown, CSV and JSON with model/condition columns. Initial-only terminal scores and costs come only from the initial checkpoint. Repair outcomes are not applicable. Historical P21 conformance scores are taken from the accepted current qualification evidence under the same evaluator settings; original scores remain in the historical files. Other historical measurements remain from the original run. Missing or failed attempts remain visible. Do not label an empty planned table as completed results.
+
+The new batch uses the declared P21 single-processor Java option after a separately retained concurrency diagnostic. The configuration and runtime seal bind this option; the model containers retain their original resource limits. The original multi-processor qualification failed and is preserved. The complete qualification panel must pass with this declared setting before new model calls.

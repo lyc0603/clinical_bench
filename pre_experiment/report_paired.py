@@ -56,19 +56,35 @@ def main():
     p.add_argument('--paired-root',type=Path,required=True)
     p.add_argument('--baseline-root',type=Path,required=True)
     p.add_argument('--out',type=Path,required=True)
+    p.add_argument('--qualification-root',type=Path,required=True)
     a=p.parse_args()
+    qualification = read(a.qualification_root/'qualification.json')
+    if not qualification or qualification.get('qualified') is not True:
+        raise ValueError('Current passing P21 qualification required for unified scoring')
     records=[]
     for model,folder in [('openai','smokes-v2'),('anthropic','smokes-anthropic-post-topup'),('google','smokes-google-new-key')]:
-        records.extend([collect(a.baseline_root/folder/model,model,'p21_feedback'),
+        current_paths = []
+        for phase in ('initial','final'):
+            root = a.qualification_root/model/'p21_feedback'/phase
+            summary = read(root/'summary.json')
+            entry = next((r for r in qualification['checks'] if r['model']==model and r['condition']=='p21_feedback' and r['phase']==phase), None)
+            if (not summary or not entry or entry.get('qualified') is not True
+                    or entry['summary_sha256'] != digest(root/'summary.json')
+                    or len(summary.get('repeats', [])) != 2
+                    or not all(r.get('validator_accepted') for r in summary['repeats'])):
+                raise ValueError('Historical revalidation not accepted')
+            current_paths.append(root/'1/unqualified-report-parse.json')
+        records.extend([collect(a.baseline_root/folder/model,model,'p21_feedback',conformance_paths=current_paths),
                         initial_only(a.paired_root/model,model),collect(a.paired_root/model,model,'self_review')])
     data={'scope':'Excluded paired initial-only/self-review batch with nonconcurrent historical P21-feedback controls',
           'metrics':METRICS,'records':records,
+          'qualification_sha256':digest(a.qualification_root/'qualification.json'),
           'limitations':['Initial-only and self-review share generation and are paired endpoints, not independent runs.',
                          'Do not sum both endpoint cumulative costs as batch spending; count each generation once.',
                          'Historical P21-feedback controls are nonconcurrent; descriptive comparisons only.',
                          'Repair metrics are not applicable to initial-only. Missing scores are not zero findings.',
                          'All failures remain in the planned denominator; no successful retry substitution.',
-                         'Historical raw scores are retained; verify current qualification consistency before interpreting comparisons.']}
+                         'Historical conformance scores use current accepted fixed-artifact revalidation; original scores remain unchanged in source evidence. Other historical metrics retain their original run measurements.']}
     a.out.mkdir(parents=True,exist_ok=True)
     (a.out/'metrics.json').write_text(json.dumps(data,indent=2)+'\n')
     headers=['No.','Metric']+[r['model']+' / '+r['condition'] for r in records]

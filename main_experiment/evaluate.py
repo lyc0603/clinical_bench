@@ -112,6 +112,7 @@ def runtime(c):
     return {'standard_configuration': standard_configuration(c), 'egress_policy': policy(), 'image': capture(['docker', 'image', 'inspect', '--format', '{{.Id}}', c['image']]),
             'opencode': capture(['docker', 'run', '--rm', '--network', 'none', c['image'], 'opencode', '--version']),
             'java': digest(Path(c['p21']['java'])),
+            'p21_java_options': c['p21'].get('java_options', []),
             'client': digest(cache / 'lib/p21-client-1.0.9.jar'),
             'configs': manifest(cache / 'configs'), 'engines': engines,
             'meddra': meddra(c)}
@@ -142,7 +143,7 @@ class Evaluator:
                 shutil.copy2(Path(self.c['inputs']) / 'Input' / (dom.lower()+'.xpt'), support)
             data = workspace / 'output/adam/datasets'
             report = directory / 'p21_adam.xlsx'
-            argv = [p['java'], '-jar', str(cache / 'lib/p21-client-1.0.9.jar'),
+            argv = [p['java'], *p.get('java_options', []), '-jar', str(cache / 'lib/p21-client-1.0.9.jar'),
                     '--engine.version=FDA 2508.1', '--engine.folder='+str(cache / 'lib/engines'),
                     '--standard=adam', '--standard.version=1.3', '--config='+str(cache / 'configs'),
                     '--source.define='+str(data / 'define.xml'), '--source.adam='+str(data),

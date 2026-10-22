@@ -36,6 +36,8 @@ def assert_protocol(c):
             raise ValueError(f'{key} must equal {expected!r}')
     if c['p21']['ct'] != '2026-03-27' or c['p21']['timeout_seconds'] != 900:
         raise ValueError('P21 CT or timeout differs from the protocol')
+    if c['p21'].get('java_options', []) not in ([], ['-XX:ActiveProcessorCount=1']):
+        raise ValueError('P21 Java options must be empty or the declared single-processor mode')
     expected = json.loads((HERE / 'config.example.json').read_text())['expected_datasets']
     if sorted(c['expected_datasets']) != sorted(expected):
         raise ValueError('Expected dataset set differs from the protocol')

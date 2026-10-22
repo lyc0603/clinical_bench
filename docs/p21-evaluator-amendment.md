@@ -29,3 +29,9 @@ The six-example table, all original evaluations and the old freeze are unchanged
 5. Launch the main study only after review and fresh qualification/freeze pass.
 
 Unit tests use synthetic artifacts and mocked client execution. They cover benign log mutation, client-error rejection despite a report, actual immutable-file drift, timeout/missing-report classification, evidence retention and refusal to overwrite previous evaluations. They do not substitute for testing the actual P21 client.
+
+## Declared single-processor validation mode
+
+Network-authorized qualification reproduced callback exceptions on an unchanged historical OpenAI package: one run was accepted, the other rejected despite identical report aggregates. The attempt was stopped and retained. A separate two-repeat diagnostic on the prior Google initial package using `-XX:ActiveProcessorCount=1` had no client errors and identical full-coverage aggregates (77 pairs, 945842 instances, 10 rules). This supports investigating a concurrency-dependent exception; it does not establish the internal root cause or prove every output safe.
+
+The evaluator accepts an explicit `p21.java_options` setting of `[]` or `["-XX:ActiveProcessorCount=1"]`. The actual argument is passed before `-jar` and recorded in the runtime seal and configuration. New paired qualification and execution use the latter uniformly, retaining all client-error gates. This affects host P21 only; model/container CPU resources and agent prompts are unchanged. Full fixed-artifact qualification is required after this amendment. Previously rejected results are not promoted.

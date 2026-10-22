@@ -16,9 +16,11 @@ class P21DiagnosticTests(unittest.TestCase):
         for name in ('ae','dm','ex'):
             (inputs/(name+'.xpt')).write_text('synthetic')
         c=cfg();c['inputs']=str(inputs.parent);c['p21']['cache']=str(cache)
+        c['p21']['java_options']=['-XX:ActiveProcessorCount=1']
         out=root/'evaluation';out.mkdir()
         (root/'workspace/output/adam/datasets').mkdir(parents=True)
         def execute(argv,cwd,log,timeout):
+            self.assertEqual(argv[1:3],['-XX:ActiveProcessorCount=1','-jar'])
             mutation(cwd)
             log.write_text(stdout)
             if report:
@@ -44,6 +46,14 @@ class P21DiagnosticTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'fresh output directory'):
             evaluator.p21(root/'workspace',out)
         return evidence
+
+    def test_unreviewed_jvm_options_rejected(self):
+        from main_experiment.core import assert_protocol
+        c=cfg();c['p21']['java_options']=['-XX:ActiveProcessorCount=1']
+        assert_protocol(c)
+        for options in (['-XX:ActiveProcessorCount=2'], ['-javaagent:unknown.jar'], None):
+            c['p21']['java_options']=options
+            with self.assertRaises(ValueError):assert_protocol(c)
 
     @staticmethod
     def log(cache,text):

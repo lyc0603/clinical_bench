@@ -74,10 +74,18 @@ def phase_numbers(evaluation, agent):
     }
 
 
-def collect(directory, model, condition):
+def collect(directory, model, condition, conformance_paths=None):
     """Keep missing/failed runs explicit, never replace unavailable with zero errors."""
     state = read(directory/'state.json') or {'status': 'not_started'}
     es = [read(directory/phase/'evaluation.json') for phase in ('initial', 'final')]
+    if conformance_paths is not None:
+        for i, path in enumerate(conformance_paths):
+            current = read(path)
+            if not current or not current.get('report_usable') or not current.get('validation_coverage_complete'):
+                raise ValueError('Current qualified conformance evidence required')
+            if es[i] is None:
+                raise ValueError('Historical checkpoint evaluation missing')
+            es[i] = {**es[i], 'conformance':current}
     agents = [read(directory/phase/'agent.json') for phase in ('initial', 'final')]
     values = ['Unavailable'] * len(METRICS)
     observed = []
@@ -165,6 +173,9 @@ def collect(directory, model, condition):
     for path in [directory/'state.json'] + [directory/phase/name for phase in ('initial', 'final') for name in ('evaluation.json', 'agent.json', 'checkpoint-manifest.json')]:
         if path.exists():
             hashes[str(path.relative_to(directory))] = hashlib.sha256(path.read_bytes()).hexdigest()
+    if conformance_paths is not None:
+        for phase, path in zip(('initial','final'),conformance_paths):
+            hashes['current_revalidation/'+phase] = hashlib.sha256(path.read_bytes()).hexdigest()
     detail = []
     for phase, checkset in zip(('initial', 'final'), checks):
         for check in checkset.values():
