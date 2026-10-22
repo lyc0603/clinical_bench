@@ -28,6 +28,25 @@ class InitialEndpointTests(unittest.TestCase):
             self.assertNotIn('$7.5000',result['values'][12])
             self.assertFalse(any(k.startswith('final/') for k in result['source_sha256']))
 
+    def test_current_reassessment_does_not_rewrite_failed_controller(self):
+        from pre_experiment.report_metrics import collect
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t)
+            (root/'state.json').write_text(json.dumps({'status':'failed'}))
+            paths=[]
+            for phase in ('initial','final'):
+                d=root/phase;d.mkdir()
+                (d/'evaluation.json').write_text(json.dumps({'conformance':{'report_usable':False},'deliverables_complete':True}))
+                current=root/(phase+'-reassessment.json')
+                current.write_text(json.dumps({'report_usable':True,'validation_coverage_complete':True,'dataset_rule_pairs':3,'issues':[]}))
+                paths.append(current)
+            original=(root/'final/evaluation.json').read_bytes()
+            r=collect(root,'openai','self_review',conformance_paths=paths)
+            self.assertEqual(r['status'],'failed')
+            self.assertEqual(r['numeric']['final']['dataset_rule_pairs'],3)
+            self.assertEqual((root/'final/evaluation.json').read_bytes(),original)
+            self.assertIn('current_revalidation/final',r['source_sha256'])
+
     def test_unstarted_initial_only_is_not_completed(self):
         with tempfile.TemporaryDirectory() as t:
             r=initial_only(Path(t),'google')

@@ -1,0 +1,15 @@
+# Continuation after P21 mutable-state failure
+
+The original paired batch generated both OpenAI phases normally and reproduced both packages. Its final validation logged an EOFException while deserializing the copied P21 `app.data` expiration state. The controller stopped before starting Anthropic or Google. This is a recorded technical failure; the original state, scores, logs and initial-only receipt remain unchanged.
+
+A separate diagnostic omitted only `lib/engines/app.data` from an otherwise identical cache source, retained the declared single-processor JVM setting, and validated the same final package twice without client errors. Both reports had 26 dataset-rule pairs and 4708 finding instances. This motivates clean-state initialization; it does not establish the internal root cause or authorize ignoring errors.
+
+The continuation uses a new qualification and recovery lock. The clean source cache must differ from the original only by omission of `app.data`; its complete manifest is bound by the recovery lock, so reintroduction or modification of state is detected. Every validation copies this source and lets P21 initialize new disposable state. All immutable-file and client-error rejection rules remain active. The source cache is never run in place.
+
+The full fixed-artifact qualification panel must pass in this environment. Completed prior model phases also require two accepted current reassessments each, exact source-dataset matches, normal exported model completion, unchanged pre-evaluation workspace manifests, original frozen prompts, requested model identity and same-session history continuity. The original model/evaluator code and original paired runner must match their prior seal. Only cache location/state initialization may change in the configuration. New analysis/continuation tools are separately frozen.
+
+`recover_paired freeze` records these checks and the original lock. `recover_paired run` invokes only providers whose original workflow directory does not exist. It never reruns a completed agent and refuses uncertain or non-validator failures. All new calls remain subject to the original paired workflow rules. A new failure halts scheduling with its evidence and guard retained.
+
+The original failed controller stays failed in completion metrics. Separately qualified reassessments provide current conformance scores, without rewriting original evaluations. The combined table includes this distinction, maps every result to its actual source directory, and counts shared generation costs once. A final checkpoint manifest may be absent from the original failed phase because the evaluator gate raised before it was written; the earlier workspace manifest and raw exported histories are verified instead, with that limitation disclosed. No retrospective original checkpoint seal is invented.
+
+The source map is private run evidence. Publish only aggregate metrics, hashes and the adjudication summary, never raw patient records, API credentials, client cache or dictionaries. This continuation remains an excluded exploratory pre-experiment; it does not start the formal main study.

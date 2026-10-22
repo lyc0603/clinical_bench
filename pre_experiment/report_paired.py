@@ -5,13 +5,21 @@ import json
 from pathlib import Path
 
 from main_experiment.support import digest
-from pre_experiment.report_metrics import METRICS, collect, flag, read, token_text
+from pre_experiment.report_metrics import METRICS, collect, flag, read, token_text, phase_numbers
 
 
-def initial_only(directory, model):
+def initial_only(directory, model, conformance_path=None):
     r = collect(directory, model, 'initial_only')
     receipt = read(directory/'initial-only.json') or {}
     e = read(directory/'initial/evaluation.json') or {}
+    if conformance_path is not None:
+        current=read(conformance_path)
+        if not current or not current.get('report_usable') or not current.get('validation_coverage_complete'):
+            raise ValueError('Passing current initial reassessment required')
+        e={**e,'conformance':current}
+        r['numeric']['initial']=phase_numbers(e,read(directory/'initial/agent.json'))
+        r['source_sha256']['current_revalidation/initial']=digest(conformance_path)
+        r['unqualified_report_observations']=[]
     c = e.get('conformance') or {}
     n = r['numeric']['initial']
     complete = receipt.get('status') == 'completed'
@@ -57,10 +65,14 @@ def main():
     p.add_argument('--baseline-root',type=Path,required=True)
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--qualification-root',type=Path,required=True)
+    p.add_argument('--source-map',type=Path)
     a=p.parse_args()
     qualification = read(a.qualification_root/'qualification.json')
     if not qualification or qualification.get('qualified') is not True:
         raise ValueError('Current passing P21 qualification required for unified scoring')
+    source_map=read(a.source_map) if a.source_map else {}
+    directories=source_map.get('model_directories',{})
+    reassessments=source_map.get('reassessments',{})
     records=[]
     for model,folder in [('openai','smokes-v2'),('anthropic','smokes-anthropic-post-topup'),('google','smokes-google-new-key')]:
         current_paths = []
@@ -74,11 +86,23 @@ def main():
                     or not all(r.get('validator_accepted') for r in summary['repeats'])):
                 raise ValueError('Historical revalidation not accepted')
             current_paths.append(root/'1/unqualified-report-parse.json')
+        directory=Path(directories.get(model,a.paired_root/model))
+        endpoint_paths=None
+        if model in reassessments:
+            endpoint_paths=[]
+            for phase in ('initial','final'):
+                proof=reassessments[model][phase];root=Path(proof['directory'])
+                if digest(root/'summary.json')!=proof['summary_sha256'] or digest(root/'1/unqualified-report-parse.json')!=proof['parsed_sha256']:
+                    raise ValueError('Endpoint reassessment changed')
+                endpoint_paths.append(root/'1/unqualified-report-parse.json')
         records.extend([collect(a.baseline_root/folder/model,model,'p21_feedback',conformance_paths=current_paths),
-                        initial_only(a.paired_root/model,model),collect(a.paired_root/model,model,'self_review')])
+                        initial_only(directory,model,conformance_path=endpoint_paths[0] if endpoint_paths else None),
+                        collect(directory,model,'self_review',conformance_paths=endpoint_paths)])
     data={'scope':'Excluded paired initial-only/self-review batch with nonconcurrent historical P21-feedback controls',
           'metrics':METRICS,'records':records,
           'qualification_sha256':digest(a.qualification_root/'qualification.json'),
+          'source_map_sha256':digest(a.source_map) if a.source_map else None,
+          'original_source_status':source_map.get('original_source_status',{}),
           'limitations':['Initial-only and self-review share generation and are paired endpoints, not independent runs.',
                          'Do not sum both endpoint cumulative costs as batch spending; count each generation once.',
                          'Historical P21-feedback controls are nonconcurrent; descriptive comparisons only.',
