@@ -40,3 +40,7 @@ independent review of the scientific design.
 The [six-example report and 16-metric comparison](results/2026-10-21/README.md) include Excel, CSV, JSON and an evidence audit. P21 runtime-integrity rejections affect several self-review checkpoints; review this issue before formal main-study launch.
 
 The [offline P21 follow-up](results/2026-10-21/p21-runtime-followup.md) separates callback exceptions from cache drift and proposes an amendment for review. The diagnostic CLI retains temporary caches; use private output directories and obtain authorization before any network-enabled P21 execution.
+
+## New paired batch
+
+Use the [paired pilot workflow](PAIRED-PILOT.md) for the requested new initial-only/self-review batch. It requires qualification of the amended evaluator and a new pilot-specific lock. The older `run_self_review` command and historical metrics exporter remain for the previous independent pilot; do not use them to launch or summarize the paired batch.

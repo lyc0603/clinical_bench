@@ -7,7 +7,8 @@ import tempfile
 from unittest.mock import patch
 
 from main_experiment.evaluate import Evaluator, conformance_metrics
-from main_experiment.support import manifest, save
+from main_experiment.support import digest, manifest, save
+from main_experiment.core import code_manifest, fingerprint
 
 
 def differences(before, after):
@@ -44,10 +45,11 @@ def main():
         out = a.out / str(index + 1)
         out.mkdir()
         error = None
+        accepted = None
         try:
             # The evaluator invocation and gate are unchanged; only cleanup is disabled.
             with patch('main_experiment.evaluate.tempfile.TemporaryDirectory', RetainedTemporaryDirectory):
-                evaluator.p21(workspace, out)
+                accepted = evaluator.p21(workspace, out)
         except Exception as exc:
             error = str(exc)
         copied_cache = out / 'p21-failed-runtime'
@@ -69,7 +71,8 @@ def main():
             except Exception as exc:
                 parse_error = type(exc).__name__ + ': ' + str(exc)
         pairset = sorted({(item['dataset'], item['rule']) for item in (parsed or {}).get('issues', [])})
-        result = {'repeat': index+1, 'frozen_gate_error': error, 'runtime_changes': changes,
+        result = {'repeat': index+1, 'frozen_gate_error': error,
+                  'validator_accepted': bool(error is None and accepted and accepted.get('report_usable') and accepted.get('validation_coverage_complete')),  'runtime_changes': changes,
                   'client_error_messages': dict(errors), 'parse_error': parse_error,
                   'unqualified_report': {k: (parsed or {}).get(k) for k in
                      ('dataset_rule_pairs','finding_instances','validation_coverage_complete','distinct_rules')},
@@ -82,6 +85,8 @@ def main():
     assert manifest(Path(c['p21']['cache'])) == cache_before, 'Source P21 cache changed'
     save(a.out/'summary.json', {'diagnostic_only':True, 'original_scores_changed':False,
          'source_datasets_and_cache_unchanged':True, 'repeats':results,
+         'evaluator_code':code_manifest(), 'diagnostic_tool_sha256':digest(Path(__file__)),
+         'config_sha256':fingerprint(c), 'source_dataset_manifest':source,
          'pairsets_equal': all(r['unqualified_report']['dataset_rule_pairs'] is not None for r in results) and all(r['unqualified_pairs']==results[0]['unqualified_pairs'] for r in results),
          'limitation':'Parseable reports are unqualified observations; repeated agreement does not prove callback errors harmless.'})
 

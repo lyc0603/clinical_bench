@@ -91,3 +91,5 @@ See the [six-workflow, 16-metric comparison](pre_experiment/results/2026-10-21/R
 ### P21 amendment: new qualification and freeze required
 
 The [evaluator amendment](docs/p21-evaluator-amendment.md) now distinguishes client errors from immutable runtime changes and retains diagnostics. Existing pilot scores remain unchanged. The old main-study freeze does not authorize this changed evaluator: formal execution must wait for review, qualification and a new versioned freeze.
+
+For a new initial-only/self-review pre-experiment, follow the [paired pilot workflow](pre_experiment/PAIRED-PILOT.md). It requires current P21 qualification and its own lock; no new paid run has started.
