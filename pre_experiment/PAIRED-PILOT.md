@@ -43,3 +43,16 @@ The old six-example table must not be overwritten. Keep the new endpoint receipt
 ## Remaining qualification issue
 
 The evaluator fix distinguishes mutable logs from immutable changes and rejects actual client errors independently. It has not fixed the P21 Java callback exception. If the fixed-artifact panel fails, inspect retained diagnostics and resolve/adjudicate that issue before paying for another generation batch. Do not weaken the gate merely to obtain scores. Source clinical data, raw logs, runtime caches, dictionaries and credentials stay private.
+
+## Offline aggregate reporting
+
+After execution, build a separate nine-endpoint table without touching the old six-example table:
+
+```sh
+python -m pre_experiment.report_paired \
+  --paired-root /private/study/paired-pilot-new \
+  --baseline-root /private/study/main-study-current \
+  --out /private/study/paired-pilot-report
+```
+
+This exports 16 rows to Markdown, CSV and JSON with model/condition columns. Initial-only terminal scores and costs come only from the initial checkpoint. Repair outcomes are not applicable. Historical P21 scores remain explicitly historical; compare the retained current qualification diagnostics with their original scores before interpretation. Missing or failed attempts remain visible. Do not label an empty planned table as completed results.
