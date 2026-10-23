@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "files": {
+    "README.md": "089b30448e0409b054544f2bd23ef097fbd963254b238361b66fbcdfc1814360",
+    "auxiliary-checks.csv": "e667a52741fbc976adafd52b74f238d191fc56c9f538f6a917ef69a240b01a26",
+    "extension-audit.json": "9e3d84e572100e57be66368951cc37a8867f4ed4e976d233f7e82d8ae7e68c47",
+    "metrics.csv": "1968a89bb436f4d4375713283fb96bbabdf2d2269e27f364dfad5c21116fbe70",
+    "metrics.json": "d41fb481e3df12475fb3133f18da68c84448988e7923eb90137c1940d54626c1",
+    "metrics.md": "6a30c12025cca6c2143b7ce63efb6df24ba5c4d72211566d60c70ba83b8fed2c",
+    "metrics.xlsx": "6cff45fd0df9510ca8c075d3e9198929cc93768f95e05d8d22d51f26cebf73d0",
+    "prior-evidence-audit.json": "de7b5b621fe295397d38344d165ea5fb3e19b1c07e0b28491223c4f147b6b5c5",
+    "table-verification.json": "7371fd6037fb4c61f9a70998e9cac5464cb64af055f1ec269635375312f55f86"
+  }
+}

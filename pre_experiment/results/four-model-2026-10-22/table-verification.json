@@ -1,0 +1,9 @@
+{
+  "metrics": 16,
+  "endpoints": 12,
+  "previous_nine_records_unchanged": true,
+  "auxiliary_records": 200,
+  "new_workflow_estimate_usd": 12.397531672,
+  "deepseek_extension_estimate_usd": 1.056001572,
+  "formats_match": true
+}

@@ -86,7 +86,7 @@ license covers repository code, not separately licensed study/vendor materials.
 
 ## Excluded exploratory pre-experiment
 
-See the latest [paired pilot: 16 metrics across nine endpoints](pre_experiment/results/paired-2026-10-21/README.md), with Excel, CSV, JSON and an evidence audit. It combines three new paired initial-only/self-review sessions with historical P21-feedback controls. OpenAI's original validator failure and Google's final reproduction failure are retained. These exploratory results are excluded from the formal main study, which has not started.
+See the latest [four-model pilot: 16 metrics across 12 endpoints](pre_experiment/results/four-model-2026-10-22/README.md), with Excel, CSV, JSON and evidence audits. The separately frozen DeepSeek extension adds paired initial-only/self-review and an independent P21-feedback session. All [previous nine endpoints](pre_experiment/results/paired-2026-10-21/README.md), including OpenAI's original validator failure and Google's final reproduction failure, are preserved unchanged. These exploratory results are excluded from the formal main study; this task did not start it.
 
 The [earlier six-workflow comparison](pre_experiment/results/2026-10-21/README.md) remains archived with its original runtime-integrity rejections and follow-up.
 

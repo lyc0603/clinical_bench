@@ -1,0 +1,42 @@
+{
+  "main_study_started": false,
+  "previous_report_sha256": "c8f93244ee76a3e76bde5ca0ca8e9c3daa48bfe9d0bbdb795d80a854bb8c1875",
+  "previous_nine_records_unchanged": true,
+  "extension_lock_sha256": "0d854a4ef40de84a337cb6f83f57c2e9ed948f2d8f8e7babe12c0a6516d0f383",
+  "script_sha256": "d88349d6f4eb373a925b9c5a0f5a9357d77104eea7ccb896d4ce1d25a1e87e07",
+  "records": [
+    {
+      "condition": "paired",
+      "controller_status": "completed",
+      "phases": {
+        "initial": {
+          "normal_completion": true,
+          "evaluation_sha256": "c8f1b7e336f1b971f8e32b474730131aae769c9c3728e690a3e8c188abc4c72c",
+          "report_usable": true
+        },
+        "final": {
+          "normal_completion": true,
+          "evaluation_sha256": "1c8fb33596ef40d75cf271de18b4507dcbd090fec54018ce60d1b0d99f430e94",
+          "report_usable": true
+        }
+      }
+    },
+    {
+      "condition": "p21_feedback",
+      "controller_status": "completed",
+      "phases": {
+        "initial": {
+          "normal_completion": true,
+          "evaluation_sha256": "3d7dbc845749a62356b61463d2fa8b434d15877752048ed74aadb6170863caef",
+          "report_usable": true
+        },
+        "final": {
+          "normal_completion": true,
+          "evaluation_sha256": "2d8ae199efc3728a4d6e4b9c374f17276084190443809a24561d6b95fc48a79f",
+          "report_usable": true
+        }
+      }
+    }
+  ],
+  "limitation": "Local consistency audit; original failures and missing endpoints retained."
+}

@@ -1,0 +1,94 @@
+{
+  "excluded_from_main": true,
+  "main_study_started_by_this_task": false,
+  "audit_script_sha256": "751150cc80b4385e8d528fa6b9fda5d2cc99ae5b8c8a3de556f833212c9d20d9",
+  "recovery_lock_sha256": "32720e0f197ec16bdf9fe62f3ef3455f91f43875e9a1d302b4f61a5a4e00c130",
+  "qualification_sha256": "cdf770279143a27bd89293eda58bd08d616d7b2c0476b84df4d7bedda6fd8e16",
+  "qualification_validations": 24,
+  "new_generation_sessions": 3,
+  "new_paired_endpoints": 6,
+  "historical_controls": 3,
+  "original_controller_failures_retained": 1,
+  "p21_java_options": [
+    "-XX:ActiveProcessorCount=1"
+  ],
+  "p21_state_policy": "app.data absent in immutable source; initialized separately in each disposable cache",
+  "records": [
+    {
+      "model": "openai",
+      "requested_model": "openai/gpt-6.1-sol",
+      "original_controller_status": "failed",
+      "reused_completed_agent_phases": true,
+      "initial_only_receipt_sha256": "01d4eaab028299505a7b9479e6f3332d20c3e27025a2281f7c8d5aac94aaa18b",
+      "same_session_continuity": "passed",
+      "model_identity": "passed",
+      "frozen_prompts": "passed",
+      "workspace_integrity": "passed",
+      "phases": {
+        "initial": {
+          "original_evaluation_sha256": "5c5652412c7c39efaccebc5dfa50e04581856d33a466865640a5b1025977b738",
+          "original_p21_status": "valid",
+          "semantic_reproduced": true,
+          "checkpoint_manifest_at_original_run": true
+        },
+        "final": {
+          "original_evaluation_sha256": "88c98ee10ab247d4bbf190bf0632c247bd042823411ab8ce0f88527b6e10abd5",
+          "original_p21_status": "unavailable",
+          "semantic_reproduced": true,
+          "checkpoint_manifest_at_original_run": false
+        }
+      }
+    },
+    {
+      "model": "anthropic",
+      "requested_model": "anthropic/claude-sonnet-5-5",
+      "original_controller_status": "completed",
+      "reused_completed_agent_phases": false,
+      "initial_only_receipt_sha256": "ed780452afc61a09a80f576c15dee6efc536cb37220e09c6d0dc541db93e5941",
+      "same_session_continuity": "passed",
+      "model_identity": "passed",
+      "frozen_prompts": "passed",
+      "workspace_integrity": "passed",
+      "phases": {
+        "initial": {
+          "original_evaluation_sha256": "af2fbfe4822bc79dce418f3ffa9efa8f52a1179475634070e4b931d88736c7e8",
+          "original_p21_status": "valid",
+          "semantic_reproduced": true,
+          "checkpoint_manifest_at_original_run": true
+        },
+        "final": {
+          "original_evaluation_sha256": "e689d2045329d7928d43c624a3a774c21b8af5f70165114010686263d92b8832",
+          "original_p21_status": "valid",
+          "semantic_reproduced": true,
+          "checkpoint_manifest_at_original_run": true
+        }
+      }
+    },
+    {
+      "model": "google",
+      "requested_model": "google/gemini-3.1-pro-preview",
+      "original_controller_status": "completed",
+      "reused_completed_agent_phases": false,
+      "initial_only_receipt_sha256": "54012cbd140873317ff19696d38dbdf069fbcabf5bcebaeaa3e299d6a24d553a",
+      "same_session_continuity": "passed",
+      "model_identity": "passed",
+      "frozen_prompts": "passed",
+      "workspace_integrity": "passed",
+      "phases": {
+        "initial": {
+          "original_evaluation_sha256": "27300621ce9dd7d86cf65a512c60456f5323657c64f2eb52a9bd88dcb24042c3",
+          "original_p21_status": "valid",
+          "semantic_reproduced": true,
+          "checkpoint_manifest_at_original_run": true
+        },
+        "final": {
+          "original_evaluation_sha256": "df2b644032845b840059912de59a45a68ebf6f270b5bc0fbc6cdef1f82b9bf2a",
+          "original_p21_status": "valid",
+          "semantic_reproduced": false,
+          "checkpoint_manifest_at_original_run": true
+        }
+      }
+    }
+  ],
+  "limitation": "Local consistency check, not external signed attestation. Original OpenAI final checkpoint manifest was not created after the evaluator gate raised; earlier workspace manifest and raw histories are verified instead."
+}

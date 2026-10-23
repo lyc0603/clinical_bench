@@ -6,7 +6,7 @@ from main_experiment.support import digest,manifest,save
 from pre_experiment.report_metrics import collect,read
 from pre_experiment.report_paired import initial_only
 from research_analysis.paired_provenance import annotate
-from pilot_extensions.deepseek import tools
+from pilot_extensions.deepseek import tools,current
 
 
 def main():
@@ -14,10 +14,16 @@ def main():
     p.add_argument('--previous',type=Path,required=True)
     p.add_argument('--deepseek-root',type=Path,required=True)
     p.add_argument('--out',type=Path,required=True)
+    p.add_argument('--base-config',type=Path,required=True)
+    p.add_argument('--p21-qualification',type=Path,required=True)
     a=p.parse_args();d=read(a.previous);root=a.deepseek_root
     if len(d['records'])!=9 or len(d['metrics'])!=16:raise ValueError('Expected preserved nine-endpoint report')
     lock=read(root/'pilot-plan.json');payload=lock['payload']
     if fingerprint(payload)!=lock['sha256'] or payload['extension_tools']!=tools():raise ValueError('Invalid extension seal')
+    _,now=current(a.base_config,a.p21_qualification)
+    if now!={k:v for k,v in payload.items() if k!='readiness'}:raise ValueError('Frozen evaluator, inputs, runtime or qualification changed')
+    if digest(Path(payload['readiness']['directory'])/'qualification.json')!=payload['readiness']['receipt_sha256']:
+        raise ValueError('Readiness receipt changed')
     if not ((root/'completed.json').exists() or (root/'interruption.json').exists()):raise ValueError('Execution is still active')
     paired=root/'paired/deepseek';feedback=root/'p21_feedback/deepseek'
     added=[collect(feedback,'deepseek','p21_feedback'),initial_only(paired,'deepseek'),collect(paired,'deepseek','self_review')]
@@ -32,10 +38,14 @@ def main():
             history=read(f/'history.json')
             if history:
                 if history!=read(f/'history.raw.json'):raise ValueError('History/raw mismatch')
+                assistants=[m['info'] for m in history['messages'] if m['info']['role']=='assistant']
+                if not assistants or any(m.get('providerID')!='deepseek' or m.get('modelID')!='deepseek-flash' for m in assistants):raise ValueError('Model identity mismatch')
                 ids=[m['info']['id'] for m in history['messages']]
                 if initial_ids is None:initial_ids=ids
                 elif ids[:len(initial_ids)]!=initial_ids or len(ids)<=len(initial_ids):raise ValueError('Session continuity failed')
             if e:
+                key='generate' if phase=='initial' else 'self_review' if folder==paired else 'p21_feedback' if state.get('feedback',{}).get('report_usable') else 'feedback_unavailable'
+                if (f/'prompt.txt').read_text()!=payload['base_seal']['prompts'][key]:raise ValueError('Frozen prompt mismatch')
                 if manifest(f/'workspace')!=read(f/'workspace-manifest.json'):raise ValueError('Workspace drift')
                 if (f/'checkpoint-manifest.json').exists():
                     actual=manifest(f);actual.pop('checkpoint-manifest.json')
@@ -47,6 +57,7 @@ def main():
         if (folder/'initial-only.json').exists():
             receipt=read(folder/'initial-only.json')
             if receipt['evaluation_sha256']!=digest(folder/'initial/evaluation.json'):raise ValueError('Initial-only receipt changed')
+            if receipt['workspace_manifest_sha256']!=fingerprint(manifest(folder/'initial/workspace')):raise ValueError('Initial-only workspace changed')
         audit.append({'condition':folder.parent.name,'controller_status':state['status'],'phases':phases})
     for r in added:
         folder=feedback if r['condition']=='p21_feedback' else paired

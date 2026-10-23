@@ -1,6 +1,6 @@
 # Excluded pre-experiments
 
-Latest: [paired initial-only/self-review results and historical controls](results/paired-2026-10-21/README.md), with 16 metrics across nine endpoints, Excel and an evidence audit. This completed batch retains the original OpenAI validator failure and Google final reproduction failure. It is excluded from the formal main study.
+Latest: [four-model comparison with DeepSeek](results/four-model-2026-10-22/README.md), with 16 metrics across 12 endpoints, Excel and evidence audits. The separate [DeepSeek extension](../pilot_extensions/README.md) added three endpoints; the [previous nine-endpoint batch](results/paired-2026-10-21/README.md) remains unchanged, including the original OpenAI validator failure and Google final reproduction failure. These results are excluded from the formal main study.
 
 ## Earlier independent self-review pilot
 
