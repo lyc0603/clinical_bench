@@ -2,6 +2,10 @@
 
 Latest: [four-model comparison with DeepSeek](results/four-model-2026-10-22/README.md), with 16 metrics across 12 endpoints, Excel and evidence audits. The separate [DeepSeek extension](../pilot_extensions/README.md) added three endpoints; the [previous nine-endpoint batch](results/paired-2026-10-21/README.md) remains unchanged, including the original OpenAI validator failure and Google final reproduction failure. These results are excluded from the formal main study.
 
+## Requested temperature extension
+
+The [24 October temperature capability audit](results/temperature-support-2026-10-24/README.md) records nine nonclinical parameter probes. Current model/mode restrictions prevent a valid three-temperature experiment; a model/mode decision and corrected OpenAI credential are pending. No clinical run or new performance endpoint was created, and the existing 16-metric table is unchanged.
+
 ## Earlier independent self-review pilot
 
 Before any main-study execution, add one fresh self-review workflow per provider

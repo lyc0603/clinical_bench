@@ -1,0 +1,300 @@
+{
+  "scope": "nonclinical temperature capability probes only",
+  "clinical_inputs_transmitted": false,
+  "experiment_started": false,
+  "script_sha256": "922eee56229d69179c1829379c4b20ef35672b6c27598e0d6bdeb0dbe2f431c8",
+  "sources": {
+    "openai": "https://developers.openai.com/api/docs/guides/latest-model",
+    "anthropic": "https://platform.claude.com/docs/en/models/sonnet-5-5/overview",
+    "deepseek": "https://api-docs.deepseek.com/guides/thinking_mode/"
+  },
+  "records": [
+    {
+      "provider": "openai",
+      "requested_model": "gpt-6.1-sol",
+      "temperature": 0.2,
+      "utc": "2026-10-25T01:22:23.027372+00:00",
+      "documented_behavior": "unsupported_with_supported_reasoning_modes",
+      "request_parameters": {
+        "model": "gpt-6.1-sol",
+        "temperature": 0.2,
+        "input": "Reply only READY. This is a nonclinical API parameter compatibility test.",
+        "reasoning": {
+          "effort": "low"
+        },
+        "max_output_tokens": 256
+      },
+      "http_status": 401,
+      "acceptance": false,
+      "error_type": "invalid_request_error",
+      "error_code": "invalid_api_key",
+      "error_parameter": null,
+      "eligible_as_temperature_experiment": false,
+      "not_executed_experimental_metrics": "N/A: no clinical generation, P21 or repair was run"
+    },
+    {
+      "provider": "openai",
+      "requested_model": "gpt-6.1-sol",
+      "temperature": 0.6,
+      "utc": "2026-10-25T01:22:23.493175+00:00",
+      "documented_behavior": "unsupported_with_supported_reasoning_modes",
+      "request_parameters": {
+        "model": "gpt-6.1-sol",
+        "temperature": 0.6,
+        "input": "Reply only READY. This is a nonclinical API parameter compatibility test.",
+        "reasoning": {
+          "effort": "low"
+        },
+        "max_output_tokens": 256
+      },
+      "http_status": 401,
+      "acceptance": false,
+      "error_type": "invalid_request_error",
+      "error_code": "invalid_api_key",
+      "error_parameter": null,
+      "eligible_as_temperature_experiment": false,
+      "not_executed_experimental_metrics": "N/A: no clinical generation, P21 or repair was run"
+    },
+    {
+      "provider": "openai",
+      "requested_model": "gpt-6.1-sol",
+      "temperature": 1.0,
+      "utc": "2026-10-25T01:22:23.776925+00:00",
+      "documented_behavior": "unsupported_with_supported_reasoning_modes",
+      "request_parameters": {
+        "model": "gpt-6.1-sol",
+        "temperature": 1.0,
+        "input": "Reply only READY. This is a nonclinical API parameter compatibility test.",
+        "reasoning": {
+          "effort": "low"
+        },
+        "max_output_tokens": 256
+      },
+      "http_status": 401,
+      "acceptance": false,
+      "error_type": "invalid_request_error",
+      "error_code": "invalid_api_key",
+      "error_parameter": null,
+      "eligible_as_temperature_experiment": false,
+      "not_executed_experimental_metrics": "N/A: no clinical generation, P21 or repair was run"
+    },
+    {
+      "provider": "anthropic",
+      "requested_model": "claude-sonnet-5-5",
+      "temperature": 0.2,
+      "utc": "2026-10-25T01:22:23.917451+00:00",
+      "documented_behavior": "unsupported",
+      "request_parameters": {
+        "model": "claude-sonnet-5-5",
+        "temperature": 0.2,
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply only READY. This is a nonclinical API parameter compatibility test."
+          }
+        ],
+        "max_tokens": 256
+      },
+      "http_status": 400,
+      "acceptance": false,
+      "error_type": "invalid_request_error",
+      "error_code": null,
+      "error_parameter": null,
+      "eligible_as_temperature_experiment": false,
+      "not_executed_experimental_metrics": "N/A: no clinical generation, P21 or repair was run"
+    },
+    {
+      "provider": "anthropic",
+      "requested_model": "claude-sonnet-5-5",
+      "temperature": 0.6,
+      "utc": "2026-10-25T01:22:24.345437+00:00",
+      "documented_behavior": "unsupported",
+      "request_parameters": {
+        "model": "claude-sonnet-5-5",
+        "temperature": 0.6,
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply only READY. This is a nonclinical API parameter compatibility test."
+          }
+        ],
+        "max_tokens": 256
+      },
+      "http_status": 400,
+      "acceptance": false,
+      "error_type": "invalid_request_error",
+      "error_code": null,
+      "error_parameter": null,
+      "eligible_as_temperature_experiment": false,
+      "not_executed_experimental_metrics": "N/A: no clinical generation, P21 or repair was run"
+    },
+    {
+      "provider": "anthropic",
+      "requested_model": "claude-sonnet-5-5",
+      "temperature": 1.0,
+      "utc": "2026-10-25T01:22:24.569979+00:00",
+      "documented_behavior": "unsupported",
+      "request_parameters": {
+        "model": "claude-sonnet-5-5",
+        "temperature": 1.0,
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply only READY. This is a nonclinical API parameter compatibility test."
+          }
+        ],
+        "max_tokens": 256
+      },
+      "http_status": 200,
+      "returned_model": "claude-sonnet-5-5",
+      "usage": {
+        "input_tokens": 33,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 0
+        },
+        "output_tokens": 4,
+        "output_tokens_details": {
+          "thinking_tokens": 0
+        },
+        "service_tier": "standard",
+        "inference_geo": "global",
+        "speed": "standard"
+      },
+      "acceptance": true,
+      "eligible_as_temperature_experiment": false,
+      "not_executed_experimental_metrics": "N/A: no clinical generation, P21 or repair was run"
+    },
+    {
+      "provider": "deepseek",
+      "requested_model": "deepseek-flash",
+      "temperature": 0.2,
+      "utc": "2026-10-25T01:22:25.481211+00:00",
+      "documented_behavior": "ignored_in_thinking_mode",
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0.2,
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply only READY. This is a nonclinical API parameter compatibility test."
+          }
+        ],
+        "thinking": {
+          "type": "enabled"
+        },
+        "max_tokens": 64
+      },
+      "http_status": 200,
+      "returned_model": "deepseek-flash",
+      "usage": {
+        "prompt_tokens": 45,
+        "completion_tokens": 13,
+        "total_tokens": 58,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 10
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 45
+      },
+      "acceptance": true,
+      "eligible_as_temperature_experiment": false,
+      "not_executed_experimental_metrics": "N/A: no clinical generation, P21 or repair was run"
+    },
+    {
+      "provider": "deepseek",
+      "requested_model": "deepseek-flash",
+      "temperature": 0.6,
+      "utc": "2026-10-25T01:22:26.297556+00:00",
+      "documented_behavior": "ignored_in_thinking_mode",
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 0.6,
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply only READY. This is a nonclinical API parameter compatibility test."
+          }
+        ],
+        "thinking": {
+          "type": "enabled"
+        },
+        "max_tokens": 64
+      },
+      "http_status": 200,
+      "returned_model": "deepseek-flash",
+      "usage": {
+        "prompt_tokens": 45,
+        "completion_tokens": 13,
+        "total_tokens": 58,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 10
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 45
+      },
+      "acceptance": true,
+      "eligible_as_temperature_experiment": false,
+      "not_executed_experimental_metrics": "N/A: no clinical generation, P21 or repair was run"
+    },
+    {
+      "provider": "deepseek",
+      "requested_model": "deepseek-flash",
+      "temperature": 1.0,
+      "utc": "2026-10-25T01:22:27.169502+00:00",
+      "documented_behavior": "ignored_in_thinking_mode",
+      "request_parameters": {
+        "model": "deepseek-flash",
+        "temperature": 1.0,
+        "messages": [
+          {
+            "role": "user",
+            "content": "Reply only READY. This is a nonclinical API parameter compatibility test."
+          }
+        ],
+        "thinking": {
+          "type": "enabled"
+        },
+        "max_tokens": 64
+      },
+      "http_status": 200,
+      "returned_model": "deepseek-flash",
+      "usage": {
+        "prompt_tokens": 45,
+        "completion_tokens": 13,
+        "total_tokens": 58,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 10
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 45
+      },
+      "acceptance": true,
+      "eligible_as_temperature_experiment": false,
+      "not_executed_experimental_metrics": "N/A: no clinical generation, P21 or repair was run"
+    }
+  ],
+  "interpretation": "Acceptance does not establish temperature effectiveness; no 16-metric endpoints exist.",
+  "pending_decisions": [
+    "Keep current models and change research factor, or select temperature-capable models/modes.",
+    "Update the invalid OpenAI credential locally."
+  ],
+  "limitations": [
+    "These are direct nonclinical API probes, not OpenCode transport qualification.",
+    "Claude accepted temperature 1.0 but rejected 0.2 and 0.6; this does not supply three sampling conditions.",
+    "DeepSeek accepted requests but its documented thinking mode ignores temperature.",
+    "OpenAI returned invalid_api_key: temperature behavior was not tested at runtime.",
+    "No clinical experimental endpoint or 16-metric performance result was created."
+  ]
+}
