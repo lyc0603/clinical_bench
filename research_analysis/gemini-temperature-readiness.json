@@ -1,0 +1,97 @@
+{
+  "scope": "nonclinical technical evidence only; no experiment outcomes",
+  "transport": {
+    "qualified": true,
+    "tools": {
+      "README.md": "c9761b8dfe42f25c2932b795ea58059ead3251800de1f9612aadf405a9c8100d",
+      "__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gemini.py": "fb925ad922dc4e08ac6a32c5a9b977f9f3e2346b26f3fe264cee26c304eb4353",
+      "transport_probe.py": "aa861fb8a6a163ad2a5cea4d0b59fdc7ad1eae7906ec0c233a93fbe7c3d24b07"
+    },
+    "model": "google/gemini-3.1-pro-preview",
+    "records": [
+      {
+        "temperature": 0.2,
+        "qualified": true,
+        "requests": [
+          {
+            "path": "/v1beta/models/gemini-3.1-pro-preview:streamGenerateContent?alt=sse",
+            "generationConfig": {
+              "maxOutputTokens": 32000,
+              "temperature": 0.2,
+              "topK": 64,
+              "topP": 0.95,
+              "thinkingConfig": {
+                "includeThoughts": true,
+                "thinkingLevel": "high"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "temperature": 0.6,
+        "qualified": true,
+        "requests": [
+          {
+            "path": "/v1beta/models/gemini-3.1-pro-preview:streamGenerateContent?alt=sse",
+            "generationConfig": {
+              "maxOutputTokens": 32000,
+              "temperature": 0.6,
+              "topK": 64,
+              "topP": 0.95,
+              "thinkingConfig": {
+                "includeThoughts": true,
+                "thinkingLevel": "high"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "temperature": 1.0,
+        "qualified": true,
+        "requests": [
+          {
+            "path": "/v1beta/models/gemini-3.1-pro-preview:streamGenerateContent?alt=sse",
+            "generationConfig": {
+              "maxOutputTokens": 32000,
+              "temperature": 1,
+              "topK": 64,
+              "topP": 0.95,
+              "thinkingConfig": {
+                "includeThoughts": true,
+                "thinkingLevel": "high"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "other_settings_identical": true,
+    "note": "Rerun after allowing only OpenCode automatic schema metadata; all sampling and model checks remain strict."
+  },
+  "readiness": [
+    {
+      "temperature": 0.2,
+      "qualified": true,
+      "receipt_sha256": "3ff6b61515fbc46b1c5067e28dfdad62f9fdaa9d065668811db99ded487ff05e",
+      "resolved_build_temperature": 0.2
+    },
+    {
+      "temperature": 0.6,
+      "qualified": true,
+      "receipt_sha256": "0e9e7ed713b699e8b66e3252172899b2e5d0266302a56f73fd633cc2fce79b0e",
+      "resolved_build_temperature": 0.6
+    },
+    {
+      "temperature": 1.0,
+      "qualified": true,
+      "receipt_sha256": "4fcc9a45954bebaa521246ea2b16fea24b1a16ef86268bbc0e84ee4ce5921aa6",
+      "resolved_build_temperature": 1
+    }
+  ],
+  "readiness_receipt_sha256": "35f5095e68609725fe70d415c67a21f709678d1a90519a627d9865d9476fa7a0",
+  "main_study_started": false,
+  "pre_inference_recovery": "Cloud-offloaded files restored to original frozen hashes; Python package versions reproduced in a non-cloud temporary environment. Earlier pre-inference attempts retained privately. OpenCode schema metadata normalization was handled before clinical generation."
+}
