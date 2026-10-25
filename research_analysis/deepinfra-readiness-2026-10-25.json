@@ -1,0 +1,131 @@
+{
+  "scope": "Nonclinical DeepInfra readiness only; not experimental outcomes",
+  "clinical_inputs_transmitted": false,
+  "main_study_started": false,
+  "runtime": {
+    "image": "sha256:21e4ee1fbf4ad09af096566ed86f5c821eb3a3cc888c1c6d3da5ee0e7f9175c5",
+    "opencode": "1.19.0"
+  },
+  "tools": {
+    "README.md": "254424959186648a66074f3af50ef789d3ee6c08fc94f640f1fe070a0809296c",
+    "__init__.py": "7b02fb5a877e175466197ce4d693be4545abf83c7a464bd70566971a79b12ae4",
+    "deepinfra_backend.py": "82b3d4200f23080aec8bec09b2c7419437fc08bbd82f1d4c40073272185dae57",
+    "deepinfra_readiness.py": "af1f7f5063208cd5b90e4ddc2c3dbcb8577afa613a1263350242d1ef4149acee",
+    "deepinfra_transport.py": "8d046ef6216b9715900b377a13fec7d74aed6d7bd999665527a1cb2c2dc330db"
+  },
+  "settings": {
+    "temperature": 1.0,
+    "reasoning_effort": "medium",
+    "max_response_tokens": 16384,
+    "context_metadata": 131072,
+    "title_helper_disabled": true
+  },
+  "records": [
+    {
+      "model": "deepinfra/openai/gpt-oss-20b",
+      "qualified": true,
+      "same_session_continuation": true,
+      "phases": {
+        "initial": {
+          "normal_completion": true,
+          "finish": "stop",
+          "tool_calls": 1,
+          "tool_failures": 0,
+          "cost_estimate_usd": 0.00035522,
+          "agent_sha256": "2cec2c371d3a0fab74194186ab396d55d4f48b9f6e45a8a52ba7f853e59a673e"
+        },
+        "continuation": {
+          "normal_completion": true,
+          "finish": "stop",
+          "tool_calls": 1,
+          "tool_failures": 0,
+          "cost_estimate_usd": 0.00034718,
+          "agent_sha256": "b818c22ec27ddce43160fadd52159cef57a8ad740057f5523e18316821c2a246"
+        }
+      }
+    },
+    {
+      "model": "deepinfra/openai/gpt-oss-120b",
+      "qualified": true,
+      "same_session_continuation": true,
+      "phases": {
+        "initial": {
+          "normal_completion": true,
+          "finish": "stop",
+          "tool_calls": 1,
+          "tool_failures": 0,
+          "cost_estimate_usd": 0.00044421,
+          "agent_sha256": "fc98f34b5faa08d9af5737c23bfc5b93c228d2fb1de55913ae6384823ae10a66"
+        },
+        "continuation": {
+          "normal_completion": true,
+          "finish": "stop",
+          "tool_calls": 1,
+          "tool_failures": 0,
+          "cost_estimate_usd": 0.000413596,
+          "agent_sha256": "2a5c4c2b195983485f220c102da19e3cc2038bc9eb3777d4414890486a31007c"
+        }
+      }
+    }
+  ],
+  "offline_transport": [
+    {
+      "model": "gpt_oss_20b",
+      "qualified": true,
+      "requests": [
+        {
+          "path": "/v1/openai/chat/completions",
+          "model": "openai/gpt-oss-20b",
+          "temperature": 1,
+          "reasoning_effort": "medium",
+          "max_tokens": 16384,
+          "max_completion_tokens": null,
+          "stream": true,
+          "tool_count": 8,
+          "field_names": [
+            "max_tokens",
+            "messages",
+            "model",
+            "prompt_cache_key",
+            "reasoning_effort",
+            "stream",
+            "temperature",
+            "tool_choice",
+            "tools"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "gpt_oss_120b",
+      "qualified": true,
+      "requests": [
+        {
+          "path": "/v1/openai/chat/completions",
+          "model": "openai/gpt-oss-120b",
+          "temperature": 1,
+          "reasoning_effort": "medium",
+          "max_tokens": 16384,
+          "max_completion_tokens": null,
+          "stream": true,
+          "tool_count": 8,
+          "field_names": [
+            "max_tokens",
+            "messages",
+            "model",
+            "prompt_cache_key",
+            "reasoning_effort",
+            "stream",
+            "temperature",
+            "tool_choice",
+            "tools"
+          ]
+        }
+      ]
+    }
+  ],
+  "private_receipt_sha256": "b9244a37c59757a86d0483a7d5fa481ff31cceea56c9bc53851cd765cce35836",
+  "transport_receipt_sha256": "c168440b9fd08af396d1262e7a9f5f95aad205124b04498fba4402462f633394",
+  "original_main_code_unchanged": true,
+  "limitations": "Short readiness probes only; long context and clinical task completion untested. Smoke-only 300-second turn timeout does not set an experiment time cap. Telemetry estimates are not invoices."
+}

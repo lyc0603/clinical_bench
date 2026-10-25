@@ -90,6 +90,8 @@ See the latest [unified exploratory results: 16 metrics across 15 endpoints](pre
 
 The [earlier six-workflow comparison](pre_experiment/results/2026-10-21/README.md) remains archived with its original runtime-integrity rejections and follow-up.
 
+The [DeepInfra open-weight extension](open_model_extensions/README.md) has passed [nonclinical qualification](research_analysis/deepinfra-readiness-2026-10-25.json) for gpt-oss-20b and gpt-oss-120b: explicit temperature 1.0 and medium reasoning, offline request capture, successful local tool calls, same-session continuation, normal completion and usage telemetry. These short empty-input probes are not clinical experiment results and add no endpoints to the sixteen-metric table. The original sealed main runner remains unchanged; no clinical inputs were sent to DeepInfra.
+
 ### P21 amendment: new qualification and freeze required
 
 The [evaluator amendment](docs/p21-evaluator-amendment.md) now distinguishes client errors from immutable runtime changes and retains diagnostics. Existing pilot scores remain unchanged. The old main-study freeze does not authorize this changed evaluator: formal execution must wait for review, qualification and a new versioned freeze.
