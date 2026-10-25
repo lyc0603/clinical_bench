@@ -1,6 +1,7 @@
 """DeepInfra adapter using the pinned native SDK and original sandbox rules."""
 import json
 import os
+import subprocess
 from pathlib import Path
 import uuid
 
@@ -8,7 +9,7 @@ from main_experiment.backend import DockerSession,capture,telemetry,message_ids
 from main_experiment.completion import assess
 from main_experiment.core import fingerprint
 from main_experiment.egress import Egress
-from main_experiment.support import command,save
+from main_experiment.support import command,save,digest
 
 MODELS=[{'id':f'gpt_oss_{size}b','model':f'deepinfra/openai/gpt-oss-{size}b',
          'key_env':'DEEPINFRA_API_KEY'} for size in (20,120)]
@@ -46,6 +47,17 @@ class DeepInfraSession(DockerSession):
 
     def start(self):
         super().start()
+        tool=Path(self.c['tool_ripgrep'])
+        if digest(tool)!=self.c['tool_ripgrep_sha256']:
+            raise ValueError('Qualified ripgrep binary changed')
+        # Provision before model access; no runtime download or general egress.
+        subprocess.run(['docker','exec','-i',self.name,'python','-c',
+            'import sys;from pathlib import Path;p=Path("/state/data/opencode/bin/rg");p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(sys.stdin.buffer.read());p.chmod(0o755)'],
+            input=tool.read_bytes(),stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=True,timeout=60)
+        version=capture(['docker','exec',self.name,'/state/data/opencode/bin/rg','--version'])
+        self.tool_path='/state/data/opencode/bin:'+capture(['docker','exec',self.name,'printenv','PATH'])
+        save(self.directory/'tool-support.json',{'ripgrep_sha256':digest(tool),'version':version,
+            'method':'Controller provisions pinned executable in OpenCode cache before model access; original Docker image unchanged.'})
         config=settings(self.model)
         capture(['docker','exec',self.name,'python','-c',
           'from pathlib import Path;import sys;p=Path("/state/config/opencode/opencode.json");p.parent.mkdir(parents=True,exist_ok=True);p.write_text(sys.argv[1])',json.dumps(config)])
@@ -55,7 +67,7 @@ class DeepInfraSession(DockerSession):
         key=self.model['key_env']
         if not os.environ.get(key):
             raise ValueError('Missing DEEPINFRA_API_KEY')
-        argv=['docker','exec','-e',key,self.name,'opencode','run','--format','json','--model',self.model['model']]
+        argv=['docker','exec','-e',key,'-e','PATH='+self.tool_path,self.name,'opencode','run','--format','json','--model',self.model['model']]
         if session:
             argv+=['--session',session]
         argv.append(text)
@@ -83,6 +95,10 @@ class DeepInfraSession(DockerSession):
         schema=actual.pop('$schema',None)
         if schema not in (None,'https://opencode.ai/config.json') or actual!=settings(self.model):
             decision.update(normal=False,reason='sampling_configuration_changed')
+        tool_hash=capture(['docker','exec',self.name,'python','-c',
+            'import hashlib;from pathlib import Path;print(hashlib.sha256(Path("/state/data/opencode/bin/rg").read_bytes()).hexdigest())'])
+        if tool_hash!=self.c['tool_ripgrep_sha256']:
+            decision.update(normal=False,reason='file_tool_binary_changed')
         result.update(completion=decision,terminal=decision['normal'])
         save(path/'completion.json',decision);save(path/'agent.json',result)
         if not decision['normal']:

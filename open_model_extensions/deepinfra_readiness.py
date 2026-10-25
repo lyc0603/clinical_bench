@@ -42,7 +42,7 @@ def transport(out,image):
     if not all(r['qualified'] for r in records):
         raise RuntimeError('Offline request parameters did not match declared settings')
 
-def smoke(out,image,transport_root):
+def smoke(out,image,transport_root,ripgrep):
     receipt=json.loads((transport_root/'qualification.json').read_text())
     if not receipt['qualified'] or receipt['tools']!=tools():
         raise ValueError('Current passing offline transport evidence required')
@@ -56,14 +56,15 @@ def smoke(out,image,transport_root):
     for model in MODELS:
         directory=out/model['id'];directory.mkdir()
         empty=directory/'empty-inputs';empty.mkdir()
-        c={'inputs':str(empty.resolve()),'cpus':4,'memory':'8g','phase_seconds':300}
+        c={'inputs':str(empty.resolve()),'cpus':4,'memory':'8g','phase_seconds':300,
+           'tool_ripgrep':str(ripgrep.resolve()),'tool_ripgrep_sha256':digest(ripgrep)}
         a=DeepInfraSession(c,model,directory,runtime['image'])
         record={'model':model,'qualified':False,'clinical_inputs_transmitted':False}
         try:
             a.start();sid=None;phases={}
             prompts=[
-                'This is a nonclinical connection test. Use bash to write ONLY cedar-12345 to smoke-marker.txt and print that file. Do not inspect any other files or environment variables. Then reply READY.',
-                'Continue this same test session. Use bash to read smoke-marker.txt. Do not inspect any other files or environment variables. Then reply READY2.'
+                'This is a nonclinical connection test. Use bash to write ONLY cedar-12345 to smoke-marker.txt. Then use glob to find smoke-marker.txt in the current directory, and use grep to find cedar in that file. Do not inspect any other files or environment variables. Then reply READY.',
+                'Continue this same test session. Use the read tool to read smoke-marker.txt. Do not inspect any other files or environment variables. Then reply READY2.'
             ]
             for name,text in zip(('initial','continuation'),prompts):
                 phase=directory/name;phase.mkdir();(phase/'prompt.txt').write_text(text)
@@ -71,6 +72,12 @@ def smoke(out,image,transport_root):
                 agent=json.loads((phase/'agent.json').read_text())
                 if not agent.get('tool_calls') or agent.get('tool_failures'):
                     raise RuntimeError('Readiness requires successful tool execution in both turns')
+                names={p.get('tool') for m in h['messages'] for p in m.get('parts',[])
+                       if p.get('type')=='tool' and p.get('state',{}).get('status')=='completed'}
+                if name=='initial' and not {'bash','glob','grep'}<=names:
+                    raise RuntimeError('Readiness must exercise bash, glob and grep')
+                if name=='continuation' and 'read' not in names:
+                    raise RuntimeError('Readiness must exercise read tool')
                 if (a.workspace/'smoke-marker.txt').read_text().strip()!='cedar-12345':
                     raise RuntimeError('Tool output did not reproduce the requested marker')
                 usage=agent['completion'].get('export_usage',[])
@@ -95,6 +102,7 @@ def smoke(out,image,transport_root):
         'clinical_inputs_transmitted':False,'main_study_started':False,
         'tools':original_tools,'main_code':original_code,'runtime':runtime,
         'transport_receipt_sha256':digest(transport_root/'qualification.json'),
+        'tool_support':{'ripgrep_sha256':digest(ripgrep)},
         'completion_policy':COMPLETION,'records':records,'evidence':manifest(out),
         'limitations':'Short readiness probes only; long context and clinical task completion untested. Smoke-only 300-second turn timeout does not set an experiment time cap. Telemetry estimates are not invoices.'})
     if not unchanged or not all(r['qualified'] for r in records):
@@ -107,6 +115,7 @@ def main():
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--env-file',type=Path,required=True)
     p.add_argument('--transport',type=Path)
+    p.add_argument('--ripgrep',type=Path)
     p.add_argument('--image',default='adam-experiment:main')
     p.add_argument('--execute',action='store_true')
     a=p.parse_args();load_env(a.env_file)
@@ -115,9 +124,9 @@ def main():
         transport(out,a.image)
         print('Both offline DeepInfra transport captures passed.')
     else:
-        if not a.execute or not a.transport:
-            p.error('smoke requires --execute and --transport')
-        smoke(out,a.image,a.transport)
+        if not a.execute or not a.transport or not a.ripgrep:
+            p.error('smoke requires --execute, --transport and --ripgrep')
+        smoke(out,a.image,a.transport,a.ripgrep)
 
 if __name__=='__main__':
     main()

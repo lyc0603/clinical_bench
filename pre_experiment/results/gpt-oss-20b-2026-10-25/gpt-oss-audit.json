@@ -1,0 +1,52 @@
+{
+  "main_study_started": false,
+  "previous_fifteen_records_unchanged": true,
+  "previous_report_sha256": "7cabbb769f8cac174aa6a5034cc13e8ee37f174f55ac477f41b00e01370dacc9",
+  "extension_lock_sha256": "9b1f3c52227ebd91ed36b76dfbeecf75735acdfb0c7023d0662bc9c0211f6df2",
+  "independent_initial_session_count": 3,
+  "records": [
+    {
+      "condition": "initial_only",
+      "controller_status": "completed",
+      "phases": {
+        "initial": {
+          "normal_completion": true,
+          "evaluation_sha256": "0cd25e771fc098ec87d96a96f91886ea2a5165430d63c29a6640daf19b9482ea",
+          "report_usable": false
+        }
+      }
+    },
+    {
+      "condition": "self_review",
+      "controller_status": "completed",
+      "phases": {
+        "initial": {
+          "normal_completion": true,
+          "evaluation_sha256": "ed6c4a3c3057e5be10f95da49e5ebf98db3cf14a6b5418c46161bdc42845060d",
+          "report_usable": false
+        },
+        "final": {
+          "normal_completion": true,
+          "evaluation_sha256": "4ea5ebb8417225ea8785eaef6a3bef65a4708540c5b2d77e1a39569990fa56df",
+          "report_usable": false
+        }
+      }
+    },
+    {
+      "condition": "p21_feedback",
+      "controller_status": "completed",
+      "phases": {
+        "initial": {
+          "normal_completion": true,
+          "evaluation_sha256": "b2799a5eb93f0a7190e20e63b0585d4012cab516978695a01d37775c6f676308",
+          "report_usable": false
+        },
+        "final": {
+          "normal_completion": true,
+          "evaluation_sha256": "24af47c530ab75870eef888079396425a718c20ce7da642b500ef0091caa8e30",
+          "report_usable": false
+        }
+      }
+    }
+  ]
+}

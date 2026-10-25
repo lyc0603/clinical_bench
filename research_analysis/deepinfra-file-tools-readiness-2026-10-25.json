@@ -1,0 +1,130 @@
+{
+  "scope": "Nonclinical qualification after file-tool environment amendment; not research outcome metrics",
+  "qualified": true,
+  "clinical_inputs_transmitted": false,
+  "main_study_started": false,
+  "runtime": {
+    "image": "sha256:21e4ee1fbf4ad09af096566ed86f5c821eb3a3cc888c1c6d3da5ee0e7f9175c5",
+    "opencode": "1.19.0"
+  },
+  "tools": {
+    "README.md": "c4751b45ac8560f6decf72d0b5e9add5fd9e5b9e8e05358da4bc377c5aa5fe49",
+    "__init__.py": "7b02fb5a877e175466197ce4d693be4545abf83c7a464bd70566971a79b12ae4",
+    "deepinfra_backend.py": "f08051f8fe24e6c2ede5f94a31c448fc499d7eea618b4c56d7d59bfc635ec062",
+    "deepinfra_readiness.py": "2e1a2a42357a940873de1ec881fa3ebb30cb6974d12704f5d26f3a8725d59f4c",
+    "deepinfra_transport.py": "8d046ef6216b9715900b377a13fec7d74aed6d7bd999665527a1cb2c2dc330db"
+  },
+  "tool_support": {
+    "ripgrep_sha256": "1f1f7f0dce26cf47dd44ea064ff3c22f1d7111671e53e55713be437806680b78"
+  },
+  "offline_transport": [
+    {
+      "model": "gpt_oss_20b",
+      "qualified": true,
+      "requests": [
+        {
+          "path": "/v1/openai/chat/completions",
+          "model": "openai/gpt-oss-20b",
+          "temperature": 1,
+          "reasoning_effort": "medium",
+          "max_tokens": 16384,
+          "max_completion_tokens": null,
+          "stream": true,
+          "tool_count": 8,
+          "field_names": [
+            "max_tokens",
+            "messages",
+            "model",
+            "prompt_cache_key",
+            "reasoning_effort",
+            "stream",
+            "temperature",
+            "tool_choice",
+            "tools"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "gpt_oss_120b",
+      "qualified": true,
+      "requests": [
+        {
+          "path": "/v1/openai/chat/completions",
+          "model": "openai/gpt-oss-120b",
+          "temperature": 1,
+          "reasoning_effort": "medium",
+          "max_tokens": 16384,
+          "max_completion_tokens": null,
+          "stream": true,
+          "tool_count": 8,
+          "field_names": [
+            "max_tokens",
+            "messages",
+            "model",
+            "prompt_cache_key",
+            "reasoning_effort",
+            "stream",
+            "temperature",
+            "tool_choice",
+            "tools"
+          ]
+        }
+      ]
+    }
+  ],
+  "records": [
+    {
+      "model": "deepinfra/openai/gpt-oss-20b",
+      "qualified": true,
+      "phases": {
+        "initial": {
+          "normal_completion": true,
+          "finish": "stop",
+          "tool_calls": 3,
+          "tool_failures": 0,
+          "cost_estimate_usd": 0.00090259,
+          "agent_sha256": "1b09eb54b4399a58b5ce7b586b5d2959a6d1fd4d43ebca3c74a5dfd9406bf3eb"
+        },
+        "continuation": {
+          "normal_completion": true,
+          "finish": "stop",
+          "tool_calls": 1,
+          "tool_failures": 0,
+          "cost_estimate_usd": 0.00034434,
+          "agent_sha256": "62408a65cb04bf9f6f91abb0b59496357705e28fa042a075356c51868ca2b2df"
+        }
+      },
+      "same_session_continuation": true,
+      "marker_verified": true
+    },
+    {
+      "model": "deepinfra/openai/gpt-oss-120b",
+      "qualified": true,
+      "phases": {
+        "initial": {
+          "normal_completion": true,
+          "finish": "stop",
+          "tool_calls": 3,
+          "tool_failures": 0,
+          "cost_estimate_usd": 0.000887041,
+          "agent_sha256": "19f9a557e11a68d1c1d9ffd511e2490ba079b55f723b58d6a81c86a87458aace"
+        },
+        "continuation": {
+          "normal_completion": true,
+          "finish": "stop",
+          "tool_calls": 1,
+          "tool_failures": 0,
+          "cost_estimate_usd": 0.00042251400000000003,
+          "agent_sha256": "ed13001709def90002adc65c40e5c3be2cd8f35600a6afbadc00aec7ea27729f"
+        }
+      },
+      "same_session_continuation": true,
+      "marker_verified": true
+    }
+  ],
+  "readiness_receipt_sha256": "992a4a09af3a4bf5429efc6b3e9c7697455e0b33b0a0bea0a360e8a9d4b73c68",
+  "transport_receipt_sha256": "4d0e50ac83cb4438fe24141c4c4248b8eab454245c7872d945e60f026eedcd76",
+  "amendment": "Hash-pinned Linux ripgrep is provisioned before model access and added to PATH. bash, glob, grep and read now tested. Earlier bash-only qualification was insufficient for file-tool dependencies; an unqualified clinical batch was stopped and retained privately. Fresh clinical generations follow a new freeze.",
+  "limitations": "Short readiness probes only; long context and clinical task completion untested. Smoke-only 300-second turn timeout does not set an experiment time cap. Telemetry estimates are not invoices."
+}
