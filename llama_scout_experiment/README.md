@@ -1,0 +1,5 @@
+# Llama 4 Scout exploratory pilot
+
+Three independent initial-only, self-review and P21-feedback workflows, one each. DeepInfra exact endpoint meta-llama/Llama-4-Scout-17B-16E-Instruct; temperature 1; no reasoning-effort setting; 16,384 maximum response tokens; original sandbox, denied general web access, pinned file tools. Qualification and freeze are required before clinical processing. No formal main study or temperature comparison. Maverick is unavailable; its FP8 alias returned Gemma in a nonclinical probe and is excluded. Hosted endpoint identity does not guarantee immutable server weights.
+
+Readiness attempt 1 failed with empty glob/grep arguments and text-only bash. An offline fixture established that the pinned SDK preserves arguments carried in the final streaming frame; its glob execution error was expected because that isolated fixture lacked provisioned ripgrep and is not a clinical or file-tool qualification. Attempt 2 makes synthetic tool arguments explicit; all attempts are retained, and clinical prompts are unchanged.

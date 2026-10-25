@@ -1,0 +1,265 @@
+{
+  "scope": "Nonclinical endpoint identity and Scout readiness diagnostics; no study inputs used.",
+  "endpoint_probes": [
+    {
+      "evidence_sha256": "163db1f98b6d99f0bdac25fb68bd46beb402cf3efcc27cfe421ba8519f4c9b61",
+      "model": "openai/gpt-oss-120b",
+      "nonclinical": true,
+      "status": 200,
+      "response_model": "openai/gpt-oss-120b",
+      "usage": {
+        "prompt_tokens": 62,
+        "total_tokens": 108,
+        "completion_tokens": 46,
+        "estimated_cost": 1.0114e-05,
+        "prompt_tokens_details": null
+      }
+    },
+    {
+      "evidence_sha256": "58191bf331915a05f3573763c45a92728cfff44c54090b9abb20551ea9e8b7b6",
+      "model": "meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+      "nonclinical": true,
+      "status": 404,
+      "error": "{\"error\":{\"message\":\"The model `meta-llama/Llama-4-Maverick-17B-128E-Instruct` does not exist\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":\"model_not_found\"}}"
+    },
+    {
+      "evidence_sha256": "4088a14af8257cafa9648be8da44ab5912b6a8fd5c711d51fde51358643ece0a",
+      "model": "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8",
+      "nonclinical": true,
+      "status": 200,
+      "response_model": "google/gemma-4-31B-it-turbo",
+      "usage": {
+        "prompt_tokens": 21,
+        "total_tokens": 23,
+        "completion_tokens": 2,
+        "estimated_cost": 2.57e-06,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": null
+        }
+      }
+    },
+    {
+      "evidence_sha256": "7a6aa37667942b7d93a537d56ac9cd4f33d225eaa82e28e606274c72abfb417a",
+      "model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+      "nonclinical": true,
+      "status": 200,
+      "response_model": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+      "usage": {
+        "prompt_tokens": 19,
+        "total_tokens": 22,
+        "completion_tokens": 3,
+        "estimated_cost": 2.8000000000000003e-06,
+        "prompt_tokens_details": null
+      }
+    }
+  ],
+  "selected_models": [
+    "deepinfra/openai/gpt-oss-120b",
+    "deepinfra/meta-llama/Llama-4-Scout-17B-16E-Instruct"
+  ],
+  "maverick_excluded": true,
+  "reason": "Maverick returned 404; its FP8 alias responded with a Gemma model identity, so neither is used.",
+  "scout_readiness_attempts": [
+    {
+      "attempt": 1,
+      "receipt_sha256": "9ddb5d76fc977685169801a474ce9e585fd1ad062920a1e3d8d6ee200be19779",
+      "qualified": false,
+      "records": [
+        {
+          "model": {
+            "id": "llama_4_scout",
+            "model": "deepinfra/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+            "key_env": "DEEPINFRA_API_KEY"
+          },
+          "qualified": false,
+          "clinical_inputs_transmitted": false,
+          "error_type": "RuntimeError",
+          "reason": "Readiness requires successful tool execution in both turns"
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "receipt_sha256": "41f9c07645a6df479e9a056a4060eabba2160195b416fce53433a1cc4f76c91d",
+      "qualified": true,
+      "receipt": {
+        "scope": "nonclinical readiness; no main or clinical experiment started",
+        "qualified": true,
+        "clinical_inputs_transmitted": false,
+        "main_study_started": false,
+        "tools": {
+          "__init__.py": "7b02fb5a877e175466197ce4d693be4545abf83c7a464bd70566971a79b12ae4",
+          "deepinfra_backend.py": "d40946784c6be6ead8222ef36b72811fb13a8c5b8ea986384bc40da8b6355d3b",
+          "deepinfra_readiness.py": "1f16afa9d66e74fbb273a9691248da08d9b9f2d788c3743e4d8d916759c16a90",
+          "deepinfra_transport.py": "8d046ef6216b9715900b377a13fec7d74aed6d7bd999665527a1cb2c2dc330db"
+        },
+        "main_code": {
+          "docs/main-experiment-workflow.md": "ad4be6c90474f9d90fb426ab5684114751b5d1bad439f26768ffed0e30b52ea5",
+          "docs/main-study-protocol.md": "6dd044d7b304befcebec30d165549ed9e65e9deff28863c6ecf71224236fc09f",
+          "docs/p21-evaluator-amendment.md": "3fa298bbd1637235a2b8650a8c80e6a052d8a252299be7769332115004eceec4",
+          "main_experiment/Dockerfile": "bb81e4c2d16c7913d5d0f30a8f82e1c5815a3139765505a92d0ac43cea4ccdd1",
+          "main_experiment/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "main_experiment/__main__.py": "f83699ee430ae5506683331a35fe2729eaf101b3e286692087d26f90059fdd69",
+          "main_experiment/backend.py": "0168f4817adc7f8ada9b33e063f2454650229324164c7aaf1b4b857c93b6dc73",
+          "main_experiment/completion-policy.json": "2fe8c23f118a27340ffd49e53b422ea6738001322ec9bf94b7fb42b7f429bf44",
+          "main_experiment/completion.py": "0cd3572b492c307d4f65458fc83e72d695f1cde26832d10b875046b33cb57d0c",
+          "main_experiment/config.example.json": "8282a4d4b24b8cda2b4985ad32f41993a79f7095909a7f395535c4415424a7fc",
+          "main_experiment/core.py": "73249789d1ae3c6b325f2bbc617ad5f486c1e5582394806015742c9c5b30ce15",
+          "main_experiment/coverage.py": "d67dc08d70053259a1f763a6dedcf8455e4cf26b62cf6cb043e940ced0f18e40",
+          "main_experiment/derivation.py": "9ac8497093e32f135c8f1b1f68d8371ae88e71962b2126b4a3f6e1519d711351",
+          "main_experiment/egress.py": "7dd0ba0190cae0eb32464296c335a765c294a586195b3b59202287e87dcf21b8",
+          "main_experiment/evaluate.py": "a4ead15986fd14e43d230a0a3fedd2409b24927e2fefa47045cc32c54f7b603d",
+          "main_experiment/network/firewall.py": "8efc5f7accd18b8fe5c53b19a1454580c548518ba0421fb93fc479855c45d325",
+          "main_experiment/network/policy.json": "2ccb780313cefc73d8ad15869ba2d07825e31f8c4fcb1c23f0b17984afeee27a",
+          "main_experiment/network/probe.py": "b122a78e73973cfbfc885ae40f26ebaff97e7ecfd071d5b8fe7e18ee7d4858d3",
+          "main_experiment/network/proxy.py": "7f1f7f79631bfe0a124d9730a2793d0ced4758952228ef5e6f0f01461f3f134e",
+          "main_experiment/network_check.py": "c6066e7e4caa3b3413022b2f7f234676a2701d9130d2111a1188346c1e214d59",
+          "main_experiment/prompts/feedback_unavailable.txt": "a521c38f0b91b6ff7676f1ccd32d67fd6ae9164d4b180f71ec996047c9e4f037",
+          "main_experiment/prompts/generate.txt": "7e3ed35649e1fc334983a9b1242710cbe55647899e16f1927cc512d976548e33",
+          "main_experiment/prompts/p21_feedback.txt": "1a40ac1011db041dc1f5c033760a2684d8027c92af110cca69d667413cf72cf7",
+          "main_experiment/prompts/self_review.txt": "70f371e247976f16528e7d1cf081a488264b494c22012ca5bc81a6a4e9223b8e",
+          "main_experiment/rebuild.py": "a595161389de5bf3dac56e03190fd2c14cc9c4c1b606867353c05189af6a33c8",
+          "main_experiment/requirements-evaluator.txt": "0d94d9a6f46df977101a9d35b6c794a6c1d7747c5efca499764948d6cba811c3",
+          "main_experiment/requirements.txt": "91a5ecd4c5624f5a4f5087e70a081da95546615dac2fecc0aa7700bf9d2bd40a",
+          "main_experiment/runner.py": "9117f5cc6564efc7200ce406c634f2ac47261f604349499069131f9ddeb00b15",
+          "main_experiment/scoring-rules.json": "63fe6d8eeeeefe8e1cfb8d931aa52e6bd52ecb8bc27e6a6975a713da0ccbddba",
+          "main_experiment/support.py": "2c8397a799e9b5a9551e5724a98d6a94273feb46a4b6806e467ba93bd64183c1",
+          "main_experiment/test_boundaries.py": "de811ed6db604c95599b82ee2bb48630486f4b98e7ac6a943379cd454c87ef00",
+          "main_experiment/test_completion.py": "fa69645cb7681c97f3cfe467320c7a1ac214135e3c205a23db04de436c07713e",
+          "main_experiment/test_coverage.py": "b54bcdfb6a21e22504387866a97346104abca71ccb4303961085df183200751a",
+          "main_experiment/test_egress.py": "614bda25bacd9c8c6765536d14e363dc835f34daaf1485ded9e8366cf4318eb4",
+          "main_experiment/test_entrypoints.py": "8417f2c4e4f16ad0bef9d642021d322d42ea430a9a9e2e83eea6a680bfd0030e",
+          "main_experiment/test_isolation.py": "6fd275afa9a6dc8793faa95d61fba2575706386cfd85628e69bccb63bc3fc8b0",
+          "main_experiment/test_main.py": "2a734338142fd369509dbd88b64724460168769d217fe015c5c3091924bac8cb",
+          "main_experiment/test_p21_diagnostics.py": "41a0edf1159eb40748ac46672e9da23978f5926a7c95fd5a0e70be4f0a329e6f",
+          "main_experiment/test_partial_reports.py": "8221cad5b17f0c5af4eeb5ee508e9a8819baec8a575d046b6dcb43bfb5cb5177",
+          "main_experiment/test_scoring.py": "f5e77f74773d17444df8810f3cd74f53386dfb3a0835e06e32ee7575c8458440"
+        },
+        "runtime": {
+          "image": "sha256:21e4ee1fbf4ad09af096566ed86f5c821eb3a3cc888c1c6d3da5ee0e7f9175c5",
+          "opencode": "1.19.0"
+        },
+        "transport_receipt_sha256": "c1c6d91fc5322fe21d33c07fe03801773c60f4f8410698a6d36895d946d0fe3d",
+        "tool_support": {
+          "ripgrep_sha256": "1f1f7f0dce26cf47dd44ea064ff3c22f1d7111671e53e55713be437806680b78"
+        },
+        "completion_policy": {
+          "provider": "deepinfra",
+          "normal_reasons": [
+            "stop"
+          ],
+          "structural_checks": "Original exported-current-turn checks, plus exact provider and model identity."
+        },
+        "records": [
+          {
+            "model": {
+              "id": "llama_4_scout",
+              "model": "deepinfra/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+              "key_env": "DEEPINFRA_API_KEY"
+            },
+            "qualified": true,
+            "clinical_inputs_transmitted": false,
+            "same_session_continuation": true,
+            "phases": {
+              "initial": {
+                "normal_completion": true,
+                "finish": "stop",
+                "tool_calls": 3,
+                "tool_failures": 0,
+                "cost_estimate_usd": 0.0012948,
+                "agent_sha256": "8081c183808ef189ec67b373375c9b16d62ee90ac82c772a2f5331bdd2b5de54"
+              },
+              "continuation": {
+                "normal_completion": true,
+                "finish": "stop",
+                "tool_calls": 1,
+                "tool_failures": 0,
+                "cost_estimate_usd": 0.0013132,
+                "agent_sha256": "b50ca1ae002b7d1116d3879c050bf9e5c148652adda2bad80f8fc0566eeacaf8"
+              }
+            },
+            "marker_verified": true,
+            "settings": {
+              "agent": {
+                "build": {
+                  "temperature": 1.0
+                },
+                "title": {
+                  "disable": true
+                }
+              },
+              "provider": {
+                "deepinfra": {
+                  "options": {
+                    "baseURL": "https://api.deepinfra.com/v1",
+                    "apiKey": "{env:DEEPINFRA_API_KEY}"
+                  },
+                  "models": {
+                    "meta-llama/Llama-4-Scout-17B-16E-Instruct": {
+                      "reasoning": false,
+                      "tool_call": true,
+                      "temperature": true,
+                      "limit": {
+                        "context": 327680,
+                        "output": 16384
+                      },
+                      "options": {},
+                      "cost": {
+                        "input": 0.1,
+                        "output": 0.3
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "evidence": {
+          "llama_4_scout/container.json": "439ba83130a8628f842ded2842087ff839be2448c669fe6e21048375bccdf37b",
+          "llama_4_scout/continuation/agent.json": "b50ca1ae002b7d1116d3879c050bf9e5c148652adda2bad80f8fc0566eeacaf8",
+          "llama_4_scout/continuation/agent.jsonl": "8984c798e64a1953434efe38f35116a8aeedc7112aad2e7f68deb83866545ea4",
+          "llama_4_scout/continuation/completion.json": "98da2fe20faa53e0c9d029f7915072cb3292dcd47b25ff93fe1295fb4ac006dc",
+          "llama_4_scout/continuation/history-before.json": "09aeb1c4d0e6f081c6252c220a12aaf235689a5903f371b3bac495acada1377f",
+          "llama_4_scout/continuation/history-before.raw.json": "09aeb1c4d0e6f081c6252c220a12aaf235689a5903f371b3bac495acada1377f",
+          "llama_4_scout/continuation/history.json": "73318503982a64e5d52e4f1d390024295f2e7b7f257f72471c462cee82f70d7a",
+          "llama_4_scout/continuation/history.raw.json": "73318503982a64e5d52e4f1d390024295f2e7b7f257f72471c462cee82f70d7a",
+          "llama_4_scout/continuation/prompt.txt": "061754ca0ad6287c8d3d23fc42a7c33a34ffed75f4b0d16db2b04f7646540196",
+          "llama_4_scout/continuation/provider-config-after.json": "74e6204bd9873949cc31ccbd9b77d2232e620a514389786722c8938281a8d3cd",
+          "llama_4_scout/egress-gateway.jsonl": "eb203296add0d059562d9c6645c6702e5b3d79b65647b2edb79328f3d21e01bd",
+          "llama_4_scout/egress-policy.json": "f560326d3656bf59ce06428e0a75a001db07baa5a727f4962b1a75462d05f308",
+          "llama_4_scout/egress-probes.json": "3ed47c3c81f6be81cacff3d3389cd3f3cfc70d1092f6b3f2df3c0c5756c00c96",
+          "llama_4_scout/egress-rules.json": "61d12839e936fc6ca73e7c7c32452c387890e0f84cb2277e8f7550468ffb1ce1",
+          "llama_4_scout/initial/agent.json": "8081c183808ef189ec67b373375c9b16d62ee90ac82c772a2f5331bdd2b5de54",
+          "llama_4_scout/initial/agent.jsonl": "596a526e1955271e1607da5bfea02ee3e904664598e14231e1211fdb1193214c",
+          "llama_4_scout/initial/completion.json": "2f30c2aeb99422facd97679ed4e1cbb3682eaa2134074db044e23d12ed9e1e4a",
+          "llama_4_scout/initial/history.json": "09aeb1c4d0e6f081c6252c220a12aaf235689a5903f371b3bac495acada1377f",
+          "llama_4_scout/initial/history.raw.json": "09aeb1c4d0e6f081c6252c220a12aaf235689a5903f371b3bac495acada1377f",
+          "llama_4_scout/initial/prompt.txt": "54631bf38b0b8ede7ebf74b98c635a135c73a055877f28b996691a8a9e68b74e",
+          "llama_4_scout/initial/provider-config-after.json": "74e6204bd9873949cc31ccbd9b77d2232e620a514389786722c8938281a8d3cd",
+          "llama_4_scout/live/smoke-marker.txt": "c7a260d1f6e742af4d335680a7ce97bd2d60264225ded6ed1296c34d32696074",
+          "llama_4_scout/provider-config.json": "5bf435080bc1a5fd01c844aaa5fdca88407145a2fdc37ad771dce2928e0af66e",
+          "llama_4_scout/qualification.json": "b3d558ff7b5877532d07c6dc73bd8a76696d86ae7fc94d20e29d87ff406a6d95",
+          "llama_4_scout/tool-support.json": "7487d41df8a0865d4e66c01dfc50cee3d675d9491c77058da2d1294c0550d951"
+        },
+        "limitations": "Short readiness probes only; long context and clinical task completion untested. Smoke-only 300-second turn timeout does not set an experiment time cap. Telemetry estimates are not invoices."
+      }
+    }
+  ],
+  "stream_fixture": {
+    "evidence_sha256": "1d103a0687ce61237095a67f7d24a4bda230617a3ca8154dad0d7a8eddb55bc4",
+    "exit_code": 0,
+    "reconstructed_tool_inputs": [
+      {
+        "pattern": "nonexistent-cedar-marker"
+      }
+    ],
+    "conclusion": "SDK preserves synthetic tool arguments carried in final streaming frame. Fixture glob execution failed because its network-isolated image intentionally lacked rg; this fixture does not qualify file tools."
+  },
+  "limitations": [
+    "One direct endpoint identity probe is not proof of immutable hosted weights or every later response identity.",
+    "Scout readiness attempt 2 specifies required synthetic tool arguments explicitly. All failed attempts remain retained; clinical prompts are unchanged.",
+    "Smoke tool success does not establish clinical task success."
+  ]
+}
