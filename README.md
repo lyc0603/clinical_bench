@@ -86,7 +86,7 @@ license covers repository code, not separately licensed study/vendor materials.
 
 ## Excluded exploratory pre-experiment
 
-See the latest [four-model pilot: 16 metrics across 12 endpoints](pre_experiment/results/four-model-2026-10-22/README.md), with Excel, CSV, JSON and evidence audits. The separately frozen DeepSeek extension adds paired initial-only/self-review and an independent P21-feedback session. All [previous nine endpoints](pre_experiment/results/paired-2026-10-21/README.md), including OpenAI's original validator failure and Google's final reproduction failure, are preserved unchanged. These exploratory results are excluded from the formal main study; this task did not start it.
+See the latest [unified exploratory results: 16 metrics across 15 endpoints](pre_experiment/results/gemini-temperature-2026-10-24/README.md), with Excel, CSV, JSON and evidence audits. This adds Gemini initial-only temperatures 0.2, 0.6 and 1.0, one selected result each, to the unchanged [four-model pilot's twelve endpoints](pre_experiment/results/four-model-2026-10-22/README.md). Temperature 0.6 uses an explicitly authorized rerun after an API spending-cap interruption. The separately frozen DeepSeek extension adds paired initial-only/self-review and an independent P21-feedback session. All [previous nine endpoints](pre_experiment/results/paired-2026-10-21/README.md), including OpenAI's original validator failure and Google's final reproduction failure, are preserved unchanged. These exploratory results are excluded from the formal main study; this task did not start it.
 
 The [earlier six-workflow comparison](pre_experiment/results/2026-10-21/README.md) remains archived with its original runtime-integrity rejections and follow-up.
 

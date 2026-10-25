@@ -1,0 +1,32 @@
+{
+  "main_study_started": false,
+  "previous_twelve_records_unchanged": true,
+  "extension_lock_sha256": "1215707094adc0ee13c8137d3b7b1a5aee41e5b44c5b512b0590d75accb26f34",
+  "previous_report_sha256": "d41fb481e3df12475fb3133f18da68c84448988e7923eb90137c1940d54626c1",
+  "records": [
+    {
+      "temperature": 0.2,
+      "controller_status": "completed",
+      "normal_completion": true,
+      "p21_report_usable": true,
+      "sampling_sha256": "477912aefda3c821b176a073d38aa6ef674ed38528a21714b6c68ffaec16e21d",
+      "evaluation_sha256": "5f7b405f3c6244891a8ff8f21418d41634fad4fc3942aa8bedf5abe2d31efcfd"
+    },
+    {
+      "temperature": 0.6,
+      "controller_status": "completed",
+      "normal_completion": true,
+      "p21_report_usable": true,
+      "sampling_sha256": "eb6079324449ce3b7113256d3fd3f7101a8d5ee5447f1ac550ac7d7001922089",
+      "evaluation_sha256": "f5ef1ab6b7996185150f3300ca7ea1cd742aae23545b5196820d681a1b644767"
+    },
+    {
+      "temperature": 1.0,
+      "controller_status": "completed",
+      "normal_completion": true,
+      "p21_report_usable": true,
+      "sampling_sha256": "53eb36d0359f9ff26daeb6fccf305db945afc5b56451dbfc99ea4bfc13854342",
+      "evaluation_sha256": "12363d4387c8637b376280600d58a7a750fee7514d0953d2edd3ff1319a0f1ab"
+    }
+  ]
+}

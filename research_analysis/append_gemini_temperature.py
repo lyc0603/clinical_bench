@@ -16,6 +16,7 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     for name in ('previous', 'root', 'out', 'base-config', 'qualification', 'transport', 'smoke', 'env-file'):
         p.add_argument('--' + name, type=Path, required=True)
+    p.add_argument('--replacement-06', type=Path)
     a = p.parse_args()
     load_env(a.env_file)
     data = read(a.previous)
@@ -37,9 +38,17 @@ def main():
     if not readiness.get('qualified') or actual != readiness['evidence']:
         raise ValueError('Readiness evidence changed')
     historical = json.loads(json.dumps(data['records']))
+    if a.replacement_06:
+        replacement = a.replacement_06
+        if read(replacement/'pilot-plan.json') != lock or not read(replacement/'completed.json'):
+            raise ValueError('Replacement must be completed under identical frozen settings')
+        plan = read(replacement/'replacement-plan.json') or {}
+        if plan.get('temperature') != 0.6 or plan.get('automatic_retry') is not False:
+            raise ValueError('Explicitly authorized temperature 0.6 replacement required')
     added, audit = [], []
     for t in TEMPERATURES:
-        folder = a.root/str(t); phase = folder/'initial'
+        folder = (a.replacement_06 if t == 0.6 and a.replacement_06 else a.root)/str(t)
+        phase = folder/'initial'
         state = read(folder/'state.json') or {'status':'not_started'}
         evaluation = read(phase/'evaluation.json') or {}
         receipt = read(folder/'initial-only.json')
@@ -93,10 +102,10 @@ def main():
         'extension_lock_sha256':lock['sha256'],'report_script_sha256':digest(Path(__file__)),
         'previous_twelve_records_unchanged':True,'main_study_started':False}
     data['limitations'] += [
-        'Temperature 0.2, 0.6 and 1.0 each have one independent initial-only attempt, in fixed order 1.0, 0.2, 0.6. Descriptive sensitivity observations only; no causal or significance claims.',
+        'Temperature 0.2, 0.6 and 1.0 each contribute one selected independent initial-only result. Execution order was 1.0, 0.2, then 0.6. Descriptive sensitivity observations only; no causal or significance claims.',
         'The title helper is disabled for all new temperature endpoints. Historical default-setting endpoints are nonconcurrent contextual controls. New temperature 1.0 is the matched-setting reference within this batch.',
         'Gemini preview is a mutable provider endpoint. Serialized temperature acceptance does not verify server-side sampling internals.',
-        'All planned temperature endpoints remain in the table, including failures and not-started endpoints after a scheduling interruption. No automatic generation retries.',
+        ('Temperature 0.6 uses a user-authorized fresh replacement after an API spending-cap interruption. The interrupted attempt is excluded from this results table; its raw evidence remains private. Reported cost and time cover selected attempts only, not total campaign spending. There were no automatic generation retries.' if a.replacement_06 else 'All planned temperature endpoints remain in the table, including failures and not-started endpoints after a scheduling interruption. No automatic generation retries.'),
         'Temperature endpoints have no repair phase. Cost estimates exclude nonclinical qualification calls and are not invoices. P21 conformance does not establish clinical derivation correctness.'
     ]
     out=a.out; out.mkdir(parents=True,exist_ok=False)

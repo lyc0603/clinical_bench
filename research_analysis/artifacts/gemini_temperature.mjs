@@ -21,11 +21,12 @@ sheet.getRange('A5:Q21').format.wrapText = true;
 sheet.getRange('A5:Q21').format.verticalAlignment = 'top';
 sheet.getRange('A5:Q5').format = {fill:'#243B53',font:{name:'Arial',size:10,bold:true,color:'#FFFFFF'},wrapText:true,horizontalAlignment:'center',verticalAlignment:'center'};
 sheet.getRange('A5:Q5').format.rowHeight = 48;
-sheet.getRange('A6:Q21').format.rowHeight = 150;
 sheet.getRange('A5:A21').format.columnWidth = 5;
 sheet.getRange('B5:B21').format.columnWidth = 38;
 sheet.getRange('C5:Q21').format.columnWidth = 56;
 for (let i=0;i<16;i++) {
+  const lines = Math.max(...matrix[i+1].map((v,j)=>String(v).split('\n').reduce((n,s)=>n+Math.max(1,Math.ceil(s.length/(j===1?43:65))),0)));
+  sheet.getRange(`A${i+6}:Q${i+6}`).format.rowHeight = Math.max(36,lines*14+12);
   if (i%2===1) sheet.getRange(`A${i+6}:Q${i+6}`).format.fill = '#F0F4F8';
 }
 sheet.freezePanes.freezeRows(5);
