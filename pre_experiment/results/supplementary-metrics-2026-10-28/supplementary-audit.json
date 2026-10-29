@@ -1,0 +1,355 @@
+{
+  "analysis": {
+    "date": "2026-10-28",
+    "prespecified": false,
+    "previous_report_sha256": "bcd6df1ddc50c8d18baec7d005fb07bcc088c58e1491f2aa07c5779cd7a261fc",
+    "specifications_sha256": "a716380dfc60a17c9e47a1b5f3bf4d0c7be531d6d22dc77cce7f88e182408f2a",
+    "script_sha256": "f33bbba2e3e22abd823321c1399d3485d8d8a46595f074871b345816e559aba7",
+    "source_map_sha256": "29c27d85f7ef3984ae943ddec543a84054efd9d53eb387dbfdb055290a105a1f",
+    "expected_datasets": 13,
+    "expected_dataset_variable_pairs": 531,
+    "original_sixteen_metrics_unchanged": true,
+    "new_model_or_validator_calls": 0,
+    "definitions": {
+      "dataset_delivery": "Readable expected lowercase XPT files / 13; absent or unreadable files do not count. Extra datasets do not increase numerator.",
+      "variable_coverage": "Sum of expected exact-case dataset-variable names with correct Numeric/Character XPT storage class / 531. Missing datasets contribute zero. Unreadable schemas make the exact overall rate unavailable. Length, format, values and row completeness are not assessed.",
+      "failure_stages": "Nonexclusive observed phase-level stage indicators. Failed includes missing required delivery; blocked means known missing prerequisites. Counts are endpoints, not error-event counts. No failure observed does not prove successful execution. Original P21 execution is used; reassessment never erases original failure. Usable reports with findings do not count as validator execution failures."
+    }
+  },
+  "endpoints": [
+    {
+      "endpoint_index": 0,
+      "source_state_sha256": "4f33b4963c8543cb327f08eb9bac31dbd3d8266974a8c02d39d076dcd56096f8",
+      "phases": {
+        "initial": {
+          "evaluation.json": "28e6bed2df33c5a7a6dff6537803535521a393e56f2c2a545a3e66c97aff3eaa",
+          "workspace-manifest.json": "8420f342d474e5a2c72d5fc89b0773d4a3fdb73602c41e41e98166153f148589",
+          "agent.jsonl": "c87ad2e349a637e62e3cce2c3e049230a7917dcea85b40357eb41e1e96bfcb08"
+        },
+        "final": {
+          "evaluation.json": "80c3f064f6a6a9dd0cdb806feb5be6e6a7173041cd7b272f6431f51607836f07",
+          "workspace-manifest.json": "4b1653f37794740c5100db2dfd925a9c3ffc7140f75fc9b5ac30f86f3ecc0e66",
+          "agent.jsonl": "60e185a36346324f1d514cb663155476a83a4186168e7d12c678472de132afa4"
+        }
+      }
+    },
+    {
+      "endpoint_index": 1,
+      "source_state_sha256": "f8e44ceb9f76bd094f0c8c6e64a1a99b5a67c40f6bbe2815097f3a47e5b738e9",
+      "phases": {
+        "initial": {
+          "evaluation.json": "5c5652412c7c39efaccebc5dfa50e04581856d33a466865640a5b1025977b738",
+          "workspace-manifest.json": "d12a39440dbe9cb27efb7c8ad2d37e196278817bec2d47fb5f54bf7d834caf20",
+          "agent.jsonl": "164075c4f7cbe565f6b3b68ed7135e1bc3501e3361545e9b6731389ed5fdce0b"
+        }
+      }
+    },
+    {
+      "endpoint_index": 2,
+      "source_state_sha256": "f8e44ceb9f76bd094f0c8c6e64a1a99b5a67c40f6bbe2815097f3a47e5b738e9",
+      "phases": {
+        "initial": {
+          "evaluation.json": "5c5652412c7c39efaccebc5dfa50e04581856d33a466865640a5b1025977b738",
+          "workspace-manifest.json": "d12a39440dbe9cb27efb7c8ad2d37e196278817bec2d47fb5f54bf7d834caf20",
+          "agent.jsonl": "164075c4f7cbe565f6b3b68ed7135e1bc3501e3361545e9b6731389ed5fdce0b"
+        },
+        "final": {
+          "evaluation.json": "88c98ee10ab247d4bbf190bf0632c247bd042823411ab8ce0f88527b6e10abd5",
+          "workspace-manifest.json": "aa992c4a222120afa3d793fab528c52e3420250a0936a264caa4adcf6f8e36da",
+          "agent.jsonl": "dbc77b7d1157ea626852d7d29c33fc7a34e24d2fdc8a035e972db1197d971a5a"
+        }
+      }
+    },
+    {
+      "endpoint_index": 3,
+      "source_state_sha256": "6e52fa02fa847038ec89812be6b761ff5d5c561d6b43d1e6a089c45bb7b6b0d8",
+      "phases": {
+        "initial": {
+          "evaluation.json": "cf48b38fe25f62aded01f7e0a0c98e683d516ad045d4b4b048c76ec98269b8f2",
+          "workspace-manifest.json": "846b170841f7cedd9e9a5bd6e602ba375e92d47b9fbe856ea0e02b0f7ee9330d",
+          "agent.jsonl": "41805054aa9bb610dce87d41c50107498b67b556405e5d8fccdaa2ab22432aeb"
+        },
+        "final": {
+          "evaluation.json": "dd2416f8522ab4f8553e63ec1a3ed7c81b877e58b57fda0c0f1f8370e36a379c",
+          "workspace-manifest.json": "9941411729ecffad61f9afc0cd246604b6fffa2034d4ee58df47b5244ce4b4b5",
+          "agent.jsonl": "812189c6052eb08723549402063f93b00280ea668db454d66a47b8aaff370934"
+        }
+      }
+    },
+    {
+      "endpoint_index": 4,
+      "source_state_sha256": "628259078516b376144bbbdd5923c708216d06ba2d12391b4e9a89097deef9b9",
+      "phases": {
+        "initial": {
+          "evaluation.json": "af2fbfe4822bc79dce418f3ffa9efa8f52a1179475634070e4b931d88736c7e8",
+          "workspace-manifest.json": "ad5fd2c688b015be80be1d2ef9950f33f80991bd301d49af44ed7d25d495ce55",
+          "agent.jsonl": "07f9ae5d2b84caddf0ccedb4b41145e6558d8c8c970b43a121ecd55e42d40e1d"
+        }
+      }
+    },
+    {
+      "endpoint_index": 5,
+      "source_state_sha256": "628259078516b376144bbbdd5923c708216d06ba2d12391b4e9a89097deef9b9",
+      "phases": {
+        "initial": {
+          "evaluation.json": "af2fbfe4822bc79dce418f3ffa9efa8f52a1179475634070e4b931d88736c7e8",
+          "workspace-manifest.json": "ad5fd2c688b015be80be1d2ef9950f33f80991bd301d49af44ed7d25d495ce55",
+          "agent.jsonl": "07f9ae5d2b84caddf0ccedb4b41145e6558d8c8c970b43a121ecd55e42d40e1d"
+        },
+        "final": {
+          "evaluation.json": "e689d2045329d7928d43c624a3a774c21b8af5f70165114010686263d92b8832",
+          "workspace-manifest.json": "da7c9873afb1ea5d0b0012ec1076778585985c56b680f04f4d93116b7084a7e0",
+          "agent.jsonl": "8c6d35aa00246ab0342781e9f29e61cf49c7360e9f47388198a9e2a1e20d7758"
+        }
+      }
+    },
+    {
+      "endpoint_index": 6,
+      "source_state_sha256": "ee9551bcbbd1c8dd96fc30d027266a42e61607afda1db894958a9eacecf26bf9",
+      "phases": {
+        "initial": {
+          "evaluation.json": "4610d5451d979887917f4f4b12118fe8c8b9fa16320d9f5dcca04611ece32c8b",
+          "workspace-manifest.json": "67fcfa4b402aa24fc1410bb6b7fbba7f2a817d4eda33adf414c4d3dfdc873048",
+          "agent.jsonl": "54aa4267b5e3fb4ceef695a108fb2621c67ecd1ab76ae6c3c9bdabb7d30eddde"
+        },
+        "final": {
+          "evaluation.json": "982f771d509f9fa70be710bea829b198f1a8d10a61fa84ad8e3e1f6cecaea21b",
+          "workspace-manifest.json": "823baf3ca958ad30e64f97154a551e2d1272eba49da714f6fb375f7fbf7849b4",
+          "agent.jsonl": "53325841b7322358fa6a08bb20ade3475e2694c1b5b5a52f05ea8750f31e80b0"
+        }
+      }
+    },
+    {
+      "endpoint_index": 7,
+      "source_state_sha256": "57422497ce73bf0f7082f7913f5fa1a4cfdeac6c6f7f8c42066d3d7d96a0200f",
+      "phases": {
+        "initial": {
+          "evaluation.json": "27300621ce9dd7d86cf65a512c60456f5323657c64f2eb52a9bd88dcb24042c3",
+          "workspace-manifest.json": "5ec9c47b2020dfad44cfd8b9e48a0daf44baa8d4e6e197ce30b734d763510a37",
+          "agent.jsonl": "d210def46b7d3a501a4be27248b982b8958144173d27d6e81e30ea0b4f24d883"
+        }
+      }
+    },
+    {
+      "endpoint_index": 8,
+      "source_state_sha256": "57422497ce73bf0f7082f7913f5fa1a4cfdeac6c6f7f8c42066d3d7d96a0200f",
+      "phases": {
+        "initial": {
+          "evaluation.json": "27300621ce9dd7d86cf65a512c60456f5323657c64f2eb52a9bd88dcb24042c3",
+          "workspace-manifest.json": "5ec9c47b2020dfad44cfd8b9e48a0daf44baa8d4e6e197ce30b734d763510a37",
+          "agent.jsonl": "d210def46b7d3a501a4be27248b982b8958144173d27d6e81e30ea0b4f24d883"
+        },
+        "final": {
+          "evaluation.json": "df2b644032845b840059912de59a45a68ebf6f270b5bc0fbc6cdef1f82b9bf2a",
+          "workspace-manifest.json": "b94d7a0e3bcc553202d8663b105285fdc1224d605721cc581c077f22dcb5faae",
+          "agent.jsonl": "091f24e7d30b73ff6f199bbba9c9296b98df4bf39d29e820d2d807f7b238cb8e"
+        }
+      }
+    },
+    {
+      "endpoint_index": 9,
+      "source_state_sha256": "238bf6d2913083c01ee3d240fb0cbe189ee53180a0ea9794029a6e675e7a692a",
+      "phases": {
+        "initial": {
+          "evaluation.json": "3d7dbc845749a62356b61463d2fa8b434d15877752048ed74aadb6170863caef",
+          "workspace-manifest.json": "722b1990aee1fb6449e053d8772db21847bef594ca24af35993a32167a139b1f",
+          "agent.jsonl": "e03102d6797f14d41a57a9350f607f2c7cf2fc9a006c27149bc8dffb568fc4b1"
+        },
+        "final": {
+          "evaluation.json": "2d8ae199efc3728a4d6e4b9c374f17276084190443809a24561d6b95fc48a79f",
+          "workspace-manifest.json": "85b9b6579cb35f5d83a8dff8b1438c7700ad88396938a373fea6d6c56bde5e24",
+          "agent.jsonl": "9360c5f6cecf50faf38f070fe94b9d2bb175117a4b889848e6c6ececf9f0ce90"
+        }
+      }
+    },
+    {
+      "endpoint_index": 10,
+      "source_state_sha256": "a1b05e273e4c0874c632600b2b7b4fcb8ffbe4e4c491a25892152ff8cc22e0bc",
+      "phases": {
+        "initial": {
+          "evaluation.json": "c8f1b7e336f1b971f8e32b474730131aae769c9c3728e690a3e8c188abc4c72c",
+          "workspace-manifest.json": "c2864dd9195c97cbc9993f3072dd7e87273d50a2cfa4e38c990cd7311a099dd3",
+          "agent.jsonl": "026db2e26160ebfd7b9fc4580d08d8b3b4e0d7a3d2600e1cc5ff80567b6e47eb"
+        }
+      }
+    },
+    {
+      "endpoint_index": 11,
+      "source_state_sha256": "a1b05e273e4c0874c632600b2b7b4fcb8ffbe4e4c491a25892152ff8cc22e0bc",
+      "phases": {
+        "initial": {
+          "evaluation.json": "c8f1b7e336f1b971f8e32b474730131aae769c9c3728e690a3e8c188abc4c72c",
+          "workspace-manifest.json": "c2864dd9195c97cbc9993f3072dd7e87273d50a2cfa4e38c990cd7311a099dd3",
+          "agent.jsonl": "026db2e26160ebfd7b9fc4580d08d8b3b4e0d7a3d2600e1cc5ff80567b6e47eb"
+        },
+        "final": {
+          "evaluation.json": "1c8fb33596ef40d75cf271de18b4507dcbd090fec54018ce60d1b0d99f430e94",
+          "workspace-manifest.json": "6fe91190ec727e6e160f846b56146109a88ddb5340b61f0079955818dd412a27",
+          "agent.jsonl": "276f5211bcb58a6348a709593b8024165c375f49446b6c3a68a87a2c4be1c03b"
+        }
+      }
+    },
+    {
+      "endpoint_index": 12,
+      "source_state_sha256": "d71cffa8cb2adb7894eef12a020708e3fc1487d6df4462fd091ae34cd6b707b7",
+      "phases": {
+        "initial": {
+          "evaluation.json": "5f7b405f3c6244891a8ff8f21418d41634fad4fc3942aa8bedf5abe2d31efcfd",
+          "workspace-manifest.json": "4e4b5e27496623d686ae7fbaa95e3a34cb50a663a5532499e132ad8f52af0757",
+          "agent.jsonl": "46124138bc475c3b3218622539e558f69ca2c0b142f9069c2787434a7a27edd4"
+        }
+      }
+    },
+    {
+      "endpoint_index": 13,
+      "source_state_sha256": "ea6a808df27037a7298aff5f9a6a7f198694b730629c7ea6d69cbf476cdfd19c",
+      "phases": {
+        "initial": {
+          "evaluation.json": "f5ef1ab6b7996185150f3300ca7ea1cd742aae23545b5196820d681a1b644767",
+          "workspace-manifest.json": "e8f260983adce1e838e0eb7f07b65a6c8d962035ba281f8b98e32173f440d1bc",
+          "agent.jsonl": "8bf8973767b7744556924168a043b73995fd8529a46a9a3ce9e89cb77bde5af5"
+        }
+      }
+    },
+    {
+      "endpoint_index": 14,
+      "source_state_sha256": "9cc069727fdc4640c2a624b9bf2cfbbe9b96e7d5ae72cc3f707753283523b069",
+      "phases": {
+        "initial": {
+          "evaluation.json": "12363d4387c8637b376280600d58a7a750fee7514d0953d2edd3ff1319a0f1ab",
+          "workspace-manifest.json": "226e5686727e715acd4fd15a930203fa4c96fbe50e513f1abd13f0d6cea1c067",
+          "agent.jsonl": "b31ca5745f326d3734e4443ee17a3f936dcb5fbfedc8e5f2fdd0b498ab3bf9ac"
+        }
+      }
+    },
+    {
+      "endpoint_index": 15,
+      "source_state_sha256": "3db519c8a3825a9f23cc2f8ac54b84248e54f5a0901682fc3fe14547e0334cc0",
+      "phases": {
+        "initial": {
+          "evaluation.json": "0cd25e771fc098ec87d96a96f91886ea2a5165430d63c29a6640daf19b9482ea",
+          "workspace-manifest.json": "b60ae82caed4e7334cdb8432af709c6a68abe1f85ae0feed58c08ce5a41197c4",
+          "agent.jsonl": "6ac24c00631c893de8336c09c155ab7c805f0347ac3df3ec0c0d6b5cd0b00ebf"
+        }
+      }
+    },
+    {
+      "endpoint_index": 16,
+      "source_state_sha256": "483d9dfd21cd5c171a80fe1e876a557cdcb9b3ccbeecc5968a813602e9f60153",
+      "phases": {
+        "initial": {
+          "evaluation.json": "ed6c4a3c3057e5be10f95da49e5ebf98db3cf14a6b5418c46161bdc42845060d",
+          "workspace-manifest.json": "b9a234878453174e05f48d935a81064d8c40e098d42784dd005871efff843216",
+          "agent.jsonl": "82668b72dc0f7a528e8a84488a3b61aa6574edc392add2793ec28907ee4971a9"
+        },
+        "final": {
+          "evaluation.json": "4ea5ebb8417225ea8785eaef6a3bef65a4708540c5b2d77e1a39569990fa56df",
+          "workspace-manifest.json": "b9a234878453174e05f48d935a81064d8c40e098d42784dd005871efff843216",
+          "agent.jsonl": "28cd1584107611b2b9733b68e6d2948e3eba68c5df2d74182ac3838013713eeb"
+        }
+      }
+    },
+    {
+      "endpoint_index": 17,
+      "source_state_sha256": "3d1ba933905bf657df048c791f36ce09ad3fb400f108e98910d178874261ca38",
+      "phases": {
+        "initial": {
+          "evaluation.json": "b2799a5eb93f0a7190e20e63b0585d4012cab516978695a01d37775c6f676308",
+          "workspace-manifest.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+          "agent.jsonl": "b11d2654fc75ba38a971234bfa90343aede904b4a1c40b91e0c436d94d12a078"
+        },
+        "final": {
+          "evaluation.json": "24af47c530ab75870eef888079396425a718c20ce7da642b500ef0091caa8e30",
+          "workspace-manifest.json": "0c0d04a0419eaedc42a26fa279137344dde07163e88a1b226e4ae80fe0baa1ce",
+          "agent.jsonl": "a2a25e0513164d20ffa31ee83511f3995c0a129ca5145dea80e425266dde6683"
+        }
+      }
+    },
+    {
+      "endpoint_index": 18,
+      "source_state_sha256": "32c116ecad77de143d7510cfc0ba569c0c09b23ea1b971ac60d0fb12946dab79",
+      "phases": {
+        "initial": {
+          "evaluation.json": "0a668d40ef449a93706dfd179b8fabfff53b6ef31232ad97a555d6d81e43f8d8",
+          "workspace-manifest.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+          "agent.jsonl": "d81d86eb4dd52996f7cc21b733b119c09ed51bced9ddf7066bc12fe7b795b957"
+        }
+      }
+    },
+    {
+      "endpoint_index": 19,
+      "source_state_sha256": "c2e9d647c71012d1e64f2027237cd001ec12996189d2a9563a0bfa876d3f00d9",
+      "phases": {
+        "initial": {
+          "evaluation.json": "7dd1729b8e97ed5434cc0ac30353b2bf84dbececf45aaa1d29d44ca7bf1496e7",
+          "workspace-manifest.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+          "agent.jsonl": "a756d53633accf39132b825bcd806b728da1e85e4fe5cb8b914f8428f9fda036"
+        },
+        "final": {
+          "evaluation.json": "f14e4f6955a4aa8cdffe4bb7b5a3cbdb43a87e2b7c879a990138e59650146e33",
+          "workspace-manifest.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+          "agent.jsonl": "365623109a59e46078f4ad629e34c5061eaa99bd9e6d16adb5384ab520a0555b"
+        }
+      }
+    },
+    {
+      "endpoint_index": 20,
+      "source_state_sha256": "0624249d1e95841e037525fe10e9ab4d565a3331aadec815c59d25eeda1dbc70",
+      "phases": {
+        "initial": {
+          "evaluation.json": "e2f95721aaa27bffc563613b70e60abc6680a0298c3ba2f707de1fb0a2d6526b",
+          "workspace-manifest.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+          "agent.jsonl": "27167c34d5c17e4bff6a4e2c1fc1ce7b6bed5ce722c37744ea00309a19569310"
+        },
+        "final": {
+          "evaluation.json": "b780c24f9a3530cc07f3274fef6e19ff20b9ae5aaf6265b9b7eea33b58373295",
+          "workspace-manifest.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+          "agent.jsonl": "36d0278af2d9bc25f57bcf18a30744dfc38bcc1ce4e69d7e4f37223c20ef27cd"
+        }
+      }
+    },
+    {
+      "endpoint_index": 21,
+      "source_state_sha256": "b026a082fdad9837ba6de7fd3f92df01907340474aabe65375b8bed2d7ff5ae6",
+      "phases": {
+        "initial": {
+          "evaluation.json": "748a9f058f905b484a4061a2b4386031a9c91c2542b43736719cc1c291d5c9b8",
+          "workspace-manifest.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+          "agent.jsonl": "e44940c005ffde1d05964a56e09c9d23f1f02578fb60d49b17c5f011f432dbb0"
+        }
+      }
+    },
+    {
+      "endpoint_index": 22,
+      "source_state_sha256": "91243908dce0d52a35e66a6357c9c6ae49cb4d8e433f6da72814fd1c8bdcaf92",
+      "phases": {
+        "initial": {
+          "evaluation.json": "c319676294620445cb0a29e362d77500a982f8f33eb522bb61bbebb8bed874d1",
+          "workspace-manifest.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+          "agent.jsonl": "56aa241e98f1cd0b506e865464e339cdd6a6c0506dd247c0e9765ddcc3f20af0"
+        },
+        "final": {
+          "evaluation.json": "72deabca1b416ebb2a8ea5c3277fb1071507b05110ae36784d0bb280968fa8a1",
+          "workspace-manifest.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+          "agent.jsonl": "9e934f759c7af0202cb79cb6d6d77a73edfead756d57ea5ed2dda9fff00b5871"
+        }
+      }
+    },
+    {
+      "endpoint_index": 23,
+      "source_state_sha256": "ba170b745fadfcaa46185fe69c412c88124f842bf32bac2dd084d42c7cbb247a",
+      "phases": {
+        "initial": {
+          "evaluation.json": "8072d7aecd7a2284b4dfc545e47ed92b7b50cca23607435c3ffc3b73b71578e1",
+          "workspace-manifest.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+          "agent.jsonl": "618a048e8c2e76606988e3eb63716ca56049d9dc7a85adb0244367af8fe2b99d"
+        },
+        "final": {
+          "evaluation.json": "2b7df8bf892602903fbf0fd2f9779f020b594b49900193827e1b5b7c5e8f989b",
+          "workspace-manifest.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+          "agent.jsonl": "accd0dae8f7942f705d5df947851a1505ba7fd892465b4b1c393580cbefa859a"
+        }
+      }
+    }
+  ]
+}

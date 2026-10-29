@@ -1,0 +1,200 @@
+[
+  {
+    "phase": "initial",
+    "stage": "input_reading",
+    "endpoints": 24,
+    "failed": 0,
+    "blocked": 0,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 24,
+    "usable_report": 0
+  },
+  {
+    "phase": "initial",
+    "stage": "code_execution",
+    "endpoints": 24,
+    "failed": 14,
+    "blocked": 0,
+    "unavailable": 0,
+    "not_observed": 9,
+    "no_failure_observed": 1,
+    "usable_report": 0
+  },
+  {
+    "phase": "initial",
+    "stage": "dataset_export",
+    "endpoints": 24,
+    "failed": 9,
+    "blocked": 0,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 15,
+    "usable_report": 0
+  },
+  {
+    "phase": "initial",
+    "stage": "define_xml_generation",
+    "endpoints": 24,
+    "failed": 9,
+    "blocked": 0,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 15,
+    "usable_report": 0
+  },
+  {
+    "phase": "initial",
+    "stage": "rebuilding",
+    "endpoints": 24,
+    "failed": 3,
+    "blocked": 7,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 14,
+    "usable_report": 0
+  },
+  {
+    "phase": "initial",
+    "stage": "p21_validation",
+    "endpoints": 24,
+    "failed": 0,
+    "blocked": 9,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 0,
+    "usable_report": 15
+  },
+  {
+    "phase": "final",
+    "stage": "input_reading",
+    "endpoints": 14,
+    "failed": 0,
+    "blocked": 0,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 14,
+    "usable_report": 0
+  },
+  {
+    "phase": "final",
+    "stage": "code_execution",
+    "endpoints": 14,
+    "failed": 4,
+    "blocked": 0,
+    "unavailable": 0,
+    "not_observed": 6,
+    "no_failure_observed": 4,
+    "usable_report": 0
+  },
+  {
+    "phase": "final",
+    "stage": "dataset_export",
+    "endpoints": 14,
+    "failed": 6,
+    "blocked": 0,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 8,
+    "usable_report": 0
+  },
+  {
+    "phase": "final",
+    "stage": "define_xml_generation",
+    "endpoints": 14,
+    "failed": 6,
+    "blocked": 0,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 8,
+    "usable_report": 0
+  },
+  {
+    "phase": "final",
+    "stage": "rebuilding",
+    "endpoints": 14,
+    "failed": 3,
+    "blocked": 4,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 7,
+    "usable_report": 0
+  },
+  {
+    "phase": "final",
+    "stage": "p21_validation",
+    "endpoints": 14,
+    "failed": 1,
+    "blocked": 6,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 0,
+    "usable_report": 7
+  },
+  {
+    "phase": "terminal",
+    "stage": "input_reading",
+    "endpoints": 24,
+    "failed": 0,
+    "blocked": 0,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 24,
+    "usable_report": 0
+  },
+  {
+    "phase": "terminal",
+    "stage": "code_execution",
+    "endpoints": 24,
+    "failed": 10,
+    "blocked": 0,
+    "unavailable": 0,
+    "not_observed": 9,
+    "no_failure_observed": 5,
+    "usable_report": 0
+  },
+  {
+    "phase": "terminal",
+    "stage": "dataset_export",
+    "endpoints": 24,
+    "failed": 9,
+    "blocked": 0,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 15,
+    "usable_report": 0
+  },
+  {
+    "phase": "terminal",
+    "stage": "define_xml_generation",
+    "endpoints": 24,
+    "failed": 9,
+    "blocked": 0,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 15,
+    "usable_report": 0
+  },
+  {
+    "phase": "terminal",
+    "stage": "rebuilding",
+    "endpoints": 24,
+    "failed": 5,
+    "blocked": 6,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 13,
+    "usable_report": 0
+  },
+  {
+    "phase": "terminal",
+    "stage": "p21_validation",
+    "endpoints": 24,
+    "failed": 1,
+    "blocked": 9,
+    "unavailable": 0,
+    "not_observed": 0,
+    "no_failure_observed": 0,
+    "usable_report": 14
+  }
+]
