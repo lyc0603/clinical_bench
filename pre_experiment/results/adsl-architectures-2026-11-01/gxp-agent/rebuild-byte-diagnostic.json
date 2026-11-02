@@ -1,0 +1,14 @@
+{
+  "diagnostic_only": true,
+  "frozen_byte_reproduced_metric": false,
+  "define_bytes_identical": true,
+  "xpt_bytes_identical_except_library_and_member_timestamp_fields": true,
+  "timestamp_field_offsets": [
+    144,
+    160,
+    464,
+    480
+  ],
+  "field_length": 16,
+  "artifact_bytes_modified": false
+}

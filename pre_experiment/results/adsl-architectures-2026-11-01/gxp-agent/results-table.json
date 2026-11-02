@@ -1,0 +1,162 @@
+[
+  {
+    "measure": "Model",
+    "result": "claude-sonnet-5-5",
+    "interpretation": "Anthropic direct Messages API; provider-default sampling/reasoning"
+  },
+  {
+    "measure": "Scope",
+    "result": "ADSL only",
+    "interpretation": "Independent Python Process-DAG adaptation; not original R implementation"
+  },
+  {
+    "measure": "Run status",
+    "result": "Completed",
+    "interpretation": "Workflow completed; does not mean zero conformance findings"
+  },
+  {
+    "measure": "Passed nodes",
+    "result": "15 / 15",
+    "interpretation": "All fixed dependency nodes accepted"
+  },
+  {
+    "measure": "First-attempt accepted nodes",
+    "result": "13 / 15",
+    "interpretation": "No repeated whole-run attempts inside this frozen run"
+  },
+  {
+    "measure": "Locally repaired nodes",
+    "result": "2 / 15",
+    "interpretation": "derive_completion, apply_metadata"
+  },
+  {
+    "measure": "Generation requests",
+    "result": 17,
+    "interpretation": "Includes two failed node candidates; final P21 feedback never returned to model"
+  },
+  {
+    "measure": "Dataset delivery",
+    "result": "1 / 1 (100%)",
+    "interpretation": "ADSL XPT delivered in accepted final package"
+  },
+  {
+    "measure": "Variable name/type coverage",
+    "result": "49 / 49 (100%)",
+    "interpretation": "Specified names and Character/Numeric storage types; not value accuracy"
+  },
+  {
+    "measure": "Subject count",
+    "result": "254 / 254",
+    "interpretation": "GEN01 randomized subject identity gates applied"
+  },
+  {
+    "measure": "Define-XML",
+    "result": "Delivered",
+    "interpretation": "At output/adam/datasets/define.xml"
+  },
+  {
+    "measure": "Independent rebuild",
+    "result": "Succeeded",
+    "interpretation": "Offline execution; exit code 0"
+  },
+  {
+    "measure": "Semantic reproducibility",
+    "result": "Yes",
+    "interpretation": "ADSL data and Define-XML semantic comparison"
+  },
+  {
+    "measure": "Byte reproducibility",
+    "result": "No",
+    "interpretation": "Define-XML identical; XPT differs only at writer timestamp bytes"
+  },
+  {
+    "measure": "Selected direct-source checks",
+    "result": "13 checks; 3302 assessments; 0 errors",
+    "interpretation": "11 DM predecessors + SV Visit3 TRTSDT/RANDDT; limited auxiliary coverage"
+  },
+  {
+    "measure": "P21 report usable",
+    "result": "Yes",
+    "interpretation": "Not a claim of zero findings"
+  },
+  {
+    "measure": "P21 ADSL validation coverage",
+    "result": "Complete",
+    "interpretation": "Expected ADaM dataset processed; source support domains are not ADaM outputs"
+  },
+  {
+    "measure": "P21 dataset-rule pairs",
+    "result": 3,
+    "interpretation": "Primary conformance count; lower is better"
+  },
+  {
+    "measure": "P21 finding instances",
+    "result": 3,
+    "interpretation": "Three findings across three rules"
+  },
+  {
+    "measure": "P21 distinct rules",
+    "result": 3,
+    "interpretation": "AD0018, AD0320, AD0509"
+  },
+  {
+    "measure": "P21 rejected ADSL records",
+    "result": 0,
+    "interpretation": "254 ADSL records processed"
+  },
+  {
+    "measure": "P21 raw exit code",
+    "result": 5,
+    "interpretation": "5; report retained and judged usable by frozen evaluator"
+  },
+  {
+    "measure": "Native input tokens",
+    "result": 304777,
+    "interpretation": "Includes failed local attempts"
+  },
+  {
+    "measure": "Native output tokens",
+    "result": 42080,
+    "interpretation": "Includes failed local attempts"
+  },
+  {
+    "measure": "Native cache-read tokens",
+    "result": 0,
+    "interpretation": "Provider telemetry"
+  },
+  {
+    "measure": "Native cache-creation tokens",
+    "result": 0,
+    "interpretation": "Provider telemetry"
+  },
+  {
+    "measure": "Elapsed workflow seconds",
+    "result": 362.201,
+    "interpretation": "Includes terminal evaluation; excludes preparation"
+  },
+  {
+    "measure": "Offline rebuild seconds",
+    "result": 11.131,
+    "interpretation": "One independent reconstruction"
+  },
+  {
+    "measure": "P21 execution seconds",
+    "result": 35.366,
+    "interpretation": "Terminal validation"
+  },
+  {
+    "measure": "API cost (USD)",
+    "result": "Not calculated",
+    "interpretation": "No verified pricing or billed-cost receipt supplied"
+  },
+  {
+    "measure": "Comprehensive derivation correctness",
+    "result": "Not established",
+    "interpretation": "No independent oracle for all 49 variables"
+  },
+  {
+    "measure": "Full 13-dataset benchmark",
+    "result": "Not evaluated",
+    "interpretation": "Do not pool denominators with full-study endpoints"
+  }
+]

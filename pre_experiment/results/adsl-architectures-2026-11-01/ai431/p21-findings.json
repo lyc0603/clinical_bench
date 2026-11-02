@@ -1,0 +1,16 @@
+[
+  {
+    "dataset": "ADSL",
+    "rule": "AD0018",
+    "message": "Variable label mismatch between dataset and ADaM standard",
+    "severity": "Unassigned",
+    "findings": 1
+  },
+  {
+    "dataset": "ADSL",
+    "rule": "AD0509",
+    "message": "*SDT must contain 'Start Date' in the label",
+    "severity": "Unassigned",
+    "findings": 1
+  }
+]

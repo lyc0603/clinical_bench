@@ -1,0 +1,134 @@
+[
+  {
+    "measure": "Model",
+    "gxp_agent_inspired": "claude-sonnet-5-5",
+    "ai431_inspired": "claude-sonnet-5-5",
+    "interpretation": "Same hosted API identifier; immutable weights not established"
+  },
+  {
+    "measure": "Implementation unit",
+    "gxp_agent_inspired": "15 serial process nodes",
+    "ai431_inspired": "49 independent variable tasks + review + export",
+    "interpretation": "Different decomposition and resource budgets"
+  },
+  {
+    "measure": "Accepted first-attempt units",
+    "gxp_agent_inspired": "13 / 15",
+    "ai431_inspired": "49 / 49 variable tasks",
+    "interpretation": "Different unit denominators; export also first-attempt accepted"
+  },
+  {
+    "measure": "Locally repaired units",
+    "gxp_agent_inspired": 2,
+    "ai431_inspired": 0,
+    "interpretation": "GxP derive_completion/apply_metadata; no manual clinical code edits"
+  },
+  {
+    "measure": "Final dataset delivery",
+    "gxp_agent_inspired": "1 / 1",
+    "ai431_inspired": "1 / 1",
+    "interpretation": "ADSL only"
+  },
+  {
+    "measure": "Variable name/type coverage",
+    "gxp_agent_inspired": "49 / 49",
+    "ai431_inspired": "49 / 49",
+    "interpretation": "Does not establish value accuracy"
+  },
+  {
+    "measure": "Subjects",
+    "gxp_agent_inspired": 254,
+    "ai431_inspired": 254,
+    "interpretation": "Exact randomized subject identities checked"
+  },
+  {
+    "measure": "Independent rebuild",
+    "gxp_agent_inspired": "Succeeded",
+    "ai431_inspired": "Succeeded",
+    "interpretation": "Offline clean replay"
+  },
+  {
+    "measure": "Semantic reproducibility",
+    "gxp_agent_inspired": true,
+    "ai431_inspired": true,
+    "interpretation": "Data/Define semantic comparison"
+  },
+  {
+    "measure": "Byte equality",
+    "gxp_agent_inspired": false,
+    "ai431_inspired": false,
+    "interpretation": "XPT writer timestamps differ; Define bytes identical"
+  },
+  {
+    "measure": "P21 report usable",
+    "gxp_agent_inspired": true,
+    "ai431_inspired": true,
+    "interpretation": "Usability does not mean zero findings"
+  },
+  {
+    "measure": "P21 validation coverage",
+    "gxp_agent_inspired": "Complete",
+    "ai431_inspired": "Complete",
+    "interpretation": "One expected ADaM dataset"
+  },
+  {
+    "measure": "P21 dataset-rule pairs",
+    "gxp_agent_inspired": 3,
+    "ai431_inspired": 2,
+    "interpretation": "Lower is better; descriptive only"
+  },
+  {
+    "measure": "P21 finding instances",
+    "gxp_agent_inspired": 3,
+    "ai431_inspired": 2,
+    "interpretation": "All reported findings concern labels"
+  },
+  {
+    "measure": "P21 distinct rules",
+    "gxp_agent_inspired": 3,
+    "ai431_inspired": 2,
+    "interpretation": "Native severity unassigned"
+  },
+  {
+    "measure": "Selected source checks",
+    "gxp_agent_inspired": "13 checks / 3302 assessments / 0 errors",
+    "ai431_inspired": "13 checks / 3302 assessments / 0 errors",
+    "interpretation": "11 DM predecessor variables + 2 SV anchor dates; not all derivations"
+  },
+  {
+    "measure": "Native input tokens",
+    "gxp_agent_inspired": 304777,
+    "ai431_inspired": 542259,
+    "interpretation": "Includes failed local attempts and AI-431 advisory review"
+  },
+  {
+    "measure": "Native output tokens",
+    "gxp_agent_inspired": 42080,
+    "ai431_inspired": 77607,
+    "interpretation": "Provider telemetry, not billed cost"
+  },
+  {
+    "measure": "Generation responses",
+    "gxp_agent_inspired": 17,
+    "ai431_inspired": 51,
+    "interpretation": "AI-431: 49 variables + review + export"
+  },
+  {
+    "measure": "Workflow elapsed seconds",
+    "gxp_agent_inspired": 362.201,
+    "ai431_inspired": 426.792,
+    "interpretation": "Includes terminal evaluation; preparation excluded"
+  },
+  {
+    "measure": "Completed runs under final implementation",
+    "gxp_agent_inspired": 1,
+    "ai431_inspired": 1,
+    "interpretation": "Separate development runs; not randomized concurrent comparison"
+  },
+  {
+    "measure": "Verified billed cost",
+    "gxp_agent_inspired": "Unavailable",
+    "ai431_inspired": "Unavailable",
+    "interpretation": "No rate-based estimate or balance inferred"
+  }
+]

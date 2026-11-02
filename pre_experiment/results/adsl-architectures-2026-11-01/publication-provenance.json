@@ -1,0 +1,27 @@
+{
+  "source_outcomes_verified": true,
+  "sources": {
+    "gxp-agent": {
+      "run_id": "gxp-adsl-20261101-v5",
+      "source_report_id": "gxp-adsl-2026-11-01-complete",
+      "freeze_sha256": "defcf0cfcdec94d8ad18b5c1508b50fbcb930722a21b16b7d3a0f468f7def3a9",
+      "source_summary_sha256": "6423114382c6ac153ef7983790fde65a47685ea3278e6229c6b58b60167b6c67",
+      "source_readme_sha256": "f2fb993569f77513334da1e4237ea912d021d8f2d3cf124a55d52f58587fb9a5",
+      "state_sha256": "123c14a17b388d967d5fd1093de6f61edd8dbd48183dbf35d0f3ead8f32ac1af",
+      "evaluation_sha256": "a31b76698560d64554dfd18dc2243dd10b65e2a9798dbc0ce3b4b28a5beb7521",
+      "p21_report_sha256": "7b80b121609956bea344062ce3aebaf858365c59afaf60d2b19db24713f1c4f6"
+    },
+    "ai431": {
+      "run_id": "ai431-adsl-20261101-v2",
+      "source_report_id": "ai431-adsl-2026-11-01-v2",
+      "freeze_sha256": "08a3b330812cabf474bd526bda3c457b1a1cb936b9085b5f68a5dda8e4450949",
+      "source_summary_sha256": "afca8e7f65e1e0ab002a5b803195a191d97a01fdd3ec767946d7ec19e3498a54",
+      "source_readme_sha256": "516a98b31245ade497eb3ab5db32df2691e7a29b3fc0b7b53502d455ec3f6ef8",
+      "state_sha256": "8c18b95fce7e2409c7fab8f8f91e5deb0fe7c2401d46ffdcc0343c84cd6e11fa",
+      "evaluation_sha256": "91930998b17eb0848891373cf1a19e3d37220794a64e5db40de48bce05035dfc",
+      "p21_report_sha256": "146ea7aa4f965d3f50727f9fcc0aa46a9518a552cec93beabdfcc0aaad0b42db"
+    }
+  },
+  "publication_script_sha256": "7ca3b5ff58d902a1eeb9ebc7f2827e46240283183d81d42d20b3a9f6ef8bedd9",
+  "raw_clinical_data_published": false
+}

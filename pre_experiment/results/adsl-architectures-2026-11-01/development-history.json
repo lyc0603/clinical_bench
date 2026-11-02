@@ -1,0 +1,58 @@
+[
+  {
+    "run_id": "gxp-adsl-20261028-v2",
+    "architecture": "GxP-inspired",
+    "status": "failed",
+    "accepted_units": "12/15 nodes",
+    "reason": "Validate response truncated at 8192 output tokens",
+    "freeze_sha256": "80130386f935e0b84c38ab9b0d9c92658c6212cb9849d5a39c607ca741a7a18c"
+  },
+  {
+    "run_id": "gxp-adsl-20261031-v3",
+    "architecture": "GxP-inspired",
+    "status": "failed",
+    "accepted_units": "7/15 nodes",
+    "reason": "Uppercase source path then repair prose rejected by strict parser",
+    "freeze_sha256": "4eab3347b48f869f36d6b35390a85a2633201c3f871e352b377f1e450a0e492f"
+  },
+  {
+    "run_id": "gxp-adsl-20261101-v4",
+    "architecture": "GxP-inspired",
+    "status": "failed",
+    "accepted_units": "14/15 nodes",
+    "reason": "Define export path underspecified; checker required a different directory",
+    "freeze_sha256": "14c1d265d27465a65b1e5a93175f12b944ec93db8c11414f7d5b6d85c1c3ef9b"
+  },
+  {
+    "run_id": "gxp-adsl-20261101-v5",
+    "architecture": "GxP-inspired",
+    "status": "completed",
+    "accepted_units": "15/15 nodes",
+    "reason": "Published completed adaptation",
+    "freeze_sha256": "defcf0cfcdec94d8ad18b5c1508b50fbcb930722a21b16b7d3a0f468f7def3a9"
+  },
+  {
+    "run_id": "ai431-adsl-20261101-v1",
+    "architecture": "AI-431-inspired",
+    "status": "failed",
+    "accepted_units": "49/49 variables; merge passed",
+    "reason": "Accepted workspace file missing during packaging; filesystem root cause not established",
+    "freeze_sha256": "5ad5fec452fc9c6f3489053b7f7bb3cc0506b8284892ecef7eafb8d8413ba3b8"
+  },
+  {
+    "run_id": "ai431-adsl-20261101-v1/recovery-continuation",
+    "architecture": "AI-431-inspired",
+    "status": "failed",
+    "accepted_units": "Original variable programs reused with exact hashes, not regenerated",
+    "reason": "Post-hoc infrastructure continuation; simulated unavailable bash tools repeated until export truncation at 32768",
+    "freeze_sha256": "9c1e128b4eab28b183b97931d6bdd6d523d9674e128e50802f9bb6e1c5e7f194"
+  },
+  {
+    "run_id": "ai431-adsl-20261101-v2",
+    "architecture": "AI-431-inspired",
+    "status": "completed",
+    "accepted_units": "49/49 variables + export",
+    "reason": "New full run; explicit Path interface, dedicated tool-free export, non-cloud execution storage",
+    "freeze_sha256": "08a3b330812cabf474bd526bda3c457b1a1cb936b9085b5f68a5dda8e4450949"
+  }
+]

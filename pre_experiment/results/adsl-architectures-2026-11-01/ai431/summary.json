@@ -1,0 +1,456 @@
+{
+  "architecture": "Independent AI-431-inspired variable pipeline",
+  "model": "claude-sonnet-5-5",
+  "scope": "ADSL only; excluded exploratory architecture adaptation, not original author implementation",
+  "status": "completed",
+  "reason": null,
+  "freeze_sha256": "08a3b330812cabf474bd526bda3c457b1a1cb936b9085b5f68a5dda8e4450949",
+  "main_study_started": false,
+  "variable_tasks_passed": 49,
+  "variable_tasks_expected": 49,
+  "first_attempt_variables": 49,
+  "repaired_variables": [],
+  "failed_variables": [],
+  "blocked_variables": [],
+  "export_status": "passed",
+  "dataset_delivery": {
+    "delivered": 1,
+    "expected": 1
+  },
+  "variable_name_type_coverage": {
+    "matched": 49,
+    "expected": 49
+  },
+  "subjects": 254,
+  "expected_subjects": 254,
+  "semantic_reproduced": true,
+  "byte_reproduced": false,
+  "rebuild_execution": {
+    "exit_code": 0,
+    "seconds": 34.90470841701608,
+    "timed_out": false
+  },
+  "P21": {
+    "report_usable": true,
+    "validation_coverage_complete": true,
+    "dataset_rule_pairs": 2,
+    "finding_instances": 2,
+    "distinct_rules": 2,
+    "failure_code": null,
+    "issues": [
+      {
+        "dataset": "ADSL",
+        "rule": "AD0018",
+        "message": "Variable label mismatch between dataset and ADaM standard",
+        "severity": "Unassigned",
+        "findings": 1
+      },
+      {
+        "dataset": "ADSL",
+        "rule": "AD0509",
+        "message": "*SDT must contain 'Start Date' in the label",
+        "severity": "Unassigned",
+        "findings": 1
+      }
+    ],
+    "report_sha256": "146ea7aa4f965d3f50727f9fcc0aa46a9518a552cec93beabdfcc0aaad0b42db"
+  },
+  "selected_source_checks": [
+    {
+      "check": "DM predecessor STUDYID",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor SUBJID",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor ARM",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor RFSTDTC",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor RFENDTC",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor AGE",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor AGEU",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor SEX",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor RACE",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor ETHNIC",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor SITEID",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "SV Visit3 TRTSDT",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "SV Visit3 RANDDT",
+      "assessed": 254,
+      "errors": 0
+    }
+  ],
+  "native_usage": {
+    "input_tokens": 542259,
+    "output_tokens": 77607,
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 0
+  },
+  "native_completed_response_count": 51,
+  "uncertain_provider_failures": 0,
+  "sum_provider_seconds": 550.8855512142181,
+  "elapsed_seconds": 426.7924129962921,
+  "api_cost_usd": null,
+  "task_results": [
+    {
+      "task": "STUDYID",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "USUBJID",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "SUBJID",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "SITEID",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "SITEGR1",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "ARM",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "TRT01P",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "TRT01PN",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "TRT01A",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "TRT01AN",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "TRTSDT",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "TRTEDT",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "TRTDUR",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "AVGDD",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "CUMDOSE",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "AGE",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "AGEGR1",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "AGEGR1N",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "AGEU",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "RACE",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "RACEN",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "SEX",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "ETHNIC",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "SAFFL",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "ITTFL",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "EFFFL",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "COMP8FL",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "COMP16FL",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "COMP24FL",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "DISCONFL",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "DSRAEFL",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "DTHFL",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "BMIBL",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "BMIBLGR1",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "HEIGHTBL",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "WEIGHTBL",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "EDUCLVL",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "DISONSDT",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "DURDIS",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "DURDSGR1",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "VISIT1DT",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "RFSTDTC",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "RFENDTC",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "VISNUMEN",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "RFENDT",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "DCDECOD",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "DCREASCD",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "MMSETOT",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "RANDDT",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    },
+    {
+      "task": "export",
+      "status": "passed",
+      "attempts": 1,
+      "accepted_attempt": 1
+    }
+  ],
+  "advisory_review_observations": 25,
+  "advisory_review_potential_blockers_unadjudicated": 8,
+  "nonclinical_export_qualification_usage_excluded_from_run": {
+    "input_tokens": 4999,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "cache_creation": {
+      "ephemeral_5m_input_tokens": 0,
+      "ephemeral_1h_input_tokens": 0
+    },
+    "output_tokens": 4917,
+    "output_tokens_details": {
+      "thinking_tokens": 1534
+    },
+    "service_tier": "standard",
+    "inference_geo": "global",
+    "speed": "standard"
+  }
+}

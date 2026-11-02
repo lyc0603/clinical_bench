@@ -1,0 +1,38 @@
+{
+  "diagnostic_only": true,
+  "files": {
+    "adsl.xpt": {
+      "original_bytes": 112800,
+      "rebuild_bytes": 112800,
+      "byte_equal": false,
+      "different_byte_count": 16,
+      "first_different_offsets": [
+        155,
+        156,
+        158,
+        159,
+        171,
+        172,
+        174,
+        175,
+        475,
+        476,
+        478,
+        479,
+        491,
+        492,
+        494,
+        495
+      ],
+      "equal_when_writer_timestamp_fields_masked": true
+    },
+    "define.xml": {
+      "original_bytes": 32924,
+      "rebuild_bytes": 32924,
+      "byte_equal": true,
+      "different_byte_count": 0,
+      "first_different_offsets": []
+    }
+  },
+  "frozen_byte_reproduced": false
+}

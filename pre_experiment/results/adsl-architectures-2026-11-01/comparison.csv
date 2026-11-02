@@ -1,0 +1,23 @@
+Measure,GxP-Agent-inspired,AI-431-inspired,Interpretation
+Model,claude-sonnet-5-5,claude-sonnet-5-5,Same hosted API identifier; immutable weights not established
+Implementation unit,15 serial process nodes,49 independent variable tasks + review + export,Different decomposition and resource budgets
+Accepted first-attempt units,13 / 15,49 / 49 variable tasks,Different unit denominators; export also first-attempt accepted
+Locally repaired units,2,0,GxP derive_completion/apply_metadata; no manual clinical code edits
+Final dataset delivery,1 / 1,1 / 1,ADSL only
+Variable name/type coverage,49 / 49,49 / 49,Does not establish value accuracy
+Subjects,254,254,Exact randomized subject identities checked
+Independent rebuild,Succeeded,Succeeded,Offline clean replay
+Semantic reproducibility,True,True,Data/Define semantic comparison
+Byte equality,False,False,XPT writer timestamps differ; Define bytes identical
+P21 report usable,True,True,Usability does not mean zero findings
+P21 validation coverage,Complete,Complete,One expected ADaM dataset
+P21 dataset-rule pairs,3,2,Lower is better; descriptive only
+P21 finding instances,3,2,All reported findings concern labels
+P21 distinct rules,3,2,Native severity unassigned
+Selected source checks,13 checks / 3302 assessments / 0 errors,13 checks / 3302 assessments / 0 errors,11 DM predecessor variables + 2 SV anchor dates; not all derivations
+Native input tokens,304777,542259,Includes failed local attempts and AI-431 advisory review
+Native output tokens,42080,77607,"Provider telemetry, not billed cost"
+Generation responses,17,51,AI-431: 49 variables + review + export
+Workflow elapsed seconds,362.201,426.792,Includes terminal evaluation; preparation excluded
+Completed runs under final implementation,1,1,Separate development runs; not randomized concurrent comparison
+Verified billed cost,Unavailable,Unavailable,No rate-based estimate or balance inferred

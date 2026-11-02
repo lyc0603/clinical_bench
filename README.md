@@ -92,6 +92,10 @@ The [earlier six-workflow comparison](pre_experiment/results/2026-10-21/README.m
 
 The [DeepInfra open-weight extension](open_model_extensions/README.md) passed [complete nonclinical file-tool qualification](research_analysis/deepinfra-file-tools-readiness-2026-10-25.json) for gpt-oss-20b and gpt-oss-120b after provisioning a hash-pinned ripgrep executable. It verifies explicit temperature 1.0 and medium reasoning, offline request capture, bash/glob/grep/read, same-session continuation, normal completion and usage telemetry. The earlier bash-only qualification did not cover missing file-search dependencies; a pre-amendment batch is retained privately and excluded as unqualified environment evidence. These probes are not clinical outcome metrics. The original sealed main runner and Docker image remain unchanged. Only gpt-oss-20b has been run on clinical experiment inputs in this extension.
 
+### ADSL architecture-adaptation case studies
+
+The [GxP-Agent-inspired and AI-431-inspired ADSL results](pre_experiment/results/adsl-architectures-2026-11-01/README.md) include a side-by-side table, per-architecture metrics/P21 findings, evidence hashes and retained development failures. Both completed one 254-subject/49-variable run with semantic reconstruction; P21 recorded three and two label-related findings, respectively. These independently implemented exploratory adaptations have different call budgets and are not matched architecture comparisons or full-study endpoints. This publication contains aggregates only and does not change the formal main-study lock.
+
 ### P21 amendment: new qualification and freeze required
 
 The [evaluator amendment](docs/p21-evaluator-amendment.md) now distinguishes client errors from immutable runtime changes and retains diagnostics. Existing pilot scores remain unchanged. The old main-study freeze does not authorize this changed evaluator: formal execution must wait for review, qualification and a new versioned freeze.

@@ -1,0 +1,271 @@
+{
+  "scope": "Single excluded ADSL-only independent Process-DAG architecture adaptation; no pooling with full-study endpoints",
+  "model": "claude-sonnet-5-5",
+  "language": "Python/pandas/pyreadstat, not original R/pharmaverse",
+  "status": "completed",
+  "main_study_started": false,
+  "freeze_sha256": "defcf0cfcdec94d8ad18b5c1508b50fbcb930722a21b16b7d3a0f468f7def3a9",
+  "nodes_passed": 15,
+  "nodes_planned": 15,
+  "first_attempt_nodes": 13,
+  "repaired_nodes": 2,
+  "failed_nodes": [],
+  "blocked_nodes": [],
+  "terminal_reason": null,
+  "accepted_dataset_delivery": {
+    "delivered": 1,
+    "expected": 1
+  },
+  "accepted_variable_coverage": {
+    "matched": 49,
+    "expected": 49
+  },
+  "subjects": 254,
+  "expected_subjects": 254,
+  "semantic_data_define_reproduced": true,
+  "byte_data_define_reproduced": false,
+  "P21": {
+    "report_usable": true,
+    "validation_coverage_complete": true,
+    "dataset_rule_pairs": 3,
+    "finding_instances": 3,
+    "distinct_rules": 3,
+    "failure_code": null
+  },
+  "selected_independent_source_checks": [
+    {
+      "check": "DM predecessor STUDYID",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor SUBJID",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor ARM",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor RFSTDTC",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor RFENDTC",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor AGE",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor AGEU",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor SEX",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor RACE",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor ETHNIC",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "DM predecessor SITEID",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "SV Visit3 TRTSDT",
+      "assessed": 254,
+      "errors": 0
+    },
+    {
+      "check": "SV Visit3 RANDDT",
+      "assessed": 254,
+      "errors": 0
+    }
+  ],
+  "native_usage": {
+    "input_tokens": 304777,
+    "output_tokens": 42080,
+    "cache_read_input_tokens": 0,
+    "cache_creation_input_tokens": 0
+  },
+  "api_cost_estimate_usd": null,
+  "elapsed_seconds": 362.2009599208832,
+  "steps": [
+    {
+      "node_number": 1,
+      "node": "ingest",
+      "assigned_variables": 0,
+      "status": "passed",
+      "recorded_attempts": 1,
+      "accepted_attempt": 1,
+      "provider_seconds": 4.238296985626221,
+      "unresolved_provider_failures": 0
+    },
+    {
+      "node_number": 2,
+      "node": "merge_dm",
+      "assigned_variables": 6,
+      "status": "passed",
+      "recorded_attempts": 1,
+      "accepted_attempt": 1,
+      "provider_seconds": 9.2389497756958,
+      "unresolved_provider_failures": 0
+    },
+    {
+      "node_number": 3,
+      "node": "derive_treatment_vars",
+      "assigned_variables": 4,
+      "status": "passed",
+      "recorded_attempts": 1,
+      "accepted_attempt": 1,
+      "provider_seconds": 3.9965620040893555,
+      "unresolved_provider_failures": 0
+    },
+    {
+      "node_number": 4,
+      "node": "derive_treatment_dates",
+      "assigned_variables": 4,
+      "status": "passed",
+      "recorded_attempts": 1,
+      "accepted_attempt": 1,
+      "provider_seconds": 15.246357917785645,
+      "unresolved_provider_failures": 0
+    },
+    {
+      "node_number": 5,
+      "node": "derive_study_dates",
+      "assigned_variables": 2,
+      "status": "passed",
+      "recorded_attempts": 1,
+      "accepted_attempt": 1,
+      "provider_seconds": 5.5804219245910645,
+      "unresolved_provider_failures": 0
+    },
+    {
+      "node_number": 6,
+      "node": "derive_duration",
+      "assigned_variables": 5,
+      "status": "passed",
+      "recorded_attempts": 1,
+      "accepted_attempt": 1,
+      "provider_seconds": 10.581301927566528,
+      "unresolved_provider_failures": 0
+    },
+    {
+      "node_number": 7,
+      "node": "derive_flags",
+      "assigned_variables": 3,
+      "status": "passed",
+      "recorded_attempts": 1,
+      "accepted_attempt": 1,
+      "provider_seconds": 14.673529863357544,
+      "unresolved_provider_failures": 0
+    },
+    {
+      "node_number": 8,
+      "node": "derive_disposition",
+      "assigned_variables": 6,
+      "status": "passed",
+      "recorded_attempts": 1,
+      "accepted_attempt": 1,
+      "provider_seconds": 12.569745063781738,
+      "unresolved_provider_failures": 0
+    },
+    {
+      "node_number": 9,
+      "node": "derive_completion",
+      "assigned_variables": 3,
+      "status": "passed",
+      "recorded_attempts": 2,
+      "accepted_attempt": 2,
+      "provider_seconds": 27.665585041046143,
+      "unresolved_provider_failures": 0
+    },
+    {
+      "node_number": 10,
+      "node": "derive_demographics",
+      "assigned_variables": 9,
+      "status": "passed",
+      "recorded_attempts": 1,
+      "accepted_attempt": 1,
+      "provider_seconds": 13.291343927383423,
+      "unresolved_provider_failures": 0
+    },
+    {
+      "node_number": 11,
+      "node": "derive_site",
+      "assigned_variables": 2,
+      "status": "passed",
+      "recorded_attempts": 1,
+      "accepted_attempt": 1,
+      "provider_seconds": 10.825793743133545,
+      "unresolved_provider_failures": 0
+    },
+    {
+      "node_number": 12,
+      "node": "derive_baselines",
+      "assigned_variables": 5,
+      "status": "passed",
+      "recorded_attempts": 1,
+      "accepted_attempt": 1,
+      "provider_seconds": 20.52825617790222,
+      "unresolved_provider_failures": 0
+    },
+    {
+      "node_number": 13,
+      "node": "validate",
+      "assigned_variables": 0,
+      "status": "passed",
+      "recorded_attempts": 1,
+      "accepted_attempt": 1,
+      "provider_seconds": 36.87336087226868,
+      "unresolved_provider_failures": 0
+    },
+    {
+      "node_number": 14,
+      "node": "apply_metadata",
+      "assigned_variables": 0,
+      "status": "passed",
+      "recorded_attempts": 2,
+      "accepted_attempt": 2,
+      "provider_seconds": 22.311918020248413,
+      "unresolved_provider_failures": 0
+    },
+    {
+      "node_number": 15,
+      "node": "export",
+      "assigned_variables": 0,
+      "status": "passed",
+      "recorded_attempts": 1,
+      "accepted_attempt": 1,
+      "provider_seconds": 65.37818598747253,
+      "unresolved_provider_failures": 0
+    }
+  ],
+  "limitations": [
+    "This is an independently implemented architectural adaptation with different language, model and study-specific node ordering; it does not replicate original author software or numerical results.",
+    "One run only. No concurrent monolithic ADSL control was run. Do not infer an architectural improvement or compare causal efficiency with historical 13-dataset tasks.",
+    "Checks assess exact eligible subject identities, structural coverage/types, selected invariants and a limited direct-source subset. They do not establish comprehensive clinical derivation correctness or GxP compliance.",
+    "Two local attempts per node; all failed attempts retained. Provider/uncertain failures are not automatically retried. Retry costs and token use are included where native receipts exist; unresolved calls may have unknown billing.",
+    "Dataset/variable coverage denominators are one and 49, not thirteen and 531. Accepted delivery excludes rejected candidate files, which remain retained privately.",
+    "P21 is an independent terminal evaluator and its findings are not supplied to node generation or repair. Cost is unavailable pending a verified rate model; token counts are native telemetry, not invoices.",
+    "An unstarted preparation was superseded before clinical generation to refine freeze serialization and SAS missing-value/Define-XML technical checks; its provenance remains private. No clinical outcome was discarded."
+  ]
+}
