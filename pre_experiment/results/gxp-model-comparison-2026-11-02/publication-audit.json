@@ -1,0 +1,15 @@
+{
+  "batch_plan_sha256": "6464d1c2fb61f4953ae2bdddbdc31ffafbffdbb0670241421ee6d163a1854e5d",
+  "batch_state_sha256": "6ec0d258de1268f195e3d0409d868dbf908ebfd36135081b667c1504433cdd43",
+  "readiness_sha256": "f13db6e000ac31933744b223d6de0e3b9b93a91585958753ed3e872c22d92b95",
+  "source_summary_sha256": {
+    "claude": "7cb3dea4cb8bc2824f1e014ee2fac38586ba6c5aa4ae24f1512eca0e953a3ae1",
+    "gemini": "b5e36b97a91aee9bdce5f9cc0dff41fdc624d62d5d1f5ba850c541651762613f",
+    "deepseek_original": "37d8ade7f30475be2bb5d01c421659b4da15e1a6918502a992f3e64a2be92d16",
+    "deepseek_reported": "5219818d63ce921c037951afbe138947acc005895a7399cedbcb7e170cea8ba0"
+  },
+  "publisher_sha256": "c6173f919d86413553440e4c1033f27ab1a3943d081ccf8e0333d2d900410930",
+  "raw_clinical_files_published": false,
+  "completion_limit_receipt_sha256": "cdfa88768421db3305e624a960837adb2bc1f56695ef27fa6b03c0544a59c9d2",
+  "gateway_retest_sha256": "db3a4d87a8d902205a31a7dab10748acde9629266f12bde0b1728bb1ab3ff018"
+}

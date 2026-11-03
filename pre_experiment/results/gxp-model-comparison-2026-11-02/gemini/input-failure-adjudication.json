@@ -1,0 +1,12 @@
+{
+  "classification": "generated_input_integration_failure",
+  "terminal_node": "ADSL.merge_dm",
+  "clinical_value_correctness_not_assessed": true,
+  "observations": [
+    "ingest attempt 1 looked for source_files inside specifications.json, although it was supplied in the prompt",
+    "merge_dm attempt 1 used /inputs/input/dm.xpt instead of the supplied /inputs/Input/dm.xpt",
+    "merge_dm attempt 2 again looked for source_files in specifications.json"
+  ],
+  "prompt_limitation": "The system text calls supplied source paths lowercase, while the Input directory itself has a capital I. Exact source_files mappings are correct, but this generic wording is potentially ambiguous. This is retained as a design limitation rather than silently repaired within the frozen attempt.",
+  "no_model_superiority_inference": true
+}

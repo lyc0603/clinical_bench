@@ -1,0 +1,28 @@
+{
+  "dataset": "ADQSADAS",
+  "node": "record_universe",
+  "attempt": 1,
+  "completion": {
+    "normal": false,
+    "observed_model": "deepseek-flash",
+    "expected_model": "deepseek-flash",
+    "stop_reason": "length"
+  },
+  "native_usage": {
+    "prompt_tokens": 167660,
+    "completion_tokens": 32768,
+    "total_tokens": 200428,
+    "prompt_tokens_details": {
+      "cached_tokens": 512
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 30682
+    },
+    "prompt_cache_hit_tokens": 512,
+    "prompt_cache_miss_tokens": 167148
+  },
+  "usage_receipt_sha256": "da4774aca2be46cf71905f5402f4ecb595866d2d8e0958ace2a4978fad7cc689",
+  "response_sha256": "f0eb947888614e7bd6c8a742b03a2d529a4c80767d0d984a128bec23a49a3cb5",
+  "interpretation": "Output/reasoning limit reached; not a P21 failure, network timeout or balance diagnosis. Incomplete generation rejected; later scheduling stopped.",
+  "new_requests_after_failure": false
+}

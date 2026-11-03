@@ -96,6 +96,10 @@ The [DeepInfra open-weight extension](open_model_extensions/README.md) passed [c
 
 The [GxP-Agent-inspired and AI-431-inspired ADSL results](pre_experiment/results/adsl-architectures-2026-11-01/README.md) include a side-by-side table, per-architecture metrics/P21 findings, evidence hashes and retained development failures. Both completed one 254-subject/49-variable run with semantic reconstruction; P21 recorded three and two label-related findings, respectively. These independently implemented exploratory adaptations have different call budgets and are not matched architecture comparisons or full-study endpoints. This publication contains aggregates only and does not change the formal main-study lock.
 
+### Full-benchmark GxP-inspired extension
+
+The [19-metric full-DAG comparison](pre_experiment/results/gxp-model-comparison-2026-11-02/README.md) covers the historical Claude reference, a new Gemini attempt, an explicitly labelled DeepSeek engineering continuation and a gateway readiness failure. All failures and unavailable endpoints are retained. These exploratory adaptations do not constitute matched model comparisons or formal main-study runs.
+
 ### P21 amendment: new qualification and freeze required
 
 The [evaluator amendment](docs/p21-evaluator-amendment.md) now distinguishes client errors from immutable runtime changes and retains diagnostics. Existing pilot scores remain unchanged. The old main-study freeze does not authorize this changed evaluator: formal execution must wait for review, qualification and a new versioned freeze.

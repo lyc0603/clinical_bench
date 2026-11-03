@@ -1,0 +1,13 @@
+{
+  "classification": "controller_character_storage_round_trip_failure",
+  "original_run_status_unchanged": "failed",
+  "original_archive_sha256": "471dedae2bb60d40f2e866515b24d7e9cf99833b3c9c613829dc24e4a4136924",
+  "model_attempt2_explicitly_returns_object_character_container": true,
+  "json_declared_field_schema": {
+    "name": "DURDSGR1",
+    "type": "string"
+  },
+  "nonmissing_values": 0,
+  "synthetic_object_character_nulls_read_back_as_float": true,
+  "conclusion": "The stricter node gate rejects the post-JSON storage dtype even though the model explicitly returned an object character container. Treat this run as controller/interface blocked, not evidence of incorrect nonmissing clinical values or model inferiority. No new clinical generation, replacement score or tolerance relaxation."
+}

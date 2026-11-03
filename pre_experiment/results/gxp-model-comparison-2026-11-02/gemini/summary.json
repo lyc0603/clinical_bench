@@ -1,0 +1,385 @@
+{
+  "scope": "One excluded full-benchmark GxP-inspired independent architecture extension",
+  "status": "failed",
+  "model": "gemini-3.1-pro-preview",
+  "provider": "Google official Gemini API",
+  "provider_profile": {
+    "id": "gemini",
+    "model": "gemini-3.1-pro-preview",
+    "provider": "Google official Gemini API",
+    "kind": "gemini",
+    "key_env": "GOOGLE_GENERATIVE_AI_API_KEY",
+    "endpoint": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent",
+    "upstream_identity_independently_verified": false,
+    "identity_scope": "Official provider model-version assertion; not fixed weights",
+    "response_model": "gemini-3.1-pro-preview",
+    "readiness_sha256": "a00e35637c8630c9d1480ee8db056d3950af0784d97a2fc788e433a274f5e8b7"
+  },
+  "freeze_sha256": "f52ef6099a8af7e09fc553a541cd49e96ae151d951139b9fbf7940805df6fa7b",
+  "main_study_started": false,
+  "unaccepted_terminal_candidate": null,
+  "datasets": [
+    {
+      "dataset": "ADSL",
+      "generation_status": "failed",
+      "expected_variables": 49,
+      "delivered": false,
+      "matched_variables": 0,
+      "rows": null
+    },
+    {
+      "dataset": "ADAE",
+      "generation_status": "blocked",
+      "expected_variables": 58,
+      "delivered": false,
+      "matched_variables": 0,
+      "rows": null
+    },
+    {
+      "dataset": "ADLBC",
+      "generation_status": "blocked",
+      "expected_variables": 47,
+      "delivered": false,
+      "matched_variables": 0,
+      "rows": null
+    },
+    {
+      "dataset": "ADLBH",
+      "generation_status": "blocked",
+      "expected_variables": 47,
+      "delivered": false,
+      "matched_variables": 0,
+      "rows": null
+    },
+    {
+      "dataset": "ADLBHY",
+      "generation_status": "blocked",
+      "expected_variables": 44,
+      "delivered": false,
+      "matched_variables": 0,
+      "rows": null
+    },
+    {
+      "dataset": "ADQSADAS",
+      "generation_status": "blocked",
+      "expected_variables": 43,
+      "delivered": false,
+      "matched_variables": 0,
+      "rows": null
+    },
+    {
+      "dataset": "ADQSCIBC",
+      "generation_status": "blocked",
+      "expected_variables": 39,
+      "delivered": false,
+      "matched_variables": 0,
+      "rows": null
+    },
+    {
+      "dataset": "ADQSNPIX",
+      "generation_status": "blocked",
+      "expected_variables": 43,
+      "delivered": false,
+      "matched_variables": 0,
+      "rows": null
+    },
+    {
+      "dataset": "ADTTE",
+      "generation_status": "blocked",
+      "expected_variables": 28,
+      "delivered": false,
+      "matched_variables": 0,
+      "rows": null
+    },
+    {
+      "dataset": "ADVS",
+      "generation_status": "blocked",
+      "expected_variables": 38,
+      "delivered": false,
+      "matched_variables": 0,
+      "rows": null
+    },
+    {
+      "dataset": "ADCM",
+      "generation_status": "blocked",
+      "expected_variables": 37,
+      "delivered": false,
+      "matched_variables": 0,
+      "rows": null
+    },
+    {
+      "dataset": "ADDS",
+      "generation_status": "blocked",
+      "expected_variables": 26,
+      "delivered": false,
+      "matched_variables": 0,
+      "rows": null
+    },
+    {
+      "dataset": "ADEX",
+      "generation_status": "blocked",
+      "expected_variables": 32,
+      "delivered": false,
+      "matched_variables": 0,
+      "rows": null
+    }
+  ],
+  "planned_nodes": 73,
+  "passed_nodes": 1,
+  "failed_nodes": [
+    {
+      "dataset": "ADSL",
+      "node": "merge_dm",
+      "status": "failed"
+    }
+  ],
+  "repaired_nodes": [
+    {
+      "dataset": "ADSL",
+      "node": "ingest"
+    }
+  ],
+  "export_status": "blocked",
+  "generation_responses": 4,
+  "native_usage": {
+    "input_tokens": 664342,
+    "output_tokens": 16038,
+    "cache_read_input_tokens": 0
+  },
+  "elapsed_seconds": 156.73296093940735,
+  "P21": {
+    "report_usable": null,
+    "validation_coverage_complete": null,
+    "dataset_rule_pairs": null,
+    "finding_instances": null,
+    "distinct_rules": null,
+    "issues": null,
+    "failure_code": null,
+    "report_sha256": null
+  },
+  "metrics": [
+    {
+      "number": 1,
+      "metric": "Workflow completion and complete dataset packages",
+      "value": {
+        "workflow_completed": false,
+        "complete_packages": 0,
+        "planned_packages": 1
+      }
+    },
+    {
+      "number": 2,
+      "metric": "Reproducible final packages",
+      "value": {
+        "semantic_reproduced": null,
+        "byte_reproduced": null
+      }
+    },
+    {
+      "number": 3,
+      "metric": "Valid final P21 evaluations",
+      "value": {
+        "report_usable": null,
+        "full_validated_coverage": null,
+        "complete_package": false
+      }
+    },
+    {
+      "number": 4,
+      "metric": "Initial and final dataset-rule pairs",
+      "value": {
+        "initial": null,
+        "final_primary_dataset_rule_pairs": null,
+        "observed_final_dataset_rule_pairs": null,
+        "note": "One terminal evaluation; partial counts descriptive only"
+      }
+    },
+    {
+      "number": 5,
+      "metric": "Reduction from initial to final",
+      "value": null
+    },
+    {
+      "number": 6,
+      "metric": "Final findings by severity",
+      "value": null
+    },
+    {
+      "number": 7,
+      "metric": "Newly introduced dataset-rule pairs",
+      "value": null
+    },
+    {
+      "number": 8,
+      "metric": "NPI summary errors / assessed records",
+      "value": {
+        "npi_mean_coverage": {
+          "status": "unavailable",
+          "errors": null,
+          "assessed": null
+        },
+        "npi_mean_value": {
+          "status": "unavailable",
+          "errors": null,
+          "assessed": null
+        }
+      }
+    },
+    {
+      "number": 9,
+      "metric": "NPI baseline errors / assessed records",
+      "value": {
+        "npi_baseline_covariate": {
+          "status": "unavailable",
+          "errors": null,
+          "assessed": null
+        }
+      }
+    },
+    {
+      "number": 10,
+      "metric": "TTE linkage errors / assessed records",
+      "value": {
+        "tte_subject_coverage": {
+          "status": "unavailable",
+          "errors": null,
+          "assessed": null
+        },
+        "tte_start_date": {
+          "status": "unavailable",
+          "errors": null,
+          "assessed": null
+        },
+        "tte_event_status": {
+          "status": "unavailable",
+          "errors": null,
+          "assessed": null
+        },
+        "tte_source_link": {
+          "status": "unavailable",
+          "errors": null,
+          "assessed": null
+        },
+        "tte_event_date": {
+          "status": "unavailable",
+          "errors": null,
+          "assessed": null
+        },
+        "tte_duration_arithmetic": {
+          "status": "unavailable",
+          "errors": null,
+          "assessed": null
+        },
+        "tte_censor_convention": {
+          "status": "unavailable",
+          "errors": null,
+          "assessed": null
+        }
+      }
+    },
+    {
+      "number": 11,
+      "metric": "Missing extra and duplicate expected records",
+      "value": {
+        "scope": "Selected NPI summary and TTDE source expectations only",
+        "coverage": null
+      }
+    },
+    {
+      "number": 12,
+      "metric": "Assessable checks / planned checks",
+      "value": {
+        "assessable": 0,
+        "planned": 10
+      }
+    },
+    {
+      "number": 13,
+      "metric": "Workflow API cost estimate in USD",
+      "value": null
+    },
+    {
+      "number": 14,
+      "metric": "Input and output tokens",
+      "value": {
+        "input_tokens": 664342,
+        "output_tokens": 16038,
+        "cache_read_input_tokens": 0
+      }
+    },
+    {
+      "number": 15,
+      "metric": "End-to-end elapsed time in minutes",
+      "value": 2.6122160156567893
+    },
+    {
+      "number": 16,
+      "metric": "Tool calls and failed tool calls",
+      "value": {
+        "model_tool_calls": null,
+        "note": "Direct per-node API; no agent tool loop. Sandbox executions shown separately, not comparable tool counts.",
+        "sandbox_executions": 4,
+        "failed_sandbox_executions": 3
+      }
+    },
+    {
+      "number": 17,
+      "metric": "Dataset Delivery Rate",
+      "value": {
+        "delivered": 0,
+        "expected": 13,
+        "rate": 0.0
+      }
+    },
+    {
+      "number": 18,
+      "metric": "Variable Coverage",
+      "value": {
+        "matched": 0,
+        "expected": 531,
+        "rate": 0.0
+      }
+    },
+    {
+      "number": 19,
+      "metric": "Failure-stage distribution",
+      "value": {
+        "observed_attempt_failure_counts": {
+          "input_reading": 1,
+          "code_execution": 2,
+          "dataset_export": 0,
+          "define_xml_generation": 0,
+          "rebuilding": 0,
+          "p21_validation": 0
+        },
+        "blocked_datasets": [
+          "ADAE",
+          "ADLBC",
+          "ADLBH",
+          "ADLBHY",
+          "ADQSADAS",
+          "ADQSCIBC",
+          "ADQSNPIX",
+          "ADTTE",
+          "ADVS",
+          "ADCM",
+          "ADDS",
+          "ADEX"
+        ],
+        "provider_failures": 0,
+        "note": "First-failing-stage attempt counts; skipped dependents are blocked, not observed failures. P21 findings are not validator failures."
+      }
+    }
+  ],
+  "limitations": [
+    "New 73-node/13-dataset extension, not author-supplied 13-dataset DAG or numerical replication.",
+    "Single development run; not randomized matched architecture comparison or a main-study allocation.",
+    "Local repairs are not initial/final complete-workflow conditions; reduction and new-rule metrics have no defined initial P21 comparator.",
+    "Auxiliary NPI/TTE checks retain original narrow/conditional limitations; not full clinical derivation certification.",
+    "Nonempty and fixed row-universe gates are explicit architecture-adaptation contracts, not exhaustive record correctness.",
+    "Qualification/preparation and earlier failed probes are excluded from measured runtime/token totals and retained separately."
+  ],
+  "id": "gemini",
+  "label": "Gemini 3.1 Pro Preview \u2014 Google official",
+  "historical": false
+}

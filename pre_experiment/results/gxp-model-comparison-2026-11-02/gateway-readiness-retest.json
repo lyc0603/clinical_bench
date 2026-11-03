@@ -1,0 +1,18 @@
+{
+  "profile": {
+    "id": "gateway_sol",
+    "model": "gpt-6.1-sol",
+    "provider": "Third-party xyz.llmapigateway.org gateway; claimed Sol, not authenticated OpenAI",
+    "kind": "responses",
+    "key_env": "GATEWAY_API_KEY",
+    "endpoint": "https://xyz.llmapigateway.org/v1/responses",
+    "upstream_identity_independently_verified": false,
+    "identity_scope": "Gateway response model claim only; may not establish upstream model identity"
+  },
+  "clinical_inputs_used": false,
+  "qualified": false,
+  "previous_readiness_preserved": true,
+  "interpretation": "User follow-up nonclinical retest; not a clinical generation or an account refill",
+  "error_type": "HTTPError",
+  "http_status": 403
+}
