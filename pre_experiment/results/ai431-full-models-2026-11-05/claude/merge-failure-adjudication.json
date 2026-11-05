@@ -1,0 +1,12 @@
+{
+  "dataset": "ADSL",
+  "all_49_variable_local_checks_passed": true,
+  "merged_cross_variable_gate_passed": false,
+  "gate_errors": [
+    "ADSL inclusive treatment duration invariant failed"
+  ],
+  "classification": "Cross-variable clinical consistency gate failure, not P21 validation failure",
+  "downstream_datasets_blocked": 12,
+  "patient_values_published": false,
+  "generated_programs_hand_edited": false
+}

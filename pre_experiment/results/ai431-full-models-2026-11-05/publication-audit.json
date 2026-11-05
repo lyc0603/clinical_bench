@@ -1,0 +1,23 @@
+{
+  "batch_plan_sha256": "000e6037958a027798eb59fb27e4a5eb225d646f314ac40c6fb6b62ac7afdec5",
+  "batch_state_sha256": "4ea979666262e3d98a00db3bfe2666ff30a5ebcedc510e521da0a57c05063b51",
+  "readiness_sha256": "c569a98560dc476a58b2fa1d60e495dd0206e9b181663860b7e577df018d7697",
+  "source_aggregate_hashes": {
+    "claude": {
+      "summary_sha256": "a9f63811fcdf12b3848dfbc9a4e10cfb9feeb887591488510da244afb11afc31",
+      "audit_sha256": "1bddf8445a3d94d7018e2244839f9d5f4445293d694fb259aa5398d3916ebb87"
+    }
+  },
+  "publisher_sha256": "c8924cfb998270ec0ea5e1243524d123bb91679e5e5a5385dfd892f19d917d17",
+  "raw_clinical_artifacts_published": false,
+  "workbook": {
+    "builder_sha256": "7b3cfa61ad38a6cc243d8c3bcdf771267f89d660bf74caab270dfb57543591f1",
+    "workbook_sha256": "e0a96a4d9ea53ad65349881ce8e0584975749c0605ec490550db6cb280bcbf31",
+    "source_comparison_sha256": "3fb28a2a26586b1f27dc833784225f8492c771a6bb49a36d80615f35b16a0333",
+    "visual_review_passed": true,
+    "formula_error_matches": 0,
+    "metric_rows": 19,
+    "model_columns": 5,
+    "explicit_interim_status": true
+  }
+}

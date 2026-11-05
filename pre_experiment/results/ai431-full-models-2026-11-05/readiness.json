@@ -1,0 +1,83 @@
+{
+  "clinical_inputs_used": false,
+  "checks": [
+    {
+      "profile": {
+        "id": "claude",
+        "model": "claude-sonnet-5-5",
+        "provider": "Anthropic official API",
+        "kind": "anthropic",
+        "key_env": "ANTHROPIC_API_KEY",
+        "endpoint": "https://api.anthropic.com/v1/messages",
+        "identity_scope": "Official provider assertion; hosted weights not independently fixed"
+      },
+      "clinical_inputs_used": false,
+      "qualified": true,
+      "response_model": "claude-sonnet-5-5",
+      "usage_sha256": "3a241a34bbf6cc22ba7ff98a0105678536044d64180d6a3c1cf45a935747d107"
+    },
+    {
+      "profile": {
+        "id": "gemini",
+        "model": "gemini-3.1-pro-preview",
+        "provider": "Google official Gemini API",
+        "kind": "gemini",
+        "key_env": "GOOGLE_GENERATIVE_AI_API_KEY",
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent",
+        "upstream_identity_independently_verified": false,
+        "identity_scope": "Official provider model-version assertion; not fixed weights"
+      },
+      "clinical_inputs_used": false,
+      "qualified": true,
+      "response_model": "gemini-3.1-pro-preview",
+      "usage_sha256": "b0ab527979409c032ee4b2c9c75596fa45a8241225322e3efc95a1f065b1a40a"
+    },
+    {
+      "profile": {
+        "id": "deepseek",
+        "model": "deepseek-flash",
+        "provider": "DeepSeek official API",
+        "kind": "chat",
+        "key_env": "DEEPSEEK_API_KEY",
+        "endpoint": "https://api.deepseek.com/chat/completions",
+        "upstream_identity_independently_verified": false,
+        "identity_scope": "Official provider alias; not fixed weights"
+      },
+      "clinical_inputs_used": false,
+      "qualified": true,
+      "response_model": "deepseek-flash",
+      "usage_sha256": "20748bcf500ff5e15533ee37a1c83ee79741cf85d1804b4c57381c08a131c5f4"
+    },
+    {
+      "profile": {
+        "id": "gateway_sol",
+        "model": "gpt-6.1-sol",
+        "provider": "Third-party xyz.llmapigateway.org gateway; claimed Sol, not authenticated OpenAI",
+        "kind": "responses",
+        "key_env": "GATEWAY_API_KEY",
+        "endpoint": "https://xyz.llmapigateway.org/v1/responses",
+        "upstream_identity_independently_verified": false,
+        "identity_scope": "Gateway response model claim only; may not establish upstream model identity"
+      },
+      "clinical_inputs_used": false,
+      "qualified": false,
+      "error_type": "HTTPError",
+      "http_status": 403
+    },
+    {
+      "profile": {
+        "id": "gpt_oss_20b",
+        "model": "openai/gpt-oss-20b",
+        "provider": "DeepInfra hosted open-weight model",
+        "kind": "chat",
+        "key_env": "DEEPINFRA_API_KEY",
+        "endpoint": "https://api.deepinfra.com/v1/openai/chat/completions",
+        "identity_scope": "DeepInfra response assertion; not local execution or authenticated official OpenAI API"
+      },
+      "clinical_inputs_used": false,
+      "qualified": true,
+      "response_model": "openai/gpt-oss-20b",
+      "usage_sha256": "0d5badcd34856f31611815f8267a851db235787b92bca40186def8b76371a16c"
+    }
+  ]
+}

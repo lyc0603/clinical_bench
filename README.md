@@ -100,6 +100,8 @@ The [GxP-Agent-inspired and AI-431-inspired ADSL results](pre_experiment/results
 
 The [19-metric full-DAG comparison](pre_experiment/results/gxp-model-comparison-2026-11-02/README.md) covers the historical Claude reference, a new Gemini attempt, an explicitly labelled DeepSeek engineering continuation and a gateway readiness failure. All failures and unavailable endpoints are retained. These exploratory adaptations do not constitute matched model comparisons or formal main-study runs.
 
+The [full-benchmark AI-431-inspired variable pipeline](ai431_full/README.md) and [execution/review runbook](docs/ai431-full-runbook.md) target the same 13 datasets/531 variables using independent variable generation, execution/repair, QC and keyed merging. Its separate five-endpoint exploratory cohort retains readiness, runtime and clinical failures; it does not change the formal main-study lock. The [19-metric interim progress table](pre_experiment/results/ai431-full-models-2026-11-05/README.md) is explicitly incomplete: one clinical attempt has ended, three qualified endpoints await disk space, and the gateway failed readiness.
+
 ### P21 amendment: new qualification and freeze required
 
 The [evaluator amendment](docs/p21-evaluator-amendment.md) now distinguishes client errors from immutable runtime changes and retains diagnostics. Existing pilot scores remain unchanged. The old main-study freeze does not authorize this changed evaluator: formal execution must wait for review, qualification and a new versioned freeze.

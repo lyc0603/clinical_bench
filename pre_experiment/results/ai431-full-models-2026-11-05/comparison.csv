@@ -1,0 +1,20 @@
+No.,Metric,Claude Sonnet 5.5 — Anthropic official,Gemini 3.1 Pro Preview — Google official,DeepSeek Flash — DeepSeek official,Gateway-claimed Sol 6.1 — unverified upstream,gpt-oss-20b — DeepInfra
+1,Workflow completion and complete dataset packages,failed; variables 49/531,Not started: disk_space_prelaunch_pending,Not started: disk_space_prelaunch_pending,Not started: readiness_http_403,Not started: disk_space_prelaunch_pending
+2,Reproducible final packages,Unavailable,Unavailable,Unavailable,Unavailable,Unavailable
+3,Valid final P21 evaluations,Unavailable,Unavailable,Unavailable,Unavailable,Unavailable
+4,Initial and final dataset-rule pairs,Unavailable,Unavailable,Unavailable,Unavailable,Unavailable
+5,Reduction from initial to final,Not applicable / unavailable,Unavailable,Unavailable,Unavailable,Unavailable
+6,Final findings by severity,Not applicable / unavailable,Unavailable,Unavailable,Unavailable,Unavailable
+7,Newly introduced dataset-rule pairs,Not applicable / unavailable,Unavailable,Unavailable,Unavailable,Unavailable
+8,NPI summary errors / assessed records,mean_coverage: unavailable; mean_value: unavailable,Unavailable,Unavailable,Unavailable,Unavailable
+9,NPI baseline errors / assessed records,baseline_covariate: unavailable,Unavailable,Unavailable,Unavailable,Unavailable
+10,TTE linkage errors / assessed records,subject_coverage: unavailable; start_date: unavailable; event_status: unavailable; source_link: unavailable; event_date: unavailable; duration_arithmetic: unavailable; censor_convention: unavailable,Unavailable,Unavailable,Unavailable,Unavailable
+11,Missing extra and duplicate expected records,Unavailable,Unavailable,Unavailable,Unavailable,Unavailable
+12,Assessable checks / planned checks,0/10,Unavailable,Unavailable,Unavailable,Unavailable
+13,Workflow API cost estimate in USD,Not applicable / unavailable,Unavailable,Unavailable,Unavailable,Unavailable
+14,Input and output tokens,"Input 1,077,625; output 81,829; cached input 0",Unavailable,Unavailable,Unavailable,Unavailable
+15,End-to-end elapsed time in minutes,5.91,Unavailable,Unavailable,Unavailable,Unavailable
+16,Tool calls and failed tool calls,Model tool calls N/A; 54 recorded API responses,Unavailable,Unavailable,Unavailable,Unavailable
+17,Dataset Delivery Rate,0/13,Unavailable,Unavailable,Unavailable,Unavailable
+18,Variable Coverage,0/531,Unavailable,Unavailable,Unavailable,Unavailable
+19,Failure-stage distribution,input_reading=3; code_execution=1; failed variables=0; failed row tasks=0; merge QC=1; blocked datasets=12; API failures=0; incomplete/invalid replies=0,Not started: disk_space_prelaunch_pending,Not started: disk_space_prelaunch_pending,Not started: readiness_http_403,Not started: disk_space_prelaunch_pending
