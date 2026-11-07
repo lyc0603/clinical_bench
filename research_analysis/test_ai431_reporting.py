@@ -8,7 +8,7 @@ from ai431_full.client import PROFILES,body_for
 from gxp_models.archive import archive_evidence
 from main_experiment.core import fingerprint
 from main_experiment.support import save,manifest
-from research_analysis.report_ai431_full import report
+from research_analysis.report_ai431_full import report,normalized_usage
 
 class EvidenceReportingTests(unittest.TestCase):
     def fixture(self,directory):
@@ -38,6 +38,11 @@ class EvidenceReportingTests(unittest.TestCase):
             self.assertIsNone(summary['metrics'][12]['value'])
             self.assertEqual(summary['native_usage'],{'input_tokens':7,'output_tokens':10,'cache_read_input_tokens':2})
             self.assertEqual(summary['metrics'][18]['value']['invalid_completion_calls'],1)
+    def test_null_hosted_cache_details_are_unknown_without_losing_token_totals(self):
+        counts=normalized_usage(PROFILES['gpt_oss_20b'],{'prompt_tokens':7,'completion_tokens':10,'prompt_tokens_details':None})
+        self.assertEqual(counts['input'],7)
+        self.assertEqual(counts['output'],10)
+        self.assertIsNone(counts['cached_input'])
     def test_changed_archive_is_rejected_before_publication(self):
         with tempfile.TemporaryDirectory() as temp:
             directory=Path(temp);root=self.fixture(directory)

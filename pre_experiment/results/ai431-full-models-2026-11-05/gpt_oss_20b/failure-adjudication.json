@@ -1,0 +1,24 @@
+{
+  "failed_variable_tasks": [
+    "STUDYID",
+    "TRTEDT",
+    "CUMDOSE",
+    "COMP8FL",
+    "COMP16FL",
+    "COMP24FL",
+    "BMIBLGR1",
+    "DISONSDT",
+    "DURDIS",
+    "DURDSGR1",
+    "VISNUMEN",
+    "MMSETOT"
+  ],
+  "passed_variable_tasks": 37,
+  "adsl_merge_blocked_by_failed_variables": true,
+  "downstream_datasets_blocked": 12,
+  "export_rebuild_and_p21_reached": false,
+  "clinical_rerun": false,
+  "posthoc_reporter_null_cache_fix": true,
+  "cached_token_detail_unknown": true,
+  "generated_programs_hand_edited": false
+}

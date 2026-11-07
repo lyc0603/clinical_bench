@@ -1,0 +1,13 @@
+{
+  "model": "gemini-3.1-pro-preview",
+  "clinical_run_status": "failed",
+  "passed_variable_tasks": 30,
+  "exhausted_variable": "COMP8FL",
+  "provider_http_status": 402,
+  "provider_error_status": "RESOURCE_EXHAUSTED",
+  "provider_message_identified_prepaid_credit_exhaustion": true,
+  "final_export_attempted": false,
+  "p21_attempted": false,
+  "automatic_api_retry_performed": false,
+  "prior_failures_discarded": false
+}

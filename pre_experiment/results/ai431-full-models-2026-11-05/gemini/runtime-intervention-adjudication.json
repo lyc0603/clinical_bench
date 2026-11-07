@@ -1,0 +1,20 @@
+{
+  "type": "Post-hoc infrastructure intervention while retaining an already in-flight task",
+  "preparation_command": [
+    "chown",
+    "-R",
+    "501:20",
+    "/workspace"
+  ],
+  "process_table_was_empty": true,
+  "provider_402_had_already_stopped_new_requests": true,
+  "action": "Stop the owned processless preparation loader",
+  "stop_returncode": 0,
+  "generated_code_was_not_running_at_intervention": true,
+  "inflight_DSRAEFL_later_executed_and_passed": true,
+  "clinical_code_modified": false,
+  "new_model_calls_triggered": false,
+  "elapsed_runtime_includes_diagnosis_and_intervention": true,
+  "before_receipt_sha256": "d757ed3ead51b2412ba09409bb389b57ebb7d1fe4f38058f9695f26d472473e7",
+  "stop_receipt_sha256": "2550d9d71a45dd034740d9d2a7c08d59ff95bedf615b37bc1a44a010a0b84a89"
+}

@@ -1,11 +1,7 @@
 {
   "scope": "Five planned exploratory AI-431-inspired full-benchmark endpoints; no numerical reproduction or formal main study",
-  "interim_pending_models": [
-    "gemini",
-    "deepseek",
-    "gpt_oss_20b"
-  ],
-  "comparison_complete": false,
+  "interim_pending_models": [],
+  "comparison_complete": true,
   "main_study_started": false,
   "table_headers": [
     "No.",
@@ -21,10 +17,10 @@
       1,
       "Workflow completion and complete dataset packages",
       "failed; variables 49/531",
-      "Not started: disk_space_prelaunch_pending",
-      "Not started: disk_space_prelaunch_pending",
+      "failed; variables 30/531",
+      "failed; variables 49/531",
       "Not started: readiness_http_403",
-      "Not started: disk_space_prelaunch_pending"
+      "failed; variables 37/531"
     ],
     [
       2,
@@ -57,55 +53,55 @@
       5,
       "Reduction from initial to final",
       "Not applicable / unavailable",
+      "Not applicable / unavailable",
+      "Not applicable / unavailable",
       "Unavailable",
-      "Unavailable",
-      "Unavailable",
-      "Unavailable"
+      "Not applicable / unavailable"
     ],
     [
       6,
       "Final findings by severity",
       "Not applicable / unavailable",
+      "Not applicable / unavailable",
+      "Not applicable / unavailable",
       "Unavailable",
-      "Unavailable",
-      "Unavailable",
-      "Unavailable"
+      "Not applicable / unavailable"
     ],
     [
       7,
       "Newly introduced dataset-rule pairs",
       "Not applicable / unavailable",
+      "Not applicable / unavailable",
+      "Not applicable / unavailable",
       "Unavailable",
-      "Unavailable",
-      "Unavailable",
-      "Unavailable"
+      "Not applicable / unavailable"
     ],
     [
       8,
       "NPI summary errors / assessed records",
       "mean_coverage: unavailable; mean_value: unavailable",
+      "mean_coverage: unavailable; mean_value: unavailable",
+      "mean_coverage: unavailable; mean_value: unavailable",
       "Unavailable",
-      "Unavailable",
-      "Unavailable",
-      "Unavailable"
+      "mean_coverage: unavailable; mean_value: unavailable"
     ],
     [
       9,
       "NPI baseline errors / assessed records",
       "baseline_covariate: unavailable",
+      "baseline_covariate: unavailable",
+      "baseline_covariate: unavailable",
       "Unavailable",
-      "Unavailable",
-      "Unavailable",
-      "Unavailable"
+      "baseline_covariate: unavailable"
     ],
     [
       10,
       "TTE linkage errors / assessed records",
       "subject_coverage: unavailable; start_date: unavailable; event_status: unavailable; source_link: unavailable; event_date: unavailable; duration_arithmetic: unavailable; censor_convention: unavailable",
+      "subject_coverage: unavailable; start_date: unavailable; event_status: unavailable; source_link: unavailable; event_date: unavailable; duration_arithmetic: unavailable; censor_convention: unavailable",
+      "subject_coverage: unavailable; start_date: unavailable; event_status: unavailable; source_link: unavailable; event_date: unavailable; duration_arithmetic: unavailable; censor_convention: unavailable",
       "Unavailable",
-      "Unavailable",
-      "Unavailable",
-      "Unavailable"
+      "subject_coverage: unavailable; start_date: unavailable; event_status: unavailable; source_link: unavailable; event_date: unavailable; duration_arithmetic: unavailable; censor_convention: unavailable"
     ],
     [
       11,
@@ -120,73 +116,73 @@
       12,
       "Assessable checks / planned checks",
       "0/10",
+      "0/10",
+      "0/10",
       "Unavailable",
-      "Unavailable",
-      "Unavailable",
-      "Unavailable"
+      "0/10"
     ],
     [
       13,
       "Workflow API cost estimate in USD",
       "Not applicable / unavailable",
+      "Not applicable / unavailable",
+      "Not applicable / unavailable",
       "Unavailable",
-      "Unavailable",
-      "Unavailable",
-      "Unavailable"
+      "Not applicable / unavailable"
     ],
     [
       14,
       "Input and output tokens",
       "Input 1,077,625; output 81,829; cached input 0",
+      "Input 554,082; output 225,559; cached input 0",
+      "Input 659,614; output 410,806; cached input 37,376",
       "Unavailable",
-      "Unavailable",
-      "Unavailable",
-      "Unavailable"
+      "Input 888,157; output 161,643; cached input unavailable"
     ],
     [
       15,
       "End-to-end elapsed time in minutes",
       "5.91",
+      "13.24",
+      "16.37",
       "Unavailable",
-      "Unavailable",
-      "Unavailable",
-      "Unavailable"
+      "10.40"
     ],
     [
       16,
       "Tool calls and failed tool calls",
       "Model tool calls N/A; 54 recorded API responses",
+      "Model tool calls N/A; 41 recorded API responses",
+      "Model tool calls N/A; 51 recorded API responses",
       "Unavailable",
-      "Unavailable",
-      "Unavailable",
-      "Unavailable"
+      "Model tool calls N/A; 69 recorded API responses"
     ],
     [
       17,
       "Dataset Delivery Rate",
       "0/13",
+      "0/13",
+      "0/13",
       "Unavailable",
-      "Unavailable",
-      "Unavailable",
-      "Unavailable"
+      "0/13"
     ],
     [
       18,
       "Variable Coverage",
       "0/531",
+      "0/531",
+      "0/531",
       "Unavailable",
-      "Unavailable",
-      "Unavailable",
-      "Unavailable"
+      "0/531"
     ],
     [
       19,
       "Failure-stage distribution",
       "input_reading=3; code_execution=1; failed variables=0; failed row tasks=0; merge QC=1; blocked datasets=12; API failures=0; incomplete/invalid replies=0",
-      "Not started: disk_space_prelaunch_pending",
-      "Not started: disk_space_prelaunch_pending",
+      "input_reading=8; code_execution=2; failed variables=1; failed row tasks=0; merge QC=0; blocked datasets=12; API failures=1; incomplete/invalid replies=0",
+      "code_execution=1; failed variables=0; failed row tasks=0; merge QC=1; blocked datasets=12; API failures=0; incomplete/invalid replies=0",
       "Not started: readiness_http_403",
-      "Not started: disk_space_prelaunch_pending"
+      "input_reading=7; code_execution=24; failed variables=12; failed row tasks=0; merge QC=0; blocked datasets=12; API failures=0; incomplete/invalid replies=0"
     ]
   ],
   "records": [
@@ -591,34 +587,248 @@
       "label": "Claude Sonnet 5.5 \u2014 Anthropic official"
     },
     {
-      "id": "gemini",
-      "label": "Gemini 3.1 Pro Preview \u2014 Google official",
-      "not_started": true,
-      "status": "disk_space_prelaunch_pending",
-      "provider": "Google official Gemini API",
+      "scope": "Single excluded new full-benchmark AI-431-inspired attempt",
+      "architecture": "Independent PharmaSUG AI-431-inspired full-benchmark variable pipeline; not original author software",
+      "status": "failed",
       "model": "gemini-3.1-pro-preview",
-      "clinical_inputs_transmitted": false,
+      "provider": "Google official Gemini API",
+      "provider_profile": {
+        "id": "gemini",
+        "model": "gemini-3.1-pro-preview",
+        "provider": "Google official Gemini API",
+        "kind": "gemini",
+        "key_env": "GOOGLE_GENERATIVE_AI_API_KEY",
+        "endpoint": "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent",
+        "upstream_identity_independently_verified": false,
+        "identity_scope": "Official provider model-version assertion; not fixed weights",
+        "response_model": "gemini-3.1-pro-preview"
+      },
+      "freeze_sha256": "30157d1ea9d6c8340233d9a79416c69fa704273c1b194d950694441d633819a0",
       "main_study_started": false,
+      "unaccepted_terminal_candidate": null,
+      "datasets": [
+        {
+          "dataset": "ADSL",
+          "generation_status": "provider_or_controller_failure",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 49,
+          "rows": null
+        },
+        {
+          "dataset": "ADAE",
+          "generation_status": "blocked_provider_failure",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 58,
+          "rows": null
+        },
+        {
+          "dataset": "ADLBC",
+          "generation_status": "blocked_provider_failure",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 47,
+          "rows": null
+        },
+        {
+          "dataset": "ADLBH",
+          "generation_status": "blocked_provider_failure",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 47,
+          "rows": null
+        },
+        {
+          "dataset": "ADLBHY",
+          "generation_status": "blocked_provider_failure",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 44,
+          "rows": null
+        },
+        {
+          "dataset": "ADQSADAS",
+          "generation_status": "blocked_provider_failure",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 43,
+          "rows": null
+        },
+        {
+          "dataset": "ADQSCIBC",
+          "generation_status": "blocked_provider_failure",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 39,
+          "rows": null
+        },
+        {
+          "dataset": "ADQSNPIX",
+          "generation_status": "blocked_provider_failure",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 43,
+          "rows": null
+        },
+        {
+          "dataset": "ADTTE",
+          "generation_status": "blocked_provider_failure",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 28,
+          "rows": null
+        },
+        {
+          "dataset": "ADVS",
+          "generation_status": "blocked_provider_failure",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 38,
+          "rows": null
+        },
+        {
+          "dataset": "ADCM",
+          "generation_status": "blocked_provider_failure",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 37,
+          "rows": null
+        },
+        {
+          "dataset": "ADDS",
+          "generation_status": "blocked_provider_failure",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 26,
+          "rows": null
+        },
+        {
+          "dataset": "ADEX",
+          "generation_status": "blocked_provider_failure",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 32,
+          "rows": null
+        }
+      ],
+      "planned_variables": 531,
+      "passed_variable_tasks": 30,
+      "passed_row_universe_tasks": 0,
+      "failed_tasks": [
+        {
+          "dataset": "ADSL",
+          "task": "COMP8FL",
+          "kind": "variable",
+          "status": "failed"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "COMP24FL",
+          "kind": "variable",
+          "status": "provider_or_controller_failure"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "BMIBL",
+          "kind": "variable",
+          "status": "blocked_provider_failure"
+        }
+      ],
+      "repaired_tasks": [
+        {
+          "dataset": "ADSL",
+          "task": "TRTEDT",
+          "kind": "variable"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "TRTDUR",
+          "kind": "variable"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "AVGDD",
+          "kind": "variable"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "CUMDOSE",
+          "kind": "variable"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "SAFFL",
+          "kind": "variable"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "DISCONFL",
+          "kind": "variable"
+        }
+      ],
+      "generation_responses": 41,
+      "advisory_review_responses": 1,
+      "native_usage": {
+        "input_tokens": 554082,
+        "output_tokens": 225559,
+        "cache_read_input_tokens": 0
+      },
+      "elapsed_seconds": 794.5803678035736,
+      "export_status": "blocked",
+      "invalid_completions": [],
+      "provider_failures": [
+        {
+          "task_path": "datasets/ADSL/tasks/COMP24FL/attempt-2",
+          "error_type": "HTTPError",
+          "http_status": 402,
+          "seconds": 0.3538780212402344
+        }
+      ],
+      "P21": {
+        "report_usable": null,
+        "validation_coverage_complete": null,
+        "dataset_rule_pairs": null,
+        "finding_instances": null,
+        "distinct_rules": null,
+        "failure_code": null
+      },
       "metrics": [
         {
           "number": 1,
           "metric": "Workflow completion and complete dataset packages",
-          "value": null
+          "value": {
+            "workflow_completed": false,
+            "complete_packages": 0,
+            "planned_packages": 1
+          }
         },
         {
           "number": 2,
           "metric": "Reproducible final packages",
-          "value": null
+          "value": {
+            "semantic_reproduced": null,
+            "byte_reproduced": null
+          }
         },
         {
           "number": 3,
           "metric": "Valid final P21 evaluations",
-          "value": null
+          "value": {
+            "report_usable": null,
+            "full_validated_coverage": null,
+            "complete_package": false
+          }
         },
         {
           "number": 4,
           "metric": "Initial and final dataset-rule pairs",
-          "value": null
+          "value": {
+            "initial": null,
+            "final_primary_dataset_rule_pairs": null,
+            "observed_final_dataset_rule_pairs": null,
+            "note": "Terminal-only P21, partial counts descriptive"
+          }
         },
         {
           "number": 5,
@@ -638,27 +848,86 @@
         {
           "number": 8,
           "metric": "NPI summary errors / assessed records",
-          "value": null
+          "value": {
+            "npi_mean_coverage": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "npi_mean_value": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            }
+          }
         },
         {
           "number": 9,
           "metric": "NPI baseline errors / assessed records",
-          "value": null
+          "value": {
+            "npi_baseline_covariate": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            }
+          }
         },
         {
           "number": 10,
           "metric": "TTE linkage errors / assessed records",
-          "value": null
+          "value": {
+            "tte_subject_coverage": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_start_date": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_event_status": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_source_link": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_event_date": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_duration_arithmetic": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_censor_convention": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            }
+          }
         },
         {
           "number": 11,
           "metric": "Missing extra and duplicate expected records",
-          "value": null
+          "value": {
+            "scope": "Selected NPI/TTE expectations only",
+            "coverage": null
+          }
         },
         {
           "number": 12,
           "metric": "Assessable checks / planned checks",
-          "value": null
+          "value": {
+            "assessable": 0,
+            "planned": 10
+          }
         },
         {
           "number": 13,
@@ -668,64 +937,285 @@
         {
           "number": 14,
           "metric": "Input and output tokens",
-          "value": null
+          "value": {
+            "input_tokens": 554082,
+            "output_tokens": 225559,
+            "cache_read_input_tokens": 0
+          }
         },
         {
           "number": 15,
           "metric": "End-to-end elapsed time in minutes",
-          "value": null
+          "value": 13.24300613005956
         },
         {
           "number": 16,
           "metric": "Tool calls and failed tool calls",
-          "value": null
+          "value": {
+            "model_tool_calls": null,
+            "sandbox_executions": 40,
+            "failed_sandbox_executions": 10,
+            "note": "Direct native APIs; no model tool loop"
+          }
         },
         {
           "number": 17,
           "metric": "Dataset Delivery Rate",
-          "value": null
+          "value": {
+            "delivered": 0,
+            "expected": 13,
+            "rate": 0.0
+          }
         },
         {
           "number": 18,
           "metric": "Variable Coverage",
-          "value": null
+          "value": {
+            "matched": 0,
+            "expected": 531,
+            "rate": 0.0
+          }
         },
         {
           "number": 19,
           "metric": "Failure-stage distribution",
-          "value": null
+          "value": {
+            "observed_attempt_failure_counts": {
+              "input_reading": 8,
+              "code_execution": 2,
+              "dataset_export": 0,
+              "define_xml_generation": 0,
+              "rebuilding": 0,
+              "p21_validation": 0
+            },
+            "failed_variable_tasks": 1,
+            "failed_row_universe_tasks": 0,
+            "failed_merge_qc_datasets": 0,
+            "blocked_datasets": [
+              "ADAE",
+              "ADLBC",
+              "ADLBH",
+              "ADLBHY",
+              "ADQSADAS",
+              "ADQSCIBC",
+              "ADQSNPIX",
+              "ADTTE",
+              "ADVS",
+              "ADCM",
+              "ADDS",
+              "ADEX"
+            ],
+            "provider_http_or_transport_failures": 1,
+            "invalid_completion_calls": 0,
+            "note": "Observed failures are distinct from blocked work; P21 findings are not validator execution failures."
+          }
         }
-      ]
+      ],
+      "limitations": [
+        "Independent full-benchmark adaptation, not author software or numerical replication.",
+        "Single nonrandomized exploratory attempt per planned endpoint; no causal superiority claims.",
+        "Immutable human-approved specifications; advisory model review does not reproduce interactive refinement.",
+        "Row universes are model-generated, without an exhaustive clinical row/value oracle.",
+        "Selected NPI/TTE checks and P21 do not certify every clinical derivation.",
+        "Terminal-only P21; initial/final reductions and new-rule counts unavailable.",
+        "Hosted model identities/defaults are provider assertions, not equal or fixed sampling/weights.",
+        "No prior generated clinical code or results reused; main-study freeze unchanged."
+      ],
+      "id": "gemini",
+      "label": "Gemini 3.1 Pro Preview \u2014 Google official"
     },
     {
-      "id": "deepseek",
-      "label": "DeepSeek Flash \u2014 DeepSeek official",
-      "not_started": true,
-      "status": "disk_space_prelaunch_pending",
-      "provider": "DeepSeek official API",
+      "scope": "Single excluded new full-benchmark AI-431-inspired attempt",
+      "architecture": "Independent PharmaSUG AI-431-inspired full-benchmark variable pipeline; not original author software",
+      "status": "failed",
       "model": "deepseek-flash",
-      "clinical_inputs_transmitted": false,
+      "provider": "DeepSeek official API",
+      "provider_profile": {
+        "id": "deepseek",
+        "model": "deepseek-flash",
+        "provider": "DeepSeek official API",
+        "kind": "chat",
+        "key_env": "DEEPSEEK_API_KEY",
+        "endpoint": "https://api.deepseek.com/chat/completions",
+        "upstream_identity_independently_verified": false,
+        "identity_scope": "Official provider alias; not fixed weights",
+        "response_model": "deepseek-flash"
+      },
+      "freeze_sha256": "9c7ef6ded1dcca86bfabbcd3f716fbee6cbad5ca235fa053d9c4759db4a24353",
       "main_study_started": false,
+      "unaccepted_terminal_candidate": null,
+      "datasets": [
+        {
+          "dataset": "ADSL",
+          "generation_status": "failed_merge_qc",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 49,
+          "rows": null
+        },
+        {
+          "dataset": "ADAE",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 58,
+          "rows": null
+        },
+        {
+          "dataset": "ADLBC",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 47,
+          "rows": null
+        },
+        {
+          "dataset": "ADLBH",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 47,
+          "rows": null
+        },
+        {
+          "dataset": "ADLBHY",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 44,
+          "rows": null
+        },
+        {
+          "dataset": "ADQSADAS",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 43,
+          "rows": null
+        },
+        {
+          "dataset": "ADQSCIBC",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 39,
+          "rows": null
+        },
+        {
+          "dataset": "ADQSNPIX",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 43,
+          "rows": null
+        },
+        {
+          "dataset": "ADTTE",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 28,
+          "rows": null
+        },
+        {
+          "dataset": "ADVS",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 38,
+          "rows": null
+        },
+        {
+          "dataset": "ADCM",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 37,
+          "rows": null
+        },
+        {
+          "dataset": "ADDS",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 26,
+          "rows": null
+        },
+        {
+          "dataset": "ADEX",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 32,
+          "rows": null
+        }
+      ],
+      "planned_variables": 531,
+      "passed_variable_tasks": 49,
+      "passed_row_universe_tasks": 0,
+      "failed_tasks": [],
+      "repaired_tasks": [
+        {
+          "dataset": "ADSL",
+          "task": "TRTDUR",
+          "kind": "variable"
+        }
+      ],
+      "generation_responses": 51,
+      "advisory_review_responses": 1,
+      "native_usage": {
+        "input_tokens": 659614,
+        "output_tokens": 410806,
+        "cache_read_input_tokens": 37376
+      },
+      "elapsed_seconds": 982.0509390830994,
+      "export_status": "blocked",
+      "invalid_completions": [],
+      "provider_failures": [],
+      "P21": {
+        "report_usable": null,
+        "validation_coverage_complete": null,
+        "dataset_rule_pairs": null,
+        "finding_instances": null,
+        "distinct_rules": null,
+        "failure_code": null
+      },
       "metrics": [
         {
           "number": 1,
           "metric": "Workflow completion and complete dataset packages",
-          "value": null
+          "value": {
+            "workflow_completed": false,
+            "complete_packages": 0,
+            "planned_packages": 1
+          }
         },
         {
           "number": 2,
           "metric": "Reproducible final packages",
-          "value": null
+          "value": {
+            "semantic_reproduced": null,
+            "byte_reproduced": null
+          }
         },
         {
           "number": 3,
           "metric": "Valid final P21 evaluations",
-          "value": null
+          "value": {
+            "report_usable": null,
+            "full_validated_coverage": null,
+            "complete_package": false
+          }
         },
         {
           "number": 4,
           "metric": "Initial and final dataset-rule pairs",
-          "value": null
+          "value": {
+            "initial": null,
+            "final_primary_dataset_rule_pairs": null,
+            "observed_final_dataset_rule_pairs": null,
+            "note": "Terminal-only P21, partial counts descriptive"
+          }
         },
         {
           "number": 5,
@@ -745,27 +1235,86 @@
         {
           "number": 8,
           "metric": "NPI summary errors / assessed records",
-          "value": null
+          "value": {
+            "npi_mean_coverage": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "npi_mean_value": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            }
+          }
         },
         {
           "number": 9,
           "metric": "NPI baseline errors / assessed records",
-          "value": null
+          "value": {
+            "npi_baseline_covariate": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            }
+          }
         },
         {
           "number": 10,
           "metric": "TTE linkage errors / assessed records",
-          "value": null
+          "value": {
+            "tte_subject_coverage": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_start_date": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_event_status": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_source_link": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_event_date": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_duration_arithmetic": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_censor_convention": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            }
+          }
         },
         {
           "number": 11,
           "metric": "Missing extra and duplicate expected records",
-          "value": null
+          "value": {
+            "scope": "Selected NPI/TTE expectations only",
+            "coverage": null
+          }
         },
         {
           "number": 12,
           "metric": "Assessable checks / planned checks",
-          "value": null
+          "value": {
+            "assessable": 0,
+            "planned": 10
+          }
         },
         {
           "number": 13,
@@ -775,34 +1324,92 @@
         {
           "number": 14,
           "metric": "Input and output tokens",
-          "value": null
+          "value": {
+            "input_tokens": 659614,
+            "output_tokens": 410806,
+            "cache_read_input_tokens": 37376
+          }
         },
         {
           "number": 15,
           "metric": "End-to-end elapsed time in minutes",
-          "value": null
+          "value": 16.367515651384988
         },
         {
           "number": 16,
           "metric": "Tool calls and failed tool calls",
-          "value": null
+          "value": {
+            "model_tool_calls": null,
+            "sandbox_executions": 50,
+            "failed_sandbox_executions": 1,
+            "note": "Direct native APIs; no model tool loop"
+          }
         },
         {
           "number": 17,
           "metric": "Dataset Delivery Rate",
-          "value": null
+          "value": {
+            "delivered": 0,
+            "expected": 13,
+            "rate": 0.0
+          }
         },
         {
           "number": 18,
           "metric": "Variable Coverage",
-          "value": null
+          "value": {
+            "matched": 0,
+            "expected": 531,
+            "rate": 0.0
+          }
         },
         {
           "number": 19,
           "metric": "Failure-stage distribution",
-          "value": null
+          "value": {
+            "observed_attempt_failure_counts": {
+              "input_reading": 0,
+              "code_execution": 1,
+              "dataset_export": 0,
+              "define_xml_generation": 0,
+              "rebuilding": 0,
+              "p21_validation": 0
+            },
+            "failed_variable_tasks": 0,
+            "failed_row_universe_tasks": 0,
+            "failed_merge_qc_datasets": 1,
+            "blocked_datasets": [
+              "ADAE",
+              "ADLBC",
+              "ADLBH",
+              "ADLBHY",
+              "ADQSADAS",
+              "ADQSCIBC",
+              "ADQSNPIX",
+              "ADTTE",
+              "ADVS",
+              "ADCM",
+              "ADDS",
+              "ADEX"
+            ],
+            "provider_http_or_transport_failures": 0,
+            "invalid_completion_calls": 0,
+            "note": "Observed failures are distinct from blocked work; P21 findings are not validator execution failures."
+          }
         }
-      ]
+      ],
+      "limitations": [
+        "Independent full-benchmark adaptation, not author software or numerical replication.",
+        "Single nonrandomized exploratory attempt per planned endpoint; no causal superiority claims.",
+        "Immutable human-approved specifications; advisory model review does not reproduce interactive refinement.",
+        "Row universes are model-generated, without an exhaustive clinical row/value oracle.",
+        "Selected NPI/TTE checks and P21 do not certify every clinical derivation.",
+        "Terminal-only P21; initial/final reductions and new-rule counts unavailable.",
+        "Hosted model identities/defaults are provider assertions, not equal or fixed sampling/weights.",
+        "No prior generated clinical code or results reused; main-study freeze unchanged."
+      ],
+      "id": "deepseek",
+      "label": "DeepSeek Flash \u2014 DeepSeek official"
     },
     {
       "id": "gateway_sol",
@@ -912,34 +1519,300 @@
       ]
     },
     {
-      "id": "gpt_oss_20b",
-      "label": "gpt-oss-20b \u2014 DeepInfra",
-      "not_started": true,
-      "status": "disk_space_prelaunch_pending",
-      "provider": "DeepInfra hosted open-weight model",
+      "scope": "Single excluded new full-benchmark AI-431-inspired attempt",
+      "architecture": "Independent PharmaSUG AI-431-inspired full-benchmark variable pipeline; not original author software",
+      "status": "failed",
       "model": "openai/gpt-oss-20b",
-      "clinical_inputs_transmitted": false,
+      "provider": "DeepInfra hosted open-weight model",
+      "provider_profile": {
+        "id": "gpt_oss_20b",
+        "model": "openai/gpt-oss-20b",
+        "provider": "DeepInfra hosted open-weight model",
+        "kind": "chat",
+        "key_env": "DEEPINFRA_API_KEY",
+        "endpoint": "https://api.deepinfra.com/v1/openai/chat/completions",
+        "identity_scope": "DeepInfra response assertion; not local execution or authenticated official OpenAI API",
+        "response_model": "openai/gpt-oss-20b"
+      },
+      "freeze_sha256": "adb4312631e15ade50a5148027eb7d248d69b0cefc43f545e2c55ae07b1b866a",
       "main_study_started": false,
+      "unaccepted_terminal_candidate": null,
+      "datasets": [
+        {
+          "dataset": "ADSL",
+          "generation_status": "failed_variables",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 49,
+          "rows": null
+        },
+        {
+          "dataset": "ADAE",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 58,
+          "rows": null
+        },
+        {
+          "dataset": "ADLBC",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 47,
+          "rows": null
+        },
+        {
+          "dataset": "ADLBH",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 47,
+          "rows": null
+        },
+        {
+          "dataset": "ADLBHY",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 44,
+          "rows": null
+        },
+        {
+          "dataset": "ADQSADAS",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 43,
+          "rows": null
+        },
+        {
+          "dataset": "ADQSCIBC",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 39,
+          "rows": null
+        },
+        {
+          "dataset": "ADQSNPIX",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 43,
+          "rows": null
+        },
+        {
+          "dataset": "ADTTE",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 28,
+          "rows": null
+        },
+        {
+          "dataset": "ADVS",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 38,
+          "rows": null
+        },
+        {
+          "dataset": "ADCM",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 37,
+          "rows": null
+        },
+        {
+          "dataset": "ADDS",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 26,
+          "rows": null
+        },
+        {
+          "dataset": "ADEX",
+          "generation_status": "blocked_dependency",
+          "delivered": false,
+          "matched_variables": 0,
+          "expected_variables": 32,
+          "rows": null
+        }
+      ],
+      "planned_variables": 531,
+      "passed_variable_tasks": 37,
+      "passed_row_universe_tasks": 0,
+      "failed_tasks": [
+        {
+          "dataset": "ADSL",
+          "task": "STUDYID",
+          "kind": "variable",
+          "status": "failed"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "TRTEDT",
+          "kind": "variable",
+          "status": "failed"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "CUMDOSE",
+          "kind": "variable",
+          "status": "failed"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "COMP8FL",
+          "kind": "variable",
+          "status": "failed"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "COMP16FL",
+          "kind": "variable",
+          "status": "failed"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "COMP24FL",
+          "kind": "variable",
+          "status": "failed"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "BMIBLGR1",
+          "kind": "variable",
+          "status": "failed"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "DISONSDT",
+          "kind": "variable",
+          "status": "failed"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "DURDIS",
+          "kind": "variable",
+          "status": "failed"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "DURDSGR1",
+          "kind": "variable",
+          "status": "failed"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "VISNUMEN",
+          "kind": "variable",
+          "status": "failed"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "MMSETOT",
+          "kind": "variable",
+          "status": "failed"
+        }
+      ],
+      "repaired_tasks": [
+        {
+          "dataset": "ADSL",
+          "task": "USUBJID",
+          "kind": "variable"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "SUBJID",
+          "kind": "variable"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "SITEGR1",
+          "kind": "variable"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "TRT01P",
+          "kind": "variable"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "DISCONFL",
+          "kind": "variable"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "DCDECOD",
+          "kind": "variable"
+        },
+        {
+          "dataset": "ADSL",
+          "task": "RANDDT",
+          "kind": "variable"
+        }
+      ],
+      "generation_responses": 69,
+      "advisory_review_responses": 1,
+      "native_usage": {
+        "input_tokens": 888157,
+        "output_tokens": 161643,
+        "cache_read_input_tokens": null
+      },
+      "cache_usage_unavailable_responses": 69,
+      "elapsed_seconds": 624.233039855957,
+      "export_status": "blocked",
+      "invalid_completions": [],
+      "provider_failures": [],
+      "P21": {
+        "report_usable": null,
+        "validation_coverage_complete": null,
+        "dataset_rule_pairs": null,
+        "finding_instances": null,
+        "distinct_rules": null,
+        "failure_code": null
+      },
       "metrics": [
         {
           "number": 1,
           "metric": "Workflow completion and complete dataset packages",
-          "value": null
+          "value": {
+            "workflow_completed": false,
+            "complete_packages": 0,
+            "planned_packages": 1
+          }
         },
         {
           "number": 2,
           "metric": "Reproducible final packages",
-          "value": null
+          "value": {
+            "semantic_reproduced": null,
+            "byte_reproduced": null
+          }
         },
         {
           "number": 3,
           "metric": "Valid final P21 evaluations",
-          "value": null
+          "value": {
+            "report_usable": null,
+            "full_validated_coverage": null,
+            "complete_package": false
+          }
         },
         {
           "number": 4,
           "metric": "Initial and final dataset-rule pairs",
-          "value": null
+          "value": {
+            "initial": null,
+            "final_primary_dataset_rule_pairs": null,
+            "observed_final_dataset_rule_pairs": null,
+            "note": "Terminal-only P21, partial counts descriptive"
+          }
         },
         {
           "number": 5,
@@ -959,27 +1832,86 @@
         {
           "number": 8,
           "metric": "NPI summary errors / assessed records",
-          "value": null
+          "value": {
+            "npi_mean_coverage": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "npi_mean_value": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            }
+          }
         },
         {
           "number": 9,
           "metric": "NPI baseline errors / assessed records",
-          "value": null
+          "value": {
+            "npi_baseline_covariate": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            }
+          }
         },
         {
           "number": 10,
           "metric": "TTE linkage errors / assessed records",
-          "value": null
+          "value": {
+            "tte_subject_coverage": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_start_date": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_event_status": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_source_link": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_event_date": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_duration_arithmetic": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            },
+            "tte_censor_convention": {
+              "status": "unavailable",
+              "errors": null,
+              "assessed": null
+            }
+          }
         },
         {
           "number": 11,
           "metric": "Missing extra and duplicate expected records",
-          "value": null
+          "value": {
+            "scope": "Selected NPI/TTE expectations only",
+            "coverage": null
+          }
         },
         {
           "number": 12,
           "metric": "Assessable checks / planned checks",
-          "value": null
+          "value": {
+            "assessable": 0,
+            "planned": 10
+          }
         },
         {
           "number": 13,
@@ -989,34 +1921,92 @@
         {
           "number": 14,
           "metric": "Input and output tokens",
-          "value": null
+          "value": {
+            "input_tokens": 888157,
+            "output_tokens": 161643,
+            "cache_read_input_tokens": null
+          }
         },
         {
           "number": 15,
           "metric": "End-to-end elapsed time in minutes",
-          "value": null
+          "value": 10.403883997599284
         },
         {
           "number": 16,
           "metric": "Tool calls and failed tool calls",
-          "value": null
+          "value": {
+            "model_tool_calls": null,
+            "sandbox_executions": 66,
+            "failed_sandbox_executions": 28,
+            "note": "Direct native APIs; no model tool loop"
+          }
         },
         {
           "number": 17,
           "metric": "Dataset Delivery Rate",
-          "value": null
+          "value": {
+            "delivered": 0,
+            "expected": 13,
+            "rate": 0.0
+          }
         },
         {
           "number": 18,
           "metric": "Variable Coverage",
-          "value": null
+          "value": {
+            "matched": 0,
+            "expected": 531,
+            "rate": 0.0
+          }
         },
         {
           "number": 19,
           "metric": "Failure-stage distribution",
-          "value": null
+          "value": {
+            "observed_attempt_failure_counts": {
+              "input_reading": 7,
+              "code_execution": 24,
+              "dataset_export": 0,
+              "define_xml_generation": 0,
+              "rebuilding": 0,
+              "p21_validation": 0
+            },
+            "failed_variable_tasks": 12,
+            "failed_row_universe_tasks": 0,
+            "failed_merge_qc_datasets": 0,
+            "blocked_datasets": [
+              "ADAE",
+              "ADLBC",
+              "ADLBH",
+              "ADLBHY",
+              "ADQSADAS",
+              "ADQSCIBC",
+              "ADQSNPIX",
+              "ADTTE",
+              "ADVS",
+              "ADCM",
+              "ADDS",
+              "ADEX"
+            ],
+            "provider_http_or_transport_failures": 0,
+            "invalid_completion_calls": 0,
+            "note": "Observed failures are distinct from blocked work; P21 findings are not validator execution failures."
+          }
         }
-      ]
+      ],
+      "limitations": [
+        "Independent full-benchmark adaptation, not author software or numerical replication.",
+        "Single nonrandomized exploratory attempt per planned endpoint; no causal superiority claims.",
+        "Immutable human-approved specifications; advisory model review does not reproduce interactive refinement.",
+        "Row universes are model-generated, without an exhaustive clinical row/value oracle.",
+        "Selected NPI/TTE checks and P21 do not certify every clinical derivation.",
+        "Terminal-only P21; initial/final reductions and new-rule counts unavailable.",
+        "Hosted model identities/defaults are provider assertions, not equal or fixed sampling/weights.",
+        "No prior generated clinical code or results reused; main-study freeze unchanged."
+      ],
+      "id": "gpt_oss_20b",
+      "label": "gpt-oss-20b \u2014 DeepInfra"
     }
   ]
 }

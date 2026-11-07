@@ -12,7 +12,7 @@ const colors={navy:'#243B53',light:'#F0F4F8',ink:'#172B4D',muted:'#526777',amber
 const literal=x=>typeof x==='string'&&x.startsWith('=')?"'"+x:x;
 summary.getRange('A1:G30').format.font={name:'Arial',size:10,color:colors.ink};
 summary.getRange('A2').values=[[data.comparison_complete?'Full-benchmark AI-431 model results':'INTERIM — AI-431 execution incomplete']];summary.getRange('A2').format.font={name:'Arial',size:16,bold:true,color:colors.navy};
-summary.getRange('A3').values=[[data.comparison_complete?'Five planned endpoints; same new variable pipeline; gateway did not start.':'Claude ended; three qualified models await disk space; gateway HTTP403.']];
+summary.getRange('A3').values=[[data.comparison_complete?'Five planned endpoints; same new variable pipeline; gateway did not start.':`${data.records.filter(r=>!r.not_started).length} clinical attempts ended; ${data.interim_pending_models.length} await disk space; gateway HTTP403.`]];
 summary.getRange('A3').format.font={name:'Arial',size:10,color:colors.muted};
 summary.getRange('A4').values=[['Source: https://github.com/lyc0603/clinical_bench/tree/main/pre_experiment/results/ai431-full-models-2026-11-05']];
 summary.getRange('A4').format.font={name:'Arial',size:10,italic:true,color:colors.muted};

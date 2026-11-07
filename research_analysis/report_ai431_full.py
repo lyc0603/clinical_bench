@@ -16,6 +16,13 @@ from research_analysis.supplementary_metrics import inventory,schema_counts
 
 def read(path):return json.loads(Path(path).read_text())
 
+def normalized_usage(profile, usage):
+    # DeepInfra can omit cache details with JSON null; never invent zero usage.
+    unknown_cache=(profile['kind']=='chat' and usage.get('prompt_tokens_details') is None and 'prompt_cache_hit_tokens' not in usage)
+    counts=tokens(profile,{**usage,'prompt_tokens_details':usage.get('prompt_tokens_details') or {}} if unknown_cache else usage)
+    if unknown_cache:counts['cached_input']=None
+    return counts
+
 def report(root,out):
     lock=read(root/'freeze.json');frozen=lock['payload']
     if fingerprint(frozen)!=lock['sha256'] or frozen['code']!=own_code() or frozen['shared_code']!=shared_code() or manifest(root/'inputs')!=frozen['inputs']:raise ValueError('Frozen code or input drift')
@@ -68,7 +75,7 @@ def report(root,out):
         prefix='export/attempt-'+str(attempt['attempt']);checks=inspect_attempt(prefix,attempt,'output/adam/programs/export.py')
         if not checks['passed']:
             errors=' '.join(checks['errors']);stages['define_xml_generation' if 'Define' in errors or 'define.xml' in errors else 'dataset_export']+=1
-    usage=Counter();native=[];completions=[]
+    usage=Counter();native=[];completions=[];unknown_cache_calls=0
     for path,raw in selected.items():
         if not path.endswith('/response.private.json'):continue
         prefix=path.removesuffix('/response.private.json');request=selected[prefix+'/request.private.json'];profile=frozen['provider_profile']
@@ -86,10 +93,13 @@ def report(root,out):
         if prefix+'/usage.json' in selected:
             usage_receipt=selected[prefix+'/usage.json']
             if parsed['usage']!=usage_receipt['usage'] or parsed['model']!=usage_receipt['model'] or parsed['stop_reason']!=usage_receipt['stop_reason']:raise ValueError('Native usage receipt drift')
-        counts=tokens(profile,parsed['usage'])
-        for k,native_key in [('input_tokens','input'),('output_tokens','output'),('cache_read_input_tokens','cached_input')]:usage[k]+=counts.get(native_key,0)
+        counts=normalized_usage(profile,parsed['usage'])
+        if counts.get('cached_input') is None:unknown_cache_calls+=1
+        for k,native_key in [('input_tokens','input'),('output_tokens','output'),('cache_read_input_tokens','cached_input')]:
+            if counts.get(native_key) is not None:usage[k]+=counts.get(native_key,0)
         native.append({'request_sha256':observed[prefix+'/request.private.json'],'response_sha256':observed[path],'stop_reason':parsed['stop_reason'],'normalized_usage':counts,'review_call':prefix.startswith('reviews/')})
         if not parsed['normal']:completions.append({'task_path':prefix,'stop_reason':parsed['stop_reason'],'usage':counts})
+    if unknown_cache_calls:usage['cache_read_input_tokens']=None
     evaluation=selected.get('evaluation.private.json',{});con=evaluation.get('conformance') or {};correct=evaluation.get('correctness') or {};checks={c['check']:c for c in correct.get('checks',[])}
     package_prefix='final-workspace/'
     actual_package={k[len(package_prefix):]:v for k,v in observed.items() if k.startswith(package_prefix)}
@@ -125,7 +135,7 @@ def report(root,out):
     summary={'scope':'Single excluded new full-benchmark AI-431-inspired attempt','architecture':frozen['architecture'],'status':state['status'],'model':frozen['model'],'provider':frozen['provider'],'provider_profile':frozen['provider_profile'],'freeze_sha256':lock['sha256'],'main_study_started':False,'unaccepted_terminal_candidate':candidate,
         'datasets':domains,'planned_variables':531,'passed_variable_tasks':sum(t['kind']=='variable' and t['status']=='passed' for t in state['tasks']),'passed_row_universe_tasks':sum(t['kind']=='row_universe' and t['status']=='passed' for t in state['tasks']),
         'failed_tasks':[{k:t[k] for k in ('dataset','task','kind','status')} for t in state['tasks'] if t['status']!='passed'],'repaired_tasks':[{k:t[k] for k in ('dataset','task','kind')} for t in state['tasks'] if t.get('accepted_attempt')==2],
-        'generation_responses':len(native),'advisory_review_responses':sum(r['review_call'] for r in native),'native_usage':dict(usage),'elapsed_seconds':state['finished_unix']-state['started_unix'],'export_status':state.get('export',{}).get('status','blocked'),'invalid_completions':completions,'provider_failures':provider_failures,
+        'generation_responses':len(native),'advisory_review_responses':sum(r['review_call'] for r in native),'native_usage':dict(usage),'cache_usage_unavailable_responses':unknown_cache_calls,'elapsed_seconds':state['finished_unix']-state['started_unix'],'export_status':state.get('export',{}).get('status','blocked'),'invalid_completions':completions,'provider_failures':provider_failures,
         'P21':{k:con.get(k) for k in ('report_usable','validation_coverage_complete','dataset_rule_pairs','finding_instances','distinct_rules','failure_code')},'metrics':[{'number':i+1,'metric':label,'value':value} for i,(label,value) in enumerate(zip(METRICS,values))],
         'limitations':['Independent full-benchmark adaptation, not author software or numerical replication.','Single nonrandomized exploratory attempt per planned endpoint; no causal superiority claims.','Immutable human-approved specifications; advisory model review does not reproduce interactive refinement.','Row universes are model-generated, without an exhaustive clinical row/value oracle.','Selected NPI/TTE checks and P21 do not certify every clinical derivation.','Terminal-only P21; initial/final reductions and new-rule counts unavailable.','Hosted model identities/defaults are provider assertions, not equal or fixed sampling/weights.','No prior generated clinical code or results reused; main-study freeze unchanged.']}
     out.mkdir(parents=True,exist_ok=False);save(out/'summary.json',summary)

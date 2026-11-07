@@ -1,23 +1,42 @@
 {
   "batch_plan_sha256": "000e6037958a027798eb59fb27e4a5eb225d646f314ac40c6fb6b62ac7afdec5",
-  "batch_state_sha256": "4ea979666262e3d98a00db3bfe2666ff30a5ebcedc510e521da0a57c05063b51",
+  "batch_state_sha256": "25bb080f6de88ec1b8092e723c8c8513afc139f7d86c189b278aeb2b7d11d1b7",
   "readiness_sha256": "c569a98560dc476a58b2fa1d60e495dd0206e9b181663860b7e577df018d7697",
   "source_aggregate_hashes": {
     "claude": {
       "summary_sha256": "a9f63811fcdf12b3848dfbc9a4e10cfb9feeb887591488510da244afb11afc31",
-      "audit_sha256": "1bddf8445a3d94d7018e2244839f9d5f4445293d694fb259aa5398d3916ebb87"
+      "audit_sha256": "1bddf8445a3d94d7018e2244839f9d5f4445293d694fb259aa5398d3916ebb87",
+      "merge-failure-adjudication.json_sha256": "a16aeeeb70a9679a371e52ec94325d4bcf2ac1964436e5db5ad8a917aa9897dc",
+      "timing-receipt.json_sha256": "d6a35cb69a87b2cc490a60fec4e74dd55ae18ca8f0ad26acacacd0eb2282f28e"
+    },
+    "gemini": {
+      "summary_sha256": "7b350e5bece1175e0adfd2b800697bd7dd2ce35e847a275a2bb6facb06396474",
+      "audit_sha256": "a67fc8d36309313d8a39de164dfe2891319bd0adeaa95630639dd10a33668195",
+      "failure-adjudication.json_sha256": "d4da6665de7b7522746ccb707e1fcea1fc8d337bc998303bd1a6251659a40944",
+      "runtime-intervention-adjudication.json_sha256": "316d373cbf904e8408360b80be6e8faf55e6bfeccd2301bae1fc8060f60c7a69",
+      "timing-receipt.json_sha256": "7266b5bf283fe955a089a129446187dad1462aae64711a302ab19bfc929dd23d"
+    },
+    "deepseek": {
+      "summary_sha256": "613c1b21a145d655b1dade96f420ae56875ab771cd0bfab7c8f2c0fc463b2a51",
+      "audit_sha256": "11bfd31ba75487e40aa1a85dabb55f1190b14465f902f39fe9d8ccd7c8705d04",
+      "merge-failure-adjudication.json_sha256": "74ec781c52ac412d7dc8bd5d642010cbf72286e1049d974b1daaac420904adc8",
+      "timing-receipt.json_sha256": "b021667c87563ed51fb6ec7df227dd05ef58bbcd9e778ebaee62ff0914f09d13"
+    },
+    "gpt_oss_20b": {
+      "summary_sha256": "b311f24fbd9e7e82bbd1b6a05783226cad8c0cc698d7eb3cd94159f94180442b",
+      "audit_sha256": "58efb00cfe04b2e3418e6e4c895f2f605e75530d96c397c693d21671600304c6",
+      "failure-adjudication.json_sha256": "73c32742ededcd81eba158cb9a53f708f72003d296c83a2e88e9d45843023f55",
+      "timing-receipt.json_sha256": "1fe024b80f91c885fda6def0ff3006f1cb3bd5a7182ac3324a6f857fd163f490"
     }
   },
-  "publisher_sha256": "c8924cfb998270ec0ea5e1243524d123bb91679e5e5a5385dfd892f19d917d17",
+  "publisher_sha256": "4e25e55fec977b0ae0bd2dc0fee38bf19b85b25602b1b1ee2c9f96089703a013",
   "raw_clinical_artifacts_published": false,
-  "workbook": {
-    "builder_sha256": "7b3cfa61ad38a6cc243d8c3bcdf771267f89d660bf74caab270dfb57543591f1",
-    "workbook_sha256": "e0a96a4d9ea53ad65349881ce8e0584975749c0605ec490550db6cb280bcbf31",
-    "source_comparison_sha256": "3fb28a2a26586b1f27dc833784225f8492c771a6bb49a36d80615f35b16a0333",
-    "visual_review_passed": true,
-    "formula_error_matches": 0,
-    "metric_rows": 19,
-    "model_columns": 5,
-    "explicit_interim_status": true
-  }
+  "workbook_builder_sha256": "02e5fc20492aa7825be844b99d134251e5d135be7950a6dc76880fd256b3c519",
+  "workbook_sha256": "9d53af8ef427761c72d538281655405cd5e40ef750c7022b46726b7540bdb5b3",
+  "comparison_json_sha256": "25b61fb9b7ae47806081084956be921c34d6eb7f6a32d4fa99aa8c2ea741b7aa",
+  "visual_review_passed": true,
+  "formula_error_scan_matches": 0,
+  "metric_rows": 19,
+  "model_columns": 5,
+  "comparison_complete": true
 }
