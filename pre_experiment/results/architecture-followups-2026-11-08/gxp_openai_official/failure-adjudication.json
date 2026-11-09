@@ -1,0 +1,21 @@
+{
+  "classification": "Partial delivery after one exhausted node; observed P21 counts descriptive only",
+  "passed_nodes": 72,
+  "failed_node": "ADCM.validate",
+  "failed_node_attempt_error_counts": [
+    1,
+    1
+  ],
+  "accepted_export_attempt": 2,
+  "delivered_datasets": 12,
+  "expected_datasets": 13,
+  "matched_variables": 494,
+  "p21_report_usable": true,
+  "p21_full_coverage": false,
+  "observed_partial_dataset_rule_pairs": 25,
+  "semantic_reproduced": false,
+  "byte_reproduced": false,
+  "primary_complete_package_p21_score": null,
+  "generated_programs_hand_edited": false,
+  "historical_program_reuse": false
+}

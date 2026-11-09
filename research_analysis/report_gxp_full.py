@@ -27,6 +27,10 @@ def main():
             from gxp_recovery.run import own_code as provider_code
             from gxp_models.run import own_code as transport_code
             if transport_code()!=frozen['native_transport_code']:raise ValueError('Native transport code drift')
+        elif frozen.get('historical_program_reuse') is False:
+            from gxp_fresh.run import own_code as provider_code
+            from gxp_models.run import own_code as transport_code
+            if transport_code()!=frozen['native_transport_code']:raise ValueError('Native transport code drift')
         else:
             from gxp_models.run import own_code as provider_code
         from gxp_models.client import parse,tokens,body_for
@@ -61,7 +65,7 @@ def main():
         if not checks['passed']:
             text=' '.join(checks['errors']);stages['define_xml_generation' if 'Define' in text or 'define.xml' in text else 'dataset_export']+=1
         audit.append({'dataset':'combined','node':'export','attempt':item['attempt'],'passed':item['passed'],'program_sha256':item['program_sha256'],'response_sha256':digest(d/'response.private.json'),'checks_sha256':item['checks_sha256'],'usage_sha256':item['usage_sha256']})
-    usage=Counter();native=[]
+    usage=Counter();native=[];unknown_cache_calls=0
     for path in sorted(run.rglob('usage.json')):
         u=read(path);response=read(path.parent/'response.private.json');request=read(path.parent/'request.private.json')
         if multi:
@@ -72,13 +76,16 @@ def main():
             if parsed['model']!=profile['response_model'] or parsed['usage']!=u['usage'] or request!=body_for(profile,prompt,system) or system not in (frozen['node_system'],frozen['export_system']):raise ValueError('Native identity/settings drift')
             normalized=tokens(profile,u['usage'])
             if not (path.parent/'reused-generation.json').is_file():
-                for key,native_key in (('input_tokens','input'),('output_tokens','output'),('cache_read_input_tokens','cached_input')):usage[key]+=normalized.get(native_key,0)
+                if normalized.get('cached_input') is None:unknown_cache_calls+=1
+                for key,native_key in (('input_tokens','input'),('output_tokens','output'),('cache_read_input_tokens','cached_input')):
+                    if normalized.get(native_key) is not None:usage[key]+=normalized.get(native_key,0)
             reason=parsed['stop_reason']
         else:
             if response.get('model')!=frozen['model'] or response.get('usage')!=u['usage'] or request['model']!=frozen['model'] or request['max_tokens']!=frozen['max_tokens'] or request['system'] not in (frozen['node_system'],frozen['export_system']):raise ValueError('Native identity/settings drift')
             for k in ('input_tokens','output_tokens','cache_read_input_tokens','cache_creation_input_tokens'):usage[k]+=u['usage'].get(k,0)
             reason=response.get('stop_reason')
         native.append({'receipt_sha256':digest(path),'response_sha256':digest(path.parent/'response.private.json'),'stop_reason':reason,'native_usage':u['usage'],'reused_generation':(path.parent/'reused-generation.json').is_file()})
+    if unknown_cache_calls:usage['cache_read_input_tokens']=None
     e=read(run/'evaluation.private.json') or {};con=e.get('conformance') or {};correct=e.get('correctness') or {};checks={x['check']:x for x in correct.get('checks',[])}
     if (run/'final-evaluation/p21-runtime-before.json').is_file() and read(run/'final-evaluation/p21-runtime-before.json')!=frozen['p21_cache']:raise ValueError('P21 initial runtime differs from freeze')
     package=run/'final-workspace';data=package/'output/adam/datasets'

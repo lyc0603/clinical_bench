@@ -1,0 +1,54 @@
+{
+  "historical_sources": [
+    {
+      "path": "pre_experiment/results/gxp-model-comparison-2026-11-02/comparison.json",
+      "sha256": "ac7f4b38aa86017dccb15412902c0a40d33437e835e83019d2289ffa72d0b37e"
+    },
+    {
+      "path": "pre_experiment/results/ai431-full-models-2026-11-05/comparison.json",
+      "sha256": "25b61fb9b7ae47806081084956be921c34d6eb7f6a32d4fa99aa8c2ea741b7aa"
+    }
+  ],
+  "new_attempts": {
+    "ai431_gemini_retry": {
+      "freeze_sha256": "e8d2a8d9270d7c461d36bccd1180dd09b92c2f7f7b63e1e8045d7e9a32209ee1",
+      "summary_sha256": "718ab0b16629ba9a16dc0e6bae85f6949e22cc3da14e71fa04dbf81b38dc478f",
+      "audit_sha256": "062270033799e9bc403afc0be95a3e68661da37766e162b76d5fb7794bea2d40",
+      "private_archive_sha256": "8d402cf2a3760bb72d4ca201fa1cc2d24076a3c96349ceb6ae54e23beb87ba6a"
+    },
+    "ai431_openai_official": {
+      "freeze_sha256": "d55da0a33077863809ef65a03fced8014bf6ae489ff91a28df3841a0c6ae6dd9",
+      "summary_sha256": "f2eaa99bf79b0bb1de50259ccf155d919506729c4fc05af4e1cce63d70342658",
+      "audit_sha256": "6fdd0f533716a91cc76fda950b746effcf231788bab7ffecaa07a014f970fc43",
+      "private_archive_sha256": "062be55df4d69d5b50c6e948c61fc5be2ef0fdc8fe1601e0fffc09fbceb26e39"
+    },
+    "gxp_openai_official": {
+      "freeze_sha256": "32eaf1b707dc8d71fb857497c1f35cfa18fad1f178635fb384e422cddc3543ee",
+      "summary_sha256": "df5ae04e474f03715fadc1b858ac3364705b68c5922eb75366c601b6833afb8d",
+      "audit_sha256": "58a44fce2bef1254d69b7f954bbf82d4df944632c0a08e9846fba665bdf8b0ce",
+      "private_archive_sha256": "c3cacf47a84a357072b63022834f15a74a633fcb037b3bf7ffad904331cbaa9e"
+    },
+    "gxp_gpt_oss_20b": {
+      "freeze_sha256": "eac2bf95e76c7c29b3221de37d60367bd3d0fc480a8ea12b3dee267a96f2c342",
+      "summary_sha256": "9c523f72bd81c610d137e8a4abdfa63ff63d8e88df6fe814be2c53e761f1a7bb",
+      "audit_sha256": "e3d02c6470af81d940df869fce5c51bb31fa935d086045881a9f7968b60b760a",
+      "private_archive_sha256": "d7e1c41c21beb4421568f337e2d205d146dbee98253fee44ae84b7d14ff48124"
+    }
+  },
+  "batch_plan_sha256": "f4f9613d98195b15bf3fc61d41df615641528f9e16b8e4bda06f9ee4c2b2cb33",
+  "batch_state_sha256": "16693c2321c300297904b02a8d4b6ce45dbab5c535f04f7a23cd01d6d505dc27",
+  "publisher_sha256": "e5cc79672082bc34f85c70da0918a53f5445ba36c0068bd9f854d79b80b2f3e6",
+  "raw_clinical_artifacts_published": false,
+  "original_outcomes_retained": true,
+  "workbook_sha256": "019ed891dc878780cb56de826cea030cb0bdb676927be589835ba0f35ead99c1",
+  "builder_sha256": "265e64889d54b43905dd7285eee66ae0c619814cbf6e6cb4a445533c5ea3fabc",
+  "comparison_json_sha256": "8e8720db963ec6b45983284f1a146e662c2d1e3a892b580b4b25c87fb6800a66",
+  "visual_review_passed": true,
+  "formula_error_scan_matches": 0,
+  "metric_rows": 19,
+  "retained_endpoints": 13,
+  "new_attempts_count": 4,
+  "tests_passed": 28,
+  "noncloud_preclinical_snapshot_manifest_sha256": "11e5b813b820a3acfbae832601c88092846900e937b7aca9c8093ab21767479c",
+  "preclinical_snapshot_files_verified_unchanged_after_runs": true
+}

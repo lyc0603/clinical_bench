@@ -1,0 +1,35 @@
+{
+  "new_requested_attempt_after_credit_refill": true,
+  "prior_failure_retained": true,
+  "passed_variable_tasks": 46,
+  "failed_variable_tasks": [
+    "AVGDD",
+    "CUMDOSE",
+    "COMP16FL"
+  ],
+  "provider_failure_count": 0,
+  "export_rebuild_and_p21_reached": false,
+  "frozen_experimental_code_version_same_as_original_gemini_attempt": true,
+  "generated_programs_hand_edited": false,
+  "old_vs_new_frozen_component_equality": {
+    "code": true,
+    "shared_code": true,
+    "inputs": true,
+    "image": true,
+    "plan": true,
+    "variable_system": true,
+    "review_system": true,
+    "export_system": true,
+    "variable_wrapper": true,
+    "export_wrapper": true,
+    "max_tokens": true,
+    "sampling": true,
+    "variable_workers": true,
+    "max_attempts_per_task": true,
+    "max_attempts_export": true,
+    "p21_cache": true,
+    "host_library_versions": true
+  },
+  "original_freeze_sha256": "30157d1ea9d6c8340233d9a79416c69fa704273c1b194d950694441d633819a0",
+  "new_freeze_sha256": "e8d2a8d9270d7c461d36bccd1180dd09b92c2f7f7b63e1e8045d7e9a32209ee1"
+}

@@ -9,6 +9,8 @@ from main_experiment.support import save
 
 MAX_TOKENS=32768
 PROFILES={
+ 'openai_official':{'id':'openai_official','model':'gpt-6.1-sol','provider':'OpenAI official API','kind':'responses','key_env':'OPENAI_API_KEY','endpoint':'https://api.openai.com/v1/responses','upstream_identity_independently_verified':False,'identity_scope':'Official OpenAI endpoint and response-model assertion; hosted weights not independently fixed'},
+ 'gpt_oss_20b':{'id':'gpt_oss_20b','model':'openai/gpt-oss-20b','provider':'DeepInfra hosted open-weight model','kind':'chat','key_env':'DEEPINFRA_API_KEY','endpoint':'https://api.deepinfra.com/v1/openai/chat/completions','identity_scope':'DeepInfra response assertion; not local execution or official OpenAI API'},
  'gemini':{'id':'gemini','model':'gemini-3.1-pro-preview','provider':'Google official Gemini API','kind':'gemini','key_env':'GOOGLE_GENERATIVE_AI_API_KEY','endpoint':'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent','upstream_identity_independently_verified':False,'identity_scope':'Official provider model-version assertion; not fixed weights'},
  'deepseek':{'id':'deepseek','model':'deepseek-flash','provider':'DeepSeek official API','kind':'chat','key_env':'DEEPSEEK_API_KEY','endpoint':'https://api.deepseek.com/chat/completions','upstream_identity_independently_verified':False,'identity_scope':'Official provider alias; not fixed weights'},
  'gateway_sol':{'id':'gateway_sol','model':'gpt-6.1-sol','provider':'Third-party xyz.llmapigateway.org gateway; claimed Sol, not authenticated OpenAI','kind':'responses','key_env':'GATEWAY_API_KEY','endpoint':'https://xyz.llmapigateway.org/v1/responses','upstream_identity_independently_verified':False,'identity_scope':'Gateway response model claim only; may not establish upstream model identity'}
@@ -76,5 +78,5 @@ def request(profile,prompt,directory,system,expected_response_model=None):
 
 def tokens(profile,usage):
     if profile['kind']=='gemini':return {'input':usage.get('promptTokenCount',0),'output':usage.get('candidatesTokenCount',0)+usage.get('thoughtsTokenCount',0),'cached_input':usage.get('cachedContentTokenCount',0),'thinking_output':usage.get('thoughtsTokenCount',0)}
-    if profile['kind']=='chat':return {'input':usage.get('prompt_tokens',0),'output':usage.get('completion_tokens',0),'cached_input':usage.get('prompt_cache_hit_tokens',0),'thinking_output':usage.get('completion_tokens_details',{}).get('reasoning_tokens')}
-    return {'input':usage.get('input_tokens',0),'output':usage.get('output_tokens',0),'cached_input':usage.get('input_tokens_details',{}).get('cached_tokens',0),'thinking_output':usage.get('output_tokens_details',{}).get('reasoning_tokens')}
+    if profile['kind']=='chat':return {'input':usage.get('prompt_tokens',0),'output':usage.get('completion_tokens',0),'cached_input':usage.get('prompt_cache_hit_tokens',(usage.get('prompt_tokens_details') or {}).get('cached_tokens')),'thinking_output':(usage.get('completion_tokens_details') or {}).get('reasoning_tokens')}
+    return {'input':usage.get('input_tokens',0),'output':usage.get('output_tokens',0),'cached_input':(usage.get('input_tokens_details') or {}).get('cached_tokens',0),'thinking_output':(usage.get('output_tokens_details') or {}).get('reasoning_tokens')}

@@ -1,0 +1,21 @@
+{
+  "provider": "OpenAI official API",
+  "endpoint": "https://api.openai.com/v1/responses",
+  "passed_variable_tasks": 48,
+  "blocking_task": "ADSL.RFSTDTC",
+  "provider_failure": [
+    {
+      "task_path": "datasets/ADSL/tasks/RFSTDTC/attempt-1",
+      "error_type": "TimeoutError",
+      "http_status": null,
+      "seconds": 308.2270247936249
+    }
+  ],
+  "classification": "Single request transport timeout; not an invalid-key or confirmed credit-exhaustion outcome",
+  "received_native_responses": 50,
+  "uncertain_failed_request_billing_unknown": true,
+  "automatic_retry_performed": false,
+  "prior_gateway_record_replaced": false,
+  "export_rebuild_and_p21_reached": false,
+  "generated_programs_hand_edited": false
+}

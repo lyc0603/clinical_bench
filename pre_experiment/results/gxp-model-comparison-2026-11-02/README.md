@@ -43,3 +43,7 @@ Auxiliary checks cover selected NPI/TTE expectations only and cannot certify all
 See [provider runner](../../../gxp_models/README.md), [architecture](../../../gxp_full/README.md), [engineering continuation](../../../gxp_recovery/README.md) and [original ADSL adaptation](../../../gxp_adsl/README.md). All failed attempts, source/runtime pins, native responses and usage receipts remain in private, lossless hash-verified evidence archives. The repository contains code and aggregate measurements only; no credentials, patient records, raw model requests, SDTM/ADaM files or dictionaries are published. The formal main-study lock is unchanged.
 
 Additional receipts: [DeepSeek completion limit](deepseek/completion-limit-adjudication.json), [gateway nonclinical retest](gateway-readiness-retest.json). The controller category `provider_failure` includes an unacceptable completion stop reason here; it does not imply an API outage. No account recharge was performed.
+
+## Later requested follow-ups
+
+The [combined nineteen-metric table](../architecture-followups-2026-11-08/README.md) retains every result above and adds the November 8 follow-up attempts, with official OpenAI kept separate from the historical gateway. This historical table is unchanged apart from this navigation link.

@@ -1,0 +1,695 @@
+{
+  "scope": "One excluded full-benchmark GxP-inspired independent architecture extension",
+  "status": "completed_partial",
+  "model": "gpt-6.1-sol",
+  "provider": "OpenAI official API",
+  "provider_profile": {
+    "id": "openai_official",
+    "model": "gpt-6.1-sol",
+    "provider": "OpenAI official API",
+    "kind": "responses",
+    "key_env": "OPENAI_API_KEY",
+    "endpoint": "https://api.openai.com/v1/responses",
+    "upstream_identity_independently_verified": false,
+    "identity_scope": "Official OpenAI endpoint and response-model assertion; hosted weights not independently fixed",
+    "response_model": "gpt-6.1-sol"
+  },
+  "freeze_sha256": "32eaf1b707dc8d71fb857497c1f35cfa18fad1f178635fb384e422cddc3543ee",
+  "main_study_started": false,
+  "unaccepted_terminal_candidate": null,
+  "datasets": [
+    {
+      "dataset": "ADSL",
+      "generation_status": "passed",
+      "expected_variables": 49,
+      "delivered": true,
+      "matched_variables": 49,
+      "rows": 254,
+      "missing_variables": 0,
+      "wrong_type_variables": 0,
+      "extra_variables": 0
+    },
+    {
+      "dataset": "ADAE",
+      "generation_status": "passed",
+      "expected_variables": 58,
+      "delivered": true,
+      "matched_variables": 58,
+      "rows": 1191,
+      "missing_variables": 0,
+      "wrong_type_variables": 0,
+      "extra_variables": 0
+    },
+    {
+      "dataset": "ADLBC",
+      "generation_status": "passed",
+      "expected_variables": 47,
+      "delivered": true,
+      "matched_variables": 47,
+      "rows": 65468,
+      "missing_variables": 0,
+      "wrong_type_variables": 0,
+      "extra_variables": 0
+    },
+    {
+      "dataset": "ADLBH",
+      "generation_status": "passed",
+      "expected_variables": 47,
+      "delivered": true,
+      "matched_variables": 47,
+      "rows": 43838,
+      "missing_variables": 0,
+      "wrong_type_variables": 0,
+      "extra_variables": 0
+    },
+    {
+      "dataset": "ADLBHY",
+      "generation_status": "passed",
+      "expected_variables": 44,
+      "delivered": true,
+      "matched_variables": 44,
+      "rows": 10879,
+      "missing_variables": 0,
+      "wrong_type_variables": 0,
+      "extra_variables": 0
+    },
+    {
+      "dataset": "ADQSADAS",
+      "generation_status": "passed",
+      "expected_variables": 43,
+      "delivered": true,
+      "matched_variables": 43,
+      "rows": 12406,
+      "missing_variables": 0,
+      "wrong_type_variables": 0,
+      "extra_variables": 0
+    },
+    {
+      "dataset": "ADQSCIBC",
+      "generation_status": "passed",
+      "expected_variables": 39,
+      "delivered": true,
+      "matched_variables": 39,
+      "rows": 730,
+      "missing_variables": 0,
+      "wrong_type_variables": 0,
+      "extra_variables": 0
+    },
+    {
+      "dataset": "ADQSNPIX",
+      "generation_status": "passed",
+      "expected_variables": 43,
+      "delivered": true,
+      "matched_variables": 43,
+      "rows": 30906,
+      "missing_variables": 0,
+      "wrong_type_variables": 0,
+      "extra_variables": 0
+    },
+    {
+      "dataset": "ADTTE",
+      "generation_status": "passed",
+      "expected_variables": 28,
+      "delivered": true,
+      "matched_variables": 28,
+      "rows": 254,
+      "missing_variables": 0,
+      "wrong_type_variables": 0,
+      "extra_variables": 0
+    },
+    {
+      "dataset": "ADVS",
+      "generation_status": "passed",
+      "expected_variables": 38,
+      "delivered": true,
+      "matched_variables": 38,
+      "rows": 29643,
+      "missing_variables": 0,
+      "wrong_type_variables": 0,
+      "extra_variables": 0
+    },
+    {
+      "dataset": "ADCM",
+      "generation_status": "failed",
+      "expected_variables": 37,
+      "delivered": false,
+      "matched_variables": 0,
+      "rows": null
+    },
+    {
+      "dataset": "ADDS",
+      "generation_status": "passed",
+      "expected_variables": 26,
+      "delivered": true,
+      "matched_variables": 26,
+      "rows": 544,
+      "missing_variables": 0,
+      "wrong_type_variables": 0,
+      "extra_variables": 0
+    },
+    {
+      "dataset": "ADEX",
+      "generation_status": "passed",
+      "expected_variables": 32,
+      "delivered": true,
+      "matched_variables": 32,
+      "rows": 591,
+      "missing_variables": 0,
+      "wrong_type_variables": 0,
+      "extra_variables": 0
+    }
+  ],
+  "planned_nodes": 73,
+  "passed_nodes": 72,
+  "failed_nodes": [
+    {
+      "dataset": "ADCM",
+      "node": "validate",
+      "status": "failed"
+    }
+  ],
+  "repaired_nodes": [
+    {
+      "dataset": "ADDS",
+      "node": "validate"
+    },
+    {
+      "dataset": "ADLBHY",
+      "node": "validate"
+    }
+  ],
+  "export_status": "passed",
+  "generation_responses": 78,
+  "reused_generation_receipts": 0,
+  "native_usage": {
+    "input_tokens": 12149012,
+    "output_tokens": 124944,
+    "cache_read_input_tokens": 0
+  },
+  "elapsed_seconds": 1384.751012802124,
+  "started_unix": 1794186737.3782542,
+  "finished_unix": 1794188122.129267,
+  "P21": {
+    "report_usable": true,
+    "validation_coverage_complete": false,
+    "dataset_rule_pairs": 25,
+    "finding_instances": 11913,
+    "distinct_rules": 11,
+    "issues": [
+      {
+        "dataset": "ADAE",
+        "rule": "AD0018",
+        "message": "Variable label mismatch between dataset and ADaM standard",
+        "severity": "Unassigned",
+        "findings": 5
+      },
+      {
+        "dataset": "ADAE",
+        "rule": "AD0047",
+        "message": "Required variable is not present",
+        "severity": "Unassigned",
+        "findings": 1
+      },
+      {
+        "dataset": "ADAE",
+        "rule": "AD0269",
+        "message": "TRTEMFL flag value is not Y or null",
+        "severity": "Unassigned",
+        "findings": 20
+      },
+      {
+        "dataset": "ADAE",
+        "rule": "CT2001",
+        "message": "TRTEMFL value not found in 'No Yes Response (Yes only)' non-extensible codelist",
+        "severity": "Unassigned",
+        "findings": 20
+      },
+      {
+        "dataset": "ADAE",
+        "rule": "CT2002",
+        "message": "ADURU value not found in 'Unit' extensible codelist",
+        "severity": "Unassigned",
+        "findings": 718
+      },
+      {
+        "dataset": "ADDS",
+        "rule": "AD0018",
+        "message": "Variable label mismatch between dataset and ADaM standard",
+        "severity": "Unassigned",
+        "findings": 1
+      },
+      {
+        "dataset": "ADEX",
+        "rule": "AD0018",
+        "message": "Variable label mismatch between dataset and ADaM standard",
+        "severity": "Unassigned",
+        "findings": 2
+      },
+      {
+        "dataset": "ADEX",
+        "rule": "CT2002",
+        "message": "ADURU value not found in 'Unit' extensible codelist",
+        "severity": "Unassigned",
+        "findings": 585
+      },
+      {
+        "dataset": "ADLBC",
+        "rule": "AD0018",
+        "message": "Variable label mismatch between dataset and ADaM standard",
+        "severity": "Unassigned",
+        "findings": 1
+      },
+      {
+        "dataset": "ADLBC",
+        "rule": "SD1231",
+        "message": "AVAL value is longer than defined max length 8 when (PARAMCD == '_CK')",
+        "severity": "Unassigned",
+        "findings": 2
+      },
+      {
+        "dataset": "ADLBH",
+        "rule": "AD0018",
+        "message": "Variable label mismatch between dataset and ADaM standard",
+        "severity": "Unassigned",
+        "findings": 1
+      },
+      {
+        "dataset": "ADLBH",
+        "rule": "SD0037",
+        "message": "Value for LBNRIND not found in (LBNRIND) user-defined codelist",
+        "severity": "Unassigned",
+        "findings": 586
+      },
+      {
+        "dataset": "ADQSADAS",
+        "rule": "AD0018",
+        "message": "Variable label mismatch between dataset and ADaM standard",
+        "severity": "Unassigned",
+        "findings": 5
+      },
+      {
+        "dataset": "ADQSCIBC",
+        "rule": "AD0018",
+        "message": "Variable label mismatch between dataset and ADaM standard",
+        "severity": "Unassigned",
+        "findings": 3
+      },
+      {
+        "dataset": "ADQSNPIX",
+        "rule": "AD0018",
+        "message": "Variable label mismatch between dataset and ADaM standard",
+        "severity": "Unassigned",
+        "findings": 3
+      },
+      {
+        "dataset": "ADQSNPIX",
+        "rule": "AD0127",
+        "message": "BASE or BASEC is populated for a unique USUBJID, PARAMCD, but no baseline record exists",
+        "severity": "Unassigned",
+        "findings": 234
+      },
+      {
+        "dataset": "ADQSNPIX",
+        "rule": "SD0037",
+        "message": "Value for AVISIT not found in (AVISIT) user-defined codelist",
+        "severity": "Unassigned",
+        "findings": 7201
+      },
+      {
+        "dataset": "ADQSNPIX",
+        "rule": "SD1231",
+        "message": "PCHG value is longer than defined max length 8 when (PARAMCD == 'NPITM01S')",
+        "severity": "Unassigned",
+        "findings": 58
+      },
+      {
+        "dataset": "ADQSNPIX",
+        "rule": "SD1231",
+        "message": "PCHG value is longer than defined max length 8 when (PARAMCD == 'NPITM02S')",
+        "severity": "Unassigned",
+        "findings": 18
+      },
+      {
+        "dataset": "ADQSNPIX",
+        "rule": "SD1231",
+        "message": "PCHG value is longer than defined max length 8 when (PARAMCD == 'NPITM03S')",
+        "severity": "Unassigned",
+        "findings": 43
+      },
+      {
+        "dataset": "ADQSNPIX",
+        "rule": "SD1231",
+        "message": "PCHG value is longer than defined max length 8 when (PARAMCD == 'NPITM04S')",
+        "severity": "Unassigned",
+        "findings": 52
+      },
+      {
+        "dataset": "ADQSNPIX",
+        "rule": "SD1231",
+        "message": "PCHG value is longer than defined max length 8 when (PARAMCD == 'NPITM05S')",
+        "severity": "Unassigned",
+        "findings": 38
+      },
+      {
+        "dataset": "ADQSNPIX",
+        "rule": "SD1231",
+        "message": "PCHG value is longer than defined max length 8 when (PARAMCD == 'NPITM07S')",
+        "severity": "Unassigned",
+        "findings": 36
+      },
+      {
+        "dataset": "ADQSNPIX",
+        "rule": "SD1231",
+        "message": "PCHG value is longer than defined max length 8 when (PARAMCD == 'NPITM08S')",
+        "severity": "Unassigned",
+        "findings": 11
+      },
+      {
+        "dataset": "ADQSNPIX",
+        "rule": "SD1231",
+        "message": "PCHG value is longer than defined max length 8 when (PARAMCD == 'NPITM09S')",
+        "severity": "Unassigned",
+        "findings": 61
+      },
+      {
+        "dataset": "ADQSNPIX",
+        "rule": "SD1231",
+        "message": "PCHG value is longer than defined max length 8 when (PARAMCD == 'NPITM10S')",
+        "severity": "Unassigned",
+        "findings": 54
+      },
+      {
+        "dataset": "ADQSNPIX",
+        "rule": "SD1231",
+        "message": "PCHG value is longer than defined max length 8 when (PARAMCD == 'NPTOT')",
+        "severity": "Unassigned",
+        "findings": 375
+      },
+      {
+        "dataset": "ADSL",
+        "rule": "AD0018",
+        "message": "Variable label mismatch between dataset and ADaM standard",
+        "severity": "Unassigned",
+        "findings": 1
+      },
+      {
+        "dataset": "ADSL",
+        "rule": "AD0320",
+        "message": "Non-standard dataset label",
+        "severity": "Unassigned",
+        "findings": 1
+      },
+      {
+        "dataset": "ADSL",
+        "rule": "AD0509",
+        "message": "*SDT must contain 'Start Date' in the label",
+        "severity": "Unassigned",
+        "findings": 1
+      },
+      {
+        "dataset": "ADTTE",
+        "rule": "AD0018",
+        "message": "Variable label mismatch between dataset and ADaM standard",
+        "severity": "Unassigned",
+        "findings": 2
+      },
+      {
+        "dataset": "ADTTE",
+        "rule": "SD0037",
+        "message": "Value for PARAM not found in (PARAM_ADTTE) user-defined codelist",
+        "severity": "Unassigned",
+        "findings": 254
+      },
+      {
+        "dataset": "ADVS",
+        "rule": "AD0018",
+        "message": "Variable label mismatch between dataset and ADaM standard",
+        "severity": "Unassigned",
+        "findings": 2
+      },
+      {
+        "dataset": "ADVS",
+        "rule": "AD0154",
+        "message": "Multiple baseline records exist for a unique USUBJID, PARAMCD, BASETYPE",
+        "severity": "Unassigned",
+        "findings": 1518
+      }
+    ],
+    "failure_code": null,
+    "report_sha256": "d7f2e9be7bf244c88dfafe8af907951bfe66c75891a874ff57f1e01cc87d3183"
+  },
+  "metrics": [
+    {
+      "number": 1,
+      "metric": "Workflow completion and complete dataset packages",
+      "value": {
+        "workflow_completed": false,
+        "complete_packages": 0,
+        "planned_packages": 1
+      }
+    },
+    {
+      "number": 2,
+      "metric": "Reproducible final packages",
+      "value": {
+        "semantic_reproduced": false,
+        "byte_reproduced": false
+      }
+    },
+    {
+      "number": 3,
+      "metric": "Valid final P21 evaluations",
+      "value": {
+        "report_usable": true,
+        "full_validated_coverage": false,
+        "complete_package": false
+      }
+    },
+    {
+      "number": 4,
+      "metric": "Initial and final dataset-rule pairs",
+      "value": {
+        "initial": null,
+        "final_primary_dataset_rule_pairs": null,
+        "observed_final_dataset_rule_pairs": 25,
+        "note": "One terminal evaluation; partial counts descriptive only"
+      }
+    },
+    {
+      "number": 5,
+      "metric": "Reduction from initial to final",
+      "value": null
+    },
+    {
+      "number": 6,
+      "metric": "Final findings by severity",
+      "value": {
+        "Unassigned": 11913
+      }
+    },
+    {
+      "number": 7,
+      "metric": "Newly introduced dataset-rule pairs",
+      "value": null
+    },
+    {
+      "number": 8,
+      "metric": "NPI summary errors / assessed records",
+      "value": {
+        "npi_mean_coverage": {
+          "status": "scored",
+          "errors": 0,
+          "assessed": 234,
+          "coverage": {
+            "missing": 0,
+            "extra": 0,
+            "duplicates": 0
+          },
+          "qualification": ""
+        },
+        "npi_mean_value": {
+          "status": "scored",
+          "errors": 0,
+          "assessed": 234,
+          "coverage": null,
+          "qualification": "Randomized DM arms; unique complete SV VISITNUM=3 anchor; baseline day <=1; ties distance/date/QSSEQ."
+        }
+      }
+    },
+    {
+      "number": 9,
+      "metric": "NPI baseline errors / assessed records",
+      "value": {
+        "npi_baseline_covariate": {
+          "status": "scored",
+          "errors": 0,
+          "assessed": 234,
+          "coverage": null,
+          "qualification": "Randomized DM arms; unique complete SV VISITNUM=3 anchor; baseline day <=1; ties distance/date/QSSEQ."
+        }
+      }
+    },
+    {
+      "number": 10,
+      "metric": "TTE linkage errors / assessed records",
+      "value": {
+        "tte_subject_coverage": {
+          "status": "scored",
+          "errors": 0,
+          "assessed": 254,
+          "coverage": {
+            "missing": 0,
+            "extra": 0,
+            "duplicates": 0
+          },
+          "qualification": "POP01 source DM arms and complete randomized-treatment EX evidence; placebo dose >=0, active >0"
+        },
+        "tte_start_date": {
+          "status": "scored",
+          "errors": 0,
+          "assessed": 254,
+          "coverage": null,
+          "qualification": ""
+        },
+        "tte_event_status": {
+          "status": "scored",
+          "errors": 0,
+          "assessed": 254,
+          "coverage": null,
+          "qualification": "Conditional on exported query and treatment-emergent flags."
+        },
+        "tte_source_link": {
+          "status": "scored",
+          "errors": 0,
+          "assessed": 152,
+          "coverage": null,
+          "qualification": "Exact predecessor identity, including same-date events."
+        },
+        "tte_event_date": {
+          "status": "scored",
+          "errors": 0,
+          "assessed": 152,
+          "coverage": null,
+          "qualification": "Conditional on exported treatment-emergent and dermatologic query flags; no medical adjudication."
+        },
+        "tte_duration_arithmetic": {
+          "status": "scored",
+          "errors": 0,
+          "assessed": 254,
+          "coverage": null,
+          "qualification": "Implemented +1 convention; SAP does not explicitly prescribe it."
+        },
+        "tte_censor_convention": {
+          "status": "scored",
+          "errors": 0,
+          "assessed": 102,
+          "coverage": null,
+          "qualification": "DM.RFENDTC convention; not independently established by SAP."
+        }
+      }
+    },
+    {
+      "number": 11,
+      "metric": "Missing extra and duplicate expected records",
+      "value": {
+        "scope": "Selected NPI summary and TTDE source expectations only",
+        "coverage": {
+          "npi_mean_coverage": {
+            "missing": 0,
+            "extra": 0,
+            "duplicates": 0
+          },
+          "tte_subject_coverage": {
+            "missing": 0,
+            "extra": 0,
+            "duplicates": 0
+          }
+        }
+      }
+    },
+    {
+      "number": 12,
+      "metric": "Assessable checks / planned checks",
+      "value": {
+        "assessable": 10,
+        "planned": 10
+      }
+    },
+    {
+      "number": 13,
+      "metric": "Workflow API cost estimate in USD",
+      "value": null
+    },
+    {
+      "number": 14,
+      "metric": "Input and output tokens",
+      "value": {
+        "input_tokens": 12149012,
+        "output_tokens": 124944,
+        "cache_read_input_tokens": 0
+      }
+    },
+    {
+      "number": 15,
+      "metric": "End-to-end elapsed time in minutes",
+      "value": 23.079183546702065
+    },
+    {
+      "number": 16,
+      "metric": "Tool calls and failed tool calls",
+      "value": {
+        "model_tool_calls": null,
+        "note": "Direct per-node API; no agent tool loop. Sandbox executions shown separately, not comparable tool counts.",
+        "sandbox_executions": 77,
+        "failed_sandbox_executions": 4
+      }
+    },
+    {
+      "number": 17,
+      "metric": "Dataset Delivery Rate",
+      "value": {
+        "delivered": 12,
+        "expected": 13,
+        "rate": 0.9230769230769231
+      }
+    },
+    {
+      "number": 18,
+      "metric": "Variable Coverage",
+      "value": {
+        "matched": 494,
+        "expected": 531,
+        "rate": 0.9303201506591338
+      }
+    },
+    {
+      "number": 19,
+      "metric": "Failure-stage distribution",
+      "value": {
+        "observed_attempt_failure_counts": {
+          "input_reading": 0,
+          "code_execution": 4,
+          "dataset_export": 1,
+          "define_xml_generation": 0,
+          "rebuilding": 0,
+          "p21_validation": 0
+        },
+        "blocked_datasets": [],
+        "provider_failures": 0,
+        "note": "First-failing-stage attempt counts; skipped dependents are blocked, not observed failures. P21 findings are not validator failures."
+      }
+    }
+  ],
+  "limitations": [
+    "New 73-node/13-dataset extension, not author-supplied 13-dataset DAG or numerical replication.",
+    "Single development run; not randomized matched architecture comparison or a main-study allocation.",
+    "Local repairs are not initial/final complete-workflow conditions; reduction and new-rule metrics have no defined initial P21 comparator.",
+    "Auxiliary NPI/TTE checks retain original narrow/conditional limitations; not full clinical derivation certification.",
+    "Nonempty and fixed row-universe gates are explicit architecture-adaptation contracts, not exhaustive record correctness.",
+    "Qualification/preparation and earlier failed probes are excluded from measured runtime/token totals and retained separately."
+  ],
+  "id": "gxp_openai_official",
+  "label": "GPT-6.1 Sol \u2014 OpenAI official; fresh Nov 8",
+  "architecture_group": "gxp",
+  "attempt_cohort": "New requested follow-up 2026-11-08"
+}

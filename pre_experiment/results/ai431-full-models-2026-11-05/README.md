@@ -55,3 +55,7 @@ Native token totals cover observed usage receipts. An HTTP/transport failure wit
 Claude ran on November 5 and Gemini on November 7 after a disk-space pause. Before resumption, all 468 pinned P21 cache files were restored from preserved copies and matched the original frozen hashes; no runtime upgrade occurred. Gemini COMP8FL exhausted two local attempts and COMP24FL received HTTP402 for exhausted prepaid credit. New requests stopped. An already in-flight DSRAEFL task subsequently passed after stopping an owned Docker preparation loader with no running processes. The retained adjudication records this post-hoc infrastructure unblock: no generated code was edited and no additional model request was triggered by the intervention. Elapsed time includes diagnosis and intervention. No P21 validation was reached for that attempt.
 
 DeepInfra returned null cache-token details. A post-hoc aggregate-only reporter repair recovered input/output totals from unchanged native receipts and leaves cached input unavailable. No clinical request was repeated and no frozen experimental code or generated program was changed.
+
+## Later requested follow-ups
+
+The [combined nineteen-metric table](../architecture-followups-2026-11-08/README.md) retains every result above and adds the November 8 follow-up attempts, with official OpenAI kept separate from the historical gateway. This historical table is unchanged apart from this navigation link.

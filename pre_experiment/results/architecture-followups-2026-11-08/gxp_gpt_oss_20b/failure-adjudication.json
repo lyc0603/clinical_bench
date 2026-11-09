@@ -1,0 +1,14 @@
+{
+  "classification": "Model context-window incompatibility for unchanged full GxP prompt, not insufficient credit or invalid key",
+  "http_status": 400,
+  "provider_error_code": "context_length_exceeded",
+  "reported_input_tokens": 159397,
+  "provider_input_limit": 131072,
+  "blocking_node": "ADSL.ingest",
+  "native_generation_responses": 0,
+  "billed_usage_without_receipt_unknown": true,
+  "clinical_prompt_truncated": false,
+  "automatic_retry_performed": false,
+  "small_interface_readiness_passed_but_full_context_capability_not_qualified": true,
+  "generated_programs_hand_edited": false
+}
