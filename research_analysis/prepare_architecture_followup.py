@@ -19,7 +19,7 @@ def main():
     original=json.loads((a.source/'freeze.json').read_text());receipt=json.loads(a.readiness.read_text());profile=receipt['profile']
     if fingerprint(original['payload'])!=original['sha256'] or manifest(a.source/'inputs')!=original['payload']['inputs']:raise ValueError('Source freeze/input drift')
     profiles=AI_PROFILES if a.architecture=='ai431' else GXP_PROFILES
-    if profile['id'] not in ('gemini','openai_official','gpt_oss_20b') or profiles[profile['id']]!=profile or not receipt['qualified']:raise ValueError('Exact approved provider readiness required; no gateway')
+    if profile['id'] not in ('gemini','openai_official','gpt_oss_20b','llama_scout') or profiles[profile['id']]!=profile or not receipt['qualified']:raise ValueError('Exact approved provider readiness required; no gateway')
     if a.architecture=='ai431':prepare_ai(a.root,a.source,a.readiness,a.qualification);return
     a.root.mkdir(parents=True,exist_ok=False);shutil.copytree(a.source/'inputs',a.root/'inputs')
     shutil.copy2(a.source/'source-schemas.json',a.root/'source-schemas.json')

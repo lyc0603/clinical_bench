@@ -9,6 +9,7 @@ from main_experiment.support import save
 
 MAX_TOKENS=32768
 PROFILES={
+ 'llama_scout':{'id':'llama_scout','model':'meta-llama/Llama-4-Scout-17B-16E-Instruct','provider':'DeepInfra hosted Meta Llama 4 Scout','kind':'chat','key_env':'DEEPINFRA_API_KEY','endpoint':'https://api.deepinfra.com/v1/openai/chat/completions','identity_scope':'DeepInfra response assertion; hosted open-weight model, not local execution'},
  'openai_official':{'id':'openai_official','model':'gpt-6.1-sol','provider':'OpenAI official API','kind':'responses','key_env':'OPENAI_API_KEY','endpoint':'https://api.openai.com/v1/responses','upstream_identity_independently_verified':False,'identity_scope':'Official OpenAI endpoint and response-model assertion; hosted weights not independently fixed'},
  'gpt_oss_20b':{'id':'gpt_oss_20b','model':'openai/gpt-oss-20b','provider':'DeepInfra hosted open-weight model','kind':'chat','key_env':'DEEPINFRA_API_KEY','endpoint':'https://api.deepinfra.com/v1/openai/chat/completions','identity_scope':'DeepInfra response assertion; not local execution or official OpenAI API'},
  'gemini':{'id':'gemini','model':'gemini-3.1-pro-preview','provider':'Google official Gemini API','kind':'gemini','key_env':'GOOGLE_GENERATIVE_AI_API_KEY','endpoint':'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-pro-preview:generateContent','upstream_identity_independently_verified':False,'identity_scope':'Official provider model-version assertion; not fixed weights'},

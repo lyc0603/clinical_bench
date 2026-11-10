@@ -4,7 +4,7 @@ import {Workbook,SpreadsheetFile} from '@oai/artifact-tool';
 const [input,out]=process.argv.slice(2);
 if(!input||!out)throw Error('usage: builder comparison.json output_dir');
 const data=JSON.parse(await fs.readFile(input,'utf8'));
-if(data.records.length!==13||data.table_rows.length!==19)throw Error('Expected all retained endpoints and nineteen metrics');
+if(![13,15].includes(data.records.length)||data.table_rows.length!==19)throw Error('Expected all retained endpoints and nineteen metrics');
 const wb=Workbook.create();const ink='#172B4D',navy='#243B53',muted='#526777',light='#F0F4F8';
 const literal=x=>typeof x==='string'&&x.startsWith('=')?"'"+x:x;
 const render=[];
@@ -15,7 +15,7 @@ for(const architecture of ['gxp','ai431']){
  s.getRange(scope).format.font={name:'Arial',size:10,color:ink};
  s.getRange('A2').values=[[architecture==='gxp'?'GxP — historical and new attempts':'AI-431 — historical and new attempts']];s.getRange('A2').format.font={name:'Arial',size:16,bold:true,color:navy};
  s.getRange('A3').values=[['All failures retained; nonconcurrent exploratory attempts; no matched superiority inference.']];s.getRange('A3').format.font={name:'Arial',size:10,color:muted};
- s.getRange('A4').values=[['Source: https://github.com/lyc0603/clinical_bench/tree/main/pre_experiment/results/architecture-followups-2026-11-08']];s.getRange('A4').format.font={name:'Arial',size:10,italic:true,color:muted};
+ s.getRange('A4').values=[['Source: https://github.com/lyc0603/clinical_bench/tree/main/pre_experiment/results/architecture-followups-2026-11-'+(data.records.length===15?'09':'08')]];s.getRange('A4').format.font={name:'Arial',size:10,italic:true,color:muted};
  s.getRange(`A6:${last}6`).values=[['No.','Metric',...indices.map(i=>data.records[i].label)]];
  const rows=data.table_rows.map(r=>[r[0],r[1],...indices.map(i=>literal(r[i+2]))]);
  for(let c=0;c<indices.length;c++){

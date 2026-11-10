@@ -1,0 +1,20 @@
+{
+  "previous_comparison_sha256": "8e8720db963ec6b45983284f1a146e662c2d1e3a892b580b4b25c87fb6800a66",
+  "previous_thirteen_records_unchanged": true,
+  "new_attempts": {
+    "gxp_llama_scout": {
+      "source_summary_sha256": "6a62ac1e4e6288ea662eb499c27721b0d221ba8d75fca73834507027002d7498",
+      "private_archive_sha256": "cc088279c3fec084d2a3f42184832eb038b17892155df188d813cd58ba2d94d5",
+      "freeze_sha256": "cb49faf7e0de89c6d7abb3ee7c2b1c4c585280573bda267364a27eea1ff22c56"
+    },
+    "ai431_llama_scout": {
+      "source_summary_sha256": "c2f7b2fc88b562891d58084aa354f469029c10ede6a59ca01ff61d8f7d8cde8a",
+      "private_archive_sha256": "17127d85820c67515f95291e2fdcf53ffa232256108227191ee29b5cb99629f2",
+      "freeze_sha256": "8fc4d2b7c2a7985ce32ffec7b8adfc7e34917fe89050c8ed9aa797dda320e6b8"
+    }
+  },
+  "batch_plan_sha256": "bbb1b65469d678adef6d366de79de8f79d1404d696428681386cc2356dd8dc8e",
+  "batch_state_sha256": "22fae9d6b3f462c8455ce17e5c75a00cd7c630ed3f74ecf1f99a1c08d7a28b1a",
+  "raw_clinical_artifacts_published": false,
+  "publisher_sha256": "25d059850328984e178f052575352806b18e48ff6ad5683c9bdc12ef731f4ed1"
+}
